@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4AF2805C-4900-4A94-97B3-4D8A46D8AA43}</ProjectGuid>
+    <ProjectGuid>{17C4DA7E-473A-49D3-8C52-7ACD26A871CC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>dotNet5781_01_6436_9554</RootNamespace>
     <AssemblyName>dotNet5781_01_6436_9554</AssemblyName>
@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

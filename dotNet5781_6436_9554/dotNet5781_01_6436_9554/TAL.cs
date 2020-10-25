@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6436_9554
 {
-    class Program
+    class TAL
     {
-        static void Main(string[] args)
-        {
-            
-        }
+        Console.WriteLine("A");
     }
 }
