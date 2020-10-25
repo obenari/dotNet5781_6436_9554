@@ -12,6 +12,7 @@ namespace dotNet5781_01_6436_9554
         {
             Console.WriteLine("g");
             ///
+            Console.WriteLine("Q:");
         }
     }
 }
