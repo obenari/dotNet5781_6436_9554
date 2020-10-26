@@ -8,5 +8,6 @@ namespace dotNet5781_01_6436_9554
 {
     class Bus
     {
+
     }
 }
