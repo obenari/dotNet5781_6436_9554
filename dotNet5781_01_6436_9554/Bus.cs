@@ -21,7 +21,7 @@ namespace dotNet5781_01_6436_9554
             get { return currentDate; }
             set { currentDate = value; }
         }
-        public DateTime ateOftreatment
+        public DateTime DateOftreatment
         {
             get { return dateOftreatment; }
             set { dateOftreatment = value; }
