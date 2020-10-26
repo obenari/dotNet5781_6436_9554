@@ -10,10 +10,6 @@ namespace dotNet5781_01_6436_9554
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("g");
-            ///
-            Console.WriteLine("Q:");
-            Console.WriteLine("***********");
         }
     }
 }
