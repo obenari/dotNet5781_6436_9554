@@ -34,12 +34,12 @@ namespace dotNet5781_01_6436_9554
         public int Kilometer
         {
             get { return kilometer; }
-            set { kilometer += value; }
+            set { kilometer = value; }
         }
         public int AmountOfFuelLeft
         {
             get { return amountOfFuelLeft; }
-            set { amountOfFuelLeft -= value; }
+            set { amountOfFuelLeft = value; }
         }
         public string LicenseNumber
         {
@@ -49,13 +49,13 @@ namespace dotNet5781_01_6436_9554
         public int KilometerFromTheLastTreatment
         {
             get { return kilometerFromTheLastTreatment; }
-            set { kilometerFromTheLastTreatment += value; }
+            set { kilometerFromTheLastTreatment = value; }
         }
        public Bus(string license,DateTime start)
         {
             licenseNumber = license;
             startOfActivity = start;
-            DateOftreatment= CurrentDate;//***************************
+            DateOftreatment= DateTime.Now;//***************************
             
                 
 
@@ -97,7 +97,7 @@ namespace dotNet5781_01_6436_9554
             //    return true;
             //}
             currentDate = DateTime.Now;
-            if(currentDate.Year - dateOftreatment.Year >1)
+            if(currentDate.Year - dateOftreatment.Year >=1)
             {
                 //Console.WriteLine("required treatment.");
                 return true;
@@ -129,16 +129,16 @@ namespace dotNet5781_01_6436_9554
             string help = licenseNumber;
             if(help.Length==7)
             {
-                help.Insert(2, "-");
-                help.Insert(6, "-");
+               help= help.Insert(2, "-");
+                help = help.Insert(6, "-");
             }
             else
             {
-                help.Insert(3, "-");
-                help.Insert(6, "-");
+                help = help.Insert(3, "-");
+                help = help.Insert(6, "-");
             }
             Console.WriteLine("license number is:{0}",help);
-            Console.WriteLine("Mileage is:{0}", kilometer);
+            Console.WriteLine("Mileage is:{0}", kilometerFromTheLastTreatment);
         }
 
     }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6436_9554
 {
-    class BusList
+   public class BusList
     {
         List<Bus> lst;
+        public BusList() { lst = new List<Bus>(); }
         public bool busExist(string license)//this func chech if the bus is exist in the system
         {
            // bool flag = false;
@@ -29,7 +30,7 @@ namespace dotNet5781_01_6436_9554
               {
                 int n;
                 str = Console.ReadLine();
-                  while(!(int.TryParse(str,out n)))
+                  while(!(int.TryParse(str,out n))||str.Length<7||str.Length>8)
                 {
                     Console.WriteLine("wrong input, please try again.");
                     str = Console.ReadLine();
@@ -40,9 +41,14 @@ namespace dotNet5781_01_6436_9554
                 }
                 else
                 {
+                    //if(str.Length<7)
+                    //{
+                    //    Console.WriteLine();
+                    //}
                    // ..int year, month, day;
                   //  year = int.Parse(Console.ReadLine());
                     DateTime t;
+                    Console.WriteLine("please enter a date of start");
                     bool check = DateTime.TryParse(Console.ReadLine(), out t);
                     while(!check)
                     {
@@ -93,9 +99,9 @@ namespace dotNet5781_01_6436_9554
             }
             if(flag)//if the bus is  suitable to use
             {
-                lst[i].Kilometer = lst[i].Kilometer + i;
-                lst[i].AmountOfFuelLeft = lst[i].AmountOfFuelLeft - i;
-                lst[i].KilometerFromTheLastTreatment = lst[i].KilometerFromTheLastTreatment + i;
+                lst[index].Kilometer = lst[index].Kilometer + i;
+                lst[index].AmountOfFuelLeft = lst[index].AmountOfFuelLeft - i;
+                lst[index].KilometerFromTheLastTreatment = lst[index].KilometerFromTheLastTreatment + i;
             }
 
         }
