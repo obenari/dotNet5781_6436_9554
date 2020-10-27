@@ -126,7 +126,18 @@ namespace dotNet5781_01_6436_9554
         }
         public void print()
         {
-            Console.WriteLine("license number is:{0}",licenseNumber);
+            string help = licenseNumber;
+            if(help.Length==7)
+            {
+                help.Insert(2, "-");
+                help.Insert(6, "-");
+            }
+            else
+            {
+                help.Insert(3, "-");
+                help.Insert(6, "-");
+            }
+            Console.WriteLine("license number is:{0}",help);
             Console.WriteLine("Mileage is:{0}", kilometer);
         }
 

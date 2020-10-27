@@ -94,7 +94,7 @@ namespace dotNet5781_01_6436_9554
             if(flag)//if the bus is  suitable to use
             {
                 lst[i].Kilometer = lst[i].Kilometer + i;
-                lst[i].AmountOfFuelLeft = lst[i].AmountOfFuelLeft + i;
+                lst[i].AmountOfFuelLeft = lst[i].AmountOfFuelLeft - i;
                 lst[i].KilometerFromTheLastTreatment = lst[i].KilometerFromTheLastTreatment + i;
             }
 
