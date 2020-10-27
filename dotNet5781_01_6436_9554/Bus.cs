@@ -60,79 +60,46 @@ namespace dotNet5781_01_6436_9554
                 
 
         }
-        //public void busNumber(int license,List<Bus> lst)
-        //{
-        //   // foreach()
-        //}
-        public static bool busExist(int license, List<Bus> lst)//this func chech if the bus is exist in the system
+        
+        
+       
+        public bool needTreatment()//the func check if the bus is available or need need a treatment
         {
-            Console.WriteLine("The bus is not exist.");
-            return true;
-        }
-        //public void chooseBus(int license,List<Bus> lst)
-        //{
-        //    if(busExist(license,lst))
-        //    {
-        //        Random r = new Random(DateTime.Now.Millisecond);
-
-        //    }
-
-        //}
-        public bool needTreatment(/*int kilometerInThisDrive = 0*/)//the func check if the bus is available or need need a treatment
-        {
-
-            // TimeSpan t = currentDate - dateOftreatment;
-            //if (kilometerFromTheLastTreatment + kilometerNow <= 20000 && currentDate.Year - dateOftreatment.Year < 1)
-            //    return true;
-            //else
-            //{
-            //    if(kilometerFromTheLastTreatment + kilometerNow > 20000)
-            //       Console.WriteLine("The bus is dangerous.");
-
-            //    return false;
-            //}
-            //if (kilometerFromTheLastTreatment + kilometerInThisDrive > 20000)
-            //{
-            //    Console.WriteLine("The bus is dangerous, required treatment.");
-            //    return true;
-            //}
             currentDate = DateTime.Now;
             if(currentDate.Year - dateOftreatment.Year >=1)
             {
-                //Console.WriteLine("required treatment.");
                 return true;
             }
             return false;
         }
-        public bool dangerous(int kilometerInThisDrive=0)
+        
+        public bool dangerous(int kilometerInThisDrive=0)//the func check if after the next drive,the bus will drive more than 20000 km from the last treatment
         {
             if (kilometerFromTheLastTreatment + kilometerInThisDrive > 20000)
             {
-                //Console.WriteLine("The bus is dangerous, required treatment.");
                 return true;
             }
             return false;
         }
        
-        public bool enoughFuel(int kilometerInThisDrive)
+        public bool enoughFuel(int kilometerInThisDrive)//the func check if there is enough fuel for the next drive
         {
             if (amountOfFuelLeft - kilometerInThisDrive > 0)
                 return true;
             else
             {
-               // Console.WriteLine("There is not enough Fuel.");
                 return false;
             }
         }
-        public void print()
+        public void print()//the func printlicense number, and the mileage from the last treatment 
         {
             string help = licenseNumber;
-            if(help.Length==7)
+            if(help.Length==7)//in order to print in this format: xx-xxx-xx
             {
                help= help.Insert(2, "-");
                 help = help.Insert(6, "-");
             }
-            else
+            else//in order to print in this format: xxx-xx-xxx
             {
                 help = help.Insert(3, "-");
                 help = help.Insert(6, "-");

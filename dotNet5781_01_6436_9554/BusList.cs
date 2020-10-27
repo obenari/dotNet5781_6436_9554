@@ -10,27 +10,27 @@ namespace dotNet5781_01_6436_9554
     {
         List<Bus> lst;
         public BusList() { lst = new List<Bus>(); }
-        public bool busExist(string license)//this func chech if the bus is exist in the system
+        public bool busExist(string license)//this func check if the bus is exist in the system
         {
-           // bool flag = false;
+          
             for(int i=0;i<lst.Count;i++)
             {
                 if (lst[i].LicenseNumber == license)
                     return true;
             }
             return false;
-           // Console.WriteLine("The bus is not exist.");
+           
         }
-        public void addBus()
+        public void addBus()//add new bus to the system
         {
-            bool properInput = false;//until the user dont insert proper input he the loop continue to run
+            bool properInput = false;//until the user dont insert proper input  the loop continue to run
             string str;
             Console.WriteLine("Enter a license number");
              while (!properInput)
               {
                 int n;
                 str = Console.ReadLine();
-                  while(!(int.TryParse(str,out n))||str.Length<7||str.Length>8)
+                  while(!(int.TryParse(str,out n))||str.Length<7||str.Length>8)//until the user dont insert okey number
                 {
                     Console.WriteLine("wrong input, please try again.");
                     str = Console.ReadLine();
@@ -39,27 +39,22 @@ namespace dotNet5781_01_6436_9554
                 {
                     Console.WriteLine("The bus is already exist");
                 }
-                else
+                else//if the bus is not exist
                 {
-                    //if(str.Length<7)
-                    //{
-                    //    Console.WriteLine();
-                    //}
-                   // ..int year, month, day;
-                  //  year = int.Parse(Console.ReadLine());
+                   
                     DateTime t;
                     Console.WriteLine("please enter a date of start");
                     bool check = DateTime.TryParse(Console.ReadLine(), out t);
-                    while(!check)
+                    while(!check)//until the user dont insert a good date
                     {
                         Console.WriteLine("Error date, please enter again.");
                         check = DateTime.TryParse(Console.ReadLine(), out t);
                     }
-                    if(t.Year>2017&&str.Length==7||t.Year<=2017&&str.Length==8)
+                    if(t.Year>2017&&str.Length==7||t.Year<=2017&&str.Length==8)//if there is no match with the license number and date
                     {
                         Console.WriteLine("The data does not match, please enter licenses number and date again");
                     }
-                    else
+                    else//if the date and the number is okey
                     {
                         Bus b = new Bus(str, t);
                         lst.Add(b);
@@ -69,7 +64,7 @@ namespace dotNet5781_01_6436_9554
             }
 
         }
-        public void chooseBus()
+        public void chooseBus()//the user choose a bus to drive
         {
             Console.WriteLine("please enter a license number");
             string license = Console.ReadLine();
@@ -105,7 +100,7 @@ namespace dotNet5781_01_6436_9554
             }
 
         }
-        public int findBusIndex(string str)
+        public int findBusIndex(string str)//the func return the index in the list of the required bus
         {
             for(int i=0;i<lst.Count;i++)
             {
@@ -126,7 +121,7 @@ namespace dotNet5781_01_6436_9554
             int index = findBusIndex(license);
             lst[index].AmountOfFuelLeft = 1200;
         }
-        public void treatment()
+        public void treatment()//do treatment to the required bus
         {
             Console.WriteLine("please enter a license number");
             string license = Console.ReadLine();
