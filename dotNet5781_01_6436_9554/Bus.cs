@@ -34,12 +34,12 @@ namespace dotNet5781_01_6436_9554
         public int Kilometer
         {
             get { return kilometer; }
-            set { kilometer = value; }
+            set { kilometer += value; }
         }
         public int AmountOfFuelLeft
         {
             get { return amountOfFuelLeft; }
-            set { amountOfFuelLeft = value; }
+            set { amountOfFuelLeft -= value; }
         }
         public int LicenseNumber
         {
@@ -49,10 +49,11 @@ namespace dotNet5781_01_6436_9554
         public int KilometerFromTheLastTreatment
         {
             get { return kilometerFromTheLastTreatment; }
-            set { kilometerFromTheLastTreatment = value; }
+            set { kilometerFromTheLastTreatment += value; }
         }
         Bus(int license,DateTime start)
         {
+     
             while (license>9999999 && start.Year >= 2018)
             // if (license.Length == 7)
             //if (start.Year > 2018)
