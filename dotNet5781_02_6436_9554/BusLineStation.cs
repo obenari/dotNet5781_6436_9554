@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-    class BusLineStation
+   public class BusLineStation : BusStation
     {
+        double distance;
+        int travelTime;
+        public int TravelTime { get; set; }
+        public double Distance { get; set; }
+        public BusLineStation(ref string name,string address,int t, double d):base(ref name,address)
+        {
+            travelTime = t;
+            distance = d;
+        }
+
+
+
     }
 }

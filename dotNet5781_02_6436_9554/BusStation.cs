@@ -43,6 +43,7 @@ namespace dotNet5781_02_6436_9554
             Longitude = r.NextDouble()+r.Next(34,36);
 
         }
+        public BusStation() { }
         public override string ToString()
         {
             return "Bus Station Code :" + BusStationKey + ", " + Longitude + "N" + ", " + Latitude + "E";
