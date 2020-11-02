@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-    class BusStation
+    public class BusStation
     {
+        string BusStationKey;
+        float[] Latitude;
+        float[] Longitude;
+        string address;
+
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
     }
 }
