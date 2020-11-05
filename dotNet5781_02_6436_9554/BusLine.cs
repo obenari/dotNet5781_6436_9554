@@ -284,7 +284,7 @@ namespace dotNet5781_02_6436_9554
                 return -1;
             if (totalTime() > bus.totalTime())
                 return 1;
-            //if we here they are equal each other
+            //if we here they are equal to each other
             return 0;
         }
     }
