@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_6436_9554
 {
     enum Area { General, North, South, Center, Jerusalem, }
-    class BusLine: IComparable
+    public class BusLine: IComparable
     {
         //int busNumber;
         private BusLineStation firstStation;
