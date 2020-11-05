@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_6436_9554
 {
     enum Area { General, North, South, Center, Jerusalem, }
-    class BusLine
+    class BusLine: IComparable
     {
         //int busNumber;
         BusLineStation firstStation;
@@ -35,11 +35,19 @@ namespace dotNet5781_02_6436_9554
         public BusLineStation FirstStation { get; private set; }
         public BusLineStation LastStation { get; private set; }
         public Area BusArea { get; set; }
-        public BusLine(int line, Area a)
+        //public BusLine(int line, Area a)
+        //{
+        //    BusNumber = line;
+        //    BusArea = a;
+        //}
+        public BusLine(int line, Area a,BusLineStation first,BusLineStation last)
         {
             BusNumber = line;
             BusArea = a;
+            FirstStation = first;
+            LastStation = last;
         }
+
         public override string ToString()//*********************************
         {
               
@@ -225,13 +233,59 @@ namespace dotNet5781_02_6436_9554
         /// <returns></returns>
         public BusLine subPathe(int num1, int num2)
         {
+            if (num1 == num2)
+                throw new ArgumentException("It's impossible  return the path of the same station");
             if (!stationIsExist(num1) || !stationIsExist(num2))//if the stations are not found
+            {
                 throw new KeyNotFoundException("The station is not found.");
+            }
             //if we came here, both stations are found
             int i = StationIndex(num1);
             int j = StationIndex(num2);
-            BusLine bus
-
+            BusLine bus;
+            if (i < j)
+            {
+               bus = new BusLine(BusNumber, BusArea, stations[i], stations[i+1]);
+                i += 2;
+                while (i <= j)
+                {
+                    bus.addToEnd(stations[i]);
+                    i++;
+                }
+                return bus;
+            }
+            //if we came here, it means that i>j
+            bus = new BusLine(BusNumber, BusArea, stations[j], stations[j + 1]);
+            j += 2;
+            while (j <= i)
+            {
+                bus.addToEnd(stations[j]);
+                j++;
+            }
+            return bus;
+        }
+        public TimeSpan totalTime()
+        {
+            TimeSpan t = new TimeSpan(0, 0, 0);
+            for(int i=1;i<stations.Count();i++)// the first station is not included in the total time
+            {
+                t += stations[i].TravelTime;
+            }
+            return t;
+            //foreach (BusLineStation item in stations)
+            //{
+            //    t+=
+            //}
+        }
+        public int CompareTo(object item)
+        {
+            BusLine bus = (BusLine)item;
+            if (totalTime() < bus.totalTime())
+                return -1;
+            if (totalTime() > bus.totalTime())
+                return 1;
+            //if we here they are equal each other
+            return 0;
         }
     }
 }
