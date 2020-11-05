@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-    enum Area { General, North, South, Center, Jerusalem, }
+    public enum Area { General, North, South, Center, Jerusalem, }
     public class BusLine: IComparable
     {
-        //int busNumber;
+        
         private BusLineStation firstStation;
         private BusLineStation lastStation;
-        private Area busArea;
+        private Area busArea=new Area();
         List<BusLineStation> stations = new List<BusLineStation>();
         private int busNumber;
 
@@ -31,18 +31,28 @@ namespace dotNet5781_02_6436_9554
         
         public BusLineStation FirstStation { get; private set; }
         public BusLineStation LastStation { get; private set; }
-        public Area BusArea { get; set; }
+        // public Area BusArea { get; set; }
         //public BusLine(int line, Area a)
         //{
         //    BusNumber = line;
         //    BusArea = a;
         //}
+        
+
+        public Area BusArea
+        {
+            get { return busArea; }
+            set { busArea = value; }
+        }
+
         public BusLine(int line, Area a,BusLineStation first,BusLineStation last)
         {
             BusNumber = line;
             BusArea = a;
             FirstStation = first;
             LastStation = last;
+            stations.Add(first);
+            stations.Add(last);
         }
 
         public override string ToString()//*********************************
@@ -155,16 +165,20 @@ namespace dotNet5781_02_6436_9554
         {
             
             
-            int i = StationIndex(stationNumber);
-            //for(;i<stations.Count();i++)
-            //{
-            //    if (stations[i].Station.BusStationKey == stationNumber)
-            //        break;
-            //}
-            //if (i == stations.Count())//it means that the required station is not found
-            //    throw new KeyNotFoundException(string.Format("The {0} station is not found.",stationNumber));
-
+            int i = StationIndex(stationNumber);//if the required station is not exist, the function stationIndex throw an exception
+            if (stations.Count == 2)
+                throw new CannotDeletedException("It's impossible to delete a station if there are only two stations");
+            if (i == 0)
+            {
+                FirstStation = stations[1];
+            }
+            if(i==stations.Count-1)
+            {
+                LastStation = stations[i - 1];
+            }
             stations.Remove(stations[i]);//if the required station is found,remove her from the stations list
+            
+
         }
         public bool stationIsExist(int stationNumber)
         {

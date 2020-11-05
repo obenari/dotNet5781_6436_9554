@@ -18,7 +18,7 @@ namespace dotNet5781_02_6436_9554
         public BusStation Station
         {
             get { return station; }
-            set { station = value; }//***************************************
+            private  set { station = value; }//***************************************
         }
 
         public double Distance
@@ -31,9 +31,29 @@ namespace dotNet5781_02_6436_9554
                     throw new ArgumentOutOfRangeException(string.Format("distance should be positive."));
             }
         }
-
-        public BusLineStation( int num,string address, TimeSpan t, double d)//:base(num,address)
+        /// <summary>
+        /// this ctor dont get a BusStation as a varible, it create a new one
+        /// </summary>
+        /// <param name="num">station number </param>
+        /// <param name="address"></param>
+        /// <param name="t">The time it takes to travel from the previous station to the current one</param>
+        /// <param name="d">Distance from previous station to current</param>
+        public BusLineStation( int num, TimeSpan t, double d,double lut,double lon,string address="")
         {
+            station = new BusStation(num, lut, lon,address);
+            TravelTime = t;
+            Distance = d;
+        }
+        /// <summary>
+        /// this ctor get BusStation as a varible 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="address"></param>
+        /// <param name="t"></param>
+        /// <param name="d"></param>
+        public BusLineStation(BusStation s, TimeSpan t, double d)
+        {
+            Station = s;
             TravelTime = t;
             Distance = d;
         }

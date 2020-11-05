@@ -10,11 +10,31 @@ namespace dotNet5781_02_6436_9554
     {
         static void Main(string[] args)
         {
-            BusCompany f = new BusCompany();
-            foreach (BusLine item in f)
+            StationList bussesStop = new StationList();
+            
+            BusCompany egged = new BusCompany();
+            Random r = new Random(DateTime.Now.Millisecond);
+            for (int i=0;i<50;i++)
             {
-                Console.WriteLine(item);
+                try
+                {
+                    bussesStop.add(new BusStation(r.Next(1000000)));
+                }
+                catch(IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
+            for(int i=0;i<20)
         }
     }
 }

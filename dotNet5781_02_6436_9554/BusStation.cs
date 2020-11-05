@@ -7,19 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-    // public class Point
-    //{
-    //    float x;
-    //    float y;
-    //    public float X { get=>x; set=>x=value; }
-    //    public float Y { get => y; set => y = value; }
-    //     public Point(float x, float y)
-    //    {
-    //        this.x = x;
-    //        this.y = y;
-    //    }
-
-    //}
+    
     /// <summary>
     /// This class include data about the addrass and station number of bus station
     /// </summary>
@@ -82,18 +70,29 @@ namespace dotNet5781_02_6436_9554
         public BusStation(int num, string address="")
         {
             if (keys.Count()>0 && keys.Contains(num))
-                // throw new ArgumentOutOfRangeException(string.Format("the key {0} is already exist.", num));
                 throw new DuplicateNameException(string.Format("the key {0} is already exist.", num));
        
             this.BusStationKey = num;
             this.Address = address;
             keys.Add(num);
             Random r = new Random(DateTime.Now.Millisecond);
-            Latitude = r.NextDouble() + r.Next(31, 34);
-            Longitude = r.NextDouble()+r.Next(34,36);
+            Latitude = r.NextDouble() * (33.3 - 31) + 31;
+            Longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;
 
         }
-        
+        public BusStation(int num,double lat,double lon, string address = "")
+        {
+            if (keys.Count() > 0 && keys.Contains(num))
+                throw new DuplicateNameException(string.Format("the key {0} is already exist.", num));
+
+            this.BusStationKey = num;
+            this.Address = address;
+            keys.Add(num);
+            Latitude = lat;
+            Longitude = lon;
+
+        }
+
         public BusStation() { }
         public override string ToString()
         {

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_6436_9554
 {
     [Serializable]
-    class MyException :Exception
+    class CannotDeletedException :Exception
     {
-        public MyException() : base(){ }
-        public MyException(string message) : base(message) { }
-        public MyException(string message,Exception inner) : base(message,inner) { }
-        protected MyException(SerializationInfo info,StreamingContext context):base(info, context) { }
+        public CannotDeletedException() : base(){ }
+        public CannotDeletedException(string message) : base(message) { }
+        public CannotDeletedException(string message,Exception inner) : base(message,inner) { }
+        protected CannotDeletedException(SerializationInfo info,StreamingContext context):base(info, context) { }
 
     }
 }
