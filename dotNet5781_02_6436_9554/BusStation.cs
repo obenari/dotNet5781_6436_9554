@@ -100,6 +100,7 @@ namespace dotNet5781_02_6436_9554
             result += string.Format(",{0}°{1} {2}°{3}",
                 Math.Abs(Latitude), (Latitude > 0) ? "N" : "s",
                 Math.Abs(Longitude), (Longitude > 0) ? "E" : "W");
+            result += string.Format("\n");
             return result;
         }
 

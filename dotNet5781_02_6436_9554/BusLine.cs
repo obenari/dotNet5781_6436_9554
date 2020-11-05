@@ -40,10 +40,15 @@ namespace dotNet5781_02_6436_9554
             BusNumber = line;
             BusArea = a;
         }
-        public override IEnumerator<string> ToString()//*********************************
+        public override string ToString()//*********************************
         {
-            Console.WriteLine();
-            yield return "Bus line :" + busNumber + ", area :" + busArea;
+              
+            string result= "Bus line :" + busNumber + ", area :" + busArea;
+            foreach (BusLineStation item in stations)
+            {
+                result += string.Format(item.ToString());
+            }
+            return result;
         }
         //public bool stationExist(string name)
         //{
@@ -57,9 +62,24 @@ namespace dotNet5781_02_6436_9554
         public void addfirst(BusLineStation station)//*******************************
         {
 
+       
+            Console.WriteLine("enter a new distance from the next station");
+            int n;
+            bool succes = int.TryParse(Console.ReadLine(), out n);
+            if (!succes||n<=0)
+            {
+                throw new FormatException("the distance is not legal");
+            }
+            Console.WriteLine("enter a new time to the next station");
+            TimeSpan t;
+            succes = TimeSpan.TryParse(Console.ReadLine(), out t);
+            if (!succes)
+            {
+                throw new FormatException("the time is not legal");
+            }
+            //now insert to first place
             stations.Insert(0, station);
             firstStation = stations[0];
-            
         }
         public void addToEnd(BusLineStation station)//*******************************
         {
@@ -96,6 +116,122 @@ namespace dotNet5781_02_6436_9554
             lastStation = stations[stations.Count - 1];
           
         }
+        public void deleteStation(int stationNumber)
+        {
+            
+            
+            int i = StationIndex(stationNumber);
+            //for(;i<stations.Count();i++)
+            //{
+            //    if (stations[i].Station.BusStationKey == stationNumber)
+            //        break;
+            //}
+            //if (i == stations.Count())//it means that the required station is not found
+            //    throw new KeyNotFoundException(string.Format("The {0} station is not found.",stationNumber));
 
+            stations.Remove(stations[i]);//if the required station is found,remove her from the stations list
+        }
+        public bool stationIsExist(int stationNumber)
+        {
+            //    foreach (var item in collection)
+            //    {
+
+            //    }
+            foreach (BusLineStation item in stations)
+            {
+                if (item.Station.BusStationKey == stationNumber)
+                    return true;
+            }
+            //if we came here, the station is not exist
+            return false;
+        }
+        public double distanceBetweenTheStations(int num1,int num2)
+        {
+            if(!stationIsExist(num1)||!stationIsExist(num2))//if the stations are not found
+                throw new KeyNotFoundException("The station is not found.");
+            //if we came here, both stations are found
+            int i = StationIndex(num1);
+            int j = StationIndex(num2);
+            double distance=0;
+            if(i<j)
+            {
+                i++;//we start to total the distance from the next station
+                while(i!=j+1)
+                {
+                    distance += stations[i].Distance;
+                }
+                return distance;
+            }
+            //if we came here, it means that j<i
+
+            j++;//we start to total the distance from the next station
+            while (j != i + 1)
+            {
+                distance += stations[j].Distance;
+            }
+            return distance;
+
+        }
+        public TimeSpan travelTimeBetweenTheStations(int num1, int num2)
+        {
+            if (!stationIsExist(num1) || !stationIsExist(num2))//if the stations are not found
+                throw new KeyNotFoundException("The station is not found.");
+            //if we came here, both stations are found
+            int i = StationIndex(num1);
+            int j = StationIndex(num2);
+            TimeSpan time = new TimeSpan(0,0,0);
+            if (i < j)
+            {
+                i++;//we start to total the time from the next station
+                while (i != j + 1)
+                {
+                    time += stations[i].TravelTime;
+                }
+                return time;
+            }
+            //if we came here, it means that j<i
+
+            j++;//we start to total the time from the next station
+            while (j != i + 1)
+            {
+                time += stations[j].TravelTime;
+            }
+            return time;
+
+        }
+
+
+
+        public int StationIndex(int stationNumber)
+        {
+            int i = 0;
+
+           
+            foreach (BusLineStation item in stations)
+            {
+                if (item.Station.BusStationKey == stationNumber)
+                    break;
+                i++;
+            }
+            if (i == stations.Count())//it means that the required station is not found
+                throw new KeyNotFoundException(string.Format("The {0} station is not found.", stationNumber));
+            return i;
+        }
+        /// <summary>
+        /// this function return a sub path between the two stations
+        /// </summary>
+        /// <param name="num1">the number of the first station  </param>
+        /// <param name="num">the number of the second station </param>
+        /// <returns></returns>
+        public BusLine subPathe(int num1, int num2)
+        {
+            if (!stationIsExist(num1) || !stationIsExist(num2))//if the stations are not found
+                throw new KeyNotFoundException("The station is not found.");
+            //if we came here, both stations are found
+            int i = StationIndex(num1);
+            int j = StationIndex(num2);
+            BusLine bus
+
+        }
     }
 }
