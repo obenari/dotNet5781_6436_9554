@@ -10,9 +10,9 @@ namespace dotNet5781_02_6436_9554
     class BusLine: IComparable
     {
         //int busNumber;
-        BusLineStation firstStation;
-        BusLineStation lastStation;
-        Area busArea;
+        private BusLineStation firstStation;
+        private BusLineStation lastStation;
+        private Area busArea;
         List<BusLineStation> stations = new List<BusLineStation>();
         private int busNumber;
 
@@ -28,10 +28,7 @@ namespace dotNet5781_02_6436_9554
             }
         }
 
-        //public int BusNumber { get; set
-        //    {
-
-        //    } }
+        
         public BusLineStation FirstStation { get; private set; }
         public BusLineStation LastStation { get; private set; }
         public Area BusArea { get; set; }
@@ -69,7 +66,6 @@ namespace dotNet5781_02_6436_9554
         //}
         public void addfirst(BusLineStation station)//*******************************
         {
-
        
             Console.WriteLine("enter a new distance from the next station");
             int n;
@@ -100,28 +96,59 @@ namespace dotNet5781_02_6436_9554
             {
                 throw new IndexOutOfRangeException("The index is not valid.");
             }
-            if (index < stations.Count())//if station is not the last station, we need to update the next station field
+            if (index == stations.Count())
+                addToEnd(station);
+            else
             {
-                Console.WriteLine("enter a new distance from the next station");
-                int n;
-                bool succes = int.TryParse(Console.ReadLine(), out n);
-                if(!succes)
+                if (index == 0)
+                    addfirst(station);
+                else
                 {
-                    throw new FormatException("the distance is not legal");
+                    Console.WriteLine("enter a new distance from the next station");
+                    int n;
+                    bool succes = int.TryParse(Console.ReadLine(), out n);
+                    if (!succes)
+                    {
+                        throw new FormatException("the distance is not legal");
+                    }
+                    Console.WriteLine("enter a new time to the next station");
+                    TimeSpan t;
+                    succes = TimeSpan.TryParse(Console.ReadLine(), out t);
+                    if (!succes)
+                    {
+                        throw new FormatException("the time is not legal");
+                    }
+                    stations.Insert(index, station);
+                    //now update the  station that will be after the new station
+                    stations[index+1].Distance = n;
+                    stations[index+1].TravelTime = t;
+                    //stations.Insert(index, station);
+                    //stations.Add(station);
+                    //lastStation = stations[stations.Count - 1];
                 }
-                Console.WriteLine("enter a new time to the next station");
-                TimeSpan t;
-                succes = TimeSpan.TryParse(Console.ReadLine(), out t);
-                if (!succes)
-                {
-                    throw new FormatException("the time is not legal");
-                }
-                //now update the next station
-                stations[index + 1].Distance = n;
-                stations[index + 1].TravelTime = t;
             }
-            stations.Add(station);
-            lastStation = stations[stations.Count - 1];
+            //if (index < stations.Count())//if station is not the last station, we need to update the next station field
+            //{
+            //    Console.WriteLine("enter a new distance from the next station");
+            //    int n;
+            //    bool succes = int.TryParse(Console.ReadLine(), out n);
+            //    if(!succes)
+            //    {
+            //        throw new FormatException("the distance is not legal");
+            //    }
+            //    Console.WriteLine("enter a new time to the next station");
+            //    TimeSpan t;
+            //    succes = TimeSpan.TryParse(Console.ReadLine(), out t);
+            //    if (!succes)
+            //    {
+            //        throw new FormatException("the time is not legal");
+            //    }
+            //    //now update the next station
+            //    stations[index + 1].Distance = n;
+            //    stations[index + 1].TravelTime = t;
+            //}
+            //stations.Add(station);
+            //lastStation = stations[stations.Count - 1];
           
         }
         public void deleteStation(int stationNumber)
@@ -141,10 +168,7 @@ namespace dotNet5781_02_6436_9554
         }
         public bool stationIsExist(int stationNumber)
         {
-            //    foreach (var item in collection)
-            //    {
-
-            //    }
+           
             foreach (BusLineStation item in stations)
             {
                 if (item.Station.BusStationKey == stationNumber)
@@ -207,8 +231,6 @@ namespace dotNet5781_02_6436_9554
             return time;
 
         }
-
-
 
         public int StationIndex(int stationNumber)
         {

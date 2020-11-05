@@ -38,6 +38,7 @@ namespace dotNet5781_02_6436_9554
                 if(value>0&&value<1000000)
                 {
                     busStationKey = value;
+                   
                 }
                 else
                 {
@@ -80,7 +81,7 @@ namespace dotNet5781_02_6436_9554
         public string Address { get; set; }
         public BusStation(int num, string address="")
         {
-            if (keys.Contains(num))
+            if (keys.Count()>0 && keys.Contains(num))
                 // throw new ArgumentOutOfRangeException(string.Format("the key {0} is already exist.", num));
                 throw new DuplicateNameException(string.Format("the key {0} is already exist.", num));
        

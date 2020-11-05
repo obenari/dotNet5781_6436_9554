@@ -10,6 +10,11 @@ namespace dotNet5781_02_6436_9554
     {
         static void Main(string[] args)
         {
+            BusCompany f = new BusCompany();
+            foreach (BusLine item in f)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
