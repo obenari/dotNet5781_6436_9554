@@ -69,7 +69,7 @@ namespace dotNet5781_02_6436_9554
         public string Address { get; set; }
         public BusStation(int num, string address="")
         {
-            if (keys.Count()>0 && keys.Contains(num))
+            if (keys.Contains(num))
                 throw new DuplicateNameException(string.Format("the key {0} is already exist.", num));
        
             this.BusStationKey = num;

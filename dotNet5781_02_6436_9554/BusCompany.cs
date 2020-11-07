@@ -142,5 +142,34 @@ namespace dotNet5781_02_6436_9554
                 throw new KeyNotFoundException(string.Format("there is no busses that passing through the station {0}", stationNumber));
             return lst;
         }
+        /// <summary>
+        /// this function return the the sum of the busses that passing through the required station
+        /// </summary>
+        /// <param name="stationNum"></param>
+        /// <returns></returns>
+        public int totalBusses(int stationNum)
+        {
+            int sum = 0;
+            foreach (BusLine item in busses)
+            {
+                if (item.stationIsExist(stationNum))
+                    sum++;
+            }
+            return sum;
+        }
+        public void printAllPath(int num1, int num2)
+        {
+            List<BusLine> lst = new List<BusLine>();//this list contain all the sub bus that passing through the two stations
+            foreach (BusLine item in busses)
+            {
+                if (item.stationIsExist(num1) && item.stationIsExist(num2))
+                    lst.Add(item.subPathe(num1, num2));
+            }
+            lst.Sort();
+            foreach (BusLine item in lst)
+            {
+                Console.WriteLine(item);
+            }
+        }
     }
 }

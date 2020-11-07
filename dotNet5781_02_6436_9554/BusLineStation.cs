@@ -57,10 +57,21 @@ namespace dotNet5781_02_6436_9554
             TravelTime = t;
             Distance = d;
         }
+        /// <summary>
+        /// this ctor, get only a BusStation, and it put random value
+        /// </summary>
+        /// <param name="s"></param>
+        public BusLineStation(BusStation s)
+        {
+            Random r = new Random(DateTime.Now.Millisecond);
+            Station = s;
+            TravelTime = new TimeSpan(r.Next(6),r.Next(60),r.Next(60));
+            Distance = r.NextDouble()+r.Next(1000);
+        }
         public override string ToString()
         {
             string str = station.ToString();
-            str += string.Format("Distance from the last station: , {0}, Time from the last station: ,{1}.", Distance, TravelTime);
+            str += string.Format("Distance from the last station:  {0} Time from the last station: {1}", Distance, TravelTime);
             str += string.Format("\n");
             return str;
         }

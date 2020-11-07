@@ -58,7 +58,7 @@ namespace dotNet5781_02_6436_9554
         public override string ToString()//*********************************
         {
               
-            string result= "Bus line :" + busNumber + ", area :" + busArea;
+            string result=string.Format( "Bus line :" + busNumber + ", area :" + busArea+"\n");
             foreach (BusLineStation item in stations)
             {
                 result += string.Format(item.ToString());
