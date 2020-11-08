@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
+    /// <summary>
+    /// this exception class  for the case :cannot delete the required value 
+    /// </summary>
     [Serializable]
+    
     class CannotDeletedException :Exception
     {
         public CannotDeletedException() : base(){ }

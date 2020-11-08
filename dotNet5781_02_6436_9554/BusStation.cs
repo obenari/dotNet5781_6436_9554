@@ -14,10 +14,12 @@ namespace dotNet5781_02_6436_9554
     /// 
     public class BusStation
     {
-        // string address;
 
        static List<int> keys = new List<int>();
         private int busStationKey;
+        private double longitude;
+        private double latitude;
+        public string Address { get; set; }
 
         public int BusStationKey
         {
@@ -35,7 +37,6 @@ namespace dotNet5781_02_6436_9554
                 }
         }
 
-        private double latitude;
 
         public double Latitude
         {
@@ -49,7 +50,7 @@ namespace dotNet5781_02_6436_9554
                 }
             }
         }
-        private double longitude;
+        
 
         public double Longitude
         {
@@ -65,8 +66,11 @@ namespace dotNet5781_02_6436_9554
             }
         }
 
-     
-        public string Address { get; set; }
+     /// <summary>
+     /// the ctor get only the number of the station and put a random value in the other field
+     /// </summary>
+     /// <param name="num"></param>
+     /// <param name="address"></param>
         public BusStation(int num, string address="")
         {
             if (keys.Contains(num))
@@ -80,6 +84,14 @@ namespace dotNet5781_02_6436_9554
             Longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;
 
         }
+
+        /// <summary>
+        /// the ctor get all the data from the user
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
+        /// <param name="address"></param>
         public BusStation(int num,double lat,double lon, string address = "")
         {
             if (keys.Count() > 0 && keys.Contains(num))

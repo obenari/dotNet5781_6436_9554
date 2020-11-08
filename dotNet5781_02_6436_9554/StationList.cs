@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-     public class StationList //: IEnumerable
+    /// <summary>
+    /// this class contain all the station in our program
+    /// </summary>
+     public class StationList 
     {
         List<BusStation> busStop;
         public List<BusStation> BusStop {
@@ -23,6 +26,11 @@ namespace dotNet5781_02_6436_9554
         {
             busStop = new List<BusStation>();
         }
+        /// <summary>
+        /// this indexer retirn or set according to index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public BusStation this[int index]
         {
             get
@@ -36,33 +44,13 @@ namespace dotNet5781_02_6436_9554
                 BusStop[index] = value;
             }
         }
-        //public BusStation this[int stationNum]
-        //{
-        //    get
-        //    {
-        //        foreach (BusStation item in busStop)
-        //        {
-        //            if (item.BusStationKey == stationNum)
-        //                return item;
-        //        }
-        //        //if we came here, the bus station is not found
-        //        throw new KeyNotFoundException(string.Format("The station {0} , is not found", stationNum));
-              
-        //    }
-        //    set
-        //    {
-        //        int i = 0;
-        //        for(;i<busStop.Count;i++)
-        //        {
-        //            if (busStop[i].BusStationKey == stationNum)
-        //                break;
-        //        }
-        //        if(i==busStop.Count)
-        //            throw new KeyNotFoundException(string.Format("The station {0} , is not found", stationNum));
-        //        busStop[i] = value;
-        //    }
-        //}
-
+        
+       
+        /// <summary>
+        /// this func check if the required station is exist
+        /// </summary>
+        /// <param name="num">the number of station</param>
+        /// <returns></returns>
         public bool isExist(int num)
         {
             foreach (BusStation item in busStop)
@@ -72,6 +60,11 @@ namespace dotNet5781_02_6436_9554
             }
             return false;
         }
+        /// <summary>
+        /// this function return the index of the required station, if the station is not exist, return -1
+        /// </summary>
+        /// <param name="num">number of station</param>
+        /// <returns></returns>
         public int index(int num)
         {
             int i = 0;
@@ -81,17 +74,18 @@ namespace dotNet5781_02_6436_9554
                     break;
                 i++;
             }
-            if (i == busStop.Count)
+            if (i == busStop.Count)//if num is not exist
                 return -1;
             return i;
         }
+        /// <summary>
+        /// add a new bus station to the list
+        /// </summary>
+        /// <param name="s">the new station</param>
         public void add(BusStation s)
         {
             busStop.Add(s);
         }
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    return busStop.GetEnumerator();
-        //}
+       
     }
 }

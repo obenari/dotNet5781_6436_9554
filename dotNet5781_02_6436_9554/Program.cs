@@ -189,7 +189,7 @@ namespace dotNet5781_02_6436_9554
                                 bool succes = int.TryParse(Console.ReadLine(), out num);
                                 if (!succes)
                                     throw new ArgumentException("the number is not legal");
-                                Console.WriteLine("enter an area");
+                                Console.WriteLine("enter an area 0:General  1:North  2:South  3:Center  4:Jerusalem");
                                 Area a = (Area)int.Parse(Console.ReadLine());
                                 Console.WriteLine("if you want to add a new stations enter 1,else enter 2");
 
@@ -203,15 +203,13 @@ namespace dotNet5781_02_6436_9554
                                     Console.WriteLine("enter a longitude");
                                     double lon = double.Parse(Console.ReadLine());
                                     BusStation first = new BusStation(num1, lat, lon);
-                                    bussesStop.add(first);//add the new station the the list with all the stations
                                     Console.WriteLine("enter a number of the last station");
                                     int num2 = int.Parse(Console.ReadLine());
                                     Console.WriteLine("enter a latitude");
                                     lat = double.Parse(Console.ReadLine());
                                     Console.WriteLine("enter a longitude");
                                     lon = double.Parse(Console.ReadLine());
-                                    BusStation last = new BusStation(num1, lat, lon);
-                                    bussesStop.add(last);
+                                    BusStation last = new BusStation(num2, lat, lon);
                                     Console.WriteLine("enter the travel time from the last station");
                                     TimeSpan t = TimeSpan.Parse(Console.ReadLine());
                                     Console.WriteLine("enter the distance  from the last station");
@@ -219,9 +217,13 @@ namespace dotNet5781_02_6436_9554
                                     TimeSpan t2 = new TimeSpan(0, 0, 0);
                                     BusLine bus = new BusLine(num, a, new BusLineStation(first, t2, 0), new BusLineStation(last, t, d));
                                     egged.addBus(bus);
+                                    bussesStop.add(first);
+                                    bussesStop.add(last);
                                 }
                                 else//to add an existing station
                                 {
+                                    if (j != 2)
+                                        throw new ArgumentException("Error");
                                     Console.WriteLine("enter a number of first station");
                                     int num1 = int.Parse(Console.ReadLine());
                                     BusStation first = bussesStop[bussesStop.index(num1)];
@@ -235,6 +237,7 @@ namespace dotNet5781_02_6436_9554
                                     TimeSpan t2 = new TimeSpan(0, 0, 0);
                                     BusLine bus = new BusLine(num, a, new BusLineStation(first, t2, 0), new BusLineStation(last, t, d));
                                     egged.addBus(bus);
+                                   
                                 }
                                 break;
                             }
@@ -303,6 +306,8 @@ namespace dotNet5781_02_6436_9554
                             {
                                 Console.WriteLine("enter a number of station, to print all the busses that passing through");
                                 int stn = int.Parse(Console.ReadLine());
+                                if (!(bussesStop.isExist(stn)))
+                                    throw new KeyNotFoundException("The station is not exist");
                                 List<int> lst = egged.busesPassing(stn);
                                 foreach (var item in lst)
                                 {
@@ -369,3 +374,302 @@ namespace dotNet5781_02_6436_9554
         }
     }
 }
+/*Bus line :394, area :Jerusalem
+busStation Code: 470485,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  713.714732139239 Time from the last station: 00:07:05
+busStation Code: 907362,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  713.714732139239 Time from the last station: 00:07:05
+busStation Code: 182989,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 722048,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Bus line :13, area :South
+busStation Code: 816691,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 254961,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 302328,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 946193,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 288141,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+busStation Code: 860960,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+busStation Code: 867219,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+
+Bus line :125, area :Jerusalem
+busStation Code: 308619,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 470485,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 552155,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 714204,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Bus line :51, area :North
+busStation Code: 879827,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 70149,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 66030,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 568083,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+
+Bus line :114, area :General
+busStation Code: 75948,32.4794157586896°N 35.2917389097585°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 354011,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 880840,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 728117,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 951726,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 579342,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 302328,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+
+Bus line :722, area :Jerusalem
+busStation Code: 860960,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 542115,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 642514,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 438498,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 425979,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 857215,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 595647,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Bus line :842, area :General
+busStation Code: 907362,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 907340,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 207814,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 816862,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 674546,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Bus line :853, area :South
+busStation Code: 867219,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 354011,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 288141,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 575781,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 75948,32.4794157586896°N 35.2917389097585°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Bus line :784, area :Jerusalem
+busStation Code: 385436,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 946193,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 568083,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 831773,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 722981,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 642514,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  616.141618000409 Time from the last station: 01:42:28
+
+Bus line :466, area :Center
+busStation Code: 907340,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 188512,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+5
+Please enter a number of the bus
+12
+Please enter the number of the first stop of the bus
+12
+Please enter the number of the stop to delete
+12
+the bus 12 with the first station 12 is not exist
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+4
+Please enter a number of bus to delete
+466
+Please enter the number of the first stop of the bus
+907340
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+8
+394
+13
+125
+51
+114
+722
+842
+853
+784
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+7
+enter a number of first station, to print all pathes
+907362
+enter a number of second station, to print all pathes
+816862
+Bus line :842, area :General
+busStation Code: 907362,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 907340,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 207814,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+busStation Code: 816862,31.3809939813246°N 34.4438412508666°E
+Distance from the last station:  164.928175069824 Time from the last station: 04:24:46
+
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+7
+enter a number of first station, to print all pathes
+2
+enter a number of second station, to print all pathes
+3
+There is no pathes between the stations
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+6
+enter a number of station, to print all the busses that passing through
+907362
+394
+842
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+6
+enter a number of station, to print all the busses that passing through
+2
+there is no busses that passing through the station 2
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+1
+please enter a bus number
+2
+enter an area 0:General  1:North  2:South  3:Center  4:Jerusalem
+2
+if you want to add a new stations enter 1,else enter 2
+1
+enter a number of first station
+123
+enter a latitude
+11
+enter a longitude
+11
+enter a number of the last station
+233
+enter a latitude
+33
+enter a longitude
+33
+enter the travel time from the last station
+3:3:3
+enter the distance  from the last station
+33
+
+Choose one of the following:
+0: To exit
+1: To add a new bus to the system.
+2: To add an existing station to the bus.
+3: To add a new station to the bus.
+4: To delete a bus.
+5: To delete a station from a bus.
+6: To print all bus numbers passing through the station.
+7: To Print all paths between two stations.
+8: To print all bus numbers.
+9: To print all the data about the busses.
+*/

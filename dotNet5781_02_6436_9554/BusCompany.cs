@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
+    /// <summary>
+    /// this class contain a list of busses
+    /// </summary>
    public class BusCompany : IEnumerable
     {
         private List<BusLine> busses;
@@ -15,9 +18,7 @@ namespace dotNet5781_02_6436_9554
 
         public List<BusLine> Busses
         {
-            get {
-               // List<BusLine> temp = new List<BusLine>(busses);
-                return busses; }
+            get { return busses; }
             set { busses = value; }
         }
         public BusCompany()
@@ -28,19 +29,11 @@ namespace dotNet5781_02_6436_9554
         {
             return busses.GetEnumerator();
         }
-        //public BusLine this[int index]
-        //{
-        //    get 
-        //    {
-        //        if (index < 0 || index >= Busses.Count)
-        //            throw new IndexOutOfRangeException("the index is not valid");
-        //        return busses[index];
-        //    }
-        //    set
-        //    {
-        //        busses[index] = value;
-        //    }
-        //}
+        /// <summary>
+        /// the indexer return a bus according to the bus number
+        /// </summary>
+        /// <param name="num">the bus number</param>
+        /// <returns></returns>
         public BusLine this[int num]
         {
             get
@@ -52,7 +45,7 @@ namespace dotNet5781_02_6436_9554
                         break;
                     i++;
                 }
-                if (i == busses.Count)
+                if (i == busses.Count)//if the required bus is not exist
                     throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
                 return busses[i];
             }
@@ -65,7 +58,7 @@ namespace dotNet5781_02_6436_9554
                         break;
                     i++;
                 }
-                if (i == busses.Count)
+                if (i == busses.Count)//if the required bus is not exist
                     throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
                 busses[i] = value;
             }
@@ -122,12 +115,16 @@ namespace dotNet5781_02_6436_9554
                 throw new KeyNotFoundException(string.Format("the bus {0} with the first station {1} is not exist", num,firstStation));
             return i;
         }
+        /// <summary>
+        /// this func add a new bus to the list
+        /// </summary>
+        /// <param name="bus">varible from BusLine type</param>
         public void addBus(BusLine bus)
         {
             int temp = timeBusExist(bus.BusNumber);
             if (temp == 2)//if the bus is exist twice
                 throw new DuplicateNameException(string.Format("The bus{0} is already exist twice", bus.BusNumber));
-            if(temp==1)
+            if(temp==1)//we need to check the new bus is  match to the reverse route
             {
                 int i = busIndex(bus.BusNumber);
                 if (busses[i].FirstStation != bus.LastStation || busses[i].LastStation != bus.FirstStation)
@@ -141,7 +138,12 @@ namespace dotNet5781_02_6436_9554
             if (temp == 0)//the bus number is not exist in the system
                 busses.Add(bus);
         }
-        public void deleteBus(int numFirstStation, int busNumber)//*************************8
+        /// <summary>
+        /// this function get the bus to delete and his first station
+        /// </summary>
+        /// <param name="numFirstStation"></param>
+        /// <param name="busNumber"></param>
+        public void deleteBus(int numFirstStation, int busNumber)
         {
             int i = busIndex(busNumber, numFirstStation);//if the bus is not exist an exception will throwen
             busses.Remove(busses[i]);
@@ -174,7 +176,7 @@ namespace dotNet5781_02_6436_9554
         /// <summary>
         /// this function return the the sum of the busses that passing through the required station
         /// </summary>
-        /// <param name="stationNum"></param>
+        /// <param name="stationNum">the required station</param>
         /// <returns></returns>
         public int totalBusses(int stationNum)
         {
@@ -186,6 +188,11 @@ namespace dotNet5781_02_6436_9554
             }
             return sum;
         }
+        /// <summary>
+        /// this function print a list that contain a sub- bus line from station num1 to num2 
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
         public void printAllPath(int num1, int num2)
         {
             List<BusLine> lst = new List<BusLine>();//this list contain all the sub bus that passing through the two stations
@@ -197,11 +204,17 @@ namespace dotNet5781_02_6436_9554
             lst.Sort();
             if (lst.Count == 0)
                 throw new KeyNotFoundException("There is no pathes between the stations");
-            foreach (BusLine item in lst)
+            foreach (BusLine item in lst)//print the list
             {
                 Console.WriteLine(item);
             }
         }
+        /// <summary>
+        /// this function get a number of bus and his first station and the station to delete
+        /// </summary>
+        /// <param name="line">bus number</param>
+        /// <param name="first">first station</param>
+        /// <param name="sDelete">the station to delete</param>
         public void deleteStation(int line,int first,int sDelete)
         {
             int i = busIndex(line, first);//if the bus is not exist, an exception will thrown

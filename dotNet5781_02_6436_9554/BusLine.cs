@@ -31,12 +31,7 @@ namespace dotNet5781_02_6436_9554
         
         public BusLineStation FirstStation { get; private set; }
         public BusLineStation LastStation { get; private set; }
-        // public Area BusArea { get; set; }
-        //public BusLine(int line, Area a)
-        //{
-        //    BusNumber = line;
-        //    BusArea = a;
-        //}
+       
         
 
         public Area BusArea
@@ -44,7 +39,13 @@ namespace dotNet5781_02_6436_9554
             get { return busArea; }
             set { busArea = value; }
         }
-
+        /// <summary>
+        /// the ctor get a number of bus to create, his arae and 2 station-first and last(in order to avoid
+        /// </summary>
+        /// <param name="line">bus number</param>
+        /// <param name="a">area</param>
+        /// <param name="first">varible from BusLineStation type</param>
+        /// <param name="last">varible from BusLineStation type</param>
         public BusLine(int line, Area a,BusLineStation first,BusLineStation last)
         {
             BusNumber = line;
@@ -55,7 +56,7 @@ namespace dotNet5781_02_6436_9554
             stations.Add(last);
         }
 
-        public override string ToString()//*********************************
+        public override string ToString()
         {
               
             string result=string.Format( "Bus line :" + busNumber + ", area :" + busArea+"\n");
@@ -65,18 +66,13 @@ namespace dotNet5781_02_6436_9554
             }
             return result;
         }
-        //public bool stationExist(string name)
-        //{
-        //    foreach (BusLineStation item in stations)
-        //    {
-        //        if (item.BusStationKey == name)
-        //            return true;
-        //    }
-        //    return false;
-        //}
-        public void addfirst(BusLineStation station)//*******************************
+        /// <summary>
+        /// this function get a new station to add to the bus in the front
+        /// </summary>
+        /// <param name="station">varible from BusLineStation type</param>
+        public void addfirst(BusLineStation station)
         {
-       
+       //when add to the first place, we need to update the station that will after the new one
             Console.WriteLine("enter a new distance from the next station");
             int n;
             bool succes = int.TryParse(Console.ReadLine(), out n);
@@ -95,12 +91,21 @@ namespace dotNet5781_02_6436_9554
             stations.Insert(0, station);
             firstStation = stations[0];
         }
-        public void addToEnd(BusLineStation station)//*******************************
+        /// <summary>
+        /// this function get a new station to add to the bus in the end
+        /// </summary>
+        /// <param name="station"></param>
+        public void addToEnd(BusLineStation station)
         {
             stations.Add(station);
             lastStation = stations[stations.Count-1];
         }
-        public void add(int index, BusLineStation station)//*******************************
+        /// <summary>
+        /// this function get a new station to add to the bus in the required index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="station"></param>
+        public void add(int index, BusLineStation station)
         {
             if(index<0||index>stations.Count())
             {
@@ -114,6 +119,7 @@ namespace dotNet5781_02_6436_9554
                     addfirst(station);
                 else
                 {
+                   // when add a new station, we need to update the station that will after the new one
                     Console.WriteLine("enter a new distance from the next station");
                     int n;
                     bool succes = int.TryParse(Console.ReadLine(), out n);
@@ -132,54 +138,39 @@ namespace dotNet5781_02_6436_9554
                     //now update the  station that will be after the new station
                     stations[index+1].Distance = n;
                     stations[index+1].TravelTime = t;
-                    //stations.Insert(index, station);
-                    //stations.Add(station);
-                    //lastStation = stations[stations.Count - 1];
+                    
                 }
             }
-            //if (index < stations.Count())//if station is not the last station, we need to update the next station field
-            //{
-            //    Console.WriteLine("enter a new distance from the next station");
-            //    int n;
-            //    bool succes = int.TryParse(Console.ReadLine(), out n);
-            //    if(!succes)
-            //    {
-            //        throw new FormatException("the distance is not legal");
-            //    }
-            //    Console.WriteLine("enter a new time to the next station");
-            //    TimeSpan t;
-            //    succes = TimeSpan.TryParse(Console.ReadLine(), out t);
-            //    if (!succes)
-            //    {
-            //        throw new FormatException("the time is not legal");
-            //    }
-            //    //now update the next station
-            //    stations[index + 1].Distance = n;
-            //    stations[index + 1].TravelTime = t;
-            //}
-            //stations.Add(station);
-            //lastStation = stations[stations.Count - 1];
+           
+           
           
         }
+        /// <summary>
+        /// this function delete the required station from the bus
+        /// </summary>
+        /// <param name="stationNumber">the station to delete</param>
         public void deleteStation(int stationNumber)
         {
-            
             
             int i = StationIndex(stationNumber);//if the required station is not exist, the function stationIndex throw an exception
             if (stations.Count == 2)
                 throw new CannotDeletedException("It's impossible to delete a station if there are only two stations");
-            if (i == 0)
+            if (i == 0)//update the firstStation
             {
                 FirstStation = stations[1];
             }
-            if(i==stations.Count-1)
+            if(i==stations.Count-1)//update the lastStation
             {
                 LastStation = stations[i - 1];
             }
             stations.Remove(stations[i]);//if the required station is found,remove her from the stations list
             
-
         }
+        /// <summary>
+        /// this function check if the required station is exist
+        /// </summary>
+        /// <param name="stationNumber">the required station </param>
+        /// <returns></returns>
         public bool stationIsExist(int stationNumber)
         {
            
@@ -191,6 +182,12 @@ namespace dotNet5781_02_6436_9554
             //if we came here, the station is not exist
             return false;
         }
+        /// <summary>
+        /// this func sum the distance betwwen 2 stations
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <returns></returns>
         public double distanceBetweenTheStations(int num1,int num2)
         {
             if(!stationIsExist(num1)||!stationIsExist(num2))//if the stations are not found
@@ -218,6 +215,12 @@ namespace dotNet5781_02_6436_9554
             return distance;
 
         }
+        /// <summary>
+        /// this func sum the time betwwen 2 stations
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <returns></returns>
         public TimeSpan travelTimeBetweenTheStations(int num1, int num2)
         {
             if (!stationIsExist(num1) || !stationIsExist(num2))//if the stations are not found
@@ -245,7 +248,11 @@ namespace dotNet5781_02_6436_9554
             return time;
 
         }
-
+        /// <summary>
+        /// this func return the index  according to station number, if the station is no exist it throw an exception
+        /// </summary>
+        /// <param name="stationNumber"></param>
+        /// <returns></returns>
         public int StationIndex(int stationNumber)
         {
             int i = 0;
@@ -300,6 +307,11 @@ namespace dotNet5781_02_6436_9554
             }
             return bus;
         }
+        /// <summary>
+        /// 
+        /// this func sum the total time
+        /// </summary>
+        /// <returns></returns>
         public TimeSpan totalTime()
         {
             TimeSpan t = new TimeSpan(0, 0, 0);
@@ -308,11 +320,13 @@ namespace dotNet5781_02_6436_9554
                 t += stations[i].TravelTime;
             }
             return t;
-            //foreach (BusLineStation item in stations)
-            //{
-            //    t+=
-            //}
+           
         }
+        /// <summary>
+        /// compare according to the total travel time
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int CompareTo(object item)
         {
             BusLine bus = (BusLine)item;

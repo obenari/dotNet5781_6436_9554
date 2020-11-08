@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
-   public class BusLineStation// : BusStation
+    /// <summary>
+    /// this class contain a varible from BusStation type and a data about the last station
+    /// </summary>
+   public class BusLineStation
     {
  
         public TimeSpan TravelTime { get; set; }
         private double distance;
-        // BusStation station;
         private BusStation station;
 
         public BusStation Station
         {
             get { return station; }
-            private  set { station = value; }//***************************************
+            private  set { station = value; }
         }
 
         public double Distance
         {
             get { return distance; }
             set {
-                if (value > 0)
+                if (value >= 0)
                     distance = value;
                 else
                     throw new ArgumentOutOfRangeException(string.Format("distance should be positive."));
