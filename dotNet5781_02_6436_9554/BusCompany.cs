@@ -16,8 +16,8 @@ namespace dotNet5781_02_6436_9554
         public List<BusLine> Busses
         {
             get {
-                List<BusLine> temp = new List<BusLine>(busses);
-                return temp; }
+               // List<BusLine> temp = new List<BusLine>(busses);
+                return busses; }
             set { busses = value; }
         }
         public BusCompany()
@@ -28,17 +28,46 @@ namespace dotNet5781_02_6436_9554
         {
             return busses.GetEnumerator();
         }
-        public BusLine this[int index]
+        //public BusLine this[int index]
+        //{
+        //    get 
+        //    {
+        //        if (index < 0 || index >= Busses.Count)
+        //            throw new IndexOutOfRangeException("the index is not valid");
+        //        return busses[index];
+        //    }
+        //    set
+        //    {
+        //        busses[index] = value;
+        //    }
+        //}
+        public BusLine this[int num]
         {
-            get 
+            get
             {
-                if (index < 0 || index >= Busses.Count)
-                    throw new IndexOutOfRangeException("the index is not valid");
-                return busses[index];
+                int i = 0;
+                foreach (var item in busses)
+                {
+                    if (item.BusNumber == num)
+                        break;
+                    i++;
+                }
+                if (i == busses.Count)
+                    throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
+                return busses[i];
             }
             set
             {
-                busses[index] = value;
+                int i = 0;
+                foreach (var item in busses)
+                {
+                    if (item.BusNumber == num)
+                        break;
+                    i++;
+                }
+                if (i == busses.Count)
+                    throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
+                busses[i] = value;
             }
         }
         /// <summary>
@@ -112,9 +141,9 @@ namespace dotNet5781_02_6436_9554
             if (temp == 0)//the bus number is not exist in the system
                 busses.Add(bus);
         }
-        public void deleteBus(int numFirstStation, int busNumber)
+        public void deleteBus(int numFirstStation, int busNumber)//*************************8
         {
-            int i = busIndex(busNumber, numFirstStation);
+            int i = busIndex(busNumber, numFirstStation);//if the bus is not exist an exception will throwen
             busses.Remove(busses[i]);
         }
         /// <summary>
@@ -166,10 +195,17 @@ namespace dotNet5781_02_6436_9554
                     lst.Add(item.subPathe(num1, num2));
             }
             lst.Sort();
+            if (lst.Count == 0)
+                throw new KeyNotFoundException("There is no pathes between the stations");
             foreach (BusLine item in lst)
             {
                 Console.WriteLine(item);
             }
+        }
+        public void deleteStation(int line,int first,int sDelete)
+        {
+            int i = busIndex(line, first);//if the bus is not exist, an exception will thrown
+            busses[i].deleteStation(sDelete);//this row call to the func deleteStation in BusLine class
         }
     }
 }

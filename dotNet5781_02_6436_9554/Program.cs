@@ -81,7 +81,7 @@ namespace dotNet5781_02_6436_9554
                 try
                 {
                     if (egged.totalBusses(bussesStop[i].BusStationKey) == 0)//if no bus passing through the the station number i
-                        egged[r.Next(10)].addToEnd(new BusLineStation(bussesStop[i]));
+                        egged.Busses[r.Next(10)].addToEnd(new BusLineStation(bussesStop[i]));
 
                 }
                 catch (IndexOutOfRangeException ex)
@@ -121,7 +121,7 @@ namespace dotNet5781_02_6436_9554
                 {
                     if (egged.totalBusses(bussesStop[i].BusStationKey) < 2)//Check if less than two buses pass through the station
                     {
-                        egged[r.Next(10)].addToEnd(new BusLineStation(bussesStop[i]));
+                        egged.Busses[r.Next(10)].addToEnd(new BusLineStation(bussesStop[i]));
                     }
                 }
 
@@ -176,34 +176,34 @@ namespace dotNet5781_02_6436_9554
                 while (!(int.TryParse(Console.ReadLine(), out n)))
                     Console.WriteLine("Wrong input, enter a number again.");
                 choice = (Menu)n;
-                try { 
-                switch (choice)
-                {
-                    case Menu.Exit:
-                        Console.WriteLine("Bye, have a nice day.");
-                        break;
-                    case Menu.AddBus:
-                        {
-                            Console.WriteLine("please enter a bus number");
-                            int num;
-                            bool succes = int.TryParse(Console.ReadLine(), out num);
-                            if (!succes)
-                                throw new ArgumentException("the number is not legal");
+                try {
+                    switch (choice)
+                    {
+                        case Menu.Exit:
+                            Console.WriteLine("Bye, have a nice day.");
+                            break;
+                        case Menu.AddBus:
+                            {
+                                Console.WriteLine("please enter a bus number");
+                                int num;
+                                bool succes = int.TryParse(Console.ReadLine(), out num);
+                                if (!succes)
+                                    throw new ArgumentException("the number is not legal");
                                 Console.WriteLine("enter an area");
                                 Area a = (Area)int.Parse(Console.ReadLine());
                                 Console.WriteLine("if you want to add a new stations enter 1,else enter 2");
 
                                 int j = int.Parse(Console.ReadLine());
-                                if(j==1)
+                                if (j == 1)
                                 {
                                     Console.WriteLine("enter a number of first station");
-                                    int num1= int.Parse(Console.ReadLine());
+                                    int num1 = int.Parse(Console.ReadLine());
                                     Console.WriteLine("enter a latitude");
-                                    double lat= double.Parse(Console.ReadLine());
+                                    double lat = double.Parse(Console.ReadLine());
                                     Console.WriteLine("enter a longitude");
                                     double lon = double.Parse(Console.ReadLine());
                                     BusStation first = new BusStation(num1, lat, lon);
-                                    bussesStop.add(first);
+                                    bussesStop.add(first);//add the new station the the list with all the stations
                                     Console.WriteLine("enter a number of the last station");
                                     int num2 = int.Parse(Console.ReadLine());
                                     Console.WriteLine("enter a latitude");
@@ -236,33 +236,135 @@ namespace dotNet5781_02_6436_9554
                                     BusLine bus = new BusLine(num, a, new BusLineStation(first, t2, 0), new BusLineStation(last, t, d));
                                     egged.addBus(bus);
                                 }
-                            break;
-                        }
-                    case Menu.AddExistingStation:
-                        break;
-                    case Menu.AddNewStation:
-                        break;
-                    case Menu.DeleteBus:
-                        break;
-                    case Menu.DeleteStation:
-                        break;
-                    case Menu.BusLinesPassingThrough:
-                        break;
+                                break;
+                            }
+                        case Menu.AddExistingStation:
+                            {
+                                Console.WriteLine("enter a number of bus to add");
+                                int line = int.Parse(Console.ReadLine());
+                                BusLine bus = egged[line];//the indexer return a busLine according to the bus number, and throw an exception if necessary
+                                Console.WriteLine("enter a number of the station");
+                                int stn = int.Parse(Console.ReadLine());
+                                BusStation s = bussesStop[bussesStop.index(stn)];//the indexer will throw an exception if necessary
+                                Console.WriteLine("enter the travel time from the last station");
+                                TimeSpan t = TimeSpan.Parse(Console.ReadLine());
+                                Console.WriteLine("enter the distance  from the last station");
+                                double d = double.Parse(Console.ReadLine());
+                                Console.WriteLine("please enter an index to insert the station");
+                                int i = int.Parse(Console.ReadLine());
+                                bus.add(i, new BusLineStation(s, t, d));
+                                break;
+                            }
+                        case Menu.AddNewStation:
+                            {
+
+                                Console.WriteLine("enter a number of bus to add");
+                                int line = int.Parse(Console.ReadLine());
+                                BusLine bus = egged[line];//the indexer return a busLine according to the bus number, and throw an exception if necessary
+                                Console.WriteLine("enter a number of the station");
+                                int stn = int.Parse(Console.ReadLine());
+                                Console.WriteLine("enter a latitude");
+                                double lat = double.Parse(Console.ReadLine());
+                                Console.WriteLine("enter a longitude");
+                                double lon = double.Parse(Console.ReadLine());
+                                BusStation s = new BusStation(stn, lat, lon);
+                                Console.WriteLine("enter the travel time from the last station");
+                                TimeSpan t = TimeSpan.Parse(Console.ReadLine());
+                                Console.WriteLine("enter the distance  from the last station");
+                                double d = double.Parse(Console.ReadLine());
+                                Console.WriteLine("please enter an index to insert the station");
+                                int i = int.Parse(Console.ReadLine());
+                                bus.add(i, new BusLineStation(s, t, d));
+                                bussesStop.add(s);//insert the station s to the stations list only if exception is not throwed
+                                break;
+                            }
+                        case Menu.DeleteBus:
+                            {
+                                Console.WriteLine("Please enter a number of bus to delete");
+                                int line = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Please enter the number of the first stop of the bus");
+                                int stn = int.Parse(Console.ReadLine());
+                                egged.deleteBus(stn, line);//if the bus is not exist, an exception wil thrown
+                                break;
+                            }
+                        case Menu.DeleteStation:
+                            {
+                                Console.WriteLine("Please enter a number of the bus ");
+                                int line = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Please enter the number of the first stop of the bus");
+                                int first = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Please enter the number of the stop to delete");
+                                int stn = int.Parse(Console.ReadLine());
+                                egged.deleteStation(line, first, stn);//if the bus is not exist, an exception wil thrown
+                                break;
+
+                            }
+                        case Menu.BusLinesPassingThrough:
+                            {
+                                Console.WriteLine("enter a number of station, to print all the busses that passing through");
+                                int stn = int.Parse(Console.ReadLine());
+                                List<int> lst = egged.busesPassing(stn);
+                                foreach (var item in lst)
+                                {
+                                    Console.WriteLine(item);
+                                }
+                                break; 
+                            }
                     case Menu.PrintAllPath:
-                        break;
+                            {
+                                Console.WriteLine("enter a number of first station, to print all pathes");
+                                int stn1 = int.Parse(Console.ReadLine());
+                                Console.WriteLine("enter a number of second station, to print all pathes");
+                                int stn2 = int.Parse(Console.ReadLine());
+                                egged.printAllPath(stn1, stn2);//if there is no busses, an exception wil thrown
+                                break;
+                            }
                     case Menu.PrintBusses:
-                        break;
+                            {
+                                foreach (BusLine item in egged)
+                                {
+                                    Console.WriteLine(item.BusNumber);
+                                }
+                                break;
+                            }
                     case Menu.PrintBussesAndStation:
-                        break;
+                            {
+                                foreach (var item in egged)
+                                {
+                                    Console.WriteLine(item);
+                                }
+                                break;
+                            }
                     default:
+                            Console.WriteLine("ERROR");
                         break;
                 }
             }
-                catch(Exception ex)
-                    {
+                catch (IndexOutOfRangeException ex)
+                {
                     Console.WriteLine(ex.Message);
-
-                    }
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (DuplicateNameException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch
+                {
+                    Console.WriteLine("ERROR");
+                }
+               
             } while (choice!=0);
         }
     }
