@@ -30,18 +30,18 @@ namespace dotNet5781_02_6436_9554
             return busses.GetEnumerator();
         }
         /// <summary>
-        /// the indexer return a bus according to the bus number
+        /// the indexer return a bus according to the bus number, and it's first station
         /// </summary>
         /// <param name="num">the bus number</param>
         /// <returns></returns>
-        public BusLine this[int num]
+        public BusLine this[int num,int first]
         {
             get
             {
                 int i = 0;
                 foreach (var item in busses)
                 {
-                    if (item.BusNumber == num)
+                    if (item.BusNumber == num&&item.FirstStation.Station.BusStationKey==first)
                         break;
                     i++;
                 }
@@ -54,7 +54,7 @@ namespace dotNet5781_02_6436_9554
                 int i = 0;
                 foreach (var item in busses)
                 {
-                    if (item.BusNumber == num)
+                    if (item.BusNumber == num && item.FirstStation.Station.BusStationKey == first)
                         break;
                     i++;
                 }

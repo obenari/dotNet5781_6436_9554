@@ -65,7 +65,7 @@ namespace dotNet5781_02_6436_9554
         /// <param name="s"></param>
         public BusLineStation(BusStation s)
         {
-            Random r = new Random(DateTime.Now.Millisecond);
+            Random  r = new Random(DateTime.Now.Millisecond);
             Station = s;
             TravelTime = new TimeSpan(r.Next(6),r.Next(60),r.Next(60));
             Distance = r.NextDouble()+r.Next(1000);

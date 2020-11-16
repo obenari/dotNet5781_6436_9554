@@ -245,7 +245,9 @@ namespace dotNet5781_02_6436_9554
                             {
                                 Console.WriteLine("enter a number of bus to add");
                                 int line = int.Parse(Console.ReadLine());
-                                BusLine bus = egged[line];//the indexer return a busLine according to the bus number, and throw an exception if necessary
+                                Console.WriteLine("enter the number of the first station");
+                                int first = int.Parse(Console.ReadLine());
+                                BusLine bus = egged[line,first];//the indexer return a busLine according to the bus number, and throw an exception if necessary
                                 Console.WriteLine("enter a number of the station");
                                 int stn = int.Parse(Console.ReadLine());
                                 BusStation s = bussesStop[bussesStop.index(stn)];//the indexer will throw an exception if necessary
@@ -263,7 +265,9 @@ namespace dotNet5781_02_6436_9554
 
                                 Console.WriteLine("enter a number of bus to add");
                                 int line = int.Parse(Console.ReadLine());
-                                BusLine bus = egged[line];//the indexer return a busLine according to the bus number, and throw an exception if necessary
+                                Console.WriteLine("enter the number of the first station");
+                                int first = int.Parse(Console.ReadLine());
+                                BusLine bus = egged[line,first];//the indexer return a busLine according to the bus number, and throw an exception if necessary
                                 Console.WriteLine("enter a number of the station");
                                 int stn = int.Parse(Console.ReadLine());
                                 Console.WriteLine("enter a latitude");

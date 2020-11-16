@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,7 +74,10 @@ namespace dotNet5781_02_6436_9554
         /// <param name="station">varible from BusLineStation type</param>
         public void addfirst(BusLineStation station)
         {
-       //when add to the first place, we need to update the station that will after the new one
+            if(stationIsExist(station.Station.BusStationKey))
+                throw new DuplicateNameException(string.Format("The station{0} is already exist twice", station.Station.BusStationKey));
+
+            //when add to the first place, we need to update the station that will after the new one
             Console.WriteLine("enter a new distance from the next station");
             int n;
             bool succes = int.TryParse(Console.ReadLine(), out n);
