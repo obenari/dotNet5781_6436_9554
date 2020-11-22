@@ -12,7 +12,7 @@ namespace dotNet5781_02_6436_9554
     /// </summary>
     [Serializable]
     
-    class CannotDeletedException :Exception
+   public class CannotDeletedException :Exception
     {
         public CannotDeletedException() : base(){ }
         public CannotDeletedException(string message) : base(message) { }

@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
+  
     /// <summary>
     /// this class contain a varible from BusStation type and a data about the last station
     /// </summary>
    public class BusLineStation
     {
- 
+
+        static Random random = new Random(DateTime.Now.Millisecond);
         public TimeSpan TravelTime { get; set; }
         private double distance;
         private BusStation station;
@@ -67,8 +69,10 @@ namespace dotNet5781_02_6436_9554
         {
             Random  r = new Random(DateTime.Now.Millisecond);
             Station = s;
-            TravelTime = new TimeSpan(r.Next(6),r.Next(60),r.Next(60));
-            Distance = r.NextDouble()+r.Next(1000);
+            TravelTime = new TimeSpan(random.Next(6), random.Next(60), random.Next(60));
+            Distance = random.NextDouble() + random.Next(1000);
+            //TravelTime = new TimeSpan(r.Next(6),r.Next(60),r.Next(60));
+            //Distance = r.NextDouble()+r.Next(1000);
         }
         public override string ToString()
         {

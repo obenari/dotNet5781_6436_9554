@@ -8,16 +8,27 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6436_9554
 {
+
     public enum Area { General, North, South, Center, Jerusalem, }
     public class BusLine: IComparable
     {
-        
+        static Random random = new Random(DateTime.Now.Millisecond);
         private BusLineStation firstStation;
         private BusLineStation lastStation;
         private Area busArea=new Area();
         List<BusLineStation> stations = new List<BusLineStation>();
         private int busNumber;
-
+        public List<BusLineStation> Stations
+        {
+            get
+            { 
+                return stations; 
+            }
+            private set
+            {
+                stations = value;
+            } 
+        }
         public int BusNumber
         {
             get { return busNumber; }
@@ -57,7 +68,18 @@ namespace dotNet5781_02_6436_9554
             stations.Add(first);
             stations.Add(last);
         }
-
+        /// <summary>
+        /// a default ctor
+        /// </summary>
+        public BusLine()
+        {
+            //BusNumber =0 ;
+            //BusArea = (Area)random.Next(5);
+            //FirstStation = new BusLineStation();
+            //LastStation = last;
+            //stations.Add(first);
+            //stations.Add(last);
+        }
         public override string ToString()
         {
               

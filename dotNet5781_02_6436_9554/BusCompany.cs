@@ -64,6 +64,40 @@ namespace dotNet5781_02_6436_9554
             }
         }
         /// <summary>
+        /// the indexer return a bus according to the bus number
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public BusLine this[int num]
+        {
+            get
+            {
+                int i = 0;
+                foreach (var item in busses)
+                {
+                    if (item.BusNumber == num)
+                        break;
+                    i++;
+                }
+                if (i == busses.Count)//if the required bus is not exist
+                    throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
+                return busses[i];
+            }
+            set
+            {
+                int i = 0;
+                foreach (var item in busses)
+                {
+                    if (item.BusNumber == num )
+                        break;
+                    i++;
+                }
+                if (i == busses.Count)//if the required bus is not exist
+                    throw new KeyNotFoundException(string.Format("the bus number {0} is not exist", num));
+                busses[i] = value;
+            }
+        }
+        /// <summary>
         /// this function is check how many times the bus is exist in the system
         /// </summary>
         /// <param name="numBus">the number of the requird bus </param>
