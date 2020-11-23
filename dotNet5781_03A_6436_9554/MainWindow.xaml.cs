@@ -170,7 +170,7 @@ namespace dotNet5781_03A_6436_9554
             cbBusLines.ItemsSource = egged;
             cbBusLines.DisplayMemberPath = "BusNumber";
             cbBusLines.SelectedIndex = 0;
-          //  ShowBusLine(egged.Busses[0].BusNumber);
+            ShowBusLine(egged.Busses[0].BusNumber);
            
 
          }
