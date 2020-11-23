@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_6436_9554"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+       
+        Title="Egged" Height="640" Width="800" Icon="eggedIcon.jpg">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -39,8 +40,7 @@
                     </TransformGroup>
                 </ComboBox.RenderTransform>
             </ComboBox>
-            <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="21"  Text="{Binding Path=BusArea}" FontFamily="Sitka Display" FontWeight="Bold" TextAlignment="Center"  Width="149" Height="36" Background="#FFAAC392" BorderBrush="#FF26272A" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  />
-            <!--<TextBox x:Name="tbArea" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Text="{Binding Path=Area}" FontSize="20" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2" Margin="197.667,0,10.333,0"/>-->
+            <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="21"  Text="{Binding Path=BusArea}" FontFamily="Sitka Display" FontWeight="Bold" TextAlignment="Center"  Width="149" Height="36" Background="#FFD6E9DC" BorderBrush="#FF64DB8E" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  />
         </Grid>
         <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch"  Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" FontSize="20" FontFamily="Sitka Display" >
             <ListBox.Background>
@@ -48,22 +48,11 @@
             </ListBox.Background>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border  CornerRadius="4" Padding="4" BorderThickness="2" BorderBrush ="Chocolate">
+                    <Border  CornerRadius="4" Padding="4" BorderThickness="2" BorderBrush ="#FF7ACF98">
                         <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
                     </Border>
                 </DataTemplate>
-                
             </ListBox.ItemTemplate>
         </ListBox>
-        <!-- <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4" Margin="8,0,10.333,15.667" Grid.Row="1">
-            <ListBox.RenderTransform>
-                <TransformGroup>
-                   <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ListBox.RenderTransform>
-        </ListBox>-->
     </Grid>
 </Window>
