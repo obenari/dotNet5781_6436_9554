@@ -29,7 +29,18 @@ namespace dotNet5781_03A_6436_9554
         public MainWindow()
         {
             InitializeComponent();
-           
+
+            initBusseLines();
+            cbBusLines.ItemsSource = egged;
+            cbBusLines.DisplayMemberPath = "BusNumber";
+            cbBusLines.SelectedIndex = 0;
+            ShowBusLine(egged.Busses[0].BusNumber);
+
+
+        }
+
+        private void initBusseLines()
+        {
             Random r = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < 40; i++)//create 40 stations
             {
@@ -167,13 +178,7 @@ namespace dotNet5781_03A_6436_9554
                 }
 
             }
-            cbBusLines.ItemsSource = egged;
-            cbBusLines.DisplayMemberPath = "BusNumber";
-            cbBusLines.SelectedIndex = 0;
-            ShowBusLine(egged.Busses[0].BusNumber);
-           
-
-         }
+        }
 
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
