@@ -8,12 +8,16 @@
        
         Title="Egged" Height="640" Width="800" Icon="eggedIcon.jpg">
     <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="690*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch"  Grid.Row="0"
-          VerticalAlignment="Stretch" Height="auto" Width="auto" Background="#FFADDDBE" >
+          VerticalAlignment="Stretch" Height="auto" Width="auto" Background="#FFADDDBE" Grid.ColumnSpan="2" Margin="0,0,-0.4,0" >
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -42,7 +46,7 @@
             </ComboBox>
             <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="21"  Text="{Binding Path=BusArea}" FontFamily="Sitka Display" FontWeight="Bold" TextAlignment="Center"  Width="149" Height="36" Background="#FFD6E9DC" BorderBrush="#FF64DB8E" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  />
         </Grid>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch"  Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" FontSize="20" FontFamily="Sitka Display" >
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Stretch"  Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding}" FontSize="20" FontFamily="Sitka Display" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" >
             <ListBox.Background>
                 <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
             </ListBox.Background>
