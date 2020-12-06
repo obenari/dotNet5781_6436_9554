@@ -14,15 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace dotNet5781_3b_6436_9554
+namespace dotNet5781_3B_6436_9554_
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Random r = new Random(DateTime.Now.Millisecond); 
-        private ObservableCollection<Bus> BusCollection=new ObservableCollection<Bus>();
+        private static Random r = new Random(DateTime.Now.Millisecond);
+        private ObservableCollection<Bus> BusCollection = new ObservableCollection<Bus>();
 
         public MainWindow()
         {
@@ -48,17 +48,17 @@ namespace dotNet5781_3b_6436_9554
                     km = r.Next();
                     BusCollection.Add(new Bus(license, start, last, km));
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     i--;//if there is an exception, the bus is not created
                 }
             }
             //create a bus that need a treatment
-            BusCollection.Add(new Bus("12345678",new DateTime(2018,4 ,1),new DateTime(2019,1,1),15000));
+            BusCollection.Add(new Bus("12345678", new DateTime(2018, 4, 1), new DateTime(2019, 1, 1), 15000));
             //create a bus that need a refueling
-            BusCollection.Add(new Bus("11111111", new DateTime(2018, 5, 1), new DateTime(2019, 1, 1), 400000,5));
+            BusCollection.Add(new Bus("11111111", new DateTime(2018, 5, 1), new DateTime(2019, 1, 1), 400000, 5));
             //create a bus with high mileage from the last treatment
-            BusCollection.Add(new Bus("22222222", new DateTime(2019, 4, 1), new DateTime(2019, 7, 1), 15000,1200,19000));
+            BusCollection.Add(new Bus("22222222", new DateTime(2019, 4, 1), new DateTime(2019, 7, 1), 15000, 1200, 19000));
         }
     }
 }

@@ -4,16 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet5781_3b_6436_9554
+namespace dotNet5781_3B_6436_9554_
 {
     class Bus
     {
         private int amountOfFuelLeft = 1200;//how much kilometer the bus could drive 
-        private int kilometer ;
+        private int kilometer;
         private DateTime startOfActivity;
         private DateTime dateOftreatment;
         private string licenseNumber;
-        private int kilometerFromTheLastTreatment;
+        private int kilometerFromTheLastTreatment=0;
+        private State myState;
+
+        public State MyState
+        {
+            get { return myState; }
+            set { myState = value; }
+        }
+
         /// <summary>
         /// to make sure that the bus is not exist already
         /// </summary>
@@ -35,13 +43,13 @@ namespace dotNet5781_3b_6436_9554
             set
             {
                 if (DateTime.Now < value)
-                    throw new ArgumentException("the date is unlegal"); 
+                    throw new ArgumentException("the date is unlegal");
                 startOfActivity = value;
             }
         }
         public int Kilometer
         {
-            get 
+            get
             {
                 return kilometer;
             }
@@ -49,39 +57,44 @@ namespace dotNet5781_3b_6436_9554
             {
                 if (value < kilometer)
                     throw new ArgumentException("it's impossible to reduce the mileage");
-                kilometer = value; }
+                kilometer = value;
+            }
         }
         public int AmountOfFuelLeft
         {
             get { return amountOfFuelLeft; }
-            set 
+            set
             {
                 if (1200 < value)
                     throw new ArgumentException("full tank of fuel is 1200 liters.");
-                amountOfFuelLeft = value; }
+                amountOfFuelLeft = value;
+            }
         }
         public string LicenseNumber
         {
             get { return licenseNumber; }
-            private set 
-            { 
-                if(keys.Contains(value))
+            private set
+            {
+                if (keys.Contains(value))
                     throw new ArgumentException("the bus is alredy exist");
                 if (value.Length < 7 || value.Length > 8)
                     throw new ArgumentException("license number should be 7 or 8 digits.");
-                licenseNumber = value; }
+                licenseNumber = value;
+            }
         }
         /// <summary>
         /// this feild return the license Number in the appropriate Format (xxx-xx-xxx)
         /// </summary>
-        public string AppropriateFormatLicenseNumber { get { return appropriateFormatLicenseNumber(); }  }
+        public string AppropriateFormatLicenseNumber { get { return appropriateFormatLicenseNumber(); } }
         public int KilometerFromTheLastTreatment
         {
             get { return kilometerFromTheLastTreatment; }
-            set {
+            set
+            {
                 if (value > 20000)
                     throw new ArgumentException("the bus is need a treatment");
-                kilometerFromTheLastTreatment = value; }
+                kilometerFromTheLastTreatment = value;
+            }
         }
         /// <summary>
         /// this ctor doesnt get the fuel patrameter
@@ -90,13 +103,21 @@ namespace dotNet5781_3b_6436_9554
         /// <param name="start"></param>
         /// <param name="last"></param>
         /// <param name="km"></param>
-        public Bus(string license, DateTime start,DateTime last,int km)
+        public Bus(string license, DateTime start, DateTime last, int km)
         {
             LicenseNumber = license;
             StartOfActivity = start;
             DateOftreatment = last;
             Kilometer = km;
             keys.Add(license);
+            if(this.isOldBus()||this.dangerous())
+            {
+                MyState = State.isDangerous;
+            }
+            else
+            {
+                MyState = State.isReady;
+            }
         }
         /// <summary>
         /// /// this ctor  get the fuel patrameter
@@ -113,7 +134,14 @@ namespace dotNet5781_3b_6436_9554
             Kilometer = km;
             AmountOfFuelLeft = fuel;
             keys.Add(license);
-
+            if (this.isOldBus() || this.dangerous())
+            {
+                MyState = State.isDangerous;
+            }
+            else
+            {
+                MyState = State.isReady;
+            }
         }
         /// <summary>
         /// /// this ctor  get all the parameters
@@ -131,6 +159,14 @@ namespace dotNet5781_3b_6436_9554
             AmountOfFuelLeft = fuel;
             keys.Add(license);
             kilometerFromTheLastTreatment = kmFromLastTreatment;
+            if (this.isOldBus() || this.dangerous()||kilometerFromTheLastTreatment>=20000)
+            {
+                MyState = State.isDangerous;
+            }
+            else
+            {
+                MyState = State.isReady;
+            }
         }
         /// <summary>
         /// //the func check if passed more than one year from the last treatment
@@ -141,8 +177,8 @@ namespace dotNet5781_3b_6436_9554
         {
             if (DateTime.Now.Year - dateOftreatment.Year >= 1)
             {
-                if(DateTime.Now.Month - dateOftreatment.Month>=0)
-                    if(DateTime.Now.Day - dateOftreatment.Day >= 0)
+                if (DateTime.Now.Month - dateOftreatment.Month >= 0)
+                    if (DateTime.Now.Day - dateOftreatment.Day >= 0)
                         return true;
             }
             return false;
@@ -193,6 +229,10 @@ namespace dotNet5781_3b_6436_9554
                 help = help.Insert(6, "-");
             }
             return help;
+        }
+        public void refueling()
+        {
+         AmountOfFuelLeft = 1200;
         }
 
     }
