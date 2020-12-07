@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace dotNet5781_3B_6436_9554_
 {
-    class Bus
+   public class Bus
     {
         private int amountOfFuelLeft = 1200;//how much kilometer the bus could drive 
         private int kilometer;
@@ -33,7 +34,8 @@ namespace dotNet5781_3B_6436_9554_
             {
                 if (DateTime.Now < value)
                     throw new ArgumentException("the date is unlegal");
-
+                if (value < startOfActivity)
+                    throw new ArgumentException("the date of treatment can't be before start of activity");
                 dateOftreatment = value;
             }
         }
@@ -55,6 +57,8 @@ namespace dotNet5781_3B_6436_9554_
             }
             set
             {
+                if (value < 0)
+                    throw new ArgumentException("the mileage must be positive");
                 if (value < kilometer)
                     throw new ArgumentException("it's impossible to reduce the mileage");
                 kilometer = value;
@@ -65,6 +69,8 @@ namespace dotNet5781_3B_6436_9554_
             get { return amountOfFuelLeft; }
             set
             {
+                if (value < 0)
+                    throw new ArgumentException("the amount of fuel must be positive");
                 if (1200 < value)
                     throw new ArgumentException("full tank of fuel is 1200 liters.");
                 amountOfFuelLeft = value;
@@ -75,10 +81,15 @@ namespace dotNet5781_3B_6436_9554_
             get { return licenseNumber; }
             private set
             {
+                if (!(int.TryParse(value,out int n)))
+                    throw new ArgumentException("the license number must have only digits");
                 if (keys.Contains(value))
                     throw new ArgumentException("the bus is alredy exist");
                 if (value.Length < 7 || value.Length > 8)
                     throw new ArgumentException("license number should be 7 or 8 digits.");
+                if (startOfActivity.Year > 2017 && value.Length == 7 || startOfActivity.Year <= 2017 && value.Length == 8)//if there is no match with the license number and date
+                    throw new ArgumentException("The number of digits of the license number does not match\n the start year of the activity");
+                
                 licenseNumber = value;
             }
         }
@@ -91,6 +102,8 @@ namespace dotNet5781_3B_6436_9554_
             get { return kilometerFromTheLastTreatment; }
             set
             {
+                if (value < 0)
+                    throw new ArgumentException("the kilometers must be positive");
                 if (value > 20000)
                     throw new ArgumentException("the bus is need a treatment");
                 kilometerFromTheLastTreatment = value;
@@ -105,9 +118,9 @@ namespace dotNet5781_3B_6436_9554_
         /// <param name="km"></param>
         public Bus(string license, DateTime start, DateTime last, int km)
         {
-            LicenseNumber = license;
             StartOfActivity = start;
             DateOftreatment = last;
+            LicenseNumber = license;
             Kilometer = km;
             keys.Add(license);
             if(this.isOldBus()||this.dangerous())
@@ -128,9 +141,9 @@ namespace dotNet5781_3B_6436_9554_
         /// <param name="km"></param>
         public Bus(string license, DateTime start, DateTime last, int km, int fuel)
         {
-            LicenseNumber = license;
             StartOfActivity = start;
             DateOftreatment = last;
+            LicenseNumber = license;
             Kilometer = km;
             AmountOfFuelLeft = fuel;
             keys.Add(license);
@@ -152,9 +165,9 @@ namespace dotNet5781_3B_6436_9554_
         /// <param name="km"></param>
         public Bus(string license, DateTime start, DateTime last, int km, int fuel, int kmFromLastTreatment)
         {
-            LicenseNumber = license;
             StartOfActivity = start;
             DateOftreatment = last;
+            LicenseNumber = license;
             Kilometer = km;
             AmountOfFuelLeft = fuel;
             keys.Add(license);

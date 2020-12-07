@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_3B_6436_9554_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="480" Width="550">
+    <Window.Resources>
+        <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" />
+                <Button x:Name="btnRefuel" Margin="5" Grid.Column="1" Content="refuel"/>
+                <Button x:Name="btnTreatment" Margin="5" Grid.Column="2" Content="Send to treatment"/>
+                <ProgressBar x:Name="pbar" Width="200" Grid.Column="3"/>
+            </Grid>
+        </DataTemplate>
+
+
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}">
+            <!--<ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+
+                </GridView>
+            </ListView.View>-->
+
+        </ListView>
+
     </Grid>
 </Window>
