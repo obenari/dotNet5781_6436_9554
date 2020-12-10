@@ -127,5 +127,20 @@
   <ItemGroup>
     <Resource Include="addwindow.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ועד-עובדים-ארצי-אגד.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="waze.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="אוטובוס מצוייר.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

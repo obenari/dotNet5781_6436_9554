@@ -8,7 +8,7 @@
         Title="MainWindow" Height="500" Width="680" Icon="icon.png">
     <Window.Resources>
         <local:StateConverter x:Key="StateConverter" />
-       
+
         <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -22,21 +22,31 @@
                            Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
 
 
-                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" />
-                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="Send to treatment" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14"/>
-                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="Drive" Click="btnDrive_Click" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14"/>
+                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" />
+                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="Send to treatment" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE"/>
+                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="Drive" Click="btnDrive_Click" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2"/>
                 <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Hidden" />
             </Grid>
         </DataTemplate>
-      
+
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFF9C155">
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView x:Name="lvBus"  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
           ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}" MouseDoubleClick="lvBus_MouseDoubleClick">
+            <ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+                </LinearGradientBrush>
+            </ListView.Background>
+
             <!--<ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -45,7 +55,24 @@
             </ListView.View>-->
 
         </ListView>
-        <Button x:Name="btnAddBus" Content="Add a bus" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="75" Click="btnAddBus_Click"/>
-
+        <Button x:Name="btnAddBus" Content="Add a bus" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="75" Click="btnAddBus_Click" Background="#FFFFF1EE"/>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,403,0,-2.333" Grid.RowSpan="2">
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,403,0.333,-2.333" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
     </Grid>
 </Window>

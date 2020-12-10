@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:dotNet5781_3B_6436_9554_"
         mc:Ignorable="d"
         Title="ShowBusWindow" Height="330" Width="420" Icon="icon.png">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFBFFF9" Offset="0.004"/>
+            <GradientStop Color="#FFA3D49C" Offset="0.998"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid x:Name="general" >
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
@@ -25,19 +31,19 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Amount Of Fuel Left:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="Amount Of Fuel Left:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="amountOfFuelLeftTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding AmountOfFuelLeft, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="appropriateFormatLicenseNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding AppropriateFormatLicenseNumber, Mode=OneWay}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="Date Oftreatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="Date Oftreatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="dateOftreatmentTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding DateOftreatment , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="Mileage:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="Mileage:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="kilometerTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Kilometer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="Kilometer From The Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="Kilometer From The Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="kilometerFromTheLastTreatmentTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding KilometerFromTheLastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="State:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="14"/>
-            <TextBox x:Name="myStateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding MyState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
-            <Label Content="Start Of Activity:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14"/>
+            <Label Content="State:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="myStateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding MyState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False" Background="White"/>
+            <Label Content="Start Of Activity:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
             <TextBox x:Name="startOfActivityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfActivity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
         </Grid>
         <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
@@ -45,8 +51,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="REFUEL" Grid.Column="0" Margin="3" Click="Button_Click_Refuel"/>
-            <Button Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment"/>
+            <Button Content="REFUEL" Grid.Column="0" Margin="3" Click="Button_Click_Refuel" FontFamily="Times New Roman" FontWeight="Bold" Background="#FFACDED1"/>
+            <Button Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment" Background="#FFACDED1" FontWeight="Bold" FontFamily="Times New Roman"/>
 
         </Grid>
               

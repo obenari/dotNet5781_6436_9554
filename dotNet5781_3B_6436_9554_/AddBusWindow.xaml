@@ -5,29 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_3B_6436_9554_"
         mc:Ignorable="d"
-        Title="AddBusWindow" Height="350" Width="300" Icon="icon.png">
+        Title="AddBusWindow" Height="350" Width="300" Icon="icon.png" Foreground="#FFFAFAFA" Opacity="1.5">
     
+
+
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="add.png" Opacity="0.35"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Insert a license number" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="135" />
+        <Label Content="Insert a license number" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="135" FontFamily="Sitka Display" FontWeight="Bold" Foreground="#FF448253" />
         <TextBox x:Name="tbLicense" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="120" MaxLength="8" PreviewKeyDown="textOnlyNumber" KeyUp="key_up_btnIsenabled"/>
         <DatePicker x:Name="dpStart" HorizontalAlignment="Left" Margin="15" Grid.Row="1" VerticalAlignment="Center" KeyUp="key_up_btnIsenabled"/>
-        <Label Content="Start driving:" Margin="15,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Last treatment :" Margin="0,0,22,0" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Start driving:" Margin="15,0" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Sitka Display" Foreground="#FF448253"/>
+        <Label Content="Last treatment :" Margin="0,0,22,0" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Sitka Display" Foreground="#FF448253"/>
         <DatePicker x:Name="dpLast" HorizontalAlignment="Right" Margin="0,15,15,15" Grid.Row="1" VerticalAlignment="Center" KeyUp="key_up_btnIsenabled"/>
-        <Label Content="Mileage:" Margin="15" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="87"/>
+        <Label Content="Mileage:" Margin="15" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="87" FontFamily="Sitka Display" FontWeight="Bold" Foreground="#FF448253"/>
         <Label Content="Kilometer from the "
-               HorizontalAlignment="Right" Margin="7"  Grid.Row="2" VerticalAlignment="Top" Width="113" Height="34"/>
+               HorizontalAlignment="Right" Margin="7"  Grid.Row="2" VerticalAlignment="Top" Width="113" Height="34" FontFamily="Sitka Display" FontWeight="Bold" Foreground="#FF448253"/>
         <Label Content="last treatment: "
-            HorizontalAlignment="Right" Margin="0,22,10,0" Grid.Row="2" VerticalAlignment="Top" Width="96" Height="29"/>
+            HorizontalAlignment="Right" Margin="0,22,10,0" Grid.Row="2" VerticalAlignment="Top" Width="96" Height="29" FontFamily="Sitka Display" FontWeight="Bold" Foreground="#FF448253"/>
         <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" PreviewKeyDown="textOnlyNumber" Margin="15,45,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" KeyUp="key_up_btnIsenabled" />
         <TextBox x:Name="tbKmLast" HorizontalAlignment="Right" Height="23" PreviewKeyDown="textOnlyNumber" Margin="0,45,10,0" Grid.Row="2" Grid.RowSpan="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="110" KeyUp="key_up_btnIsenabled" />
         <Button x:Name="btnAdd" Content="ADD" HorizontalAlignment="Center"  Grid.Row="3" 
-                VerticalAlignment="Center" Width="75" Click="Button_Click" IsEnabled="False" />
+                VerticalAlignment="Center" Width="75" Click="Button_Click" IsEnabled="False" Foreground="#FF448253" FontWeight="Bold" BorderBrush="#FFF5F0F0" />
     </Grid>
 </Window>
