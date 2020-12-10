@@ -33,7 +33,7 @@ namespace dotNet5781_3B_6436_9554_
             set
             {
                 if (DateTime.Now < value)
-                    throw new ArgumentException("the date is unlegal");
+                    throw new ArgumentException("the date of treatment wasn't yet");
                 if (value < startOfActivity)
                     throw new ArgumentException("the date of treatment can't be before start of activity");
                 dateOftreatment = value;
@@ -45,7 +45,7 @@ namespace dotNet5781_3B_6436_9554_
             set
             {
                 if (DateTime.Now < value)
-                    throw new ArgumentException("the date is unlegal");
+                    throw new ArgumentException("the date of start wasn't yet");
                 startOfActivity = value;
             }
         }
@@ -188,12 +188,15 @@ namespace dotNet5781_3B_6436_9554_
 
         public bool isOldBus()
         {
-            if (DateTime.Now.Year - dateOftreatment.Year >= 1)
-            {
-                if (DateTime.Now.Month - dateOftreatment.Month >= 0)
-                    if (DateTime.Now.Day - dateOftreatment.Day >= 0)
-                        return true;
-            }
+            //if (DateTime.Now.Year - dateOftreatment.Year >= 1)
+            //{
+            //    if (DateTime.Now.Month - dateOftreatment.Month >= 0)
+            //        if (DateTime.Now.Day - dateOftreatment.Day >= 0)
+            //            return true;
+            //}
+            DateTime yearAgo = DateTime.Today.AddYears(-1);
+            if (dateOftreatment < yearAgo)
+                return true;
             return false;
         }
         /// <summary>

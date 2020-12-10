@@ -27,5 +27,15 @@ namespace dotNet5781_3B_6436_9554_
             myBus = bus;
 
         }
+
+        private void Button_Click_Refuel(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Tretment(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

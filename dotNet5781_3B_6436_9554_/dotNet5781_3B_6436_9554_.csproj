@@ -58,6 +58,7 @@
     <Compile Include="ShowBusWindow.xaml.cs">
       <DependentUpon>ShowBusWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StateConverter.cs" />
     <Page Include="AddBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

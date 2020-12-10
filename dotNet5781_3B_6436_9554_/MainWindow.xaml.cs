@@ -45,7 +45,7 @@ namespace dotNet5781_3B_6436_9554_
                 try
                 {
                     license = r.Next(1000000, 10000000).ToString();
-                    start = new DateTime(r.Next(2018), r.Next(13), r.Next(29));
+                    start = new DateTime(r.Next(1900, 2018), r.Next(13), r.Next(29));
                     last = new DateTime(r.Next(2018, 2020), r.Next(13), r.Next(29));
                     km = r.Next();
                     BusCollection.Add(new Bus(license, start, last, km));
@@ -67,6 +67,25 @@ namespace dotNet5781_3B_6436_9554_
         {
             AddBusWindow d = new AddBusWindow(BusCollection);
             d.Show();
+        }
+        private void lvBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // var item = sender as FrameworkElement;
+            var item = lvBus.SelectedItem;
+            Bus bus = item as Bus;
+            ShowBusWindow dr = new ShowBusWindow(bus);
+            dr.Show();
+        }
+        public void updateState()
+        {
+            foreach (var item in BusCollection)
+            {
+                if (item.isOldBus() || item.dangerous())
+                {
+                    item.MyState = State.isDangerous;
+                  
+                }
+            }
         }
     }
 }

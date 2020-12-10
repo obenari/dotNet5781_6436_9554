@@ -35,9 +35,9 @@ namespace dotNet5781_3B_6436_9554_
                 string license = tbLicense.Text;
                 int km = int.Parse(tbKm.Text);
                 int kmLast= int.Parse(tbKmLast.Text);
-                DateTime start = dpStart.DisplayDate;
-                DateTime last = dpLast.DisplayDate;
-                Bus bus = new Bus(license, start, last, km, 12000, kmLast);
+                DateTime start = dpStart.SelectedDate.Value;
+                DateTime last = dpLast.SelectedDate.Value;
+                Bus bus = new Bus(license, start, last, km, 1200, kmLast);
                 collection.Add(bus);
             }
             catch(Exception ex)
@@ -89,6 +89,11 @@ namespace dotNet5781_3B_6436_9554_
                 && !(string.IsNullOrEmpty(tbLicense.Text)) && !(string.IsNullOrEmpty(dpLast.Text)) && !(string.IsNullOrEmpty(dpStart.Text)))
             {
                 btnAdd.IsEnabled = true;
+            }
+            else
+            {
+                btnAdd.IsEnabled = false;
+
             }
         }
     }
