@@ -26,10 +26,10 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+        <ListView  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
           ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}">
             <!--<ListView.View>
                 <GridView>
@@ -39,6 +39,7 @@
             </ListView.View>-->
 
         </ListView>
+        <Button x:Name="btnAddBus" Content="Add a bus" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Width="75" Click="btnAddBus_Click"/>
 
     </Grid>
 </Window>

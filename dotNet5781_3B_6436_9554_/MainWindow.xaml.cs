@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace dotNet5781_3B_6436_9554_
 {
@@ -28,6 +29,7 @@ namespace dotNet5781_3B_6436_9554_
         {
             InitializeComponent();
             initBusses();
+            DataContext = BusCollection;
         }
         /// <summary>
         /// this func create 10 busses
@@ -59,6 +61,12 @@ namespace dotNet5781_3B_6436_9554_
             BusCollection.Add(new Bus("11111111", new DateTime(2018, 5, 1), new DateTime(2019, 1, 1), 400000, 5));
             //create a bus with high mileage from the last treatment
             BusCollection.Add(new Bus("22222222", new DateTime(2019, 4, 1), new DateTime(2019, 7, 1), 15000, 1200, 19000));
+        }
+
+        private void btnAddBus_Click(object sender, RoutedEventArgs e)
+        {
+            AddBusWindow d = new AddBusWindow(BusCollection);
+            d.Show();
         }
     }
 }
