@@ -5,25 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_3B_6436_9554_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="600">
+        Title="MainWindow" Height="500" Width="680" Icon="icon.png">
     <Window.Resources>
+        <local:StateConverter x:Key="StateConverter" />
+       
         <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
-            <Grid>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" />
-                <Button x:Name="btnRefuel" Margin="5" Grid.Column="1" Content="refuel"/>
-                <Button x:Name="btnTreatment" Margin="5" Grid.Column="2" Content="Send to treatment"/>
-                <Button x:Name="btnDrive" Margin="5" Grid.Column="3" Content="Drive"/>
-                <ProgressBar x:Name="pbar" Width="200" Grid.Column="4"/>
+                <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" 
+                           Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+
+
+                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" />
+                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="Send to treatment" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14"/>
+                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="Drive" Click="btnDrive_Click" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14"/>
+                <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Hidden" />
             </Grid>
         </DataTemplate>
-        <local:StateConverter x:Key="StateConverter" />
+      
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

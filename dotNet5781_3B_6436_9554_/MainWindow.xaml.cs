@@ -45,12 +45,14 @@ namespace dotNet5781_3B_6436_9554_
                 try
                 {
                     license = r.Next(1000000, 10000000).ToString();
-                    start = new DateTime(r.Next(1900, 2018), r.Next(13), r.Next(29));
-                    last = new DateTime(r.Next(2018, 2020), r.Next(13), r.Next(29));
-                    km = r.Next();
+                    start = new DateTime(r.Next(1950, 2018), r.Next(13), r.Next(29));
+                    last = new DateTime(r.Next(2019, 2020), 12, r.Next(29));//we put 12 in the month,
+                    //So it doesn't take a year from the date of treatment of all the buses
+                    //(because the current month is 12)
+                    km = r.Next(100000);
                     BusCollection.Add(new Bus(license, start, last, km));
                 }
-                catch (Exception e)
+                catch
                 {
                     i--;//if there is an exception, the bus is not created
                 }
@@ -86,6 +88,13 @@ namespace dotNet5781_3B_6436_9554_
                   
                 }
             }
+        }
+
+        private void btnDrive_Click(object sender, RoutedEventArgs e)
+        {
+            int km = 0;
+            DrivingWindow dr = new DrivingWindow(ref km);
+            dr.Show();
         }
     }
 }
