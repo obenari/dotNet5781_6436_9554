@@ -19,16 +19,15 @@ namespace dotNet5781_3B_6436_9554_
     /// </summary>
     public partial class DrivingWindow : Window
     {
-        int  kilometer;
+       // string  kilometer;
         /// <summary>
         /// the ctor get parameter by ref in order
         /// to update the main window within the distance of the inserted value
         /// </summary>
         /// <param name="km"></param>
-        public DrivingWindow(ref int  km)
+        public DrivingWindow()
         {
             InitializeComponent();
-            kilometer =  km;
         }
         /// <summary>
         /// in order to enable insert only a numbers.
@@ -83,7 +82,7 @@ namespace dotNet5781_3B_6436_9554_
             {
                 try
                 {
-                    kilometer = int.Parse(tbKm.Text);
+                  
                     this.Close();
                 }
                 catch

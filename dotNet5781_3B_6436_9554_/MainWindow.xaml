@@ -19,13 +19,15 @@
                     <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" 
-                           Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=TwoWay}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                           Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=OneTime}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
 
 
-                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" />
-                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="Send to treatment" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE"/>
+                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnRefuel_Click" />
+                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="Send to treatment" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE" Click="btnTreatment_Click"/>
                 <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="Drive" Click="btnDrive_Click" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2"/>
-                <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Hidden" />
+                <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Collapsed" />
+                <TextBlock x:Name="timer" Visibility="Collapsed" Grid.Column="4" Width="100"
+                       FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
             </Grid>
         </DataTemplate>
 
@@ -38,7 +40,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView x:Name="lvBus"  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}" MouseDoubleClick="lvBus_MouseDoubleClick">
+          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}"
+                  MouseDoubleClick="lvBus_MouseDoubleClick">
             <ListView.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFFDEE" Offset="0.385"/>

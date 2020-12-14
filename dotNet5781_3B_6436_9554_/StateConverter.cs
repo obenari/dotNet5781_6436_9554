@@ -19,7 +19,7 @@ namespace dotNet5781_3B_6436_9554_
                     break;
                 case State.isDangerous: str= "Red";
                     break;
-                case State.inTreatment: str= "Yellow";
+                case State.inTreatment: str= "Purple";
                     break;
                 case State.duringDriving: str= "Brown";
                     break;
@@ -42,7 +42,7 @@ namespace dotNet5781_3B_6436_9554_
                 case "Red":
                     state = State.isDangerous;
                     break;
-                case "Yellow":
+                case "Purple":
                     state = State.inTreatment;
                     break;
                 case "Brown":

@@ -20,21 +20,27 @@ namespace dotNet5781_3B_6436_9554_
     public partial class ShowBusWindow : Window
     {
         Bus myBus;
-        public ShowBusWindow(Bus bus)
+        MainWindow mainWindow;
+        public bool isClickRefuel = false;
+        public bool isClickTreatment = false;
+        public ShowBusWindow(Bus bus, MainWindow m)
         {
             InitializeComponent();
             DataContext = bus;
             myBus = bus;
-
+            mainWindow = m;
         }
 
         private void Button_Click_Refuel(object sender, RoutedEventArgs e)
         {
-
+            isClickRefuel = true;
+            this.Close();
         }
 
         private void Button_Click_Tretment(object sender, RoutedEventArgs e)
         {
+            isClickTreatment = true;
+            this.Close();
 
         }
     }

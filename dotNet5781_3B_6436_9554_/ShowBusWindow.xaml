@@ -51,8 +51,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="REFUEL" Grid.Column="0" Margin="3" Click="Button_Click_Refuel" FontFamily="Times New Roman" FontWeight="Bold" Background="#FFACDED1"/>
-            <Button Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment" Background="#FFACDED1" FontWeight="Bold" FontFamily="Times New Roman"/>
+            <Button x:Name="btnRefuel" Content="REFUEL" Grid.Column="0" Margin="3" Click="Button_Click_Refuel" FontFamily="Times New Roman" FontWeight="Bold" Background="#FFACDED1"/>
+            <Button x:Name="btnTreatment" Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment" Background="#FFACDED1" FontWeight="Bold" FontFamily="Times New Roman"/>
 
         </Grid>
               
