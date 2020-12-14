@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Threading;
 
 namespace dotNet5781_3B_6436_9554_
 {
@@ -89,12 +90,101 @@ namespace dotNet5781_3B_6436_9554_
                 }
             }
         }
+        public void updateStateOfBus(Bus bus)
+        {
+           
+                if (bus.isOldBus() || bus.dangerous()||bus.AmountOfFuelLeft==0)
+                {
+                    bus.MyState = State.isDangerous;
+
+                }
+            
+        }
 
         private void btnDrive_Click(object sender, RoutedEventArgs e)
         {
-            int km = 0;
+            int km = 100;//the value of km is send from the DrivingWindow
             DrivingWindow dr = new DrivingWindow(ref km);
-            dr.Show();
+            dr.ShowDialog();
+            //var item = sender as FrameworkElement;
+            Button btn = sender as Button;
+            Bus bus = btn.DataContext as Bus;
+
+            if (bus.dangerous(km))
+            {
+                MessageBox.Show("This driving cannot be made due to exceeding \n the mileage from the previous treatment");
+            }
+            else
+            {
+                if (!bus.enoughFuel(km))
+                {
+                    MessageBox.Show("There is not enough fuel for this driving.");
+                }
+                else
+                {
+                    bus.AmountOfFuelLeft -= km;
+                    bus.KilometerFromTheLastTreatment += km;
+                    bus.Kilometer += km;
+                    bus.MyState = State.duringDriving;
+                    btn.IsEnabled = false;
+                    var parent = btn.Parent as Grid;
+                    ProgressBar progressBar = parent.Children[4] as ProgressBar;
+                    progressBar.Visibility = Visibility.Visible;
+                    Button btn1 = parent.Children[1] as Button;
+                    Button btn2 = parent.Children[2] as Button;
+                    Button btn3 = parent.Children[3] as Button;
+                    btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
+                    BackgroundWorker drivingWorker = new BackgroundWorker();
+                    drivingWorker.DoWork += driving_DoWork;
+                    drivingWorker.ProgressChanged += driving_ProgressChanged;
+                    drivingWorker.RunWorkerCompleted += driving_RunWorkerCompleted;
+                    drivingWorker.WorkerReportsProgress = true;
+                    drivingWorker.WorkerSupportsCancellation = true;
+                    int speed = 10;// r.Next(20, 50);
+                    double drivingTime = (double)km / speed;
+                    List<object> lst = new List<object> { drivingTime, btn, btn1, btn2, btn3, progressBar, bus };
+                    drivingWorker.RunWorkerAsync(lst);
+                }
+            }
+        }
+
+        private void driving_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)//****************
+        {
+            List<object> lst = e.Result as List<object>;
+            Button b = lst[1] as Button;
+            b.IsEnabled = true;
+            b = lst[2] as Button;
+            b.IsEnabled = true;
+            b = lst[3] as Button;
+            b.IsEnabled = true;
+            b = lst[4] as Button;
+            b.IsEnabled = true;
+            ProgressBar progressBar = lst[5] as ProgressBar;
+            progressBar.Visibility = Visibility.Hidden;
+            Bus bus = lst[6] as Bus;
+            bus.MyState = State.isReady;
+            updateStateOfBus(bus);
+        }
+
+
+        private void driving_ProgressChanged(object sender, ProgressChangedEventArgs e)//*********************
+        {
+            int percentage = e.ProgressPercentage;
+            ProgressBar progressBar = e.UserState as ProgressBar;
+            progressBar.Value = percentage;
+        }
+        private void driving_DoWork(object sender, DoWorkEventArgs e)//*********************
+        {
+            List<object> lst = e.Argument as List<object>;
+            double timeToSleep = (double)lst[0] /20;//the progressbar will update 20 times
+            BackgroundWorker b = sender as BackgroundWorker;
+            for (int i = 1; i <= 20; i++)
+            {
+                Thread.Sleep((int)timeToSleep * 6000);
+                b.ReportProgress(i*5,(ProgressBar)lst[5]);
+
+            }
+            e.Result = lst;
         }
     }
 }

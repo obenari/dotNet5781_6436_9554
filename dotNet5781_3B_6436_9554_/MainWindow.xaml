@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" 
-                           Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                           Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=TwoWay}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
 
 
                 <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="refuel" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" />
