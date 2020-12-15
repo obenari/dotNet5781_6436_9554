@@ -75,44 +75,50 @@ namespace dotNet5781_3B_6436_9554_
             AddBusWindow d = new AddBusWindow(BusCollection);
             d.Show();
         }
-        /// <summary>
-        /// when the user click double click, a new window will show the details of the choosen bus
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lvBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            // var item = sender as FrameworkElement;
-            var item = lvBus.SelectedItem;
-            Bus bus = item as Bus;
-            ShowBusWindow dr = new ShowBusWindow(bus,this);
-            dr.ShowDialog();
-            if(dr.isClickRefuel==true)
-            {
-                //var parent = sender 
-                // Button btn = parent.Children[1] as Button;
-                Button btn = lvBus.SelectedItem as Button;
-                btnRefuel_Click(btn, new RoutedEventArgs());
-            }
-            if (dr.isClickTreatment == true)
-            {
-                var parent = item as Grid;
-                Button btn = parent.Children[2] as Button;
-                btnRefuel_Click(btn, new RoutedEventArgs());
-            }
-        }
-      
-        //public void updateState()
+        ///// <summary>
+        ///// when the user click double click, a new window will show the details of the choosen bus
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void lvBus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         //{
-        //    foreach (var item in BusCollection)
+        //    // var item = sender as FrameworkElement;
+        //    var item = lvBus.SelectedItem;
+        //    Bus bus = item as Bus;
+        //    ShowBusWindow dr = new ShowBusWindow(bus,this);
+        //    dr.ShowDialog();
+        //    if(dr.isClickRefuel==true)
         //    {
-        //        if (item.isOldBus() || item.dangerous())
-        //        {
-        //            item.MyState = State.isDangerous;
-                  
-        //        }
+        //        // var yyy = lvBus.SelectedItems[lvBus.SelectedIndex
+               
+        //        Control y = sender as Control;
+
+        //        //  ListViewItem yrg = lvBus.SelectedItem.GetType;
+        //      //  Grid h = 
+
+        //     //  Button btn = h as Button;
+        //     //var lv =sender as ListView;
+        //     //   Grid grid = lvBus.View as Grid;
+        //       // var par = lv.Parent;
+        //      //  var f = e;
+        //      //  var g = lv.SelectedItem as Grid;
+        //       // var d = g.Content as Grid;
+        //       // var t=
+        //        //Button btn = u as Button;
+        //       // var parent = System.Windows.Controls.ListViewItem. as Grid; 
+        //        // Button btn = parent.Children[1] as Button;
+        //       // Button btn = lvBus.SelectedItem as Button;
+        //      //  btnRefuel_Click(btn, new RoutedEventArgs());
+        //    }
+        //    if (dr.isClickTreatment == true)
+        //    {
+        //        var parent = item as Grid;
+        //        Button btn = parent.Children[2] as Button;
+        //        btnRefuel_Click(btn, new RoutedEventArgs());
         //    }
         //}
+      
+        
         /// <summary>
         /// this func update the status of the bus
         /// </summary>
@@ -129,6 +135,7 @@ namespace dotNet5781_3B_6436_9554_
         }
         /// <summary>
         /// this func create a thread and send the bus to driving
+        ///we are used in BackgroundWorker because this is the most match to use with wpf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -162,12 +169,12 @@ namespace dotNet5781_3B_6436_9554_
             bus.MyState = State.duringDriving;
             btn.IsEnabled = false;
             var parent = btn.Parent as Grid;
-            ProgressBar progressBar = parent.Children[4] as ProgressBar;
+            ProgressBar progressBar = parent.Children[5] as ProgressBar;
             progressBar.Visibility = Visibility.Visible;
-            Button btn1 = parent.Children[1] as Button;
-            Button btn2 = parent.Children[2] as Button;
-            Button btn3 = parent.Children[3] as Button;
-            TextBlock tb = parent.Children[0] as TextBlock;
+            Button btn1 = parent.Children[2] as Button;
+            Button btn2 = parent.Children[3] as Button;
+            Button btn3 = parent.Children[4] as Button;
+            TextBlock tb = parent.Children[1] as TextBlock;
             tb.Foreground = Brushes.Brown;
             btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
             BackgroundWorker drivingWorker = new BackgroundWorker();
@@ -229,6 +236,7 @@ namespace dotNet5781_3B_6436_9554_
         }
         /// <summary>
         /// this func create a thread and send the bus to refuel
+        /// ///we are used in BackgroundWorker because this is the most match to use with wpf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -245,13 +253,13 @@ namespace dotNet5781_3B_6436_9554_
             bus.MyState = State.refueling;
             btn.IsEnabled = false;
             var parent = btn.Parent as Grid;
-            TextBlock tbTimer = parent.Children[5] as TextBlock;
+            TextBlock tbTimer = parent.Children[6] as TextBlock;
             tbTimer.Visibility = Visibility.Visible;
             //make all the buttons in the row dis enabeled
-            Button btn1 = parent.Children[1] as Button;
-            Button btn2 = parent.Children[2] as Button;
-            Button btn3 = parent.Children[3] as Button;
-            TextBlock tbLicense = parent.Children[0] as TextBlock;
+            Button btn1 = parent.Children[2] as Button;
+            Button btn2 = parent.Children[3] as Button;
+            Button btn3 = parent.Children[4] as Button;
+            TextBlock tbLicense = parent.Children[1] as TextBlock;
             btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
             //changed the color acording status
             tbLicense.Foreground = Brushes.Blue;
@@ -286,11 +294,11 @@ namespace dotNet5781_3B_6436_9554_
             string str;
             if (percentage < 10)
             {
-                 str = "0" + percentage.ToString() + ":00";
+                 str = "00:"+"0" + percentage.ToString();
             }
             else
             { 
-                 str = percentage.ToString() + ":00";
+                 str = "00:"+percentage.ToString();
             }
             timer.Text =str ;
         }
@@ -319,7 +327,7 @@ namespace dotNet5781_3B_6436_9554_
         }
         /// <summary>
         ///this func create a thread and send the bus to treatment
-
+        ///we are used in BackgroundWorker because this is the most match to use with wpf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -331,14 +339,14 @@ namespace dotNet5781_3B_6436_9554_
             bus.MyState = State.inTreatment;
             btn.IsEnabled = false;
             var parent = btn.Parent as Grid;
-            TextBlock tbTimer = parent.Children[5] as TextBlock;
+            TextBlock tbTimer = parent.Children[6] as TextBlock;
             tbTimer.Visibility = Visibility.Visible;
             //make all the buttons in the row disenabeled
-            Button btn1 = parent.Children[1] as Button;
-            Button btn2 = parent.Children[2] as Button;
-            Button btn3 = parent.Children[3] as Button;
+            Button btn1 = parent.Children[2] as Button;
+            Button btn2 = parent.Children[3] as Button;
+            Button btn3 = parent.Children[4] as Button;
             btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
-            TextBlock tbLicense = parent.Children[0] as TextBlock;
+            TextBlock tbLicense = parent.Children[1] as TextBlock;
             //changed the text color acording the status
             tbLicense.Foreground = Brushes.Purple;
             treatmentWorker.DoWork += timer_DoWork;
@@ -351,6 +359,28 @@ namespace dotNet5781_3B_6436_9554_
             bus.DateOftreatment = DateTime.Now;
             bus.KilometerFromTheLastTreatment = 0;
             bus.AmountOfFuelLeft = 1200;//acording to the instruction, the bus is also refuel after the treatment
+        }
+
+        private void doubleClick_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Button btn = sender as Button;
+            Bus bus = btn.DataContext as Bus;
+            ShowBusWindow dr = new ShowBusWindow(bus, this);
+            dr.ShowDialog();
+            if (dr.isClickRefuel == true)
+            {
+    
+                var parent = btn.Parent as Grid;
+                Button btnRefuel = parent.Children[2] as Button;
+                btnRefuel_Click(btn, new RoutedEventArgs());
+            }
+            if (dr.isClickTreatment == true)
+            {
+                var parent = btn.Parent as Grid;
+                Button btnTreatment = parent.Children[3] as Button;
+                btnTreatment_Click(btn, new RoutedEventArgs());
+            }
         }
     }
 }

@@ -18,6 +18,11 @@
                     <ColumnDefinition Width="118"/>
                     <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
+                <Button x:Name="doubleClick" Grid.Column="0"  Grid.ColumnSpan="5" BorderThickness="0" MouseDoubleClick="doubleClick_MouseDoubleClick">
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0"/>
+                    </Button.Background>
+                </Button>
                 <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=AppropriateFormatLicenseNumber}" 
                            Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=OneTime}"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
 
@@ -41,7 +46,7 @@
         </Grid.RowDefinitions>
         <ListView x:Name="lvBus"  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
           ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}"
-                  MouseDoubleClick="lvBus_MouseDoubleClick">
+                  >
             <ListView.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFFDEE" Offset="0.385"/>

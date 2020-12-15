@@ -52,10 +52,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btnRefuel" Content="REFUEL" Grid.Column="0" Margin="3" Click="Button_Click_Refuel" FontFamily="Times New Roman" FontWeight="Bold" Background="#FFACDED1"/>
-            <Button x:Name="btnTreatment" Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment" Background="#FFACDED1" FontWeight="Bold" FontFamily="Times New Roman"/>
+            <Button x:Name="btnTreatment" Content="SEND TO TREATMENT" Grid.Column="1" Margin="3" Click="Button_Click_Tretment" FontWeight="Bold" FontFamily="Times New Roman">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFACDED1"/>
+                </Button.Background>
+            </Button>
 
         </Grid>
-              
-       
+
+
     </Grid>
 </Window>
