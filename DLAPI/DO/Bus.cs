@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DLAPI;
-using DS;
 
-namespace DL
+namespace DLAPI.DO
 {
-    internal class DLObject : IDL
+    class Bus
     {
-        static readonly DLObject instance = new DLObject();
-
     }
 }

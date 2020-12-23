@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DLConfig.cs" />
+    <Compile Include="DLFactory.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
