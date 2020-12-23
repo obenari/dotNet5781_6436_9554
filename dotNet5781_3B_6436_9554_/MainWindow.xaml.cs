@@ -31,6 +31,7 @@ namespace dotNet5781_3B_6436_9554_
             InitializeComponent();
             initBusses();
             DataContext = BusCollection;
+           
         }
         /// <summary>
         /// this func create 10 busses
