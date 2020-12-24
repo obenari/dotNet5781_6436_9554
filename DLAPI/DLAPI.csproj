@@ -41,14 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DLConfig.cs" />
     <Compile Include="DLFactory.cs" />
+    <Compile Include="DO\AdjacentStations.cs" />
+    <Compile Include="DO\BusDo.cs" />
+    <Compile Include="DO\BusInTravel.cs" />
+    <Compile Include="DO\Enums.cs" />
+    <Compile Include="DO\Line.cs" />
+    <Compile Include="DO\LineStation.cs" />
+    <Compile Include="DO\LineTrip.cs" />
+    <Compile Include="DO\StationDo.cs" />
+    <Compile Include="DO\Trip.cs" />
+    <Compile Include="DO\User.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

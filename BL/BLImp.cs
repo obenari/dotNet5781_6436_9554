@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace DLAPI
+using BLApi;
+namespace BL
 {
-    public class Class1
+    class BLImp:IBL
     {
     }
 }

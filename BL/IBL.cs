@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO; 
-namespace DLAPI
+using BO;
+namespace BLApi
 {
-    /// <summary>
-    /// CRUD Logic:
-    /// Create - add new instance
-    /// Request - ask for an instance or for a collection
-    /// Update - update properties of an instance
-    /// Delete - delete an instance
-    /// </summary>
-    public interface IDL
+    public interface IBL
     {
-
         #region AdjacentStations
         IEnumerable<AdjacentStations> GetAllAdjacentStations();
         IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
@@ -73,7 +65,7 @@ namespace DLAPI
         LineTrip GetLineTrip(int id, TimeSpan start);
         void AddLineTrip(LineTrip lineTrip);
         void UpdateLineTrip(LineTrip lineTrip);
-        void UpdateLineTrip(int id,TimeSpan start, Action<LineTrip> update); //method that knows to updt specific fields in LineTrip
+        void UpdateLineTrip(int id, TimeSpan start, Action<LineTrip> update); //method that knows to updt specific fields in LineTrip
         void DeleteLineTrip(int id, TimeSpan start);
         #endregion
 
@@ -93,7 +85,7 @@ namespace DLAPI
         Trip GetTrip(int id);
         void AddTrip(Trip trip);
         void UpdateTrip(Trip trip);
-        void UpdateTrip(int id,Action<Trip> update); //method that knows to updt specific fields in Trip
+        void UpdateTrip(int id, Action<Trip> update); //method that knows to updt specific fields in Trip
         void DeleteTrip(int id);
         #endregion
 
@@ -106,6 +98,5 @@ namespace DLAPI
         void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in User
         void DeleteUser(int id);
         #endregion
-
     }
 }
