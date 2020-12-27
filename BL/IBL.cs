@@ -98,5 +98,5 @@ namespace BLApi
         void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in User
         void DeleteUser(int id);
         #endregion
-    }
+    } 
 }
