@@ -27,7 +27,10 @@ namespace DO
         /// the name of the station
         /// </summary>
         public string Name { get; set; }
-
+        /// <summary>
+        /// this field return false when the argument is not deleted
+        /// </summary>
+        public bool IsDeleted { get; set; }
 
 
     }

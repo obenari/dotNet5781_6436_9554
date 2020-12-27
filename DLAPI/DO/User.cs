@@ -23,7 +23,10 @@ namespace DO
         /// a boolean field that check if the user is a worker in the comapny or a passenger 
         /// </summary>
         public bool Admin { get; set; }
-
+        /// <summary>
+        /// this field return false when the argument is not deleted
+        /// </summary>
+        public bool IsDeleted { get; set; }
 
     }
 }

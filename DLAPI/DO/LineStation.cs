@@ -33,7 +33,10 @@ namespace DO
         /// if it's the last station, this field will be null 
         /// </summary>
         public int? NextStation { get; set; }
-
+        /// <summary>
+        /// this field return false when the argument is not deleted
+        /// </summary>
+        public bool IsDeleted { get; set; }
 
 
     }

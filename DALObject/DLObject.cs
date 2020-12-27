@@ -11,6 +11,15 @@ namespace DL
     internal class DLObject : IDL
     {
         static readonly DLObject instance = new DLObject();
+        // The public Instance property to use 
+        public static DLObject Instance { get { return instance; } }
+
+        // Explicit static constructor to ensure instance initialization
+        // is done just before first usage
+        static DLObject() { }
+
+        DLObject() { } // default => private
+
 
     }
 }

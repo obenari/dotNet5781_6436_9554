@@ -45,7 +45,11 @@ namespace DO
         {
             return this.ToString();
         }
-        
+        /// <summary>
+        /// this field return false when the argument is not deleted
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
 
     }
 }
