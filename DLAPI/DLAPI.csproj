@@ -46,6 +46,7 @@
     <Compile Include="DO\AdjacentStations.cs" />
     <Compile Include="DO\BusDo.cs" />
     <Compile Include="DO\BusInTravel.cs" />
+    <Compile Include="DO\Config.cs" />
     <Compile Include="DO\Enums.cs" />
     <Compile Include="DO\Line.cs" />
     <Compile Include="DO\LineStation.cs" />

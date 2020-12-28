@@ -27,15 +27,15 @@ namespace DLAPI
         //#endregion
 
 
-        //#region Bus
-        //IEnumerable<Bus> GetAllBusses();
-        //IEnumerable<Bus> GetAllBussesBy(Predicate<Bus> predicate);
-        //Bus GetBus(int License);
-        //void AddBus(Bus bus);
-        //void UpdateBus(Bus bus);
-        //void UpdateBus(int license, Action<Bus> update); //method that knows to updt specific fields in bus
-        //void DeleteBus(int license);
-        //#endregion
+        #region Bus
+        IEnumerable<Bus> GetAllBusses();
+        IEnumerable<Bus> GetAllBussesBy(Predicate<Bus> predicate);
+        Bus GetBus(int License);
+        void AddBus(Bus bus);
+        void UpdateBus(Bus bus);
+        void UpdateBus(int license, Action<Bus> update); //method that knows to updt specific fields in bus
+        void DeleteBus(int license);
+        #endregion
 
         //#region BusInTravel
         ////IEnumerable<Bus> GetAllBusses();

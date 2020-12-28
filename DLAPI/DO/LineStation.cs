@@ -12,7 +12,7 @@ namespace DO
     public class LineStation
     {
         /// <summary>
-        /// the number of line 
+        /// the id number of the line 
         /// </summary>
         public int LineId { get; set; }
         /// <summary>

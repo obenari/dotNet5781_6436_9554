@@ -9,11 +9,11 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Bus> Busses;
-        public static List<Station> Stations;
-        public static List<Line> Lines;
-        public static List<LineStation> LineStations;
-        public static List<AdjacentStations> TwoAdjacentStations;
+        public static List<Bus> ListBusses;
+        public static List<Station> ListStations;
+        public static List<Line> ListLines;
+        public static List<LineStation> ListLineStations;
+        public static List<AdjacentStations> ListTwoAdjacentStations;
 
 
 
@@ -25,7 +25,7 @@ namespace DS
         }
         static void InitAllList()
         {
-            Stations = new List<Station>
+            ListStations = new List<Station>
             {
 #region jerusalem
                 
@@ -442,7 +442,7 @@ new Station
 }
 #endregion
             };
-            List<LineStation> LineStations = new List<LineStation>
+            ListLineStations = new List<LineStation>
             {
                 #region line1
                 new LineStation
@@ -537,9 +537,9 @@ new Station
                 },
                 #endregion
                 #region line1 reverse
-                new LineStation
+            new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 10,
                 PrevStation = null,
                 NextStation = 9,
@@ -548,7 +548,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 9,
                 PrevStation = 10,
                 NextStation = 8,
@@ -557,7 +557,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 8,
                 PrevStation = 9,
                 NextStation = 7,
@@ -566,7 +566,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 7,
                 PrevStation = 8,
                 NextStation = 6,
@@ -575,7 +575,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 6,
                 PrevStation = 7,
                 NextStation = 5,
@@ -584,7 +584,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 5,
                 PrevStation = 6,
                 NextStation = 4,
@@ -593,7 +593,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 4,
                 PrevStation = 5,
                 NextStation = 3,
@@ -602,7 +602,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 3,
                 PrevStation = 4,
                 NextStation = 2,
@@ -611,7 +611,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 2,
                 PrevStation = 3,
                 NextStation = 1,
@@ -621,7 +621,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 1,
+                LineId = 2,
                 stationCode = 1,
                 PrevStation = 2,
                 NextStation = null,
@@ -632,7 +632,7 @@ new Station
                 #region line2
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 11,
                 PrevStation = null,
                 NextStation = 12,
@@ -641,7 +641,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 12,
                 PrevStation = 11,
                 NextStation = 13,
@@ -650,7 +650,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 13,
                 PrevStation = 12,
                 NextStation = 14,
@@ -659,7 +659,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 14,
                 PrevStation = 13,
                 NextStation = 15,
@@ -668,7 +668,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 15,
                 PrevStation = 14,
                 NextStation = 16,
@@ -677,7 +677,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 16,
                 PrevStation = 15,
                 NextStation = 17,
@@ -686,7 +686,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 17,
                 PrevStation = 16,
                 NextStation = 18,
@@ -695,7 +695,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 18,
                 PrevStation = 17,
                 NextStation = 19,
@@ -704,7 +704,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 19,
                 PrevStation = 18,
                 NextStation = 20,
@@ -714,7 +714,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 3,
                 stationCode = 20,
                 PrevStation = 19,
                 NextStation = null,
@@ -724,93 +724,93 @@ new Station
                 #endregion
                 #region line2 reverse
                 new LineStation
-            {
-                LineId = 2,
-                stationCode = 20,
-                PrevStation = 19,
-                NextStation = null,
-                LineStationIndex = 0,
-                IsDeleted = false
-            },
+                {
+                    LineId = 4,
+                    stationCode = 20,
+                    PrevStation = null,
+                    NextStation = 19,
+                    LineStationIndex = 0,
+                    IsDeleted = false
+                },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 19,
-                PrevStation = null,
-                NextStation = 20,
+                PrevStation = 20,
+                NextStation = 18,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 18,
-                PrevStation = 17,
-                NextStation = 19,
+                PrevStation = 19,
+                NextStation = 17,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 17,
-                PrevStation = 16,
-                NextStation = 18,
+                PrevStation = 18,
+                NextStation = 16,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 16,
-                PrevStation = 15,
-                NextStation = 17,
+                PrevStation = 17,
+                NextStation = 15,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 15,
-                PrevStation = 14,
-                NextStation = 16,
+                PrevStation = 16,
+                NextStation = 14,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 14,
-                PrevStation = 13,
-                NextStation = 15,
+                PrevStation = 15,
+                NextStation = 13,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 13,
-                PrevStation = 12,
-                NextStation = 14,
+                PrevStation = 14,
+                NextStation = 12,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 12,
-                PrevStation = 11,
-                NextStation = 13,
+                PrevStation = 13,
+                NextStation = 11,
                 LineStationIndex = 8,
                 IsDeleted = false
 
             },
             new LineStation
             {
-                LineId = 2,
+                LineId = 4,
                 stationCode = 11,
-                PrevStation = null,
-                NextStation = 12,
+                PrevStation = 12,
+                NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -818,7 +818,7 @@ new Station
                 #region line3
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 21,
                 PrevStation = null,
                 NextStation = 22,
@@ -827,7 +827,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 22,
                 PrevStation = 21,
                 NextStation = 23,
@@ -836,7 +836,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 23,
                 PrevStation = 22,
                 NextStation = 24,
@@ -845,7 +845,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 24,
                 PrevStation = 23,
                 NextStation = 25,
@@ -854,7 +854,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 25,
                 PrevStation = 24,
                 NextStation = 26,
@@ -863,7 +863,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 26,
                 PrevStation = 25,
                 NextStation = 27,
@@ -872,7 +872,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 27,
                 PrevStation = 26,
                 NextStation = 25,
@@ -881,7 +881,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 28,
                 PrevStation = 27,
                 NextStation = 29,
@@ -890,7 +890,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 29,
                 PrevStation = 28,
                 NextStation = 30,
@@ -900,7 +900,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 5,
                 stationCode = 30,
                 PrevStation = 29,
                 NextStation = null,
@@ -912,7 +912,7 @@ new Station
                 #region line3 reverse
              new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 30,
                 PrevStation = null,
                 NextStation = 29,
@@ -921,7 +921,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 29,
                 PrevStation = 30,
                 NextStation = 28,
@@ -930,74 +930,74 @@ new Station
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 28,
-                PrevStation = 7,
-                NextStation = 9,
+                PrevStation = 29,
+                NextStation = 27,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 27,
-                PrevStation = 6,
-                NextStation = 8,
+                PrevStation = 28,
+                NextStation = 26,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 26,
-                PrevStation = 5,
-                NextStation = 7,
+                PrevStation = 27,
+                NextStation = 25,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId =6,
                 stationCode = 25,
-                PrevStation = 4,
-                NextStation = 6,
+                PrevStation = 26,
+                NextStation = 24,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 24,
-                PrevStation = 3,
-                NextStation = 5,
+                PrevStation = 25,
+                NextStation = 23,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 23,
-                PrevStation = 2,
-                NextStation = 4,
+                PrevStation = 24,
+                NextStation = 22,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 22,
-                PrevStation = 1,
-                NextStation = 3,
+                PrevStation = 23,
+                NextStation = 21,
                 LineStationIndex = 8,
                 IsDeleted = false
 
             },
             new LineStation
             {
-                LineId = 3,
+                LineId = 6,
                 stationCode = 21,
-                PrevStation = null,
-                NextStation = 2,
+                PrevStation = 22,
+                NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -1005,7 +1005,7 @@ new Station
                 #region line4
             new LineStation
             {
-                LineId = 4,
+                LineId =7,
                 stationCode = 31,
                 PrevStation = null,
                 NextStation = 32,
@@ -1014,7 +1014,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 32,
                 PrevStation = 31,
                 NextStation = 33,
@@ -1023,7 +1023,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 33,
                 PrevStation = 32,
                 NextStation = 34,
@@ -1032,7 +1032,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 34,
                 PrevStation = 33,
                 NextStation = 35,
@@ -1041,7 +1041,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 35,
                 PrevStation = 34,
                 NextStation = 36,
@@ -1050,7 +1050,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 36,
                 PrevStation = 35,
                 NextStation = 37,
@@ -1059,7 +1059,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 37,
                 PrevStation = 36,
                 NextStation = 35,
@@ -1068,7 +1068,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId = 7,
                 stationCode = 38,
                 PrevStation = 37,
                 NextStation = 39,
@@ -1077,7 +1077,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId =7,
                 stationCode = 39,
                 PrevStation = 38,
                 NextStation = 40,
@@ -1087,7 +1087,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 4,
+                LineId =7,
                 stationCode = 40,
                 PrevStation = 39,
                 NextStation = null,
@@ -1098,100 +1098,100 @@ new Station
                 #region line4 reverse
             new LineStation
             {
-                LineId = 4,
-                stationCode = 40,
-                PrevStation = 39,
-                NextStation = null,
-                LineStationIndex = 9,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 39,
-                PrevStation = 38,
-                NextStation = 40,
-                LineStationIndex = 8,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 38,
-                PrevStation = 37,
+                LineId = 8,
+                stationCode =40,
+                PrevStation = null,
                 NextStation = 39,
-                LineStationIndex = 7,
+                LineStationIndex = 0,
                 IsDeleted = false
             },
-            new LineStation
+             new LineStation
             {
-                LineId = 4,
-                stationCode = 37,
-                PrevStation = 36,
+                LineId = 8,
+                stationCode =39,
+                PrevStation = 40,
                 NextStation = 38,
+                LineStationIndex = 1,
+                IsDeleted = false
+
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 38,
+                PrevStation = 39,
+                NextStation = 37,
+                LineStationIndex = 2,
+                IsDeleted = false
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 37,
+                PrevStation = 38,
+                NextStation = 36,
+                LineStationIndex = 3,
+                IsDeleted = false
+            },
+              new LineStation
+            {
+                LineId = 8,
+                stationCode = 36,
+                PrevStation = 37,
+                NextStation = 35,
+                LineStationIndex = 4,
+                IsDeleted = false
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 35,
+                PrevStation = 36,
+                NextStation = 34,
+                LineStationIndex = 5,
+                IsDeleted = false
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 34,
+                PrevStation = 35,
+                NextStation = 33,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 4,
-                stationCode = 36,
-                PrevStation = 35,
-                NextStation = 37,
-                LineStationIndex = 5,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 35,
-                PrevStation = 34,
-                NextStation = 36,
-                LineStationIndex = 4,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 34,
-                PrevStation = 33,
-                NextStation = 35,
-                LineStationIndex = 3,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
+                LineId =8,
                 stationCode = 33,
-                PrevStation = 32,
-                NextStation = 34,
-                LineStationIndex = 2,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 32,
-                PrevStation = 31,
-                NextStation = 33,
-                LineStationIndex = 1,
-                IsDeleted = false
-
-            },
-            new LineStation
-            {
-                LineId = 4,
-                stationCode = 31,
-                PrevStation = null,
+                PrevStation =34,
                 NextStation = 32,
-                LineStationIndex = 0,
+                LineStationIndex = 7,
+                IsDeleted = false
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 32,
+                PrevStation = 33,
+                NextStation = 31,
+                LineStationIndex = 8,
+                IsDeleted = false
+            },
+             new LineStation
+            {
+                LineId = 8,
+                stationCode = 31,
+                PrevStation = 32,
+                NextStation = null,
+                LineStationIndex = 9,
                 IsDeleted = false
             },
 #endregion
                 #region line5
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 41,
                 PrevStation = null,
                 NextStation = 42,
@@ -1200,7 +1200,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 42,
                 PrevStation = 41,
                 NextStation = 43,
@@ -1209,7 +1209,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 43,
                 PrevStation = 42,
                 NextStation = 44,
@@ -1218,7 +1218,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 44,
                 PrevStation = 43,
                 NextStation = 45,
@@ -1227,7 +1227,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 45,
                 PrevStation = 44,
                 NextStation = 46,
@@ -1236,7 +1236,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 46,
                 PrevStation = 45,
                 NextStation = 47,
@@ -1245,7 +1245,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 47,
                 PrevStation = 46,
                 NextStation = 45,
@@ -1254,7 +1254,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 48,
                 PrevStation = 47,
                 NextStation = 49,
@@ -1263,7 +1263,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 9,
                 stationCode = 49,
                 PrevStation = 48,
                 NextStation = 50,
@@ -1273,7 +1273,7 @@ new Station
             },
             new LineStation
             {
-                LineId = 5,
+                LineId =9,
                 stationCode = 50,
                 PrevStation = 49,
                 NextStation = null,
@@ -1284,99 +1284,99 @@ new Station
                 #region line5 reverse
             new LineStation
             {
-                LineId = 5,
+                LineId = 10,
                 stationCode = 50,
-                PrevStation = 49,
-                NextStation = null,
-                LineStationIndex = 9,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 5,
-                stationCode = 49,
-                PrevStation = 48,
-                NextStation = 50,
-                LineStationIndex = 8,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 5,
-                stationCode = 48,
-                PrevStation = 47,
+                PrevStation = null,
                 NextStation = 49,
-                LineStationIndex = 7,
+                LineStationIndex = 0,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 5,
-                stationCode = 47,
-                PrevStation = 46,
+                LineId = 10,
+                stationCode = 49,
+                PrevStation = 50,
                 NextStation = 48,
-                LineStationIndex = 6,
+                LineStationIndex = 1,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 5,
-                stationCode = 46,
-                PrevStation = 45,
+                LineId = 10,
+                stationCode = 48,
+                PrevStation = 49,
                 NextStation = 47,
-                LineStationIndex = 5,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 5,
-                stationCode = 45,
-                PrevStation = 44,
-                NextStation = 46,
-                LineStationIndex = 4,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 5,
-                stationCode = 44,
-                PrevStation = 43,
-                NextStation = 45,
-                LineStationIndex = 3,
-                IsDeleted = false
-            },
-            new LineStation
-            {
-                LineId = 5,
-                stationCode = 43,
-                PrevStation = 42,
-                NextStation = 44,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
             new LineStation
             {
-                LineId = 5,
-                stationCode = 42,
-                PrevStation = 41,
+                LineId = 10,
+                stationCode = 47,
+                PrevStation = 48,
+                NextStation = 46,
+                LineStationIndex =3,
+                IsDeleted = false
+            },
+            new LineStation
+            {
+                LineId = 10,
+                stationCode = 46,
+                PrevStation = 47,
+                NextStation = 45,
+                LineStationIndex = 4,
+                IsDeleted = false
+            },
+            new LineStation
+            {
+                LineId = 10,
+                stationCode = 45,
+                PrevStation = 46,
+                NextStation = 44,
+                LineStationIndex = 5,
+                IsDeleted = false
+            },
+            new LineStation
+            {
+                LineId = 10,
+                stationCode = 44,
+                PrevStation = 45,
                 NextStation = 43,
-                LineStationIndex = 1,
+                LineStationIndex = 6,
+                IsDeleted = false
+            },
+            new LineStation
+            {
+                LineId = 10,
+                stationCode = 43,
+                PrevStation = 44,
+                NextStation = 42,
+                LineStationIndex = 7,
+                IsDeleted = false
+            },
+            new LineStation
+            {
+                LineId = 10,
+                stationCode = 42,
+                PrevStation = 43,
+                NextStation = 41,
+                LineStationIndex = 8,
                 IsDeleted = false
 
             },
             new LineStation
             {
-                LineId = 5,
+                LineId = 10,
                 stationCode = 41,
-                PrevStation = null,
-                NextStation = 42,
-                LineStationIndex = 0,
+                PrevStation = 42,
+                NextStation = null,
+                LineStationIndex = 9,
                 IsDeleted = false
             },
 #endregion
                         };
 
-            Busses = new List<Bus>
+            ListBusses = new List<Bus>
             {
                       new Bus
        {
@@ -1601,7 +1601,7 @@ new Station
 
 
           };
-            Lines = new List<Line>
+            ListLines = new List<Line>
             {
                 new Line
             {
@@ -1695,7 +1695,354 @@ new Station
                      IsDeleted=false
                 },
             };
-            List<AdjacentStations> TwoAdjacentStations = new List<AdjacentStations> { };
+            List<AdjacentStations> TwoAdjacentStations = new List<AdjacentStations>
+            {
+    new AdjacentStations
+       {
+          Station1 = 1,
+         Station2 =  2 ,
+         Distance = 5224.25523033912  ,
+           Time =new TimeSpan(0,6,13),
+        },
+      new AdjacentStations
+       {
+          Station1 = 2,
+         Station2 =  3 ,
+         Distance = 4406.36878055019  ,
+           Time =new TimeSpan(0,5,14),
+        },
+      new AdjacentStations
+       {
+          Station1 = 3,
+         Station2 =  4 ,
+         Distance = 12412.96929238  ,
+           Time =new TimeSpan(0,14,46),
+        },
+      new AdjacentStations
+       {
+          Station1 = 4,
+         Station2 =  5 ,
+         Distance = 8776.50356464839  ,
+           Time =new TimeSpan(0,10,26),
+        },
+      new AdjacentStations
+       {
+          Station1 = 5,
+         Station2 =  6 ,
+         Distance = 8518.12323208466  ,
+           Time =new TimeSpan(0,10,8),
+        },
+      new AdjacentStations
+       {
+          Station1 = 6,
+         Station2 =  7 ,
+         Distance = 531.66925309886  ,
+           Time =new TimeSpan(0,0,37),
+        },
+      new AdjacentStations
+       {
+          Station1 = 7,
+         Station2 =  8 ,
+         Distance = 7627.21207061098  ,
+           Time =new TimeSpan(0,9,4),
+        },
+
+      new AdjacentStations
+      {
+          Station1 = 8,
+          Station2 = 9,
+          Distance = 2321.55224801146,
+          Time = new TimeSpan(0, 2, 45),
+      },
+      new AdjacentStations
+      {
+          Station1 = 9,
+          Station2 = 10,
+          Distance = 12555.9045738122,
+          Time = new TimeSpan(0, 14, 56),
+      },
+      new AdjacentStations
+      {
+          Station1 = 10,
+          Station2 = 11,
+          Distance = 102542.754328282,
+          Time = new TimeSpan(2, 2, 4),
+      },
+      new AdjacentStations
+      {
+          Station1 = 11,
+          Station2 = 12,
+          Distance = 4900.22196456259,
+          Time = new TimeSpan(0, 5, 50),
+      },
+      new AdjacentStations
+      {
+          Station1 = 12,
+          Station2 = 13,
+          Distance = 4623.17567745198,
+          Time = new TimeSpan(0, 5, 30),
+      },
+      new AdjacentStations
+      {
+          Station1 = 13,
+          Station2 = 14,
+          Distance = 4042.24100806827,
+          Time = new TimeSpan(0, 4, 48),
+      },
+      new AdjacentStations
+      {
+          Station1 = 14,
+          Station2 = 15,
+          Distance = 6575.8038686599,
+          Time = new TimeSpan(0, 7, 49),
+      },
+      new AdjacentStations
+      {
+          Station1 = 15,
+          Station2 = 16,
+          Distance = 6588.04852609923,
+          Time = new TimeSpan(0, 7, 50),
+      },
+      new AdjacentStations
+      {
+          Station1 = 16,
+          Station2 = 17,
+          Distance = 6000.98021584888,
+          Time = new TimeSpan(0, 7, 8),
+      },
+      new AdjacentStations
+      {
+          Station1 = 17,
+          Station2 = 18,
+          Distance = 432.61534386625,
+          Time = new TimeSpan(0, 0, 30),
+      },
+      new AdjacentStations
+      {
+          Station1 = 18,
+          Station2 = 19,
+          Distance = 1472.40290998135,
+          Time = new TimeSpan(0, 1, 45),
+      },
+      new AdjacentStations
+      {
+          Station1 = 19,
+          Station2 = 20,
+          Distance = 112438.335355433,
+          Time = new TimeSpan(2, 13, 51),
+      },
+      new AdjacentStations
+      {
+          Station1 = 20,
+          Station2 = 21,
+          Distance = 79275.1093643125,
+          Time = new TimeSpan(1, 34, 22),
+      },
+      new AdjacentStations
+      {
+          Station1 = 21,
+          Station2 = 22,
+          Distance = 13981.1567418722,
+          Time = new TimeSpan(0, 16, 38),
+      },
+      new AdjacentStations
+      {
+          Station1 = 22,
+          Station2 = 23,
+          Distance = 14321.3615400786,
+          Time = new TimeSpan(0, 17, 2),
+      },
+      new AdjacentStations
+      {
+          Station1 = 23,
+          Station2 = 24,
+          Distance = 16961.7559649122,
+          Time = new TimeSpan(0, 20, 11),
+      },
+      new AdjacentStations
+      {
+          Station1 = 24,
+          Station2 = 25,
+          Distance = 2834.7631144041,
+          Time = new TimeSpan(0, 3, 22),
+      },
+      new AdjacentStations
+      {
+          Station1 = 25,
+          Station2 = 26,
+          Distance = 589569.291808265,
+          Time = new TimeSpan(11, 41, 52),
+      },
+      new AdjacentStations
+      {
+          Station1 = 26,
+          Station2 = 27,
+          Distance = 8213.61459036976,
+          Time = new TimeSpan(0, 9, 46),
+      },
+      new AdjacentStations
+      {
+          Station1 = 27,
+          Station2 = 28,
+          Distance = 4892.53243184386,
+          Time = new TimeSpan(0, 5, 49),
+      },
+      new AdjacentStations
+      {
+          Station1 = 28,
+          Station2 = 29,
+          Distance = 2915.86862522787,
+          Time = new TimeSpan(0, 3, 28),
+      },
+      new AdjacentStations
+      {
+          Station1 = 29,
+          Station2 = 30,
+          Distance = 1888.60819327896,
+          Time = new TimeSpan(0, 2, 14),
+      },
+      new AdjacentStations
+      {
+          Station1 = 30,
+          Station2 = 31,
+          Distance = 101509.376217118,
+          Time = new TimeSpan(2, 0, 50),
+      },
+      new AdjacentStations
+      {
+          Station1 = 31,
+          Station2 = 32,
+          Distance = 13212.8195760903,
+          Time = new TimeSpan(0, 15, 43),
+      },
+      new AdjacentStations
+      {
+          Station1 = 32,
+          Station2 = 33,
+          Distance = 4280.71492018868,
+          Time = new TimeSpan(0, 5, 5),
+      },
+      new AdjacentStations
+      {
+          Station1 = 33,
+          Station2 = 34,
+          Distance = 5721.78809530072,
+          Time = new TimeSpan(0, 6, 48),
+      },
+      new AdjacentStations
+      {
+          Station1 = 34,
+          Station2 = 35,
+          Distance = 8736.32433582928,
+          Time = new TimeSpan(0, 10, 24),
+      },
+      new AdjacentStations
+      {
+          Station1 = 35,
+          Station2 = 36,
+          Distance = 347.346490134101,
+          Time = new TimeSpan(0, 0, 24),
+      },
+      new AdjacentStations
+      {
+          Station1 = 36,
+          Station2 = 37,
+          Distance = 2265.17177885899,
+          Time = new TimeSpan(0, 2, 41),
+      },
+      new AdjacentStations
+      {
+          Station1 = 37,
+          Station2 = 38,
+          Distance = 849.664968569505,
+          Time = new TimeSpan(0, 1, 0),
+      },
+      new AdjacentStations
+      {
+          Station1 = 38,
+          Station2 = 39,
+          Distance = 10757.9963416712,
+          Time = new TimeSpan(0, 12, 48),
+      },
+      new AdjacentStations
+      {
+          Station1 = 39,
+          Station2 = 40,
+          Distance = 8101.95968592306,
+          Time = new TimeSpan(0, 9, 38),
+      },
+      new AdjacentStations
+      {
+          Station1 = 40,
+          Station2 = 41,
+          Distance = 482170.984197982,
+          Time = new TimeSpan(9, 34, 0),
+      },
+      new AdjacentStations
+      {
+          Station1 = 41,
+          Station2 = 42,
+          Distance = 511861.306542711,
+          Time = new TimeSpan(10, 9, 21),
+      },
+      new AdjacentStations
+      {
+          Station1 = 42,
+          Station2 = 43,
+          Distance = 1855.87884819223,
+          Time = new TimeSpan(0, 2, 12),
+      },
+      new AdjacentStations
+      {
+          Station1 = 43,
+          Station2 = 44,
+          Distance = 6777.21508104246,
+          Time = new TimeSpan(0, 8, 4),
+      },
+      new AdjacentStations
+      {
+          Station1 = 44,
+          Station2 = 45,
+          Distance = 7965.92957099255,
+          Time = new TimeSpan(0, 9, 28),
+      },
+      new AdjacentStations
+      {
+          Station1 = 45,
+          Station2 = 46,
+          Distance = 337.707367940885,
+          Time = new TimeSpan(0, 0, 24),
+      },
+      new AdjacentStations
+      {
+          Station1 = 46,
+          Station2 = 47,
+          Distance = 503.183031328715,
+          Time = new TimeSpan(0, 0, 35),
+      },
+      new AdjacentStations
+      {
+          Station1 = 47,
+          Station2 = 48,
+          Distance = 670.887559572589,
+          Time = new TimeSpan(0, 0, 47),
+      },
+      new AdjacentStations
+      {
+          Station1 = 48,
+          Station2 = 49,
+          Distance = 1083.1504396778,
+          Time = new TimeSpan(0, 1, 17),
+      },
+      new AdjacentStations
+      {
+          Station1 = 49,
+          Station2 = 50,
+          Distance = 1030.55993018019,
+          Time = new TimeSpan(0, 1, 13),
+      },
+
+            };
 
         }
     }
