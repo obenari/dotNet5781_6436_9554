@@ -47,25 +47,25 @@ namespace DLAPI
         //void DeleteBusInTravel(int id, int licensenum, int line);
         //#endregion
 
-        //#region Line
-        //IEnumerable<Line> GetAllLines();
-        //IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
-        //Line GetLine(int id);
-        //void AddLine(Line line);
-        //void UpdateLine(Line line);
-        //void UpdateLine(int id, Action<Line> update); //method that knows to updt specific fields in Line
-        //void DeleteLine(int id);
-        //#endregion
+        #region Line
+        IEnumerable<Line> GetAllLines();
+        IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
+        Line GetLine(int id);
+        void AddLine(Line line);
+        void UpdateLine(Line line);
+        void UpdateLine(int id, Action<Line> update); //method that knows to updt specific fields in Line
+        void DeleteLine(int id);
+        #endregion
 
-        //#region LineStation
-        //IEnumerable<LineStation> GetAllLineStations();
-        //IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> predicate);
-        //LineStation GetLineStation(int line, int numSation);
-        //void AddLineStation(LineStation lineStation);
-        //void UpdateLineStation(LineStation lineStation);
-        //void UpdateLineStation(int line, int numSation, Action<LineStation> update); //method that knows to updt specific fields in LineStation
-        //void DeleteLineStation(int line, int numSation);
-        //#endregion
+        #region LineStation
+        IEnumerable<LineStation> GetAllLineStations();
+        IEnumerable<LineStation> GetAllLineStationsBy(Predicate<LineStation> predicate);
+        LineStation GetLineStation(int line, int numSation);
+        void AddLineStation(LineStation lineStation);
+        void UpdateLineStation(LineStation lineStation);
+        void UpdateLineStation(int line, int numSation, Action<LineStation> update); //method that knows to updt specific fields in LineStation
+        void DeleteLineStation(int line, int numSation);
+        #endregion
 
         //#region LineTrip
         //IEnumerable<LineTrip> GetAllLinesTrip();
@@ -77,15 +77,15 @@ namespace DLAPI
         //void DeleteLineTrip(int id, TimeSpan start);
         //#endregion
 
-        //#region Station
-        //IEnumerable<Station> GetAllStations();
-        //IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
-        //Station GetStation(int code);
-        //void AddStation(Station station);
-        //void UpdateStation(Station station);
-        //void UpdateStation(int code, Action<Station> update); //method that knows to updt specific fields in Station
-        //void DeleteStation(int code);
-        //#endregion
+        #region Station
+        IEnumerable<Station> GetAllStations();
+        IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
+        Station GetStation(int code);
+        void AddStation(Station station);
+        void UpdateStation(Station station);
+        void UpdateStation(int code, Action<Station> update); //method that knows to updt specific fields in Station
+        void DeleteStation(int code);
+        #endregion
 
         //#region Trip
         //IEnumerable<Trip> GetAllTrips();
