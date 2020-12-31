@@ -123,5 +123,56 @@ namespace DO
         public override string ToString() => base.ToString() + $", The station: {StationId} is not exist";
     }
     #endregion
+    #region AdjacentStations
+
+    public class AdjacentStationsNotFoundException : Exception
+    {
+        public int StationId1;
+        public int StationId2;
+        public AdjacentStationsNotFoundException(int code1, int code2) : base()
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+
+        public AdjacentStationsNotFoundException(int code1, int code2, string message) : base(message)
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+        public AdjacentStationsNotFoundException(int code1, int code2, string message, Exception innerException) :
+            base(message, innerException)
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+        public override string ToString() => base.ToString() + $", The information about the two station: {StationId1},{StationId2} is not exist";
+    }
+    public class DuplicateAdjacentStationsException : Exception
+    {
+
+        public int StationId1;
+        public int StationId2;
+        public DuplicateAdjacentStationsException(int code1, int code2) : base()
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+
+        public DuplicateAdjacentStationsException(int code1, int code2, string message) : base(message)
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+        public DuplicateAdjacentStationsException(int code1, int code2, string message, Exception innerException) :
+            base(message, innerException)
+        {
+            StationId1 = code1;
+            StationId2 = code2;
+        }
+        public override string ToString() => base.ToString() + $", The information about the two station: {StationId1},{StationId2} is already exist";
+    }
+    #endregion
+
 
 }

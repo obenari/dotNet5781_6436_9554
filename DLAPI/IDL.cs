@@ -16,15 +16,15 @@ namespace DLAPI
     public interface IDL
     {
 
-        //#region AdjacentStations
-        //IEnumerable<AdjacentStations> GetAllAdjacentStations();
-        //IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
-        //AdjacentStations GetAdjacentStations(int code1, int code2);
-        //void AddAdjacentStations(AdjacentStations station);
-        //void UpdateAdjacentStations(AdjacentStations station);
-        //void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update); //method that knows to updt specific fields in AdjacentStations
-        //void DeleteAdjacentStations(int code, int code2);
-        //#endregion
+        #region AdjacentStations
+        IEnumerable<AdjacentStations> GetAllAdjacentStations();
+        IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
+        AdjacentStations GetAdjacentStations(int code1, int code2);
+        void AddAdjacentStations(AdjacentStations station);
+        void UpdateAdjacentStations(AdjacentStations station);
+        void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update); //method that knows to updt specific fields in AdjacentStations
+       // void DeleteAdjacentStations(int code, int code2);
+        #endregion
 
 
         #region Bus
