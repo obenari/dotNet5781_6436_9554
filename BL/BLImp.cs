@@ -199,18 +199,21 @@ namespace BL
         #region Station
        public IEnumerable<BO.Station> GetAllStations()
         {
-            return from station in dl.GetAllLineStations()
+            return from station in dl.GetAllStations()
                    select StationDoBoAdapter(station);
         }
 
-        private BO.Station StationDoBoAdapter(DO.LineStation station)
+        private BO.Station StationDoBoAdapter(DO.Station station)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<BO.Station> GetAllStationsBy(Predicate<Station> predicate)
         {
-
+            return from station in dl.GetAllStations()
+                   let b = StationDoBoAdapter(station)
+                   where predicate(b)
+                   select b;
         }
         public BO.Station GetStation(int code)
         {
