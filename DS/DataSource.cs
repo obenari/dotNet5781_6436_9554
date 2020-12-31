@@ -1703,6 +1703,7 @@ new Station
          Station2 =  2 ,
          Distance = 5224.25523033912  ,
            Time =new TimeSpan(0,6,13),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1710,6 +1711,7 @@ new Station
          Station2 =  3 ,
          Distance = 4406.36878055019  ,
            Time =new TimeSpan(0,5,14),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1717,6 +1719,7 @@ new Station
          Station2 =  4 ,
          Distance = 12412.96929238  ,
            Time =new TimeSpan(0,14,46),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1724,6 +1727,7 @@ new Station
          Station2 =  5 ,
          Distance = 8776.50356464839  ,
            Time =new TimeSpan(0,10,26),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1731,6 +1735,7 @@ new Station
          Station2 =  6 ,
          Distance = 8518.12323208466  ,
            Time =new TimeSpan(0,10,8),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1738,6 +1743,7 @@ new Station
          Station2 =  7 ,
          Distance = 531.66925309886  ,
            Time =new TimeSpan(0,0,37),
+            IsDeleted = false
         },
       new AdjacentStations
        {
@@ -1745,6 +1751,7 @@ new Station
          Station2 =  8 ,
          Distance = 7627.21207061098  ,
            Time =new TimeSpan(0,9,4),
+            IsDeleted = false
         },
 
       new AdjacentStations
@@ -1753,6 +1760,7 @@ new Station
           Station2 = 9,
           Distance = 2321.55224801146,
           Time = new TimeSpan(0, 2, 45),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1760,6 +1768,7 @@ new Station
           Station2 = 10,
           Distance = 12555.9045738122,
           Time = new TimeSpan(0, 14, 56),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1767,6 +1776,7 @@ new Station
           Station2 = 11,
           Distance = 102542.754328282,
           Time = new TimeSpan(2, 2, 4),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1774,6 +1784,7 @@ new Station
           Station2 = 12,
           Distance = 4900.22196456259,
           Time = new TimeSpan(0, 5, 50),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1781,6 +1792,7 @@ new Station
           Station2 = 13,
           Distance = 4623.17567745198,
           Time = new TimeSpan(0, 5, 30),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1788,6 +1800,7 @@ new Station
           Station2 = 14,
           Distance = 4042.24100806827,
           Time = new TimeSpan(0, 4, 48),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1795,6 +1808,7 @@ new Station
           Station2 = 15,
           Distance = 6575.8038686599,
           Time = new TimeSpan(0, 7, 49),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1802,6 +1816,7 @@ new Station
           Station2 = 16,
           Distance = 6588.04852609923,
           Time = new TimeSpan(0, 7, 50),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1809,6 +1824,7 @@ new Station
           Station2 = 17,
           Distance = 6000.98021584888,
           Time = new TimeSpan(0, 7, 8),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1816,6 +1832,7 @@ new Station
           Station2 = 18,
           Distance = 432.61534386625,
           Time = new TimeSpan(0, 0, 30),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1823,6 +1840,7 @@ new Station
           Station2 = 19,
           Distance = 1472.40290998135,
           Time = new TimeSpan(0, 1, 45),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1830,6 +1848,7 @@ new Station
           Station2 = 20,
           Distance = 112438.335355433,
           Time = new TimeSpan(2, 13, 51),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1837,6 +1856,7 @@ new Station
           Station2 = 21,
           Distance = 79275.1093643125,
           Time = new TimeSpan(1, 34, 22),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1844,6 +1864,7 @@ new Station
           Station2 = 22,
           Distance = 13981.1567418722,
           Time = new TimeSpan(0, 16, 38),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1851,6 +1872,7 @@ new Station
           Station2 = 23,
           Distance = 14321.3615400786,
           Time = new TimeSpan(0, 17, 2),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1858,6 +1880,7 @@ new Station
           Station2 = 24,
           Distance = 16961.7559649122,
           Time = new TimeSpan(0, 20, 11),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1865,6 +1888,7 @@ new Station
           Station2 = 25,
           Distance = 2834.7631144041,
           Time = new TimeSpan(0, 3, 22),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1872,6 +1896,7 @@ new Station
           Station2 = 26,
           Distance = 589569.291808265,
           Time = new TimeSpan(11, 41, 52),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1879,6 +1904,7 @@ new Station
           Station2 = 27,
           Distance = 8213.61459036976,
           Time = new TimeSpan(0, 9, 46),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1886,6 +1912,7 @@ new Station
           Station2 = 28,
           Distance = 4892.53243184386,
           Time = new TimeSpan(0, 5, 49),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1893,6 +1920,7 @@ new Station
           Station2 = 29,
           Distance = 2915.86862522787,
           Time = new TimeSpan(0, 3, 28),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1900,6 +1928,7 @@ new Station
           Station2 = 30,
           Distance = 1888.60819327896,
           Time = new TimeSpan(0, 2, 14),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1907,6 +1936,7 @@ new Station
           Station2 = 31,
           Distance = 101509.376217118,
           Time = new TimeSpan(2, 0, 50),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1914,6 +1944,7 @@ new Station
           Station2 = 32,
           Distance = 13212.8195760903,
           Time = new TimeSpan(0, 15, 43),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1921,6 +1952,7 @@ new Station
           Station2 = 33,
           Distance = 4280.71492018868,
           Time = new TimeSpan(0, 5, 5),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1928,6 +1960,7 @@ new Station
           Station2 = 34,
           Distance = 5721.78809530072,
           Time = new TimeSpan(0, 6, 48),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1935,6 +1968,7 @@ new Station
           Station2 = 35,
           Distance = 8736.32433582928,
           Time = new TimeSpan(0, 10, 24),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1942,6 +1976,7 @@ new Station
           Station2 = 36,
           Distance = 347.346490134101,
           Time = new TimeSpan(0, 0, 24),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1949,6 +1984,7 @@ new Station
           Station2 = 37,
           Distance = 2265.17177885899,
           Time = new TimeSpan(0, 2, 41),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1956,6 +1992,7 @@ new Station
           Station2 = 38,
           Distance = 849.664968569505,
           Time = new TimeSpan(0, 1, 0),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1963,6 +2000,8 @@ new Station
           Station2 = 39,
           Distance = 10757.9963416712,
           Time = new TimeSpan(0, 12, 48),
+           IsDeleted = false
+
       },
       new AdjacentStations
       {
@@ -1970,6 +2009,7 @@ new Station
           Station2 = 40,
           Distance = 8101.95968592306,
           Time = new TimeSpan(0, 9, 38),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1977,6 +2017,7 @@ new Station
           Station2 = 41,
           Distance = 482170.984197982,
           Time = new TimeSpan(9, 34, 0),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1984,6 +2025,7 @@ new Station
           Station2 = 42,
           Distance = 511861.306542711,
           Time = new TimeSpan(10, 9, 21),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1991,6 +2033,7 @@ new Station
           Station2 = 43,
           Distance = 1855.87884819223,
           Time = new TimeSpan(0, 2, 12),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -1998,6 +2041,7 @@ new Station
           Station2 = 44,
           Distance = 6777.21508104246,
           Time = new TimeSpan(0, 8, 4),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2005,6 +2049,7 @@ new Station
           Station2 = 45,
           Distance = 7965.92957099255,
           Time = new TimeSpan(0, 9, 28),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2012,6 +2057,7 @@ new Station
           Station2 = 46,
           Distance = 337.707367940885,
           Time = new TimeSpan(0, 0, 24),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2019,6 +2065,7 @@ new Station
           Station2 = 47,
           Distance = 503.183031328715,
           Time = new TimeSpan(0, 0, 35),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2026,6 +2073,7 @@ new Station
           Station2 = 48,
           Distance = 670.887559572589,
           Time = new TimeSpan(0, 0, 47),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2033,6 +2081,7 @@ new Station
           Station2 = 49,
           Distance = 1083.1504396778,
           Time = new TimeSpan(0, 1, 17),
+           IsDeleted = false
       },
       new AdjacentStations
       {
@@ -2040,6 +2089,7 @@ new Station
           Station2 = 50,
           Distance = 1030.55993018019,
           Time = new TimeSpan(0, 1, 13),
+           IsDeleted = false
       },
 
             };
