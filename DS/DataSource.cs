@@ -1695,7 +1695,7 @@ new Station
                      IsDeleted=false
                 },
             };
-            List<AdjacentStations> TwoAdjacentStations = new List<AdjacentStations>
+            ListTwoAdjacentStations = new List<AdjacentStations>
             {
     new AdjacentStations
        {

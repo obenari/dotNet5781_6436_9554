@@ -20,6 +20,12 @@ namespace BO
         /// the code of the physical station
         /// </summary>
         public int stationCode { get; set; }
+        ///// <summary>
+        ///// the name of the physical station//************************************8
+        ///// </summary>
+        ///
+
+        //public string stationName { get; set; }
         /// <summary>
         /// the index of the station in the spacific line
         /// </summary>
@@ -34,5 +40,6 @@ namespace BO
         /// if it's the last station, this field will be null 
         /// </summary>
         public int? NextStation { get; set; }
+        
     }
 }

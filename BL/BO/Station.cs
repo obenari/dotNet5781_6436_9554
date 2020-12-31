@@ -27,7 +27,10 @@ namespace BO
         /// the name of the station
         /// </summary>
         public string Name { get; set; }
-
+        /// <summary>
+        /// list of the lines that passing by the specific station
+        /// </summary>
+        public IEnumerable<Line> ListLines { get; set; }
 
 
     }

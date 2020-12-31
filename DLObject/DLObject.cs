@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DS;
 using DLAPI;
 using DO;
-using DS;
-using System.Reflection;
-
 namespace DL
 {
+
     internal class DLObject : IDL
     {
         #region singelton
@@ -330,13 +329,15 @@ namespace DL
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
             return from AdjacentStations in DataSource.ListTwoAdjacentStations
-                   where AdjacentStations.IsDeleted==false
+                   where AdjacentStations.IsDeleted == false
                    select AdjacentStations.Clone();
+            ////
+            
         }
         public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)
         {
             return from AdjacentStations in DataSource.ListTwoAdjacentStations
-                   where predicate(AdjacentStations)&& AdjacentStations.IsDeleted == false
+                   where predicate(AdjacentStations) && AdjacentStations.IsDeleted == false
                    select AdjacentStations.Clone();
         }
         public AdjacentStations GetAdjacentStations(int code1, int code2)
@@ -353,7 +354,7 @@ namespace DL
         {
             DO.AdjacentStations oldAdjacent = DataSource.ListTwoAdjacentStations.
                 Find(item => item.Station1 == addAdjacentStation.Station1
-                &&item.Station2 == addAdjacentStation.Station2);
+                && item.Station2 == addAdjacentStation.Station2);
             if (oldAdjacent != null)//check if the old station alredy exist or deleted
             {
                 if (oldAdjacent.IsDeleted == true)//if the old oldAddAdjacentStations is deleted, update the line
@@ -372,7 +373,7 @@ namespace DL
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == adjacentStations.Station1
             && item.Station2 == adjacentStations.Station2
-            &&item.IsDeleted==false);
+            && item.IsDeleted == false);
             if (oldAdjacentStations != null)//if the oldAdjacentStations is exist
             {
                 DataSource.ListTwoAdjacentStations.Remove(oldAdjacentStations);
@@ -384,7 +385,7 @@ namespace DL
         public void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update)
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.
-                Find(item => item.Station1 == code&&item.Station2 == code2
+                Find(item => item.Station1 == code && item.Station2 == code2
                 && item.IsDeleted == false);
 
             if (oldAdjacentStations != null)//if the oldAdjacentStations is exist
@@ -392,9 +393,9 @@ namespace DL
                 update(oldAdjacentStations);
             }
             else
-                throw new AdjacentStationsNotFoundException(code,code2);
+                throw new AdjacentStationsNotFoundException(code, code2);
         }
-        void DeleteAdjacentStations(int code, int code2)
+        public void DeleteAdjacentStations(int code, int code2)
         {
             DO.AdjacentStations AdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == code && item.Station2 == code2
             && item.IsDeleted == false);
@@ -403,20 +404,10 @@ namespace DL
                 AdjacentStations.IsDeleted = true;
                 //  DataSource.ListStations.Remove(Station);
             }
-            else 
-                throw new AdjacentStationsNotFoundException(code,code2);
+            else
+                throw new AdjacentStationsNotFoundException(code, code2);
 
         }
-
-}
-
         #endregion
     }
-
-
-
-
-
-
-
-
+}

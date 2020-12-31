@@ -10,7 +10,7 @@ namespace BO
     /// <summary>
     /// A class that defines a physical bus/
     /// </summary>
-    public class Bus : INotifyPropertyChanged
+    public class Bus 
     {
 
         /// <summary>
@@ -51,11 +51,11 @@ namespace BO
                $"Total KM: {TotalKms}, \n" +
                $"Ready to drive: {Status} \n";
         }
-        private void OnPropertyChange(Bus bus, PropertyChangedEventArgs args)
-        {
-            PropertyChanged?.Invoke(bus, args);
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
+        //private void OnPropertyChange(Bus bus, PropertyChangedEventArgs args)
+        //{
+        //    PropertyChanged?.Invoke(bus, args);
+        //}
+        //public event PropertyChangedEventHandler PropertyChanged;
 
 
     }

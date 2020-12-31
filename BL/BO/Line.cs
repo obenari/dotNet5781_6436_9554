@@ -26,14 +26,25 @@ namespace BO
         /// </summary>
         public Areas Area { get; set; }
         /// <summary>
-        /// the number of the first station
+        /// the name of the first station
         /// </summary>
-        public int FirstStation { get; set; }
+        public string FirstStationName { get; set; }
         /// <summary>
-        /// the number of the last station
+        /// the name of the last station
         /// </summary>
-        public int LastStation { get; set; }
-       
+        public string LastStationName { get; set; }
+        public override string ToString()
+        {
+            return string.Format($"Line: {LineNumber}, from {FirstStationName} to {LastStationName} in {Area}");
+        }
+        /// <summary>
+        /// all the line stations in the line
+        /// </summary>
+        public IEnumerable<LineStation> Stations { get; set; }
+        /// <summary>
+        /// list of the Adjacent Stations in the specific line
+        /// </summary>
+        public IEnumerable<AdjacentStations> adjacentStations { get; set; }
 
     }
 }
