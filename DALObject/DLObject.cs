@@ -403,7 +403,7 @@ namespace DL
                 AdjacentStations.IsDeleted = true;
                 //  DataSource.ListStations.Remove(Station);
             }
-            else
+            else 
                 throw new AdjacentStationsNotFoundException(code,code2);
 
         }
