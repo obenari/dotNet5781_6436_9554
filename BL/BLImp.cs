@@ -203,9 +203,18 @@ namespace BL
                    select StationDoBoAdapter(station);
         }
 
-        private BO.Station StationDoBoAdapter(DO.Station station)
+        private BO.Station StationDoBoAdapter(DO.Station doStation)
         {
-            throw new NotImplementedException();
+            BO.Station boStation= new Station();
+            boStation.Code = doStation.Code;
+            boStation.Latitude = doStation.Latitude;
+            boStation.Longitude = doStation.Longitude;
+            boStation.Name = doStation.Name;
+            boStation.ListLines = (from line in dl.GetAllLines()
+                                   from lineStation in dl.GetAllLineStations()
+                                   where lineStation.LineId == line.Id && lineStation.stationCode == boStation.Code
+                                   select LineDoBoAdapter(line));
+            return boStation;
         }
 
         public IEnumerable<BO.Station> GetAllStationsBy(Predicate<Station> predicate)
