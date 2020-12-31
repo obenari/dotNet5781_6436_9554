@@ -27,6 +27,10 @@ namespace DO
         /// the average travel time between the two stations
         /// </summary>
         public TimeSpan Time { get; set; }
+        /// <summary>
+        /// this field return false when the argument is not deleted
+        /// </summary>
+        public bool IsDeleted { get; set; }
 
 
     }
