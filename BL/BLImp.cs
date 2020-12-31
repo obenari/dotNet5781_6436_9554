@@ -195,5 +195,36 @@ namespace BL
             }
         }
         #endregion
+
+        #region Station
+       public IEnumerable<BO.Station> GetAllStations()
+        {
+
+        }
+        public IEnumerable<BO.Station> GetAllStationsBy(Predicate<Station> predicate)
+        {
+
+        }
+        public BO.Station GetStation(int code)
+        {
+
+        }
+        public void AddStation(BO.Station station)
+        {
+
+        }
+        public  void UpdateStation(Station station)
+        {
+
+        }
+        public void UpdateStation(int code, Action<BO.Station> update)
+        {
+
+        }
+        public void DeleteStation(int code)
+        {
+
+        }
+        #endregion
     }
 }
