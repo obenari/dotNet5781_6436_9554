@@ -233,7 +233,15 @@ namespace BL
         }
         public void DeleteStation(int code)
         {
+            try
+            {
+                dl.DeleteStation(code);
+            }
+            catch (DO.BusLineNotFoundException ex)
+            {
 
+                throw new BO.StationNotFoundException(code);
+            }
         }
         #endregion
     }
