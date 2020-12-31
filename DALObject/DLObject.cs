@@ -394,10 +394,24 @@ namespace DL
             else
                 throw new AdjacentStationsNotFoundException(code,code2);
         }
+        void DeleteAdjacentStations(int code, int code2)
+        {
+            DO.AdjacentStations AdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == code && item.Station2 == code2
+            && item.IsDeleted == false);
+            if (AdjacentStations != null)//if the AdjacentStations is exist
+            {
+                AdjacentStations.IsDeleted = true;
+                //  DataSource.ListStations.Remove(Station);
+            }
+            else
+                throw new AdjacentStationsNotFoundException(code,code2);
+
+        }
+
+}
 
         #endregion
     }
-}
 
 
 
