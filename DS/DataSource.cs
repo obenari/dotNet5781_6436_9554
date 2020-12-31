@@ -1708,10 +1708,10 @@ new Station
       new AdjacentStations
        {
           Station1 = 2,
-         Station2 =  3 ,
+          Station2 =  3 ,
          Distance = 4406.36878055019  ,
-           Time =new TimeSpan(0,5,14),
-            IsDeleted = false
+          Time =new TimeSpan(0,5,14),
+          IsDeleted = false
         },
       new AdjacentStations
        {
