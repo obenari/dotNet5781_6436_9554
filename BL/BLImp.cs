@@ -182,7 +182,15 @@ namespace BL
         }
         public void DeleteBus(int license)
         {
+            try
+            {
+                dl.DeleteBus(license);
+            }
+            catch (DO.BusLineNotFoundException ex)
+            {
 
+                throw new BO.BusNotFoundException(license);
+            }
         }
         #endregion
     }
