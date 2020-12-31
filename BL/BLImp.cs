@@ -214,7 +214,8 @@ namespace BL
         }
         public BO.Station GetStation(int code)
         {
-
+            DO.Station station = dl.GetStation(code);
+            return StationDoBoAdapter(station);
         }
         public void AddStation(BO.Station station)
         {
