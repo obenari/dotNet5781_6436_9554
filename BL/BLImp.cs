@@ -45,19 +45,31 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void DeleteLine(int id)
+        public void DeleteLine(int id,int line)
         {
-            throw new NotImplementedException();
+            try
+            {
+                dl.DeleteLine(id);
+            }
+            catch (DO.BusLineNotFoundException ex)
+            {
+
+                throw new BO.BusLineNotFoundException(line, id);
+            }
+
         }
 
         public IEnumerable<Line> GetAllLines()
         {
-            throw new NotImplementedException();
+            return from line in dl.GetAllLines()
+                   select LineDoBoAdapter(line);
         }
 
-        public IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate)
+        public IEnumerable<Line> GetAllLinesBy(Predicate<BO.Line> predicate)
         {
-            throw new NotImplementedException();
+            return from line in dl.GetAllLines()
+                   where predicate(LineDoBoAdapter(line))
+                   select LineDoBoAdapter(line);
         }
 
         public BO.Line GetLine(int id)
@@ -98,6 +110,78 @@ namespace BL
             lineStation.LineStationIndex = lineStn.LineStationIndex ;
             return lineStation;
 
+
+        }
+        #endregion
+        #region Bus
+       public IEnumerable<BO.Bus> GetAllBusses()
+        {
+
+            return from bus in dl.GetAllBusses()
+                   select BusDoBoAdapter(bus);
+        }
+
+        private BO.Bus BusDoBoAdapter(DO.Bus doBus)
+        {
+            BO.Bus  boBus= new Bus();
+            string licenseStr = doBus.License.ToString();
+            if (licenseStr.Length <= 7)
+            {
+                string help="";
+                if (doBus.StartOfWork.Year >= 2018)//the license number need 8 digit
+                {
+                    for (int i = 0; i < 8- licenseStr.Length; i++)
+                    {
+                        help += "0";
+                    }
+                }
+                else//the license number need 7 digit
+                {
+                    for (int i = 0; i < 7 - licenseStr.Length; i++)
+                    {
+                        help += "0";
+                    }
+                }
+               licenseStr= licenseStr.Insert(0, help);
+
+            }
+            boBus.License = licenseStr;
+            boBus.DateOfTreatment = doBus.DateOfTreatment;
+            boBus.StartOfWork = doBus.StartOfWork;
+            boBus.Status = (BO.Status)(int)doBus.Status;
+            boBus.Fuel = doBus.Fuel;
+            boBus.TotalKms = doBus.TotalKms;
+            boBus.TotalKmsFromLastTreatment = doBus.TotalKmsFromLastTreatment;
+            return boBus;
+
+        }
+
+        public IEnumerable<BO.Bus> GetAllBussesBy(Predicate<BO.Bus> predicate)
+        {
+
+            return from bus in dl.GetAllBusses()
+                   let b=BusDoBoAdapter(bus)
+                   where predicate(b)
+                   select b;
+        }
+        public BO.Bus GetBus(int License)
+        {
+
+        }
+        public void AddBus(BO.Bus bus)
+        {
+
+        }
+        public void UpdateBus(BO.Bus bus)
+        {
+
+        }
+        public void UpdateBus(int license, Action<BO.Bus> update)
+        {
+
+        }
+        public void DeleteBus(int license)
+        {
 
         }
         #endregion

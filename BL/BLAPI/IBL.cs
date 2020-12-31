@@ -19,15 +19,15 @@ namespace BLAPI
         #endregion
 
 
-        //#region Bus
-        //IEnumerable<Bus> GetAllBusses();
-        //IEnumerable<Bus> GetAllBussesBy(Predicate<Bus> predicate);
-        //Bus GetBus(int License);
-        //void AddBus(Bus bus);
-        //void UpdateBus(Bus bus);
-        //void UpdateBus(int license, Action<Bus> update); //method that knows to updt specific fields in bus
-        //void DeleteBus(int license);
-        //#endregion
+        #region Bus
+        IEnumerable<BO.Bus> GetAllBusses();
+        IEnumerable<BO.Bus> GetAllBussesBy(Predicate<BO.Bus> predicate);
+        BO.Bus GetBus(int License);
+        void AddBus(BO.Bus bus);
+        void UpdateBus(BO.Bus bus);
+        void UpdateBus(int license, Action<BO.Bus> update); //method that knows to updt specific fields in bus
+        void DeleteBus(int license);
+        #endregion
 
         //#region BusInTravel
         ////IEnumerable<Bus> GetAllBusses();
@@ -46,12 +46,12 @@ namespace BLAPI
         void AddLine(BO.Line line);
         void UpdateLine(BO.Line line);
         void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
-        void DeleteLine(int id);
+        void DeleteLine(int id,int line);
         #endregion
 
         //#region LineStation
         //IEnumerable<BO.LineStation> GetAllLineStations();
-        //IEnumerable<BO.LineStation> GetAllLineStationsBy(Predicate<LineStation> predicate);
+        //IEnumerable<BO.LineStation> GetAllLineStationsBy(Predicate<BO.LineStation> predicate);
         //BO.LineStation GetLineStation(int line, int numSation);
         //void AddLineStation(BO.LineStation lineStation);
         //void UpdateLineStation(BO.LineStation lineStation);
