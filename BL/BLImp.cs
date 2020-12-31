@@ -167,6 +167,8 @@ namespace BL
         public BO.Bus GetBus(int License)
         {
 
+            DO.Bus bus = dl.GetBus(License);
+            return BusDoBoAdapter(bus);
         }
         public void AddBus(BO.Bus bus)
         {
