@@ -69,6 +69,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PO\Bus.cs" />
+    <Compile Include="PO\BusLine.cs" />
+    <Compile Include="PO\LineStation.cs" />
+    <Compile Include="PO\Station.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

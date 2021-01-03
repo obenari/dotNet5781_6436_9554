@@ -28,14 +28,23 @@ namespace BL
             lineBO.Stations = from stn in dl.GetAllLineStationsBy(item => item.LineId == lineDO.Id)
                               orderby stn.LineStationIndex
                               select LineStationDoBoAdapter(stn);//convert from DO.lineStation to BO.lineStation
+            //lineBO.Stations.ElementAt(0).Distance = 0;
+            //lineBO.Stations.ElementAt(0).Time = new TimeSpan(0);
 
-            //collect all the adjacentStations that belong to lineBo
-            lineBO.adjacentStations = from stn in dl.GetAllAdjacentStations()
-                                      let stations= lineBO.Stations.ToList()//save all the LineStations that belong to LineBo in list
-                                      //Now check if LineStations list contain the two stations in the adjacentStations
-                                      where stations.Any(x => x.stationCode == stn.Station1)
-                                             && stations.Any(x => x.stationCode == stn.Station2)
-                                      select adjacentStationsDoBoAdapter(stn);
+            //lineBO.Stations = lineBO.Stations.ToList();
+
+            //foreach (var item in lineBO.Stations)
+            //{
+
+            //}
+
+            ////collect all the adjacentStations that belong to lineBo
+            //lineBO.adjacentStations = from stn in dl.GetAllAdjacentStations()
+            //                          let stations= lineBO.Stations.ToList()//save all the LineStations that belong to LineBo in list
+            //                          //Now check if LineStations list contain the two stations in the adjacentStations
+            //                          where stations.Any(x => x.stationCode == stn.Station1)
+            //                                 && stations.Any(x => x.stationCode == stn.Station2)
+            //                          select adjacentStationsDoBoAdapter(stn);
             return lineBO;
         }
 
@@ -54,7 +63,7 @@ namespace BL
             catch (DO.BusLineNotFoundException ex)
             {
 
-                throw new BO.BusLineNotFoundException(line, id);
+                throw new BO.BusLineNotFoundException(line, id,ex);
             }
 
         }
@@ -103,18 +112,27 @@ namespace BL
         private BO.LineStation LineStationDoBoAdapter(DO.LineStation lineStn)
         {
             BO.LineStation lineStation = new LineStation();
-            lineStation.LineId = lineStn.LineId ;
-            lineStation.stationCode = lineStn.stationCode ;
-            lineStation.PrevStation = lineStn.PrevStation ;
-            lineStation.NextStation = lineStn.NextStation ;
-            lineStation.LineStationIndex = lineStn.LineStationIndex ;
+            lineStation.stationCode = lineStn.stationCode;
+            lineStation.PrevStation = lineStn.PrevStation;
+            lineStation.NextStation = lineStn.NextStation;
+            DO.Station temp = dl.GetStation(lineStn.stationCode);
+            lineStation.stationName = temp.Name;
+            if (lineStation.PrevStation == null)//it is the first station
+            {
+                lineStation.Time = new TimeSpan(0);
+                lineStation.Distance = 0;
+            }
+            else {
+                lineStation.LineStationIndex = lineStn.LineStationIndex;
+                DO.AdjacentStations ads = dl.GetAdjacentStations(lineStn.stationCode, (int)(lineStn.PrevStation));
+                lineStation.Distance = ads.Distance;
+                lineStation.Time = ads.Time;
+            }
             return lineStation;
-
-
         }
         #endregion
         #region Bus
-       public IEnumerable<BO.Bus> GetAllBusses()
+        public IEnumerable<BO.Bus> GetAllBusses()
         {
 
             return from bus in dl.GetAllBusses()

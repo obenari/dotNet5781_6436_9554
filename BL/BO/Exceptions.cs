@@ -44,7 +44,7 @@ namespace BO
             Line = line;
             Id = id;
         }
-        public BusLineNotFoundException(int line, int id,string message, Exception innerException) : base(message, innerException)
+        public BusLineNotFoundException(int line, int id, Exception innerException,string message="" ) : base(message, innerException)
         {
             Line = line;
             Id = id;
@@ -66,7 +66,7 @@ namespace BO
             Line = line;
             Area = area;
         }
-        public DuplicateBusLineException(int line, Areas area, string message, Exception innerException) :
+        public DuplicateBusLineException(int line, Areas area, Exception innerException, string message) :
             base(message, innerException)
         {
             Line = line;

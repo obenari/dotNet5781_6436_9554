@@ -12,10 +12,7 @@ namespace BO
     /// </summary>
     public class LineStation
     {
-        /// <summary>
-        /// the number of line 
-        /// </summary>
-        public int LineId { get; set; }
+        
         /// <summary>
         /// the code of the physical station
         /// </summary>
@@ -25,21 +22,30 @@ namespace BO
         ///// </summary>
         ///
 
-        //public string stationName { get; set; }
+       public string stationName { get; set; }
         /// <summary>
         /// the index of the station in the spacific line
         /// </summary>
         public int LineStationIndex { get; set; }
+
         /// <summary>
         /// the number of the prev station
         /// if it's the first station, this field will be null 
         /// </summary>
-        public int? PrevStation { get; set; }
+         public int? PrevStation { get; set; }
         /// <summary>
         /// the number of the next station
         /// if it's the last station, this field will be null 
         /// </summary>
-        public int? NextStation { get; set; }
-        
+         public int? NextStation { get; set; }
+        /// <summary>
+        /// the distance from  the two last station
+        /// </summary>
+        public double Distance { get; set; }
+        /// <summary>
+        /// the average travel time from  the last station
+        /// </summary>
+        public TimeSpan Time { get; set; }
+
     }
 }

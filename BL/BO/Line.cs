@@ -41,10 +41,10 @@ namespace BO
         /// all the line stations in the line
         /// </summary>
         public IEnumerable<LineStation> Stations { get; set; }
-        /// <summary>
-        /// list of the Adjacent Stations in the specific line
-        /// </summary>
-        public IEnumerable<AdjacentStations> adjacentStations { get; set; }
+        ///// <summary>
+        ///// list of the Adjacent Stations in the specific line
+        ///// </summary>
+        //public IEnumerable<AdjacentStations> adjacentStations { get; set; }
 
     }
 }
