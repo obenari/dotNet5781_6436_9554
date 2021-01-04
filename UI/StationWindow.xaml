@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:PO="clr-namespace:PO" x:Class="UI.StationWindow"
+        mc:Ignorable="d"
+        Title="StationWindow" Height="450" Width="800" FontFamily="Sitka Display" FontSize="14" >
+  
+    <Grid>
+
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,432.333,9.667" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="codeColumn" Width="70" Header="Code">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Code}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="nameColumn" Width="200"  Header="Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="deletColumn" Width="80" Header="remove">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnRemove" Margin="5" Content="x" Foreground="#FFF81111">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="50"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

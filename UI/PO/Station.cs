@@ -17,6 +17,9 @@ namespace PO
         // Using a DependencyProperty as the backing store for Code.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CodeProperty =
             DependencyProperty.Register("Code", typeof(int), typeof(Station), new PropertyMetadata(0));
+        // Using a DependencyProperty as the backing store for Name.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NameProperty =
+            DependencyProperty.Register("Name", typeof(string), typeof(Station), new PropertyMetadata(""));
 
 
 
@@ -40,10 +43,7 @@ namespace PO
             set { SetValue(NameProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Name.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty NameProperty =
-            DependencyProperty.Register("Name", typeof(string), typeof(Station), new PropertyMetadata(0));
-
+       
 
         /// <summary>
         /// list of the lines that passing by the specific station

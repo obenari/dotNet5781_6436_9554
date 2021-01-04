@@ -97,6 +97,26 @@ namespace BO
             base(message, innerException) => StationId = code;
         public override string ToString() => base.ToString() + $", The station: {StationId} is already exist";
     }
+    public class OutOfLongitudeIsraelLimitException : Exception
+    {
+        double Longitude;
+        public OutOfLongitudeIsraelLimitException(double lon) : base() => Longitude = lon;
+        public OutOfLongitudeIsraelLimitException(double lon, string message) :
+            base(message) => Longitude = lon;
+        public OutOfLongitudeIsraelLimitException(double lon, string message, Exception innerException) :
+            base(message, innerException) => Longitude = lon;
+        public override string ToString() => base.ToString() + $", The longitude: {Longitude} is not in Israel limits";
+    }
+    public class OutOfLatitudeIsraelLimitException : Exception
+    {
+        double Latitude;
+        public OutOfLatitudeIsraelLimitException(double lat) : base() => Latitude = lat;
+        public OutOfLatitudeIsraelLimitException(double lat, string message) :
+            base(message) => Latitude = lat;
+        public OutOfLatitudeIsraelLimitException(double lat, string message, Exception innerException) :
+            base(message, innerException) => Latitude = lat;
+        public override string ToString() => base.ToString() + $", The longitude: {Latitude} is not in Israel limits";
+    }
     #endregion
     #region LineStation
 

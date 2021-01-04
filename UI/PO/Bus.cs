@@ -14,13 +14,13 @@ namespace PO
             DependencyProperty.Register("TotalKmsFromLastTreatment", typeof(int), typeof(Bus), new PropertyMetadata(0));
         // Using a DependencyProperty as the backing store for License.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LicenseProperty =
-            DependencyProperty.Register("License", typeof(string), typeof(Bus), new PropertyMetadata(0));
+            DependencyProperty.Register("License", typeof(string), typeof(Bus), new PropertyMetadata(BO.Status.Ready));
         // Using a DependencyProperty as the backing store for StartOfWork.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfWorkProperty =
-            DependencyProperty.Register("StartOfWork", typeof(DateTime), typeof(Bus), new PropertyMetadata(0));
+            DependencyProperty.Register("StartOfWork", typeof(DateTime), typeof(Bus)/*, new PropertyMetadata(new )*/);
         // Using a DependencyProperty as the backing store for DateOfTreatment.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DateOfTreatmentProperty =
-            DependencyProperty.Register("DateOfTreatment", typeof(DateTime), typeof(Bus), new PropertyMetadata(0));
+            DependencyProperty.Register("DateOfTreatment", typeof(DateTime), typeof(Bus)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for TotalKms.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TotalKmsProperty =
             DependencyProperty.Register("TotalKms", typeof(int), typeof(Bus), new PropertyMetadata(0));

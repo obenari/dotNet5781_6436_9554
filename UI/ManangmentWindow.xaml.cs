@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,27 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BLAPI;
+
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ManangmentWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManangmentWindow : Window
     {
-        IBL bl = BLFactory.GetBL();
-        public MainWindow()
+        IBL MyBL;
+        public ManangmentWindow(IBL bl)
         {
             InitializeComponent();
-            //MessageBox.Show(bl.GetLine(2).FirstStationName);
+            MyBL = bl;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnStation_Click(object sender, RoutedEventArgs e)
         {
-            ManangmentWindow manangmentWindow = new ManangmentWindow(bl);
-            manangmentWindow.ShowDialog();
+            StationWindow stnWindow = new StationWindow();
+            stnWindow.ShowDialog();
         }
     }
 }

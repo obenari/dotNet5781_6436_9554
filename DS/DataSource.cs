@@ -429,7 +429,7 @@ new Station
     Code = 49,
     Latitude = 34.85165,
     Longitude = 32.27659,
-    Name = "שדרות גולדה מאיר/משעול קיפניס ",
+    Name = " גולדה מאיר/משעול קיפניס ",
     IsDeleted = false
 },
 new Station

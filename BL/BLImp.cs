@@ -234,6 +234,15 @@ namespace BL
                                    select LineDoBoAdapter(line));
             return boStation;
         }
+        private DO.Station StationBoDoAdapter(BO.Station boStation)
+        {
+            DO.Station doStation = new DO.Station();
+            doStation.Code = boStation.Code;
+            doStation.Latitude = boStation.Latitude;
+            doStation.Longitude = boStation.Longitude;
+            doStation.Name = boStation.Name;
+            return doStation;
+        }
 
         public IEnumerable<BO.Station> GetAllStationsBy(Predicate<Station> predicate)
         {
@@ -249,6 +258,19 @@ namespace BL
         }
         public void AddStation(BO.Station station)
         {
+            if (station.Latitude < DO.Config.MIN_LAT|| station.Latitude >DO.Config.MAX_LAT)
+                throw new OutOfLatitudeIsraelLimitException(station.Latitude);
+            if (station.Longitude < DO.Config.MIN_LON || station.Longitude > DO.Config.MAX_LON)
+                throw new OutOfLatitudeIsraelLimitException(station.Latitude);
+            station.Code = DO.Config.StationCode;//to get a running number of the station;
+            try
+            {
+                dl.AddStation(StationBoDoAdapter(station));
+            }
+            catch(DuplicateStationException ex)
+            {
+                throw new DuplicateStationException(ex.StationId, "", ex);
+            }
 
         }
         public  void UpdateStation(Station station)

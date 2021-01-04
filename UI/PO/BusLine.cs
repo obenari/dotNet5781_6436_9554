@@ -15,22 +15,22 @@ namespace PO
     {
         // Using a DependencyProperty as the backing store for Area.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AreaProperty =
-            DependencyProperty.Register("Area", typeof(BO.Areas), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("Area", typeof(BO.Areas), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for Id.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IdProperty =
-            DependencyProperty.Register("Id", typeof(int), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("Id", typeof(int), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for LineNumber.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LineNumberProperty =
-            DependencyProperty.Register("LineNumber", typeof(int), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("LineNumber", typeof(int), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for LastStation.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastStationProperty =
-            DependencyProperty.Register("LastStation", typeof(string), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("LastStation", typeof(string), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for FirstSattion.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FirstStationProperty =
-            DependencyProperty.Register("FirstStation", typeof(string), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("FirstStation", typeof(string), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for Stations.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StationsProperty =
-            DependencyProperty.Register("Stations", typeof(ObservableCollection<int>), typeof(BusLine), new PropertyMetadata(0));
+            DependencyProperty.Register("Stations", typeof(ObservableCollection<int>), typeof(BusLine)/*, new PropertyMetadata(0)*/);
 
         public int LineNumber
         {
