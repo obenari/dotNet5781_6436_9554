@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLAPI
 {
+
     public interface IBL
     {
         #region AdjacentStations
