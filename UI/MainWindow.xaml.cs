@@ -24,7 +24,7 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(bl.GetLine(2).FirstStationName);
+           // MessageBox.Show(bl.GetLine(2).FirstStationName);
         }
     }
 }
