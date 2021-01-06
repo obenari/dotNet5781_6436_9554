@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="ManangmentWindow" Height="800" Width="1200">
+        Title="ManangmentWindow" WindowState="Maximized" d:DesignWidth="835" d:DesignHeight="562.667">
     <Grid x:Name="MainGrid">
         <Button x:Name="btnStation" Content="Button" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnStation_Click" >
             <Button.Resources>
@@ -14,14 +14,14 @@
                 </Style>
            </Button.Resources>
         </Button>
-        <Button x:Name="btnLine" Content="Button" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD"  Margin="0,304,44.333,304.667">
+        <Button x:Name="btnLine" Content="Button" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnBus" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD"  Margin="46,304,0,304.667">
+        <Button x:Name="btnBus" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD"  >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -29,7 +29,6 @@
             </Button.Resources>
         </Button>
 
-        <!--<Label Content="Manager" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,743.667" Height="27" Width="161" FontSize="14"/>-->
 
     </Grid>
 </Window>

@@ -6,30 +6,36 @@
         xmlns:local="clr-namespace:UI"
         xmlns:PO="clr-namespace:PO" x:Class="UI.StationWindow"
         mc:Ignorable="d"
-        Title="StationWindow" Height="450" Width="800" FontFamily="Sitka Display" FontSize="14" >
-  
+        Title="StationWindow"  FontFamily="Franklin Gothic Heavy" FontSize="14" Width="1300" Height="780" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" >
+
     <Grid>
 
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="10,10,432.333,9.667" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="codeColumn" Width="70" Header="Code">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MaxColumnWidth="200"  HorizontalAlignment="Right" 
+                  Margin="15,20,150,15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" >
+            <DataGrid.Columns >
+                <DataGridTemplateColumn x:Name="nameColumn" Width="230"  Header="                 שם התחנה" MaxWidth="230" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Code}"/>
+                            <TextBlock Text="{Binding Name}" TextAlignment="Right"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="nameColumn" Width="200"  Header="Name">
+                <DataGridTemplateColumn x:Name="codeColumn" Width="70" Header="    קוד"  MaxWidth="70">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Code}" TextAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="deletColumn" Width="80" Header="remove">
+
+                <DataGridTemplateColumn x:Name="deletColumn" Width="30"  MaxWidth="30">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnRemove" Margin="5" Content="x" Foreground="#FFF81111">
+                            <Button x:Name="btnRemove" Margin="5" Background="White" Content="x" Foreground="#FFF81111" Width="11" FontFamily="SimSun-ExtB" FontSize="11">
                                 <Button.Resources>
                                     <Style TargetType="{x:Type Border}">
                                         <Setter Property="CornerRadius" Value="50"/>
@@ -41,6 +47,45 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnAdd" Content="הוסף תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,112,19.667,0" Click="btnAdd_Click" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="עדכן תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70" Margin="0,200,20,0" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Grid x:Name="addGrid" Grid.Column="0" Visibility="Visible">
+            <TextBox x:Name="txtName" HorizontalAlignment="Center" Height="23" Margin="76,115,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
+            <TextBox x:Name="txtLongintude" HorizontalAlignment="Center" Height="23" Margin="76,211,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
+            <TextBox x:Name="txtLatitude" HorizontalAlignment="Center" Height="23" Margin="76,319,35.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
+            <Label Content=":שם התחנה" HorizontalAlignment="Center" Margin="255,86,35.667,0" VerticalAlignment="Top"/>
+            <Label Content=":קו אורך" HorizontalAlignment="Center" Margin="277,180,35.667,0" VerticalAlignment="Top"/>
+            <Label Content=":קו רוחב" HorizontalAlignment="Center" Margin="277,276,35.667,0" VerticalAlignment="Top"/>
+            <Button x:Name="btnAddStation" Content="הוסף" HorizontalAlignment="Center" Margin="152,367,147.667,0" VerticalAlignment="Top" Width="75" Height="33" Click="btnAddStation_Click" IsEnabled="False" KeyUp="key_up_btnIsenabled">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnBack" Content="חזור לתצוגת הקווים  "  HorizontalAlignment="Left" Margin="33,449,0,0" VerticalAlignment="Top" Width="151" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Click="btnBack_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
+        </Grid>
+        <Grid x:Name="lineGrid" Visibility="Collapsed">
+
+        </Grid>
     </Grid>
 </Window>

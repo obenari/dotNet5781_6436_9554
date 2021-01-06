@@ -43,7 +43,6 @@ namespace PO
             set { SetValue(NameProperty, value); }
         }
 
-       
 
         /// <summary>
         /// list of the lines that passing by the specific station

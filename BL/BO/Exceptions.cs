@@ -89,13 +89,13 @@ namespace BO
     }
     public class DuplicateStationException : Exception
     {
-        public int StationId;
-        public DuplicateStationException(int code) : base() => StationId = code;
-        public DuplicateStationException(int code, string message) :
-            base(message) => StationId = code;
-        public DuplicateStationException(int code, string message, Exception innerException) :
-            base(message, innerException) => StationId = code;
-        public override string ToString() => base.ToString() + $", The station: {StationId} is already exist";
+        public string StationName;
+        public DuplicateStationException(string code) : base() => StationName = code;
+        public DuplicateStationException(string code, string message) :
+            base(message) => StationName = code;
+        public DuplicateStationException(string code, string message, Exception innerException) :
+            base(message, innerException) => StationName = code;
+        public override string ToString() => base.ToString() + $", The station: {StationName} is already exist";
     }
     public class OutOfLongitudeIsraelLimitException : Exception
     {

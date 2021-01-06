@@ -81,7 +81,7 @@ namespace DLAPI
         IEnumerable<Station> GetAllStations();
         IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
         Station GetStation(int code);
-        void AddStation(Station station);
+        int AddStation(Station station);
         void UpdateStation(Station station);
         void UpdateStation(int code, Action<Station> update); //method that knows to updt specific fields in Station
         void DeleteStation(int code);

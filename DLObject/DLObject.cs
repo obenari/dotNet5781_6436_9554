@@ -273,20 +273,29 @@ namespace DL
                 throw new StationNotFoundException(id);
             return station.Clone();
         }
-        public void AddStation(DO.Station station)
+        public int AddStation(DO.Station station)
         {
-            DO.Station oldLine = DataSource.ListStations.Find(item => item.Code == station.Code);
-            if (oldLine != null)//check if the old station alredy exist or deleted
-            {
-                if (oldLine.IsDeleted == true)//if the old station is deleted, update the line
-                    oldLine.IsDeleted = false;
-                else//if the old station is exist and not deleted,will thrown an Exception
-                    throw new StationNotFoundException(station.Code);
+            //DO.Station oldLine = DataSource.ListStations.Find(item => item.Code == station.Code);
+            //if (oldLine != null)//check if the old station alredy exist or deleted
+            //{
+            //    if (oldLine.IsDeleted == true)//if the old station is deleted, update the line
+            //    {
+            //        oldLine.IsDeleted = false;
+            //        UpdateStation(oldLine);
+            //        return oldLine.Code;
+            //    }
+            //    else//if the old station is exist and not deleted,will thrown an Exception
+            //        throw new StationNotFoundException(station.Code);
 
-            }
-            else
+            //}
+            //else
+            //{
+            if(DataSource.ListStations.Any(s=>s.Name==station.Name&&s.Latitude==station.Latitude&&s.Longitude==station.Longitude))
+               throw new DuplicateStationException(station.Name);
+                station.Code = DO.Config.StationCode;
                 DataSource.ListStations.Add(station.Clone());
-
+                return station.Code;
+            //}
 
         }
         public void UpdateStation(DO.Station station)

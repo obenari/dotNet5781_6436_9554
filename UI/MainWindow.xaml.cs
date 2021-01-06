@@ -24,7 +24,10 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(bl.GetLine(2).FirstStationName);
+            // MessageBox.Show(bl.GetLine(2).FirstStationName);
+           // string hi = "הי";
+            //string name = "שרה";
+          //  MessageBox.Show(string.Format("{0} לך,{1}", hi,name));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

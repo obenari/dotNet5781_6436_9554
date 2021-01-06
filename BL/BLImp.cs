@@ -256,20 +256,22 @@ namespace BL
             DO.Station station = dl.GetStation(code);
             return StationDoBoAdapter(station);
         }
-        public void AddStation(BO.Station station)
+        public int AddStation(BO.Station station)
         {
+            if (station.Longitude < DO.Config.MIN_LON || station.Longitude > DO.Config.MAX_LON)
+                throw new OutOfLongitudeIsraelLimitException(station.Latitude);
             if (station.Latitude < DO.Config.MIN_LAT|| station.Latitude >DO.Config.MAX_LAT)
                 throw new OutOfLatitudeIsraelLimitException(station.Latitude);
-            if (station.Longitude < DO.Config.MIN_LON || station.Longitude > DO.Config.MAX_LON)
-                throw new OutOfLatitudeIsraelLimitException(station.Latitude);
-            station.Code = DO.Config.StationCode;//to get a running number of the station;
+           
             try
             {
-                dl.AddStation(StationBoDoAdapter(station));
+                //to get a running number of the station;
+                station.Code =dl.AddStation(StationBoDoAdapter(station));
+                return station.Code;
             }
-            catch(DuplicateStationException ex)
+            catch(DO.DuplicateStationException ex)
             {
-                throw new DuplicateStationException(ex.StationId, "", ex);
+                throw new DuplicateStationException(ex.StationName, "", ex);
             }
         }
         public  void UpdateStation(Station station)
