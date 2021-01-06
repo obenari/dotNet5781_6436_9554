@@ -30,53 +30,53 @@ namespace DS
 #region jerusalem
                 
                 new Station
-{
-    Code =1,
+                {
+                    Code =1,
                     Latitude = 31.793096  ,
-    Longitude = 35.207412 ,
-    Name ="תכלת מרדכי/ארגמן",
-    IsDeleted = false
-},
-new Station
-{
-    Code =2,
-                    Latitude = 31.771179  ,
-    Longitude =35.181133  ,
-    Name ="עין כרם/שדרות הרצל",
-    IsDeleted = false
-},
-new Station
-{
-    Code =3,
-                    Latitude = 31.759032  ,
-    Longitude =35.208696  ,
-    Name ="בן זכאי/דוסתאי",
-    IsDeleted = false
-},
-new Station
-{
-    Code =4,
+                    Longitude = 35.207412 ,
+                    Name ="תכלת מרדכי/ארגמן",
+                    IsDeleted = false
+                },
+               new Station
+               {
+                   Code =2,
+                   Latitude = 31.771179  ,
+                   Longitude =35.181133  ,
+                   Name ="עין כרם/שדרות הרצל",
+                   IsDeleted = false
+               },
+               new Station
+               {
+                   Code =3,
+                   Latitude = 31.759032  ,
+                   Longitude =35.208696  ,
+                   Name ="בן זכאי/דוסתאי",
+                   IsDeleted = false
+               },
+               new Station
+               {
+                   Code =4,
                     Latitude =31.828986   ,
-    Longitude = 35.238355 ,
-    Name ="חיל האויר",
-    IsDeleted = false
-},
-new Station
-{
-    Code =5,
-                    Latitude = 31.785134  ,
-    Longitude = 35.20423 ,
-    Name ="בנייני האומה/הנשיא השישי",
-    IsDeleted = false
-},
-new Station
-{
-    Code =6,
-                    Latitude = 31.826025  ,
-    Longitude =  35.240145,
-    Name ="סיירת דוכיפת",
-    IsDeleted = false
-},
+                   Longitude = 35.238355 ,
+                   Name ="חיל האויר",
+                   IsDeleted = false
+               },
+               new Station
+               {
+                   Code =5,
+                   Latitude = 31.785134  ,
+                   Longitude = 35.20423 ,
+                   Name ="בנייני האומה/הנשיא השישי",
+                   IsDeleted = false
+               },
+               new Station
+               {
+                   Code =6,
+                   Latitude = 31.826025  ,
+                   Longitude =  35.240145,
+                   Name ="סיירת דוכיפת",
+                   IsDeleted = false
+               },
 new Station
 {
     Code =7,
@@ -2093,7 +2093,6 @@ new Station
       },
 
             };
-
         }
     }
 

@@ -271,7 +271,6 @@ namespace BL
             {
                 throw new DuplicateStationException(ex.StationId, "", ex);
             }
-
         }
         public  void UpdateStation(Station station)
         {
@@ -289,7 +288,6 @@ namespace BL
             }
             catch (DO.BusLineNotFoundException ex)
             {
-
                 throw new BO.StationNotFoundException(code);
             }
         }
