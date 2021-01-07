@@ -290,9 +290,19 @@ namespace DL
             //}
             //else
             //{
-            if(DataSource.ListStations.Any(s=>s.Name==station.Name&&s.Latitude==station.Latitude&&s.Longitude==station.Longitude))
-               throw new DuplicateStationException(station.Name);
-                station.Code = DO.Config.StationCode;
+            //check duplicate cases
+            Station temp = DataSource.ListStations.Find(s => s.Name == station.Name && s.Latitude == station.Latitude && s.Longitude == station.Longitude);
+            if (temp!=null)
+            {
+                if(temp.IsDeleted==true)
+                {
+                    temp.IsDeleted = false;
+                    return temp.Code;
+                }
+                throw new DuplicateStationException(station.Name);
+            }
+
+            station.Code = DO.Config.StationCode;
                 DataSource.ListStations.Add(station.Clone());
                 return station.Code;
             //}

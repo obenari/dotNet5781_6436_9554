@@ -49,6 +49,7 @@
     <Compile Include="BO\BusInTravel.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Exceptions.cs" />
+    <Compile Include="BO\InformationForStation.cs" />
     <Compile Include="BO\Line.cs" />
     <Compile Include="BO\LineStation.cs" />
     <Compile Include="BO\LineTrip.cs" />

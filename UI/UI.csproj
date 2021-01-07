@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adapter.cs" />
+    <Compile Include="PO\InformationForStation.cs" />
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>

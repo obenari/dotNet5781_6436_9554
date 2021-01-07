@@ -30,7 +30,7 @@ namespace BO
         /// <summary>
         /// list of the lines that passing by the specific station
         /// </summary>
-        public IEnumerable<Line> ListLines { get; set; }
+        public IEnumerable<InformationForStation> ListLines { get; set; }
 
 
     }

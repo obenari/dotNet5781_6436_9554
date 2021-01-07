@@ -31,6 +31,7 @@ namespace UI
             //convert all the BO stations to PO station, and put in  ObservableCollection
             StationCollection = new ObservableCollection<PO.Station>(bl.GetAllStations().ToList().ConvertAll(stn=> Adapter.POBOAdapter(stn)));
             this.stationDataGrid.DataContext = StationCollection;
+            lvLines.DataContext = StationCollection[0].ListLines;
         }
 
         private void btnAddStation_Click(object sender, RoutedEventArgs e)

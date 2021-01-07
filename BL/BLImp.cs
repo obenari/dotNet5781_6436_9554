@@ -213,9 +213,49 @@ namespace BL
             }
         }
         #endregion
+        #region InformationForStation
+        /// <summary>
+        /// this function get the station  and the line that passing the station, in order to make an InformationForStation
+        /// </summary>
+        /// <param name="line">the line that passing the station</param>
+        /// <param name="doStation">the station that should the infomation is belong's it</param>
+        /// <returns></returns>
+        InformationForStation makeInformationForStation(DO.Line line, DO.Station doStation)
+        {
+            InformationForStation information = new InformationForStation();
+            information.LineNumber = line.LineNumber;
+            //get the first and last station of the line to put their name in the property field
+            try
+            {
+                DO.Station first = dl.GetStation(line.FirstStation);
+                DO.Station last = dl.GetStation(line.LastStation);
 
+
+
+                information.FirstStation = first.Name;
+                information.LastStation = last.Name;
+                //get the next Linestation to doStation, in the specific line
+                if (line.LastStation == doStation.Code)
+                    information.NextStation = "זוהי תחנה אחרונה";
+                else
+                {
+                    DO.LineStation nextStation = dl.GetAllLineStationsBy(s => s.PrevStation == doStation.Code).FirstOrDefault();
+                    //get the physical station  
+                    DO.Station next = dl.GetStation(nextStation.stationCode);
+                    if (next == null)
+                        throw new StationNotFoundException(nextStation.stationCode);
+                    information.NextStation = next.Name;
+                }
+                return information;
+            }
+            catch (DO.StationNotFoundException ex)
+            {
+                throw new BO.StationNotFoundException(ex.StationId);
+            }
+        }
+        #endregion 
         #region Station
-       public IEnumerable<BO.Station> GetAllStations()
+        public IEnumerable<BO.Station> GetAllStations()
         {
             return from station in dl.GetAllStations()
                    select StationDoBoAdapter(station);
@@ -231,7 +271,7 @@ namespace BL
             boStation.ListLines = (from line in dl.GetAllLines()
                                    from lineStation in dl.GetAllLineStations()
                                    where lineStation.LineId == line.Id && lineStation.stationCode == boStation.Code
-                                   select LineDoBoAdapter(line));
+                                   select makeInformationForStation(line,doStation));
             return boStation;
         }
         private DO.Station StationBoDoAdapter(BO.Station boStation)

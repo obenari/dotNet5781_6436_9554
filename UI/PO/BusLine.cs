@@ -30,7 +30,7 @@ namespace PO
             DependencyProperty.Register("FirstStation", typeof(string), typeof(BusLine)/*, new PropertyMetadata(0)*/);
         // Using a DependencyProperty as the backing store for Stations.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StationsProperty =
-            DependencyProperty.Register("Stations", typeof(ObservableCollection<int>), typeof(BusLine)/*, new PropertyMetadata(0)*/);
+            DependencyProperty.Register("Stations", typeof(ObservableCollection<LineStation>), typeof(BusLine)/*, new PropertyMetadata(0)*/);
 
         public int LineNumber
         {
@@ -51,9 +51,9 @@ namespace PO
         }
 
 
-        public ObservableCollection<int> Stations
+        public ObservableCollection<LineStation> Stations
         {
-            get { return (ObservableCollection<int>)GetValue(StationsProperty); }
+            get { return (ObservableCollection<LineStation>)GetValue(StationsProperty); }
             set { SetValue(StationsProperty, value); }
         }
 

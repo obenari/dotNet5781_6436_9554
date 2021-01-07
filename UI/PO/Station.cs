@@ -47,6 +47,6 @@ namespace PO
         /// <summary>
         /// list of the lines that passing by the specific station
         /// </summary>
-        public ObservableCollection<BusLine> ListLines { get; set; }
+        public ObservableCollection<BO.InformationForStation> ListLines { get; set; }
     }
 }

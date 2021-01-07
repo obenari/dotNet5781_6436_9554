@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,14 @@ namespace UI
 {
     static class Adapter
     {
-      public static  PO.Station POBOAdapter(BO.Station boStation)
+     //   IBL bl = BLFactory.GetBL();
+
+        public static  PO.Station POBOAdapter(BO.Station boStation)
         {
             PO.Station poStation = new PO.Station();
             poStation.Code = boStation.Code;
             poStation.Name = boStation.Name;
-
+            poStation.ListLines = new ObservableCollection<BO.InformationForStation>(boStation.ListLines);
             return poStation;
         }
         public static PO.BusLine POBOAdapter(BO.Line boLine)//************************

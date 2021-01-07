@@ -7,24 +7,47 @@
         xmlns:PO="clr-namespace:PO" x:Class="UI.StationWindow"
         mc:Ignorable="d"
         Title="StationWindow"  FontFamily="Franklin Gothic Heavy" FontSize="14" Width="1300" Height="780" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" >
+    <Window.Resources>
 
+
+        <DataTemplate x:Key="myDataTemplate" DataType="local:BO.InformationForStation">
+            <Grid x:Name="templateGrid"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.IsColumnHeader="True">
+                <Grid.ColumnDefinitions  >
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tbNextStation" Grid.Column="0" Text="{Binding Path=NextStation}" Width="100"
+                        FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                <TextBlock x:Name="tbLastStation" Grid.Column="1" Text="{Binding Path=LastStation}" 
+                      Width="100"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+
+                <TextBlock x:Name="tbFirtsStation" Grid.Column="2" Text="{Binding Path=FirstStation}" 
+                   Width="100"     FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                <TextBlock x:Name="tbLinenumber" Grid.Column="3" Text="{Binding Path=LineNumber}" 
+                   Width="100"     FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MaxColumnWidth="200"  HorizontalAlignment="Right" 
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
                   Margin="15,20,150,15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" >
             <DataGrid.Columns >
-                <DataGridTemplateColumn x:Name="nameColumn" Width="230"  Header="                 שם התחנה" MaxWidth="230" >
+                <DataGridTemplateColumn x:Name="nameColumn" Width="250"  Header="                 שם התחנה" MaxWidth="250" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" TextAlignment="Right"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="codeColumn" Width="70" Header="    קוד"  MaxWidth="70">
+                <DataGridTemplateColumn x:Name="codeColumn" Width="75" Header="    קוד"  MaxWidth="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Code}" TextAlignment="Center" />
@@ -61,7 +84,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Grid x:Name="addGrid" Grid.Column="0" Visibility="Visible">
+        <Grid x:Name="addGrid" Grid.Column="0" Visibility="Collapsed">
             <TextBox x:Name="txtName" HorizontalAlignment="Center" Height="23" Margin="76,115,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
             <TextBox x:Name="txtLongintude" HorizontalAlignment="Center" Height="23" Margin="76,211,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
             <TextBox x:Name="txtLatitude" HorizontalAlignment="Center" Height="23" Margin="76,319,35.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
@@ -84,8 +107,18 @@
             </Button>
 
         </Grid>
-        <Grid x:Name="lineGrid" Visibility="Collapsed">
-
+        <Grid x:Name="lineGrid" Visibility="Visible">
+            <ListView x:Name="lvLines" AutomationProperties.IsColumnHeader="True" BorderThickness="1" Grid.Column="0"
+                 ItemsSource="{Binding}" Margin="15,60,0,15" FontSize="10">
+                <ListView.View >
+                    <GridView x:Name="lineGridview">
+                        <GridViewColumn Header="תחנה הבאה" Width="185" DisplayMemberBinding="{Binding NextStation}"   />
+                        <GridViewColumn Header="תחנה אחרונה" Width="185" DisplayMemberBinding="{Binding LastStation}" />
+                        <GridViewColumn Header="תחנה ראשונה" Width="185" DisplayMemberBinding="{Binding FirstStation}" />
+                        <GridViewColumn Header="מספר קו" Width="70" DisplayMemberBinding="{Binding LineNumber}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

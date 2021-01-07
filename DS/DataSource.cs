@@ -1682,7 +1682,7 @@ new Station
                      LineNumber=5,
                      Area=Areas.Natania,
                      FirstStation=41,
-                     LastStation =500,
+                     LastStation =50,
                      IsDeleted=false
                 },
                 new Line
