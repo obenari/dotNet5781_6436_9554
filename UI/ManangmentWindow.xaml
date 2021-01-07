@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="ManangmentWindow" WindowState="Maximized" d:DesignWidth="835" d:DesignHeight="562.667">
     <Grid x:Name="MainGrid">
-        <Button x:Name="btnStation" Content="Button" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnStation_Click" >
+        <Button x:Name="btnStation" Content="תחנת אוטובוס" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnStation_Click" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
            </Button.Resources>
         </Button>
-        <Button x:Name="btnLine" Content="Button" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" >
+        <Button x:Name="btnBus" Content="אוטובוסים" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnBus" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD"  >
+        <Button x:Name="btnLine" Content="קווי אוטובוס" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnLine_Click"  >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>

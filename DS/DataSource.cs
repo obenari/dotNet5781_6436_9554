@@ -1701,7 +1701,7 @@ new Station
        {
           Station1 = 1,
          Station2 =  2 ,
-         Distance = 5224.25523033912  ,
+         Distance = 5.22425523033912  ,
            Time =new TimeSpan(0,6,13),
             IsDeleted = false
         },
@@ -1709,7 +1709,7 @@ new Station
        {
           Station1 = 2,
           Station2 =  3 ,
-         Distance = 4406.36878055019  ,
+         Distance = 4.40636878055019  ,
           Time =new TimeSpan(0,5,14),
           IsDeleted = false
         },

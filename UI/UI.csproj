@@ -56,10 +56,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adapter.cs" />
+    <Compile Include="LineWindow.xaml.cs">
+      <DependentUpon>LineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PO\InformationForStation.cs" />
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="LineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

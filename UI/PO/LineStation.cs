@@ -13,20 +13,20 @@ namespace PO
     {
         // Using a DependencyProperty as the backing store for Time.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TimeProperty =
-            DependencyProperty.Register("Time", typeof(TimeSpan), typeof(LineStation), new PropertyMetadata(0));
+            DependencyProperty.Register("Time", typeof(TimeSpan), typeof(LineStation));
         // Using a DependencyProperty as the backing store for stationCode.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty stationCodeProperty =
-            DependencyProperty.Register("stationCode", typeof(int), typeof(LineStation), new PropertyMetadata(0));
+            DependencyProperty.Register("stationCode", typeof(int), typeof(LineStation));
         // Using a DependencyProperty as the backing store for stationName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty stationNameProperty =
-            DependencyProperty.Register("stationName", typeof(string), typeof(LineStation), new PropertyMetadata(0));
+            DependencyProperty.Register("stationName", typeof(string), typeof(LineStation));
 
         // Using a DependencyProperty as the backing store for LineStationIndex.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LineStationIndexProperty =
-            DependencyProperty.Register("LineStationIndex", typeof(int), typeof(LineStation), new PropertyMetadata(0));
+            DependencyProperty.Register("LineStationIndex", typeof(int), typeof(LineStation));
         // Using a DependencyProperty as the backing store for Distance.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DistanceProperty =
-            DependencyProperty.Register("Distance", typeof(double), typeof(LineStation), new PropertyMetadata(0));
+            DependencyProperty.Register("Distance", typeof(double), typeof(LineStation));
 
         /// <summary>
         /// the code of the physical station

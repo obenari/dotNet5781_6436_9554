@@ -32,5 +32,11 @@ namespace UI
             StationWindow stnWindow = new StationWindow();
             stnWindow.ShowDialog();
         }
+
+        private void btnLine_Click(object sender, RoutedEventArgs e)
+        {
+            LineWindow lineWindow = new LineWindow();
+            lineWindow.ShowDialog();
+        }
     }
 }

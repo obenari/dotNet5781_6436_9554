@@ -16,7 +16,13 @@ namespace UI
             PO.Station poStation = new PO.Station();
             poStation.Code = boStation.Code;
             poStation.Name = boStation.Name;
-            poStation.ListLines = new ObservableCollection<BO.InformationForStation>(boStation.ListLines);
+           // List<BO.InformationForStation> info = boStation.ListLines.ToList();
+            if (boStation.ListLines== null)
+                poStation.ListLines = null;
+            else
+            {
+                poStation.ListLines = new ObservableCollection<BO.InformationForStation>(boStation.ListLines.ToList());
+            }
             return poStation;
         }
         public static PO.BusLine POBOAdapter(BO.Line boLine)//************************
@@ -27,11 +33,18 @@ namespace UI
             poLine.FirstStation = boLine.FirstStationName;
             poLine.LastStation = boLine.LastStationName;
             poLine.Id = boLine.Id;
-
-
-
+            poLine.Stations = new ObservableCollection<PO.LineStation>(boLine.Stations.ToList().ConvertAll(lstn => Adapter.POBOAdapter(lstn)));
             return poLine;
         }
-
+        public static PO.LineStation POBOAdapter(BO.LineStation boLineStation)//************************
+        {
+            PO.LineStation poLineStation = new PO.LineStation();
+            poLineStation.stationName = boLineStation.stationName;
+            poLineStation.LineStationIndex = boLineStation.LineStationIndex;
+            poLineStation.Distance = boLineStation.Distance;
+            poLineStation.stationCode = boLineStation.stationCode;
+            poLineStation.Time = boLineStation.Time;
+            return poLineStation;
+        }
     }
 }

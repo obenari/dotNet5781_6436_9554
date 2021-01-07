@@ -74,10 +74,10 @@ namespace BL
                    select LineDoBoAdapter(line);
         }
 
-        public IEnumerable<Line> GetAllLinesBy(Predicate<BO.Line> predicate)
+        public IEnumerable<Line> GetAllLinesByArea(BO.Areas area)
         {
             return from line in dl.GetAllLines()
-                   where predicate(LineDoBoAdapter(line))
+                   where (int)line.Area==(int)area
                    select LineDoBoAdapter(line);
         }
 
@@ -229,9 +229,6 @@ namespace BL
             {
                 DO.Station first = dl.GetStation(line.FirstStation);
                 DO.Station last = dl.GetStation(line.LastStation);
-
-
-
                 information.FirstStation = first.Name;
                 information.LastStation = last.Name;
                 //get the next Linestation to doStation, in the specific line

@@ -20,6 +20,6 @@ namespace DO
     /// </summary>
     public enum Areas
     {
-        General, North, South, Center, Jerusalem,Haifa,Natania, TelAviv,BeerSheva
+        Jerusalem,Haifa,Natania, TelAviv,BeerSheva
     }
 }

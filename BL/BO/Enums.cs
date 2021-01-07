@@ -20,6 +20,6 @@ namespace BO
     /// </summary>
     public enum Areas
     {
-        General, North, South, Center, Jerusalem
+         Jerusalem, Haifa, Natania, TelAviv, BeerSheva
     }
 }

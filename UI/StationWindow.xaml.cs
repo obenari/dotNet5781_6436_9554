@@ -32,6 +32,7 @@ namespace UI
             StationCollection = new ObservableCollection<PO.Station>(bl.GetAllStations().ToList().ConvertAll(stn=> Adapter.POBOAdapter(stn)));
             this.stationDataGrid.DataContext = StationCollection;
             lvLines.DataContext = StationCollection[0].ListLines;
+            lineGrid.DataContext = StationCollection[0];
         }
 
         private void btnAddStation_Click(object sender, RoutedEventArgs e)
@@ -74,9 +75,11 @@ namespace UI
 
 
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("הנתונים שהוזנו אינם חוקיים");
+                MessageBox.Show(ex.ToString());
+
             }
         }
         /// <summary>
@@ -114,6 +117,38 @@ namespace UI
             addGrid.Visibility = Visibility.Collapsed;
             lineGrid.Visibility = Visibility.Visible;
 
+        }
+
+        private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Station station = stationDataGrid.SelectedItem as Station;
+            lineGrid.DataContext = station;
+            lvLines.DataContext = station.ListLines;
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if(stationDataGrid.SelectedItem==null)
+            {
+                MessageBox.Show("לא נבחרה תחנה");
+                return;
+            }
+            string nameStation = (stationDataGrid.SelectedItem as Station).Name;
+            //MessageBox.Show(string.Format("?התחנה  " + nameStation + " עומדת להימחק אתה בטוח")," ggg", MessageBoxButtons.YesNo);
+
+            if (MessageBox.Show(string.Format("?התחנה  " + nameStation + " עומדת להימחק אתה בטוח"), "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    bl.DeleteStation((stationDataGrid.SelectedItem as Station).Code);
+                    StationCollection.Remove(stationDataGrid.SelectedItem as Station);
+                }
+                catch
+                {
+
+                }
+            }
+          
         }
     }
 }

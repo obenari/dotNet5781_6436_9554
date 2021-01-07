@@ -42,7 +42,7 @@ namespace BLAPI
 
         #region Line
         IEnumerable<BO.Line> GetAllLines();
-        IEnumerable<BO.Line> GetAllLinesBy(Predicate<BO.Line> predicate);
+        IEnumerable<BO.Line> GetAllLinesByArea(BO.Areas area);
         BO.Line GetLine(int id);
         void AddLine(BO.Line line);
         void UpdateLine(BO.Line line);

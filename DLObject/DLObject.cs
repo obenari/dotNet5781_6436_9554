@@ -364,10 +364,15 @@ namespace DL
             DO.AdjacentStations adjacentStations = DataSource.ListTwoAdjacentStations
                  .Find(item => item.Station1 == code1 && item.Station2 == code2
                  && item.IsDeleted == false);
-            if (adjacentStations == null)
-                throw new AdjacentStationsNotFoundException(code1, code2);
+            if (adjacentStations == null)//now check the last order
+            {
+                adjacentStations = DataSource.ListTwoAdjacentStations
+                 .Find(item => item.Station1 == code2 && item.Station2 == code1
+                 && item.IsDeleted == false);
+                if (adjacentStations == null)
+                    throw new AdjacentStationsNotFoundException(code1, code2);
+            }
             return adjacentStations.Clone();
-
         }
         public void AddAdjacentStations(AdjacentStations addAdjacentStation)
         {
