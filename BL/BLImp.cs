@@ -324,6 +324,17 @@ namespace BL
             try
             {
                 dl.DeleteStation(code);
+                IEnumerable<DO.AdjacentStations> aStationToDelete = dl.GetAllAdjacentStationsBy(s => s.Station1 == code||s.Station2==code);
+                foreach (var item in aStationToDelete)
+                {
+                    item.IsDeleted = true;
+                }
+                IEnumerable<DO.LineStation> stationToDelete = dl.GetAllLineStationsBy(s => s.stationCode == code);
+                foreach (var item in stationToDelete)
+                {
+                    item.IsDeleted = true;
+                }
+                //**********************************************************************************************************************************************************
             }
             catch (DO.BusLineNotFoundException ex)
             {

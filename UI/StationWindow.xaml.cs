@@ -140,8 +140,19 @@ namespace UI
             {
                 try
                 {
-                    bl.DeleteStation((stationDataGrid.SelectedItem as Station).Code);
-                    StationCollection.Remove(stationDataGrid.SelectedItem as Station);
+                    PO.Station stationToRemove = stationDataGrid.SelectedItem as Station;
+                    bl.DeleteStation(stationToRemove.Code);
+                    StationCollection.Remove(stationToRemove);
+                    if (lineGrid.DataContext == stationToRemove)
+                    {   lineGrid.DataContext = StationCollection[0];
+                        this.lvLines.DataContext = StationCollection[0].ListLines;
+                    }
+                    else
+                    {
+                        this.lineGrid.DataContext = null;
+                        this.lvLines.DataContext = null;
+
+                    }
                 }
                 catch
                 {

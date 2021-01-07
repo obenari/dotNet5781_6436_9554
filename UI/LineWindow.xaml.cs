@@ -50,5 +50,46 @@ namespace UI
             this.stationGrid.DataContext = busLine;
             lvStation.DataContext = busLine.Stations;
         }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (lineDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("לא נבחר קו");
+                return;
+            }
+            int lineNum = (lineDataGrid.SelectedItem as BusLine).LineNumber;
+
+            if (MessageBox.Show(string.Format("?קו מספר  " + lineNum + " עומד להימחק אתה בטוח"), "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    PO.BusLine lineToRemove= lineDataGrid.SelectedItem as BusLine;
+                    bl.DeleteStation(lineToRemove.Id);
+                    LinesCollection.Remove(lineToRemove);
+                    if (stationGrid.DataContext == lineToRemove)
+                    {
+                        if (LinesCollection.Count != 0)
+                        {
+                            this.stationGrid.DataContext = LinesCollection[0];
+                            this.lvStation.DataContext = LinesCollection[0].Stations;
+                        }
+                        else
+                        {
+                            this.stationGrid.DataContext = null;
+                            this.lvStation.DataContext = null;
+
+                        }
+                    }
+
+                
+                }
+                catch
+                {
+
+                }
+            }
+        }
     }
 }
+//  Color="#FFCAF7EC"

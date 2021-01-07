@@ -51,7 +51,7 @@ namespace PO
         }
 
 
-        public ObservableCollection<LineStation> Stations
+        public ObservableCollection<PO.LineStation> Stations
         {
             get { return (ObservableCollection<LineStation>)GetValue(StationsProperty); }
             set { SetValue(StationsProperty, value); }

@@ -42,7 +42,12 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick" >
+                  Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick"
+                  CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+            </DataGrid.Resources>
             <DataGrid.Columns >
                 <DataGridTemplateColumn x:Name="nameColumn" Width="250"  Header="                 שם התחנה" MaxWidth="250" >
                     <DataGridTemplateColumn.CellTemplate>

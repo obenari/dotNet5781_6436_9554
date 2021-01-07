@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="LineWindow" Height="780" Width="1300" FontFamily="Franklin Gothic Heavy" >
+        Title="LineWindow" Height="760" Width="1300" FontFamily="Franklin Gothic Heavy" >
     <Window.Resources>
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -42,8 +42,14 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="lineDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="0,112,35.333,94.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick" >
+                  Margin="0,112,35.333,173.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick"
+                  CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+            </DataGrid.Resources>
             <DataGrid.Columns >
+                
                 <DataGridTemplateColumn x:Name="lastStationColumn" Width="250"  Header="                תחנה אחרונה" MaxWidth="250" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -80,15 +86,16 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
             </DataGrid.Columns>
+            
         </DataGrid>
-        <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,664,185.333,0">
+        <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="70" Margin="0,0,35.333,77.667"   >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70" Margin="0,664,430.333,0" >
+        <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnRemove_Click" Margin="26.333,0,0,77.667" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -133,7 +140,7 @@
                 </ListView.View>
 
             </ListView>
-            <TextBlock HorizontalAlignment="Center" Margin="0,117,0,0" TextWrapping="Wrap" Text=":קווים העוברים בתחנה " VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,117,0,0" TextWrapping="Wrap" Text=" :מידע על התחנות בהן הקו עובר" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,25,0,0" TextWrapping="Wrap" Text="לחץ לחיצה כפולה על הקו להצגת המידע " VerticalAlignment="Top" FontFamily="David"/>
             <TextBlock HorizontalAlignment="Right" Margin="0,65,50,0" TextWrapping="Wrap" Text=":מספר הקו " VerticalAlignment="Top" />
             <TextBlock HorizontalAlignment="Right" Margin="0,65,130,0" Width="49" TextWrapping="Wrap" Text="{Binding Path=LineNumber}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
