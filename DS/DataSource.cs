@@ -1894,7 +1894,7 @@ new Station
       {
           Station1 = 25,
           Station2 = 26,
-          Distance = 589569.291808265,
+          Distance = 589.569291808265,
           Time = new TimeSpan(11, 41, 52),
            IsDeleted = false
       },
@@ -1902,7 +1902,7 @@ new Station
       {
           Station1 = 26,
           Station2 = 27,
-          Distance = 8213.61459036976,
+          Distance = 8.21361459036976,
           Time = new TimeSpan(0, 9, 46),
            IsDeleted = false
       },
@@ -1910,7 +1910,7 @@ new Station
       {
           Station1 = 27,
           Station2 = 28,
-          Distance = 4892.53243184386,
+          Distance = 4.89253243184386,
           Time = new TimeSpan(0, 5, 49),
            IsDeleted = false
       },
@@ -1918,7 +1918,7 @@ new Station
       {
           Station1 = 28,
           Station2 = 29,
-          Distance = 2915.86862522787,
+          Distance = 2.91586862522787,
           Time = new TimeSpan(0, 3, 28),
            IsDeleted = false
       },
@@ -1926,7 +1926,7 @@ new Station
       {
           Station1 = 29,
           Station2 = 30,
-          Distance = 1888.60819327896,
+          Distance = 1.88860819327896,
           Time = new TimeSpan(0, 2, 14),
            IsDeleted = false
       },
@@ -1934,7 +1934,7 @@ new Station
       {
           Station1 = 30,
           Station2 = 31,
-          Distance = 101509.376217118,
+          Distance = 101.509376217118,
           Time = new TimeSpan(2, 0, 50),
            IsDeleted = false
       },
@@ -1942,7 +1942,7 @@ new Station
       {
           Station1 = 31,
           Station2 = 32,
-          Distance = 13212.8195760903,
+          Distance = 13.2128195760903,
           Time = new TimeSpan(0, 15, 43),
            IsDeleted = false
       },
@@ -1950,7 +1950,7 @@ new Station
       {
           Station1 = 32,
           Station2 = 33,
-          Distance = 4280.71492018868,
+          Distance = 4.28071492018868,
           Time = new TimeSpan(0, 5, 5),
            IsDeleted = false
       },
@@ -1958,7 +1958,7 @@ new Station
       {
           Station1 = 33,
           Station2 = 34,
-          Distance = 5721.78809530072,
+          Distance = 5.72178809530072,
           Time = new TimeSpan(0, 6, 48),
            IsDeleted = false
       },
@@ -1966,7 +1966,7 @@ new Station
       {
           Station1 = 34,
           Station2 = 35,
-          Distance = 8736.32433582928,
+          Distance = 8.73632433582928,
           Time = new TimeSpan(0, 10, 24),
            IsDeleted = false
       },
@@ -1974,7 +1974,7 @@ new Station
       {
           Station1 = 35,
           Station2 = 36,
-          Distance = 347.346490134101,
+          Distance = 0.347346490134101,
           Time = new TimeSpan(0, 0, 24),
            IsDeleted = false
       },
@@ -1982,7 +1982,7 @@ new Station
       {
           Station1 = 36,
           Station2 = 37,
-          Distance = 2265.17177885899,
+          Distance = 2.26517177885899,
           Time = new TimeSpan(0, 2, 41),
            IsDeleted = false
       },
@@ -1990,7 +1990,7 @@ new Station
       {
           Station1 = 37,
           Station2 = 38,
-          Distance = 849.664968569505,
+          Distance = 0.849664968569505,
           Time = new TimeSpan(0, 1, 0),
            IsDeleted = false
       },
@@ -1998,7 +1998,7 @@ new Station
       {
           Station1 = 38,
           Station2 = 39,
-          Distance = 10757.9963416712,
+          Distance = 10.7579963416712,
           Time = new TimeSpan(0, 12, 48),
            IsDeleted = false
 
@@ -2007,7 +2007,7 @@ new Station
       {
           Station1 = 39,
           Station2 = 40,
-          Distance = 8101.95968592306,
+          Distance = 8.10195968592306,
           Time = new TimeSpan(0, 9, 38),
            IsDeleted = false
       },
@@ -2015,7 +2015,7 @@ new Station
       {
           Station1 = 40,
           Station2 = 41,
-          Distance = 482170.984197982,
+          Distance = 482.170984197982,
           Time = new TimeSpan(9, 34, 0),
            IsDeleted = false
       },
@@ -2023,7 +2023,7 @@ new Station
       {
           Station1 = 41,
           Station2 = 42,
-          Distance = 511861.306542711,
+          Distance = 511.861306542711,
           Time = new TimeSpan(10, 9, 21),
            IsDeleted = false
       },
@@ -2031,7 +2031,7 @@ new Station
       {
           Station1 = 42,
           Station2 = 43,
-          Distance = 1855.87884819223,
+          Distance = 1.85587884819223,
           Time = new TimeSpan(0, 2, 12),
            IsDeleted = false
       },
@@ -2039,7 +2039,7 @@ new Station
       {
           Station1 = 43,
           Station2 = 44,
-          Distance = 6777.21508104246,
+          Distance = 6.77721508104246,
           Time = new TimeSpan(0, 8, 4),
            IsDeleted = false
       },
@@ -2047,7 +2047,7 @@ new Station
       {
           Station1 = 44,
           Station2 = 45,
-          Distance = 7965.92957099255,
+          Distance = 7.96592957099255,
           Time = new TimeSpan(0, 9, 28),
            IsDeleted = false
       },
@@ -2055,7 +2055,7 @@ new Station
       {
           Station1 = 45,
           Station2 = 46,
-          Distance = 337.707367940885,
+          Distance = 0.337707367940885,
           Time = new TimeSpan(0, 0, 24),
            IsDeleted = false
       },
@@ -2063,7 +2063,7 @@ new Station
       {
           Station1 = 46,
           Station2 = 47,
-          Distance = 503.183031328715,
+          Distance = 0.503183031328715,
           Time = new TimeSpan(0, 0, 35),
            IsDeleted = false
       },
@@ -2071,7 +2071,7 @@ new Station
       {
           Station1 = 47,
           Station2 = 48,
-          Distance = 670.887559572589,
+          Distance = 0.670887559572589,
           Time = new TimeSpan(0, 0, 47),
            IsDeleted = false
       },
@@ -2079,7 +2079,7 @@ new Station
       {
           Station1 = 48,
           Station2 = 49,
-          Distance = 1083.1504396778,
+          Distance = 1.0831504396778,
           Time = new TimeSpan(0, 1, 17),
            IsDeleted = false
       },
@@ -2087,7 +2087,7 @@ new Station
       {
           Station1 = 49,
           Station2 = 50,
-          Distance = 1030.55993018019,
+          Distance = 1.03055993018019,
           Time = new TimeSpan(0, 1, 13),
            IsDeleted = false
       },
