@@ -29,13 +29,13 @@ namespace UI
 
         private void btnStation_Click(object sender, RoutedEventArgs e)
         {
-            StationWindow stnWindow = new StationWindow();
+            StationWindow stnWindow = new StationWindow(MyBL);
             stnWindow.ShowDialog();
         }
 
         private void btnLine_Click(object sender, RoutedEventArgs e)
         {
-            LineWindow lineWindow = new LineWindow();
+            LineWindow lineWindow = new LineWindow(MyBL);
             lineWindow.ShowDialog();
         }
     }

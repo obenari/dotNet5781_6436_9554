@@ -182,6 +182,14 @@ namespace DL
                    where predicate(lineStation) && lineStation.IsDeleted == false
                    select lineStation.Clone();
         }
+        public LineStation GetLineStationsBy(Predicate<LineStation> predicate)
+        {
+
+            var l= from lineStation in DataSource.ListLineStations
+                   where predicate(lineStation) && lineStation.IsDeleted == false
+                   select lineStation.Clone();
+            return l.FirstOrDefault();
+        }
         public LineStation GetLineStation(int line, int numSation)
         {
             DO.LineStation lineStation = DataSource.ListLineStations

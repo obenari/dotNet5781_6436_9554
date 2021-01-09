@@ -21,13 +21,13 @@ namespace UI
     /// </summary>
     public partial class StationWindow : Window
     {
-        IBL bl = BLFactory.GetBL();
+        IBL bl;
         ObservableCollection<PO.Station> StationCollection;
      //   List<BO.Station> item;
-        public StationWindow()
+        public StationWindow(IBL MyBL)
         {
             InitializeComponent();
-
+            bl = MyBL;
             //convert all the BO stations to PO station, and put in  ObservableCollection
             StationCollection = new ObservableCollection<PO.Station>(bl.GetAllStations().ToList().ConvertAll(stn=> Adapter.POBOAdapter(stn)));
             this.stationDataGrid.DataContext = StationCollection;
@@ -142,21 +142,29 @@ namespace UI
                 {
                     PO.Station stationToRemove = stationDataGrid.SelectedItem as Station;
                     bl.DeleteStation(stationToRemove.Code);
-                    StationCollection.Remove(stationToRemove);
+                    //after station is deleted, there is information in the ObservableCollection, about lines that passing by stations that is not updeted,
+                    //so we update the ObservableCollection
+                    StationCollection = new ObservableCollection<PO.Station>(bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
+                    stationDataGrid.DataContext = StationCollection;
+                    //StationCollection.Remove(stationToRemove);
                     if (lineGrid.DataContext == stationToRemove)
-                    {   lineGrid.DataContext = StationCollection[0];
-                        this.lvLines.DataContext = StationCollection[0].ListLines;
-                    }
-                    else
                     {
-                        this.lineGrid.DataContext = null;
-                        this.lvLines.DataContext = null;
+                        if (StationCollection == null)
+                        {
+                            this.lineGrid.DataContext = null;
+                            this.lvLines.DataContext = null;
 
+                        }
+                        else
+                        {
+                            lineGrid.DataContext = StationCollection[0];
+                            this.lvLines.DataContext = StationCollection[0].ListLines;
+                        }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show("משהו השתבש נסה שנית");
                 }
             }
           

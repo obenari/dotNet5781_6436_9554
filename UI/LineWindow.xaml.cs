@@ -23,11 +23,12 @@ namespace UI
     /// </summary>
     public partial class LineWindow : Window
     {
-        IBL bl = BLFactory.GetBL();
+        IBL bl;
         ObservableCollection<PO.BusLine> LinesCollection;
-        public LineWindow()
+        public LineWindow(IBL MyBL)
         {
             InitializeComponent();
+            bl=MyBL;
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
 
             LinesCollection =new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line=> Adapter.POBOAdapter(line)));
