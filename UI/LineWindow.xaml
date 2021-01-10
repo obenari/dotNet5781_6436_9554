@@ -8,35 +8,15 @@
         Title="LineWindow" Height="760" Width="1300" FontFamily="Franklin Gothic Heavy" >
     <Window.Resources>
         <Style TargetType="ListViewItem">
-            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
         <Style TargetType="DataGridColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
-
-        <DataTemplate x:Key="myDataTemplate" DataType="local:BO.InformationForStation">
-            <Grid x:Name="templateGrid"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutomationProperties.IsColumnHeader="True">
-                <Grid.ColumnDefinitions  >
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="118"/>
-                    <ColumnDefinition Width="118"/>
-                    <ColumnDefinition Width="118"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Name="tbNextStation" Grid.Column="0" Text="{Binding Path=NextStation}" Width="100"
-                        FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
-                <TextBlock x:Name="tbLastStation" Grid.Column="1" Text="{Binding Path=LastStation}" 
-                      Width="100"  FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
-
-                <TextBlock x:Name="tbFirtsStation" Grid.Column="2" Text="{Binding Path=FirstStation}" 
-                   Width="100"     FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
-                <TextBlock x:Name="tbLinenumber" Grid.Column="3" Text="{Binding Path=LineNumber}" 
-                   Width="100"     FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
-            </Grid>
-        </DataTemplate>
 
     </Window.Resources>
     <Grid x:Name="mainGrid">
-        <Grid x:Name="showGrid" Visibility="Visible">
+        <Grid x:Name="showGrid" Visibility="Collapsed">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -54,7 +34,7 @@
                     <DataGridTemplateColumn x:Name="lastStationColumn" Width="250"  Header="                תחנה אחרונה" MaxWidth="250" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding LastStation}" TextAlignment="Right"/>
+                                <TextBlock Text="{Binding LastStation}" TextAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -76,7 +56,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="70" Margin="0,0,35.333,77.667"   >
+            <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="70" Margin="0,0,35.333,77.667" Click="btnAdd_Click"   >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -90,7 +70,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-          
+
             <Grid x:Name="stationGrid" Visibility="Visible">
                 <ListView x:Name="lvStation" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0"
                  ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="544" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
@@ -112,11 +92,136 @@
                 <TextBlock HorizontalAlignment="Left" Width="200" Margin="55,65,190,0" TextWrapping="Wrap" Text="{Binding Path=Id}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
 
             </Grid>
-            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="287.333,46,0,0" VerticalAlignment="Top" Width="174" Height="29" SelectionChanged="areaComboBox_SelectionChanged" />
+            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="287.333,46,0,0" VerticalAlignment="Top" Width="174" Height="29" SelectionChanged="areaComboBox_SelectionChanged" >
+
+            </ComboBox>
             <Label Content="בחר איזור" Grid.Column="1" HorizontalAlignment="Left" Margin="499.333,49,0,0" VerticalAlignment="Top" Width="76"/>
-        
+
         </Grid>
         <Grid x:Name="addGrid" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
+                  Margin="0,159,67.333,169.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1"
+                  CanUserAddRows="False" IsReadOnly="True">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns >
+                    <DataGridTemplateColumn x:Name="nameColumn" Width="250"  Header="                 שם התחנה" MaxWidth="250" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" TextAlignment="Right"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="codeColumn" Width="75" Header="קוד"  MaxWidth="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Code}" TextAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBox x:Name="tbLineNumber" Grid.Column="1" HorizontalAlignment="Right" Height="18" Margin="0,63,169.333,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="39" PreviewKeyDown="textOnlyNumber"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,67,63.333,0" TextWrapping="Wrap" Text="הכנס מספר קו" VerticalAlignment="Top"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="בחר איזור" VerticalAlignment="Top" Margin="310.333,67,282.333,0"/>
+            <ComboBox x:Name="cbArea" Grid.Column="1" HorizontalAlignment="Left" Margin="203.333,67,0,0" VerticalAlignment="Top" Width="85" Height="18"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="108.333,161,0,0" TextWrapping="Wrap" Text="בחר אינדקס לתחנה" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="btnAddStation" Content=" הוסף תחנה לקו" Grid.Column="1" HorizontalAlignment="Left" Margin="113.333,231,0,0" VerticalAlignment="Top" Width="95" Click="btnAddStation_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnAddLineToBl" Content="הוסף קו" HorizontalAlignment="Left" Margin="24.333,20,0,0" VerticalAlignment="Top" Width="104" Height="38" Grid.Column="1" Click="btnAddLineToBl_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <ListView x:Name="lvLine" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0" Width="525"
+                 ItemsSource="{Binding}" Margin="55,132,37.667,90.667" FontSize="9" HorizontalContentAlignment="Right" BorderBrush="#FF060607">
+                <ListView.View >
+                    <GridView x:Name="LineGridview">
+                        <GridViewColumn Header="זמן נסיעה מתחנה קודמת" Width="120"   >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="templateGrid">
+                                        <Button x:Name="btnTime"   Content="עדכן זמן נסיעה"  Margin="0" VerticalAlignment="Center" Click="btnTime_Click"  >
+                                            <Button.Resources>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Setter Property="CornerRadius" Value="3"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Grid x:Name="updateTimeGrid" Visibility="Collapsed">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Grid.Column="0" Text="00:00:00"/>
+                                            <Button x:Name="btnUpdateTime" Width="30" Content="עדכן" Grid.Column="1" Click="btnUpdateTime_Click"/>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="מרחק מתחנה קודמת" Width="120" FrameworkElement.FlowDirection="RightToLeft" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="templateGrid">
+                                        <Button x:Name="btnTime"   Content="עדכן מרחק"  Margin="0" VerticalAlignment="Center" Click="btnTime_Click"  >
+                                            <Button.Resources>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Setter Property="CornerRadius" Value="3"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Grid x:Name="updateTimeGrid" Visibility="Collapsed">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Grid.Column="0" Text="00.00"/>
+                                            <Button x:Name="btnUpdateTime" Width="30" Content="עדכן" Grid.Column="1" Click="btnUpdateDistance_Click"/>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="שם התחנה" Width="165" DisplayMemberBinding="{Binding StationName}" FrameworkElement.FlowDirection="RightToLeft"   />
+                        <GridViewColumn Header="קוד"  Width="80" DisplayMemberBinding="{Binding StationCode}" FrameworkElement.FlowDirection="RightToLeft"   />
+                        <GridViewColumn Header=""  Width="25"  >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="btnRemoveStation" Margin="0" Background="White" Content="x" Foreground="#FFF81111" Width="11" FontFamily="SimSun-ExtB" FontSize="11" Click="btnRemoveStation_Click">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="50"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+            <TextBox x:Name="tbIndex" HorizontalAlignment="Left" Height="24" Margin="55,158"  TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="28" PreviewKeyDown="textOnlyNumber" Grid.Column="1"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label Content="הוסף תחנות מהרשימה" Grid.Column="1" HorizontalAlignment="Left" Margin="374.333,116,0,0" VerticalAlignment="Top"/>
+            <Label Content="תחנות הקו שנבחרו" HorizontalAlignment="Left" Margin="285,100,0,0" VerticalAlignment="Top"/>
 
         </Grid>
     </Grid>

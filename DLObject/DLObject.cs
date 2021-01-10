@@ -118,19 +118,22 @@ namespace DL
                 throw new BusLineNotFoundException(id);
             return line.Clone();
         }
-        public void AddLine(DO.Line line)//******************
+        public int AddLine(DO.Line line)//******************
         {
-            DO.Line oldLine = DataSource.ListLines.Find(item => item.Id == line.Id);
-            if (oldLine != null)//check if the oldLine alredy exist or deleted
-            {
-                if (oldLine.IsDeleted == true)//if the line is deleted, update the line
-                    oldLine.IsDeleted = false;
-                else//if the line is exist and not deleted,will thrown an Exception
-                    throw new BusLineNotFoundException(line.Id);
+            //DO.Line oldLine = DataSource.ListLines.Find(item => item.Id == line.Id);
+            //if (oldLine != null)//check if the oldLine alredy exist or deleted
+            //{
+            //    if (oldLine.IsDeleted == true)//if the line is deleted, update the line
+            //        oldLine.IsDeleted = false;
+            //    else//if the line is exist and not deleted,will thrown an Exception
+            //        throw new BusLineNotFoundException(line.Id);
 
-            }
-            else
+            //}
+            //else
+            line.Id = DO.Config.LineID;
                 DataSource.ListLines.Add(line.Clone());
+           return line.Id ;
+
         }
         public void UpdateLine(DO.Line line)
         {

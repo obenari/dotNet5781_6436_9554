@@ -49,9 +49,35 @@ namespace BL
         }
 
 
-        public void AddLine(Line line)
+        public int AddLine(Line line)
         {
-            throw new NotImplementedException();
+            //check if there is information about distance and time between all the stations
+            string stationWithoutInformation = "";
+            List<BO.LineStation> lineStations = line.Stations.ToList();
+            for (int i = 0; i < line.Stations.Count()-1; i++)
+            {
+                try
+                {
+                    dl.GetAdjacentStations(lineStations[i].stationCode, lineStations[i + 1].stationCode);
+                }
+                catch(DO.AdjacentStationsNotFoundException ex)
+                {
+                    stationWithoutInformation += lineStations[i].stationName + " " + lineStations[i + 1].stationName + "\n";
+                }
+            }
+            if(stationWithoutInformation=="")
+            {
+                throw new NotEnoughInformationException(stationWithoutInformation);
+            }
+            //now create DO.lineStation and add to dl
+            for (int i=0;i< lineStations.Count();i++)
+            {
+                DO.LineStation newLineStation=new DO.LineStation//******************************************************************************
+               // {
+                   // PrevStation=
+               // }
+            }
+            return 1;
         }
 
         public void DeleteLine(int id, int line)
@@ -374,7 +400,10 @@ namespace BL
                 //group all the lineStation by lineId, and than check if each group contatin the 
                 //station to remove, and than update the index
                 var lineGroup = from lineStation in dl.GetAllLineStations()
-                                group lineStation by lineStation.LineId;
+                                orderby lineStation.LineStationIndex
+                                group lineStation by lineStation.LineId ;
+                                
+                                
                 foreach (var item in lineGroup)
                 {
                     //get the lineStation to remove from the group( if it is exist)

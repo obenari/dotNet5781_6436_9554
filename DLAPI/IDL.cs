@@ -51,7 +51,7 @@ namespace DLAPI
         IEnumerable<Line> GetAllLines();
         IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
         Line GetLine(int id);
-        void AddLine(Line line);
+        int AddLine(Line line);
         void UpdateLine(Line line);
         void UpdateLine(int id, Action<Line> update); //method that knows to updt specific fields in Line
         void DeleteLine(int id);

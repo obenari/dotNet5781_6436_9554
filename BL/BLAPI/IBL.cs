@@ -44,7 +44,7 @@ namespace BLAPI
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GetAllLinesByArea(BO.Areas area);
         BO.Line GetLine(int id);
-        void AddLine(BO.Line line);
+        int AddLine(BO.Line line);
         void UpdateLine(BO.Line line);
         void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
         void DeleteLine(int id,int line);

@@ -74,6 +74,16 @@ namespace BO
         }
         public override string ToString() => base.ToString() + $", The bus: {Line} is already exist";
     }
+    public class NotEnoughInformationException : Exception
+    {
+        public NotEnoughInformationException() : base() { }
+        
+        public NotEnoughInformationException(string message) : base(message) { }
+        
+        public NotEnoughInformationException( Exception innerException, string message = "") : base(message, innerException) { }
+        
+       
+    }
     #endregion
     #region station
 

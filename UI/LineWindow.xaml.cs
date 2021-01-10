@@ -25,23 +25,26 @@ namespace UI
     {
         IBL bl;
         ObservableCollection<PO.BusLine> LinesCollection;
+        ObservableCollection<PO.Station> StationCollection;
+        PO.BusLine LineToAdd;
         public LineWindow(IBL MyBL)
         {
             InitializeComponent();
-            bl=MyBL;
+            bl = MyBL;
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
+            cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
 
-            LinesCollection =new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line=> Adapter.POBOAdapter(line)));
+            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
 
         }
 
         private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
-            LinesCollection= new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
+            BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
+            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
                 ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
-          lineDataGrid.DataContext = LinesCollection;
+            lineDataGrid.DataContext = LinesCollection;
 
         }
 
@@ -65,7 +68,7 @@ namespace UI
             {
                 try
                 {
-                    PO.BusLine lineToRemove= lineDataGrid.SelectedItem as BusLine;
+                    PO.BusLine lineToRemove = lineDataGrid.SelectedItem as BusLine;
                     bl.DeleteStation(lineToRemove.Id);
                     LinesCollection.Remove(lineToRemove);
                     if (stationGrid.DataContext == lineToRemove)
@@ -83,13 +86,165 @@ namespace UI
                         }
                     }
 
-                
-                }
-                catch
-                {
 
                 }
+                catch//in order the program will not fail due to exception that the engeneering not thougt about it
+                {
+                    MessageBox.Show("משהו השתבש נסה שנית");
+                }
             }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            showGrid.Visibility = Visibility.Collapsed;
+            addGrid.Visibility = Visibility.Visible;
+            StationCollection = new ObservableCollection<PO.Station>(
+                bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
+            stationDataGrid.DataContext = StationCollection;
+            LineToAdd = new PO.BusLine
+            {
+                Stations = new ObservableCollection<PO.LineStation>()
+            };
+            lvLine.DataContext = LineToAdd.Stations;
+            cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
+        }
+
+        private void textOnlyNumber(object sender, KeyEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            if (text == null) return;
+            if (e == null) return;
+
+            //allow get out of the text box
+            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
+                return;
+
+            //allow list of system keys (add other key here if you want to allow)
+            if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
+                e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
+             || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
+                return;
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+
+            //allow control system keys
+            if (Char.IsControl(c)) return;
+
+            //allow digits (without Shift or Alt)
+            if (Char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return; //let this key be written inside the textbox
+
+            //forbid letters and signs (#,$, %, ...)
+            e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
+            return;
+
+
+        }
+
+
+
+        private void btnAddStation_Click(object sender, RoutedEventArgs e)
+        {
+            if (stationDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("לא נבחרה תחנה");
+                return;
+            }
+            if (int.Parse(tbIndex.Text) - 1 > LineToAdd.Stations.Count())
+            {
+                MessageBox.Show("לא ניתן לבחור אינדקס החורג ממספר התחנות בקו");
+                return;
+            }
+            else
+            {
+                PO.Station stationToAdd = stationDataGrid.SelectedItem as PO.Station;
+                PO.LineStation newLineStation = new PO.LineStation
+                {
+                    StationCode = stationToAdd.Code,
+                    StationName = stationToAdd.Name,
+                };
+                LineToAdd.Stations.Insert(int.Parse(tbIndex.Text) - 1, newLineStation);//the user start to insert index from 1, 
+                //therefor we insert the new lineStation in the index minus 1
+            }
+        }
+
+        private void btnRemoveStation_Click(object sender, RoutedEventArgs e)
+        {
+            PO.LineStation lineStationToRemove = (sender as Button).DataContext as PO.LineStation;
+            LineToAdd.Stations.Remove(lineStationToRemove);
+        }
+
+        private void btnUpdateTime_Click(object sender, RoutedEventArgs e)
+        {
+
+            TimeSpan newTime;
+            string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
+            bool succes = TimeSpan.TryParse(help, out newTime);
+            if (succes == false)
+            {
+                MessageBox.Show("הפורמט שהוכנס אינו תקין");
+                return;
+            }
+            PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
+            lineStation.Time = newTime;
+            ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
+            //get the button of update and meke it visible
+            (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
+
+        }
+
+        private void btnTime_Click(object sender, RoutedEventArgs e)
+        {
+            // get the button of update and meke it collapsed
+            ((sender as Button).Parent as Grid).Children[0].Visibility = Visibility.Collapsed;
+            ((sender as Button).Parent as Grid).Children[1].Visibility = Visibility.Visible;
+
+        }
+
+        private void btnUpdateDistance_Click(object sender, RoutedEventArgs e)
+        {
+
+            double newDistance;
+            string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
+            bool succes = double.TryParse(help, out newDistance);
+            if (succes == false)
+            {
+                MessageBox.Show("הפורמט שהוכנס אינו תקין");
+                return;
+            }
+            PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
+            lineStation.Distance = newDistance;
+            ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
+            //get the button of update and meke it visible
+            (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
+
+        }
+
+        private void btnAddLineToBl_Click(object sender, RoutedEventArgs e)
+        {
+            if(LineToAdd.Stations.Count<2)
+            {
+                MessageBox.Show("קו אוטובוס צריך להכיל לפחות שתי תחנות");
+                return;
+            }
+            LineToAdd.Area = (BO.Areas)(cbArea.SelectedItem);
+            LineToAdd.LineNumber = int.Parse(tbLineNumber.Text);
+            LineToAdd.LastStation = LineToAdd.Stations[LineToAdd.Stations.Count() - 1].StationName;
+            LineToAdd.FirstStation = LineToAdd.Stations[0].StationName;
+            BO.Line boLineToAdd = Adapter.BOPOAdapter(LineToAdd);
+            try
+            {
+                bl.AddLine(boLineToAdd);
+            }
+            catch(Exception ex)//if there is no information about distance and time between all the lineSation,
+            { //bl will thrown an exception
+                MessageBox.Show(ex.Message);
+
+            }
+           
+
         }
     }
 }

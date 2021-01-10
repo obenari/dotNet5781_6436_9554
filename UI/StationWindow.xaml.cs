@@ -162,7 +162,7 @@ namespace UI
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception ex)//in order the program will not fail due to exception that the engeneering not thougt about it
                 {
                     MessageBox.Show("משהו השתבש נסה שנית");
                 }
