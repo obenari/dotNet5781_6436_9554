@@ -112,7 +112,7 @@
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
+                    </Style> 
                 </Button.Resources>
             </Button>
             <Label Content="[34.3-35.5]" HorizontalAlignment="Left" Margin="359,184,0,0" VerticalAlignment="Top" Width="72" FontSize="12" FontFamily="David" RenderTransformOrigin="0.984,0.614"/>
