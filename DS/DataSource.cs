@@ -2074,7 +2074,7 @@ new Station
           Distance = 0.670887559572589,
           Time = new TimeSpan(0, 0, 47),
            IsDeleted = false
-      },
+      }, 
       new AdjacentStations
       {
           Station1 = 48,
