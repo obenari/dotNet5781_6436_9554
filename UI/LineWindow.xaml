@@ -64,7 +64,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="70" Margin="269.333,0,277.333,77.667" Click="btnUpdate_Click"   >
+            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="102" Height="70"  Click="btnUpdate_Click" Margin="272.8,0,273.6,75.4"   >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
