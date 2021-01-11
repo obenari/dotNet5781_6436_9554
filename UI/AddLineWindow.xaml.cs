@@ -19,111 +19,29 @@ using System.Windows.Shapes;
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for LineWindow.xaml
+    /// Interaction logic for AddLineWindow.xaml
     /// </summary>
-    public partial class LineWindow : Window
+    public partial class AddLineWindow : Window
     {
-        IBL bl;
+        PO.BusLine LineToAdd = new BusLine { Stations = new ObservableCollection<PO.LineStation>()};
         ObservableCollection<PO.BusLine> LinesCollection;
         ObservableCollection<PO.Station> StationCollection;
-        PO.BusLine LineToAdd;
-        public LineWindow(IBL MyBL)
+
+        IBL bl;
+        public AddLineWindow(IBL myBl, ObservableCollection<PO.BusLine> lines)
         {
             InitializeComponent();
-            bl = MyBL;
-            areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
-            areaComboBox.SelectedIndex = (int)BO.Areas.Jerusalem;
+            bl = myBl;
             cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
             cbArea.SelectedIndex = (int)BO.Areas.Jerusalem;
-            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
-            lineDataGrid.DataContext = LinesCollection;
+            LinesCollection = lines;
+          //  addGrid.Visibility = Visibility.Visible;
+            StationCollection = new ObservableCollection<PO.Station>(
+                bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
+            stationDataGrid.DataContext = StationCollection;
+            lvLine.DataContext = LineToAdd.Stations;
 
         }
-
-        private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
-            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
-                ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
-            lineDataGrid.DataContext = LinesCollection;
-
-        }
-
-        private void lineDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            PO.BusLine busLine = lineDataGrid.SelectedItem as PO.BusLine;
-            this.stationGrid.DataContext = busLine;
-            lvStation.DataContext = busLine.Stations;
-        }
-
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
-        {
-            if (lineDataGrid.SelectedItem == null)
-            {
-                MessageBox.Show("לא נבחר קו");
-                return;
-            }
-            int lineNum = (lineDataGrid.SelectedItem as BusLine).LineNumber;
-
-            if (MessageBox.Show(string.Format("?קו מספר  " + lineNum + " עומד להימחק אתה בטוח"), "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    PO.BusLine lineToRemove = lineDataGrid.SelectedItem as BusLine;
-                    bl.DeleteStation(lineToRemove.Id);
-                    LinesCollection.Remove(lineToRemove);
-                    if (stationGrid.DataContext == lineToRemove)
-                    {
-                        if (LinesCollection.Count != 0)
-                        {
-                            this.stationGrid.DataContext = LinesCollection[0];
-                            this.lvStation.DataContext = LinesCollection[0].Stations;
-                        }
-                        else
-                        {
-                            this.stationGrid.DataContext = null;
-                            this.lvStation.DataContext = null;
-
-                        }
-                    }
-
-
-                }
-                catch//in order the program will not fail due to exception that the engeneering not thougt about it
-                {
-                    MessageBox.Show("משהו השתבש נסה שנית");
-                }
-            }
-        }
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            if (lineDataGrid.SelectedItem == null)
-            {
-                MessageBox.Show("לא נבחר קו");
-                return;
-            }
-            PO.BusLine lineToUpdate  = lineDataGrid.SelectedItem as BusLine;
-            UpdateLineWindow lineWindow = new UpdateLineWindow(bl, lineToUpdate);
-            lineWindow.ShowDialog();
-        }
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            AddLineWindow addLineWindow = new AddLineWindow(bl, LinesCollection);
-            addLineWindow.ShowDialog();
-            //showGrid.Visibility = Visibility.Collapsed;
-            //addGrid.Visibility = Visibility.Visible;
-            //StationCollection = new ObservableCollection<PO.Station>(
-            //    bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
-            //stationDataGrid.DataContext = StationCollection;
-            //LineToAdd = new PO.BusLine
-            //{
-            //    Stations = new ObservableCollection<PO.LineStation>()
-            //};
-            //lvLine.DataContext = LineToAdd.Stations;
-            //cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
-
-        }
-
         private void textOnlyNumber(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -156,9 +74,6 @@ namespace UI
 
 
         }
-
-
-
         private void btnAddStation_Click(object sender, RoutedEventArgs e)
         {
             if (stationDataGrid.SelectedItem == null)
@@ -183,13 +98,11 @@ namespace UI
                 //therefor we insert the new lineStation in the index minus 1
             }
         }
-
         private void btnRemoveStation_Click(object sender, RoutedEventArgs e)
         {
             PO.LineStation lineStationToRemove = (sender as Button).DataContext as PO.LineStation;
             LineToAdd.Stations.Remove(lineStationToRemove);
         }
-
         private void btnUpdateTime_Click(object sender, RoutedEventArgs e)
         {
 
@@ -208,7 +121,6 @@ namespace UI
             (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
         }
-
         private void btnTime_Click(object sender, RoutedEventArgs e)
         {
             // get the button of update and meke it collapsed
@@ -216,7 +128,6 @@ namespace UI
             ((sender as Button).Parent as Grid).Children[1].Visibility = Visibility.Visible;
 
         }
-
         private void btnUpdateDistance_Click(object sender, RoutedEventArgs e)
         {
 
@@ -235,7 +146,6 @@ namespace UI
             (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
         }
-
         private void btnAddLineToBl_Click(object sender, RoutedEventArgs e)
         {
             if (LineToAdd.Stations.Count < 2)
@@ -256,7 +166,8 @@ namespace UI
             BO.Line boLineToAdd = Adapter.BOPOAdapter(LineToAdd);
             try
             {
-                bl.AddLine(boLineToAdd);
+                LineToAdd.Id = bl.AddLine(boLineToAdd);
+                LinesCollection.Add(LineToAdd);
                 this.Close();
             }
             catch (BO.NotEnoughInformationException ex)//if there is no information about distance and time between all the lineSation,
@@ -266,14 +177,12 @@ namespace UI
                 str += ex.Message;
                 MessageBox.Show(str);
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 MessageBox.Show("משהו השתבש נסה שנית");
             }
 
         }
-
-
     }
 }
-//  Color="#FFCAF7EC"

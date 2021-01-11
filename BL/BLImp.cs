@@ -54,31 +54,92 @@ namespace BL
             //check if there is information about distance and time between all the stations
             string stationWithoutInformation = "";
             List<BO.LineStation> lineStations = line.Stations.ToList();
-            for (int i = 0; i < line.Stations.Count()-1; i++)
+            TimeSpan zeroTime = new TimeSpan(0, 0, 0);
+            for (int i = 1; i < line.Stations.Count(); i++)
             {
                 try
                 {
-                    dl.GetAdjacentStations(lineStations[i].stationCode, lineStations[i + 1].stationCode);
+                    if (lineStations[i].Time == zeroTime && lineStations[i].Distance == 0)//if the user dont give information about the distance and time
+                        //check if there is information about it ,in the system
+                        dl.GetAdjacentStations(lineStations[i].stationCode, lineStations[i - 1].stationCode);
                 }
-                catch(DO.AdjacentStationsNotFoundException ex)
+                catch (DO.AdjacentStationsNotFoundException ex)
                 {
-                    stationWithoutInformation += lineStations[i].stationName + " " + lineStations[i + 1].stationName + "\n";
+                    stationWithoutInformation += lineStations[i].stationName + ", " + lineStations[i - 1].stationName + "\n";
                 }
             }
-            if(stationWithoutInformation=="")
+            if (stationWithoutInformation != "")//it means that we  dont have information about all the station
             {
                 throw new NotEnoughInformationException(stationWithoutInformation);
             }
-            //now create DO.lineStation and add to dl
-            for (int i=0;i< lineStations.Count();i++)
+            //now add the line to dl
+            DO.Line lineToadd = new DO.Line
             {
-                DO.LineStation newLineStation=new DO.LineStation//******************************************************************************
-               // {
-                   // PrevStation=
-               // }
+                Area = (DO.Areas)(line.Area),
+                LineNumber = line.LineNumber,
+                FirstStation = lineStations[0].stationCode,
+                LastStation = lineStations[lineStations.Count() - 1].stationCode,
+                IsDeleted = false
+            };
+            line.Id = dl.AddLine(lineToadd);
+            //now create DO.lineStation and add to dl
+            DO.LineStation firstLineStation = new DO.LineStation
+            {//the first station
+                IsDeleted = false,
+                PrevStation = null,
+                NextStation = lineStations[1].stationCode,
+                stationCode = lineStations[0].stationCode,
+                LineId = line.Id,
+                LineStationIndex = 0
+            };
+            dl.AddLineStation(firstLineStation);
+            //the last station
+            DO.LineStation lastLineStation = new DO.LineStation
+            {//the first station
+                IsDeleted = false,
+                PrevStation = lineStations[lineStations.Count() - 2].stationCode,
+                NextStation = null,
+                stationCode = lineStations[lineStations.Count() - 1].stationCode,
+                LineId = line.Id,
+                LineStationIndex = lineStations.Count() - 1
+            };
+            dl.AddLineStation(lastLineStation);
+            for (int i = 1; i < lineStations.Count() - 1; i++)
+            {
+                DO.LineStation newLineStation = new DO.LineStation
+                {
+                    PrevStation = lineStations[i - 1].stationCode,
+                    NextStation = lineStations[i + 1].stationCode,
+                    stationCode = lineStations[i].stationCode,
+                    LineId = line.Id,
+                    LineStationIndex = i,
+                    IsDeleted = false,
+                };
+                dl.AddLineStation(newLineStation);
             }
-            return 1;
+            // now create or update the djacentStations
+            for (int i = 1; i < lineStations.Count(); i++)
+            {
+                if (lineStations[i].Time != zeroTime && lineStations[i].Distance != 0)//if the user add or update the distance
+                {
+                    DO.AdjacentStations ads = new DO.AdjacentStations
+                    {
+                        Distance = lineStations[i].Distance,
+                        Time = lineStations[i].Time,
+                        Station1 = lineStations[i].stationCode,
+                        Station2 = lineStations[i - 1].stationCode,
+                        IsDeleted = false
+                    };
+                    if (dl.AdjacentStationsIsExist(lineStations[i].stationCode, lineStations[i - 1].stationCode))
+                        dl.UpdateAdjacentStations(ads);
+                    else
+                        dl.AddAdjacentStations(ads);
+                }
+            }
+            return line.Id;
         }
+          
+        
 
         public void DeleteLine(int id, int line)
         {
@@ -112,16 +173,106 @@ namespace BL
             DO.Line line = dl.GetLine(id);
             return LineDoBoAdapter(line);
         }
-
-        public void UpdateLine(Line line)
+        //*******************************************צריך עדכון, לא להוסיף את כל התחנות  מחדש
+        public void UpdateLine(Line line)//it is disable to update the line id, line number and area
         {
-            throw new NotImplementedException();
+            //check if there is information about distance and time between all the stations
+            string stationWithoutInformation = "";
+            List<BO.LineStation> lineStations = line.Stations.ToList();
+            TimeSpan zeroTime = new TimeSpan(0, 0, 0);
+            for (int i = 1; i < line.Stations.Count(); i++)
+            {
+                try
+                {
+                    if (lineStations[i].Time == zeroTime && lineStations[i].Distance == 0)//if the user dont give information about the distance and time
+                        //check if there is information about it ,in the system
+                        dl.GetAdjacentStations(lineStations[i].stationCode, lineStations[i - 1].stationCode);
+                }
+                catch (DO.AdjacentStationsNotFoundException ex)
+                {
+                    stationWithoutInformation += lineStations[i].stationName + ", " + lineStations[i - 1].stationName + "\n";
+                }
+            }
+            if (stationWithoutInformation != "")//it means that we  dont have information about all the station
+            {
+                throw new NotEnoughInformationException(stationWithoutInformation);
+            }
+            //DO.Line lineToUpdate = new DO.Line//the last or first station maybe changed, so update the line in DO
+            //{
+            //    Area = (DO.Areas)(line.Area),
+            //    LineNumber = line.LineNumber,
+            //    FirstStation = lineStations[0].stationCode,
+            //    LastStation = lineStations[lineStations.Count() - 1].stationCode,
+            //    IsDeleted = false
+            //};
+
+            //the last or first station maybe changed, so update the line in DO
+            dl.UpdateLine(line.Id, lineU =>  
+            {
+                lineU.LastStation = lineStations[lineStations.Count() - 1].stationCode;
+                lineU.FirstStation = lineStations[0].stationCode;
+            });
+
+            //now create DO.lineStation and add to dl
+            DO.LineStation firstLineStation = new DO.LineStation
+            {//the first station
+                IsDeleted = false,
+                PrevStation = null,
+                NextStation = lineStations[1].stationCode,
+                stationCode = lineStations[0].stationCode,
+                LineId = line.Id,
+                LineStationIndex = 0
+            };
+            dl.AddLineStation(firstLineStation);
+            //the last station
+            DO.LineStation lastLineStation = new DO.LineStation
+            {//the first station
+                IsDeleted = false,
+                PrevStation = lineStations[lineStations.Count() - 2].stationCode,
+                NextStation = null,
+                stationCode = lineStations[lineStations.Count() - 1].stationCode,
+                LineId = line.Id,
+                LineStationIndex = lineStations.Count() - 1
+            };
+            dl.AddLineStation(lastLineStation);
+            for (int i = 1; i < lineStations.Count() - 1; i++)
+            {
+                DO.LineStation newLineStation = new DO.LineStation
+                {
+                    PrevStation = lineStations[i - 1].stationCode,
+                    NextStation = lineStations[i + 1].stationCode,
+                    stationCode = lineStations[i].stationCode,
+                    LineId = line.Id,
+                    LineStationIndex = i,
+                    IsDeleted = false,
+                };
+                dl.AddLineStation(newLineStation);
+            }
+            // now create or update the djacentStations
+            for (int i = 1; i < lineStations.Count(); i++)
+            {
+                if (lineStations[i].Time != zeroTime && lineStations[i].Distance != 0)//if the user add or update the distance
+                {
+                    DO.AdjacentStations ads = new DO.AdjacentStations
+                    {
+                        Distance = lineStations[i].Distance,
+                        Time = lineStations[i].Time,
+                        Station1 = lineStations[i].stationCode,
+                        Station2 = lineStations[i - 1].stationCode,
+                        IsDeleted = false
+                    };
+                    if (dl.AdjacentStationsIsExist(lineStations[i].stationCode, lineStations[i - 1].stationCode))
+                        dl.UpdateAdjacentStations(ads);
+                    else
+                        dl.AddAdjacentStations(ads);
+                }
+            }
         }
 
-        public void UpdateLine(int id, Action<Line> update)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateLine(int id, Action<Line> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
         #endregion
         #region AdjacentStations
         private BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations stnA)
@@ -166,6 +317,7 @@ namespace BL
                 DO.AdjacentStations ads = dl.GetAdjacentStations(doLineStation.stationCode, prevStation.stationCode);
                 boLineStation.Distance = ads.Distance;
                 boLineStation.Time = ads.Time;
+
             }
             return boLineStation;
         }

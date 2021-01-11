@@ -204,13 +204,14 @@ namespace DL
         public void AddLineStation(LineStation lineStation)
         {
             DO.LineStation oldLineStation = DataSource.ListLineStations.
-                Find(item => item.stationCode == lineStation.stationCode && item.LineId == lineStation.LineId);
+                Find(item => item.stationCode == lineStation.stationCode && item.LineId == lineStation.LineId
+                && item.LineStationIndex == lineStation.LineStationIndex);
             if (oldLineStation != null)//check if the oldLineStation alredy exist or deleted
             {
                 if (oldLineStation.IsDeleted == true)//if the lineStation is deleted, update the line
                     oldLineStation.IsDeleted = false;
                 else//if the lineStation is exist and not deleted,will thrown an Exception
-                    throw new LineStationNotFoundException(lineStation.stationCode, lineStation.LineId);
+                    throw new DuplicateLineStationException(lineStation.stationCode, lineStation.LineId);
 
             }
             else
@@ -407,9 +408,10 @@ namespace DL
         public void UpdateAdjacentStations(AdjacentStations adjacentStations)
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == adjacentStations.Station1
-            && item.Station2 == adjacentStations.Station2
-            && item.IsDeleted == false);
-            if (oldAdjacentStations != null)//if the oldAdjacentStations is exist
+            && item.Station2 == adjacentStations.Station2 || item.Station2 == adjacentStations.Station1
+            && item.Station1 == adjacentStations.Station2);
+         
+            if (oldAdjacentStations != null&&oldAdjacentStations.IsDeleted==false)//if the oldAdjacentStations is exist
             {
                 DataSource.ListTwoAdjacentStations.Remove(oldAdjacentStations);
                 DataSource.ListTwoAdjacentStations.Add(oldAdjacentStations.Clone());
@@ -421,9 +423,9 @@ namespace DL
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.
                 Find(item => item.Station1 == code && item.Station2 == code2
-                && item.IsDeleted == false);
+                || item.Station2 == code && item.Station1 == code2);
 
-            if (oldAdjacentStations != null)//if the oldAdjacentStations is exist
+            if (oldAdjacentStations != null&&oldAdjacentStations.IsDeleted==false)//if the oldAdjacentStations is exist
             {
                 update(oldAdjacentStations);
             }
@@ -443,6 +445,14 @@ namespace DL
                 throw new AdjacentStationsNotFoundException(code, code2);
 
         }
+      public  bool AdjacentStationsIsExist(int code, int code2)
+        {
+            DO.AdjacentStations ads = DataSource.ListTwoAdjacentStations.Find(ad => ad.Station1 == code && ad.Station2 == code2 || ad.Station2 == code && ad.Station1 == code2);
+            if (ads == null || ads.IsDeleted == true)
+                return false;
+            return true;
+        }
+
         #endregion
     }
 }

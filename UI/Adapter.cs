@@ -63,7 +63,7 @@ namespace UI
             boLine.Area = poLine.Area;
             boLine.FirstStationName = poLine.FirstStation;
             boLine.LastStationName = poLine.LastStation;
-            boLine.Id = boLine.Id;
+            boLine.Id = poLine.Id;
             boLine.Stations = new List<BO.LineStation>(poLine.Stations.ToList().ConvertAll(lstn => Adapter.BOPOAdapter(lstn)));
             return boLine;
         }

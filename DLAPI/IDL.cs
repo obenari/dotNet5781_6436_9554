@@ -24,6 +24,7 @@ namespace DLAPI
         void UpdateAdjacentStations(AdjacentStations station);
         void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update); //method that knows to updt specific fields in AdjacentStations
        void DeleteAdjacentStations(int code, int code2);
+        bool AdjacentStationsIsExist(int code, int code2);
         #endregion
 
 
