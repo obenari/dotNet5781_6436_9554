@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adapter.cs" />
+    <Compile Include="AddLineWindow.xaml.cs">
+      <DependentUpon>AddLineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineWindow.xaml.cs">
       <DependentUpon>LineWindow.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,13 @@
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateLineWindow.xaml.cs">
+      <DependentUpon>UpdateLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,6 +143,9 @@
       <Project>{16d9b12e-c368-42bb-b144-fbdd6c7847d4}</Project>
       <Name>BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -79,7 +79,7 @@
                 </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAdd" Content="הוסף תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,112,19.667,0" Click="btnAdd_Click" >
+        <Button x:Name="btnAdd" Content="הוסף תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,112,19.667,0" Click="btnAdd_Click" Background="#FFA4FCB9" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -120,6 +120,9 @@
 
         </Grid>
         <Grid x:Name="lineGrid" Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Grid.Background>
             <ListView x:Name="lvLines" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0"
                  ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="544" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
                 <ListView.View >

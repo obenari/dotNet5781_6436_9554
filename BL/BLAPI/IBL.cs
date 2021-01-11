@@ -46,7 +46,7 @@ namespace BLAPI
         BO.Line GetLine(int id);
         int AddLine(BO.Line line);
         void UpdateLine(BO.Line line);
-        void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
+      //  void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
         void DeleteLine(int id,int line);
         #endregion
 
