@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-         Title="BusWindow" WindowState="Maximized" >
-    <!--Height="500" Width="680"-->
+         Title="BusWindow" WindowState="Maximized"  Height="680" Width="1300" FontFamily="Franklin Gothic Heavy" >
+
     <Window.Resources>
         <!--<local:StatusConverter x:Key="StatusConverter"/>-->
 
@@ -68,32 +68,32 @@
             </ListView.View>-->
 
         </ListView>
-        <Button x:Name="btnAddBus" Content="הוסף אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Click="btnAddBus_Click" Height="64" Margin="1107,134,41.333,360">
+        <Button x:Name="btnAddBus" Content="הוסף אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Top" Width="130" Click="btnAddBus_Click" Height="64" Margin="0,120,25,0">
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnRemove" Content="מחק אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Height="64" Margin="1107,240,41.333,254" Click="btnRemove_Click">
+        <Button x:Name="btnRemove" Content="מחק אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,0,25,40" Click="btnRemove_Click">
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,6.4,0,-8.6" Grid.Row="1">
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="100" Width="271"  Grid.Row="1">
             <Label.Background>
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,3.4,0.6,-8.6" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="100"  Width="271"  RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -106,15 +106,48 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Button x:Name="btnUpdate" Content="עדכן אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Height="64" Margin="1111,336,37.6,157.6" Click="btnUpdate_Click" >
+        <!--<Button x:Name="btnUpdate" Content="עדכן אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,170,25,0" Click="btnUpdate_Click" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
-        </Button>
+        </Button>-->
+        <Grid x:Name="busDetailsGrid"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="250" Width="360" Margin="0,0,195,0">
+
+            <Grid x:Name="grid1" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="250" Width="360" Background="#FFD5EFD9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content=": כמות הדלק במיכל" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="amountOfFuelLeftTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+                <Label Content=":מספר רישוי" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="appropriateFormatLicenseNumberTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding License, Mode=OneWay}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+                <Label Content=":תאריך טיפול אחרון" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="dateOftreatmentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding DateOfTreatment , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+                <Label Content=":קילומטראז" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="kilometerTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding TotalKms, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+                <Label Content=":קילומטראז' מהטיפול האחרון" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="kilometerFromTheLastTreatmentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding TotalKmsFromLastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+                <Label Content=":סטטוס" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="myStateTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False" Background="White"/>
+                <Label Content=":תאריך ייצור" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+                <TextBox x:Name="startOfActivityTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfWork, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            </Grid>
+        </Grid>
+        <Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,120,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
     </Grid>
 </Window>

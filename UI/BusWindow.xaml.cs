@@ -82,8 +82,7 @@ namespace UI
         {
             var item = lvBus.SelectedItem;
             Bus bus = item as Bus;
-            ShowBusWindow dr = new ShowBusWindow(bus);
-            dr.ShowDialog();
+            busDetailsGrid.DataContext = bus;
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)

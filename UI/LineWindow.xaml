@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="LineWindow"  Height="760" Width="1300"  FontFamily="Franklin Gothic Heavy" >
-   
+        Title="LineWindow"  WindowState="Maximized" FontFamily="Franklin Gothic Heavy" >
+    <!--Height="760" Width="1300"-->
     <Window.Resources>
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -76,7 +76,7 @@
                     <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="102" Height="70"  Click="btnUpdate_Click" Margin="252.8,0,291.6,89.4"   >
+            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnUpdate_Click" Margin="0,0,0,93.4"   >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -86,7 +86,7 @@
                     <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnRemove_Click" Margin="26.8,0,0,89.4" >
+            <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnRemove_Click" Margin="26.8,0,0,93.4" >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -131,7 +131,7 @@
 
             </ComboBox>
             <Label Content="בחר איזור" Grid.Column="1" HorizontalAlignment="Left" Margin="499.333,49,0,0" VerticalAlignment="Top" Width="76"/>
-            <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,645,0,-9.6">
+            <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="271" Height="92" >
                 <Label.Background>
                     <ImageBrush ImageSource="bus.jpg"/>
                 </Label.Background>
@@ -264,7 +264,7 @@
             <Label Content="תחנות הקו שנבחרו" HorizontalAlignment="Left" Margin="285,100,0,0" VerticalAlignment="Top"/>
 
         </Grid>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,640,8.6,-7.6" RenderTransformOrigin="0.5,0.5">
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="271" Height="92"  RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
