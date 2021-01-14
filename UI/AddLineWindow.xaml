@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="AddLineWindow" Width="1300" Height="680">
+        Title="AddLineWindow" WindowState="Maximized">
+    <!--Width="1300" Height="680"-->
     <Window.Resources>
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>

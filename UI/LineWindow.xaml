@@ -37,7 +37,7 @@
                    Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
                 </DataGrid.Resources>
                 <DataGrid.Background>
-                    <ImageBrush ImageSource="egged_logo.jpg"/>
+                    <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.5"/>
                 </DataGrid.Background>
                 <DataGrid.Columns >
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-         Title="BusWindow" Width="1300" Height="680" >
+         Title="BusWindow" WindowState="Maximized" >
     <!--Height="500" Width="680"-->
     <Window.Resources>
         <!--<local:StatusConverter x:Key="StatusConverter"/>-->
