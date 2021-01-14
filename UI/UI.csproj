@@ -173,5 +173,8 @@
   <ItemGroup>
     <Resource Include="egged_logo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="add.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

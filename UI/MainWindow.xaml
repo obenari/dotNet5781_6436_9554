@@ -7,11 +7,57 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
     <Grid>
-        <PasswordBox HorizontalAlignment="Center"  BorderBrush="Black" BorderThickness="3" VerticalAlignment="Center" Margin="122,243,121.333,142.667" Width="250" Height="35" Background="#FFFAF8F8" />
-        <Label Content="Password:" FontSize="12" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="197,211,157.333,177.667" Height="32" Width="139"/>
-        <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="250" Margin="122,142,121.333,255.667" BorderThickness="1" BorderBrush="Black" Background="#FFF2EFEF"/>
-        <Label Content="User Name:" FontSize="12" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="198,97,195.333,287.667" Height="36" Width="100"/>
-        <Button Content="LOGIN" HorizontalAlignment="Left" Margin="203,326,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
+        <PasswordBox HorizontalAlignment="Center"  BorderBrush="Black" BorderThickness="3" VerticalAlignment="Center" Margin="122,209,121.6,176" Width="250" Height="35" Background="#FFFAF8F8" />
+        <Label Content=":סיסמא" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="223,174,131.6,214" Height="32" Width="139" FontFamily="Franklin Gothic Heavy"/>
+        <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="250" Margin="122,108,121.6,289" BorderThickness="1" BorderBrush="Black" Background="#FFF2EFEF"/>
+        <Label Content=":שם משתמש" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="203,70,182.6,314" Height="36" Width="108" FontFamily="Franklin Gothic Heavy"/>
+        <Button Content="LOGIN" HorizontalAlignment="Left" Margin="203,287,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="171" Margin="0,350,0,-5">
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,640,-791.4,-318" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="185" Margin="0,349,-5.4,-1" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+            </LinearGradientBrush>
+        </Grid.Background>
     </Grid>
 </Window>

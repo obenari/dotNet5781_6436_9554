@@ -48,8 +48,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView x:Name="lvBus"  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="670"
-          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}" MouseDoubleClick="lvBus_MouseDoubleClick_1"
-                  >
+          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}" MouseDoubleClick="lvBus_MouseDoubleClick_1">
             <ListView.Background>
                 <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
             </ListView.Background>
@@ -73,18 +72,28 @@
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
         </Button>
         <Button x:Name="btnRemove" Content="מחק אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Height="64" Margin="1107,240,41.333,254" Click="btnRemove_Click">
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
         </Button>
-        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,0,0,-2.333" Grid.Row="1">
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,6.4,0,-8.6" Grid.Row="1">
             <Label.Background>
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,555,0.333,-2.333" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,3.4,0.6,-8.6" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -97,5 +106,15 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
+        <Button x:Name="btnUpdate" Content="עדכן אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Height="64" Margin="1111,336,37.6,157.6" Click="btnUpdate_Click" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

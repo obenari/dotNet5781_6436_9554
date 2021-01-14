@@ -109,6 +109,11 @@ namespace UI
             }
 
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         ///// <summary>
         ///// this func create a thread and send the bus to driving
         /////we are used in BackgroundWorker because this is the most match to use with wpf

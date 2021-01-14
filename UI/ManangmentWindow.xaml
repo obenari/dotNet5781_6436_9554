@@ -5,29 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="ManangmentWindow" WindowState="Maximized" d:DesignWidth="835" d:DesignHeight="562.667">
+        Title="ManangmentWindow" Width="1300" Height="680" d:DesignWidth="835" d:DesignHeight="562.667">
     <Grid x:Name="MainGrid">
-        <Button x:Name="btnStation" Content="תחנת אוטובוס" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnStation_Click" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="btnStation" Content="ניהול תחנות" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Click="btnStation_Click" Margin="273,203,279.8,167.8" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+            <Button.Background>
+                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+            </Button.Background>
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
-           </Button.Resources>
+            </Button.Resources>
         </Button>
-        <Button x:Name="btnBus" Content="אוטובוסים" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnBus_Click" >
+        <Button x:Name="btnBus" Content="ניהול אוטובוסים&#xD;&#xA;" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162"  Click="btnBus_Click" Margin="0,201,1.8,169.8" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+            <Button.Background>
+                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+            </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnLine" Content="קווי אוטובוס" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnLine_Click"  >
+        <Button x:Name="btnLine" Content=" ניהול קווי אוטובוס" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Click="btnLine_Click" Margin="-5,203,0,167.8" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+            <Button.Background>
+                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+            </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Button.Resources>
         </Button>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="271" Margin="0,525,0,0.4">
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="281" Margin="0,518,1.6,-3.6" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
 
 
     </Grid>

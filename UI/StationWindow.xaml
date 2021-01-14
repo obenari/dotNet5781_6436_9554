@@ -37,16 +37,11 @@
     </Window.Resources>
     <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.Background>
-            <ImageBrush ImageSource="bus.jpg" AlignmentX="Left" AlignmentY="Bottom" Stretch="None">
-                <ImageBrush.RelativeTransform>
-                    <TransformGroup>
-                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
-                        <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
-                        <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ImageBrush.RelativeTransform>
-            </ImageBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+            </LinearGradientBrush>
         </Grid.Background>
 
         <Grid.ColumnDefinitions>
@@ -55,8 +50,9 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
                   Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick"
-                  CanUserAddRows="False" IsReadOnly="True" Height="575">
+                  CanUserAddRows="False" IsReadOnly="True" Height="575" Background="{x:Null}">
             <DataGrid.Resources>
+
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
             </DataGrid.Resources>
@@ -91,14 +87,20 @@
                 </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAdd" Content="הוסף תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,112,19.667,0" Click="btnAdd_Click" Background="#FFB7EBC3" >
+        <Button x:Name="btnAdd" Content="הוסף תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70"  Margin="0,112,19.667,0" Click="btnAdd_Click"  >
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnRemove" Content="מחק תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70" Margin="0,200,20,0" Click="btnRemove_Click" Background="#FFB7EBC3" >
+        <Button x:Name="btnRemove" Content="מחק תחנה" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="70" Margin="0,200,20,0" Click="btnRemove_Click"  >
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -106,6 +108,7 @@
             </Button.Resources>
 
         </Button>
+
         <Grid x:Name="addGrid" Grid.Column="0" Visibility="Collapsed">
             <TextBox x:Name="txtName" HorizontalAlignment="Center" Height="23" Margin="76,115,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
             <TextBox x:Name="txtLongintude" HorizontalAlignment="Center" Height="23" Margin="76,211,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
@@ -121,10 +124,13 @@
                 </Button.Resources>
             </Button>
             <Button x:Name="btnBack" Content="חזור לתצוגת הקווים  "  HorizontalAlignment="Left" Margin="33,449,0,0" VerticalAlignment="Top" Width="151" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Click="btnBack_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+                </Button.Background>
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
-                    </Style> 
+                    </Style>
                 </Button.Resources>
             </Button>
             <Label Content="[34.3-35.5]" HorizontalAlignment="Left" Margin="359,184,0,0" VerticalAlignment="Top" Width="72" FontSize="12" FontFamily="David" RenderTransformOrigin="0.984,0.614"/>
@@ -133,7 +139,11 @@
         </Grid>
         <Grid x:Name="lineGrid" Visibility="Visible" Height="750" Margin="0,0,0.2,0" VerticalAlignment="Top">
             <Grid.Background>
-                <ImageBrush ImageSource="bus.jpg" Stretch="None" AlignmentX="Left" AlignmentY="Bottom" />
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+                </LinearGradientBrush>
             </Grid.Background>
             <!--<Grid.Background>
                 <ImageBrush ImageSource="bus.jpg" AlignmentX="Left" AlignmentY="Bottom" Stretch="None" >
@@ -148,7 +158,10 @@
                 </ImageBrush>
             </Grid.Background>-->
             <ListView x:Name="lvLines" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0"
-                 ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="544" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
+                ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="544" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
+                <ListView.Background>
+                    <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
+                </ListView.Background>
                 <ListView.View >
                     <GridView x:Name="lineGridview">
 
@@ -166,8 +179,26 @@
             <TextBlock HorizontalAlignment="Right" Margin="0,65,130,0" Width="49" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,65,50,0" TextWrapping="Wrap" Text=":שם התחנה" VerticalAlignment="Top" />
             <TextBlock HorizontalAlignment="Left" Width="200" Margin="55,65,190,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
+            <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,657,0,-2">
+                <Label.Background>
+                    <ImageBrush ImageSource="bus.jpg"/>
+                </Label.Background>
+            </Label>
 
         </Grid>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,657,0.6,-4.6" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
         <!--<Grid x:Name="updateGrid" Grid.Column="0" Visibility="Collapsed">
             <TextBox x:Name="tbName" HorizontalAlignment="Center" Height="23" Margin="76,115,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
             <TextBox x:Name="tbLongintude" HorizontalAlignment="Center" Height="23" Margin="76,211,35.667,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="263" TextAlignment="Right" KeyUp="key_up_btnIsenabled"/>
@@ -193,3 +224,21 @@
         </Grid>-->
     </Grid>
 </Window>
+
+
+<!--<ImageBrush ImageSource="bus.jpg" Stretch="None" AlignmentX="Left" AlignmentY="Bottom" />-->
+
+
+
+
+<!--<ImageBrush ImageSource="bus.jpg" AlignmentX="Left" AlignmentY="Bottom" Stretch="None">
+    <ImageBrush.RelativeTransform>
+        <TransformGroup>
+            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
+            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+            <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </ImageBrush.RelativeTransform>
+</ImageBrush>
+</Grid.Background>-->

@@ -18,18 +18,27 @@
     </Window.Resources>
     <Grid x:Name="mainGrid">
         <Grid x:Name="showGrid" Visibility="Visible">
-
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <DataGrid x:Name="lineDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="0,112,35.333,173.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick"
-                  CanUserAddRows="False" IsReadOnly="True">
+                  Margin="0,98,35.6,187.4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick"
+                  CanUserAddRows="False" IsReadOnly="True" Opacity="0.8">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
                    Color="{DynamicResource {x:Static SystemColors.GradientActiveCaptionColorKey}}"/>
                 </DataGrid.Resources>
+                <DataGrid.Background>
+                    <ImageBrush ImageSource="egged_logo.jpg"/>
+                </DataGrid.Background>
                 <DataGrid.Columns >
 
                     <DataGridTemplateColumn x:Name="lastStationColumn" Width="250"  Header="                תחנה אחרונה" MaxWidth="250" >
@@ -55,33 +64,45 @@
                     </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
-
             </DataGrid>
-            <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="70" Margin="0,0,35.333,77.667" Click="btnAdd_Click"   >
+           
+            <Button x:Name="btnAdd" Content="הוסף קו" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="70" Margin="0,0,35.6,93.4" Click="btnAdd_Click"   >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Button.Resources>
+                <Button.Background>
+                    <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+                </Button.Background>
             </Button>
-            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="102" Height="70"  Click="btnUpdate_Click" Margin="272.8,0,273.6,75.4"   >
+            <Button x:Name="btnUpdate" Content="עדכן קו" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="102" Height="70"  Click="btnUpdate_Click" Margin="252.8,0,291.6,89.4"   >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Button.Resources>
+                <Button.Background>
+                    <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+                </Button.Background>
             </Button>
-            <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnRemove_Click" Margin="26.333,0,0,77.667" >
+            <Button x:Name="btnRemove" Content="מחק קו" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="70"  Click="btnRemove_Click" Margin="26.8,0,0,89.4" >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
                 </Button.Resources>
+                <Button.Background>
+                    <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+                </Button.Background>
             </Button>
 
             <Grid x:Name="stationGrid" Visibility="Visible">
                 <ListView x:Name="lvStation" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0"
                  ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="544" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
+                    <ListView.Background>
+                        <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
+                    </ListView.Background>
                     <ListView.View >
                         <GridView x:Name="lineGridview">
                             <GridViewColumn Header="זמן נסיעה משוער מתחנה קודמת" Width="165" DisplayMemberBinding="{Binding Time}" FrameworkElement.FlowDirection="RightToLeft"   />
@@ -101,9 +122,20 @@
 
             </Grid>
             <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="287.333,46,0,0" VerticalAlignment="Top" Width="174" Height="29" SelectionChanged="areaComboBox_SelectionChanged" >
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFF9DCB6" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
 
             </ComboBox>
             <Label Content="בחר איזור" Grid.Column="1" HorizontalAlignment="Left" Margin="499.333,49,0,0" VerticalAlignment="Top" Width="76"/>
+            <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,645,0,-9.6">
+                <Label.Background>
+                    <ImageBrush ImageSource="bus.jpg"/>
+                </Label.Background>
+            </Label>
 
         </Grid>
         <Grid x:Name="addGrid" Visibility="Collapsed">
@@ -232,5 +264,18 @@
             <Label Content="תחנות הקו שנבחרו" HorizontalAlignment="Left" Margin="285,100,0,0" VerticalAlignment="Top"/>
 
         </Grid>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,640,8.6,-7.6" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
     </Grid>
 </Window>

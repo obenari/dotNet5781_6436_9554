@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
          Title="AddBusWindow" Height="350" Width="300"  Foreground="#FFFAFAFA" Opacity="1.5">
-    <Grid>
-        
+    <Grid Opacity="0.8">
+        <Grid.Background>
+            <ImageBrush ImageSource="add.jpeg"/>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -29,6 +32,15 @@
         <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" PreviewKeyDown="textOnlyNumber" Margin="15,45,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" KeyUp="key_up_btnIsenabled" />
         <TextBox x:Name="tbKmLast" HorizontalAlignment="Right" Height="23" PreviewKeyDown="textOnlyNumber" Margin="0,45,10,0" Grid.Row="2" Grid.RowSpan="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="110" KeyUp="key_up_btnIsenabled" />
         <Button x:Name="btnAdd" Content="ADD" HorizontalAlignment="Center"  Grid.Row="3" 
-                VerticalAlignment="Center" Width="75" Click="Button_Click" IsEnabled="False" Foreground="#FF448253" FontWeight="Bold" BorderBrush="#FFF5F0F0" />
+                VerticalAlignment="Center" Width="75" Click="Button_Click" IsEnabled="False" Foreground="#FF448253" FontWeight="Bold" BorderBrush="#FFF5F0F0">
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
