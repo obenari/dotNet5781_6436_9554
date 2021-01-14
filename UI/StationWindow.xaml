@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI" 
         xmlns:PO="clr-namespace:PO" x:Class="UI.StationWindow"
         mc:Ignorable="d"
-        Title="StationWindow"  FontFamily="Franklin Gothic Heavy" WindowState="Maximized" FontSize="14"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        Title="StationWindow" Width="1300" Height="780" FontFamily="Franklin Gothic Heavy" WindowState="Maximized" FontSize="14"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" >
     <!--Width="1300" Height="780"-->
     <Window.Resources>
         <Style TargetType="ListViewItem">
@@ -50,8 +50,8 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick"
-                  CanUserAddRows="False" IsReadOnly="True" Height="575" Background="{x:Null}">
+                  Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick" 
+                  CanUserAddRows="False" IsReadOnly="True" Height="560" Background="#FFFAF7E6">
             <DataGrid.Resources>
 
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -159,7 +159,7 @@
                 </ImageBrush>
             </Grid.Background>-->
             <ListView x:Name="lvLines" AutomationProperties.IsColumnHeader="True" BorderThickness="1,1,1,1" Grid.Column="0" 
-                ItemsSource="{Binding}" Margin="15,140,20,95" FontSize="9" Width="450" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
+                ItemsSource="{Binding}" Margin="15,0,20,35" FontSize="9" Width="544" Height="405" HorizontalContentAlignment="Right" BorderBrush="#FF060607" Grid.Row="1">
                 <ListView.Background>
                     <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
                 </ListView.Background>
@@ -180,14 +180,10 @@
             <TextBlock HorizontalAlignment="Right" Margin="0,65,130,0" Width="49" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,65,50,0" TextWrapping="Wrap" Text=":שם התחנה" VerticalAlignment="Top" />
             <TextBlock HorizontalAlignment="Left" Width="200" Margin="55,65,190,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" TextDecorations="Underline" TextAlignment="Right"/>
-            <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="271" Height="100" >
-                <Label.Background>
-                    <ImageBrush ImageSource="bus.jpg"/>
-                </Label.Background>
-            </Label>
+            
 
         </Grid>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="271" Height="100"  RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="251" Height="80"  RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -196,6 +192,11 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="251" Height="80" >
             <Label.Background>
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>

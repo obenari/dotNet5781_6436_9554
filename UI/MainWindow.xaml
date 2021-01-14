@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow" Height="450" Width="500" FontFamily="Franklin Gothic Heavy">
     <Grid>
         <PasswordBox HorizontalAlignment="Center"  BorderBrush="Black" BorderThickness="3" VerticalAlignment="Center" Margin="122,209,121.6,176" Width="250" Height="35" Background="#FFFAF8F8" />
         <Label Content=":סיסמא" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="223,174,131.6,214" Height="32" Width="139" FontFamily="Franklin Gothic Heavy"/>
