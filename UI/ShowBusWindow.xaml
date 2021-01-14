@@ -1,0 +1,58 @@
+﻿<Window x:Class="UI.ShowBusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+      Title="ShowBusWindow" Height="330" Width="420" >
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFFBFFF9" Offset="0.004"/>
+            <GradientStop Color="#FFA3D49C" Offset="0.998"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid x:Name="general" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="250" Width="390">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content=": כמות הדלק במיכל" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="amountOfFuelLeftTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            <Label Content=":מספר רישוי" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="appropriateFormatLicenseNumberTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding License, Mode=OneWay}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            <Label Content=":תאריך טיפול אחרון" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="5" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="dateOftreatmentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding DateOfTreatment , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            <Label Content=":קילומטראז" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="kilometerTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding TotalKms, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            <Label Content=":קילומטראז' מהטיפול האחרון" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="kilometerFromTheLastTreatmentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding TotalKmsFromLastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+            <Label Content=":סטטוס" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="6" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="myStateTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False" Background="White"/>
+            <Label Content=":תאריך ייצור" Grid.Column="1" HorizontalAlignment="Right" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14" FontFamily="Sitka Display" FontWeight="Bold"/>
+            <TextBox x:Name="startOfActivityTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfWork, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+
+    </Grid>
+</Window>

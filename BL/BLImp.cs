@@ -77,8 +77,8 @@ namespace BL
             {
                 Area = (DO.Areas)(line.Area),
                 LineNumber = line.LineNumber,
-                FirstStation = lineStations[0].stationCode,
-                LastStation = lineStations[lineStations.Count() - 1].stationCode,
+           //     FirstStation = lineStations[0].stationCode,
+              //  LastStation = lineStations[lineStations.Count() - 1].stationCode,
                 IsDeleted = false
             };
             line.Id = dl.AddLine(lineToadd);
@@ -86,8 +86,8 @@ namespace BL
             DO.LineStation firstLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-                PrevStation = null,
-                NextStation = lineStations[1].stationCode,
+              //  PrevStation = null,
+               // NextStation = lineStations[1].stationCode,
                 stationCode = lineStations[0].stationCode,
                 LineId = line.Id,
                 LineStationIndex = 0
@@ -97,8 +97,8 @@ namespace BL
             DO.LineStation lastLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-                PrevStation = lineStations[lineStations.Count() - 2].stationCode,
-                NextStation = null,
+              //  PrevStation = lineStations[lineStations.Count() - 2].stationCode,
+              //  NextStation = null,
                 stationCode = lineStations[lineStations.Count() - 1].stationCode,
                 LineId = line.Id,
                 LineStationIndex = lineStations.Count() - 1
@@ -108,8 +108,8 @@ namespace BL
             {
                 DO.LineStation newLineStation = new DO.LineStation
                 {
-                    PrevStation = lineStations[i - 1].stationCode,
-                    NextStation = lineStations[i + 1].stationCode,
+                //    PrevStation = lineStations[i - 1].stationCode,
+                  //  NextStation = lineStations[i + 1].stationCode,
                     stationCode = lineStations[i].stationCode,
                     LineId = line.Id,
                     LineStationIndex = i,
@@ -141,16 +141,26 @@ namespace BL
           
         
 
-        public void DeleteLine(int id, int line)
+        public void DeleteLine(int id, int line)//*************לא צריך את מספר הקו
         {
             try
             {
                 dl.DeleteLine(id);
+                var lineStations = dl.GetAllLineStationsBy(s => s.LineId == id).ToList();///delete all the line stations
+                for (int i = 0; i < lineStations.Count(); i++)
+                {
+                    dl.DeleteLineStation(id, lineStations[i].stationCode);
+                }
             }
             catch (DO.BusLineNotFoundException ex)
             {
 
                 throw new BO.BusLineNotFoundException(line, id, ex);
+            }
+            catch (DO.LineStationNotFoundException ex)
+            {
+
+                throw new BO.LineStationNotFoundException(line, id,"",ex);
             }
 
         }
@@ -173,14 +183,13 @@ namespace BL
             DO.Line line = dl.GetLine(id);
             return LineDoBoAdapter(line);
         }
-        //*******************************************צריך עדכון, לא להוסיף את כל התחנות  מחדש
-        public void UpdateLine(Line line)//it is disable to update the line id, line number and area
+        public void UpdateLine(Line lineToUpdate)//it is disable to update the line id, line number and area
         {
             //check if there is information about distance and time between all the stations
             string stationWithoutInformation = "";
-            List<BO.LineStation> lineStations = line.Stations.ToList();
+            List<BO.LineStation> lineStations = lineToUpdate.Stations.ToList();
             TimeSpan zeroTime = new TimeSpan(0, 0, 0);
-            for (int i = 1; i < line.Stations.Count(); i++)
+            for (int i = 1; i < lineToUpdate.Stations.Count(); i++)
             {
                 try
                 {
@@ -197,56 +206,38 @@ namespace BL
             {
                 throw new NotEnoughInformationException(stationWithoutInformation);
             }
-            //DO.Line lineToUpdate = new DO.Line//the last or first station maybe changed, so update the line in DO
-            //{
-            //    Area = (DO.Areas)(line.Area),
-            //    LineNumber = line.LineNumber,
-            //    FirstStation = lineStations[0].stationCode,
-            //    LastStation = lineStations[lineStations.Count() - 1].stationCode,
-            //    IsDeleted = false
-            //};
-
             //the last or first station maybe changed, so update the line in DO
-            dl.UpdateLine(line.Id, lineU =>  
+            dl.UpdateLine(lineToUpdate.Id, lineU =>  
             {
                 lineU.LastStation = lineStations[lineStations.Count() - 1].stationCode;
                 lineU.FirstStation = lineStations[0].stationCode;
             });
-
-            //now create DO.lineStation and add to dl
-            DO.LineStation firstLineStation = new DO.LineStation
-            {//the first station
-                IsDeleted = false,
-                PrevStation = null,
-                NextStation = lineStations[1].stationCode,
-                stationCode = lineStations[0].stationCode,
-                LineId = line.Id,
-                LineStationIndex = 0
-            };
-            dl.AddLineStation(firstLineStation);
-            //the last station
-            DO.LineStation lastLineStation = new DO.LineStation
-            {//the first station
-                IsDeleted = false,
-                PrevStation = lineStations[lineStations.Count() - 2].stationCode,
-                NextStation = null,
-                stationCode = lineStations[lineStations.Count() - 1].stationCode,
-                LineId = line.Id,
-                LineStationIndex = lineStations.Count() - 1
-            };
-            dl.AddLineStation(lastLineStation);
-            for (int i = 1; i < lineStations.Count() - 1; i++)
+            var allOldLineStations = dl.GetAllLineStationsBy(s => s.LineId == lineToUpdate.Id).OrderBy(s => s.LineStationIndex).ToList();
+            var allNewLineStations = lineToUpdate.Stations.ToList();
+            for (int i = 0; i < allNewLineStations.Count(); i++)
             {
-                DO.LineStation newLineStation = new DO.LineStation
+                DO.LineStation ls = allOldLineStations.Find(s => s.stationCode == allNewLineStations[i].stationCode);
+                if (ls!=null)//if the line station is exist,only update the index
                 {
-                    PrevStation = lineStations[i - 1].stationCode,
-                    NextStation = lineStations[i + 1].stationCode,
-                    stationCode = lineStations[i].stationCode,
-                    LineId = line.Id,
-                    LineStationIndex = i,
-                    IsDeleted = false,
-                };
-                dl.AddLineStation(newLineStation);
+                    dl.UpdateLineStation(lineToUpdate.Id, allNewLineStations[i].stationCode, s => s.LineStationIndex = i);
+                    allOldLineStations.Remove(ls);
+                }
+                else//create new line station
+                {
+                    DO.LineStation newLS = new DO.LineStation
+                    {
+                        LineId = lineToUpdate.Id,
+                        LineStationIndex = i,
+                        stationCode = allNewLineStations[i].stationCode,
+                        IsDeleted=false
+                    };
+                    dl.AddLineStation(newLS);
+                }
+            }
+            //if left lineStations in  allOldLineStations, it means we need to delete them
+            for (int i = 0; i < allOldLineStations.Count(); i++)
+            {
+                dl.DeleteLineStation(allOldLineStations[i].LineId, allOldLineStations[i].stationCode);
             }
             // now create or update the djacentStations
             for (int i = 1; i < lineStations.Count(); i++)
@@ -274,7 +265,7 @@ namespace BL
         //    throw new NotImplementedException();
         //}
         #endregion
-        #region AdjacentStations
+        #region AdjacentStations///אולי למחוק
         private BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations stnA)
         {
             BO.AdjacentStations adjacentStations = new AdjacentStations();
@@ -364,6 +355,21 @@ namespace BL
             return boBus;
 
         }
+        private DO.Bus BusBoDoAdapter(BO.Bus boBus)
+        {
+            DO.Bus doBus = new DO.Bus();
+            while (boBus.License[0] == '0')
+                boBus.License = boBus.License.Remove(0, 1);
+            doBus.License = int.Parse(boBus.License);
+            doBus.DateOfTreatment = boBus.DateOfTreatment;
+            doBus.StartOfWork = boBus.StartOfWork;
+            doBus.Status = (DO.Status)(int)boBus.Status;
+            doBus.Fuel = boBus.Fuel;
+            doBus.TotalKms = boBus.TotalKms;
+            doBus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
+            return doBus;
+
+        }
 
         public IEnumerable<BO.Bus> GetAllBussesBy(Predicate<BO.Bus> predicate)
         {
@@ -379,28 +385,52 @@ namespace BL
             DO.Bus bus = dl.GetBus(License);
             return BusDoBoAdapter(bus);
         }
-        public void AddBus(BO.Bus bus)
+        public void AddBus(BO.Bus boBus)
         {
+            try
+            {
+             
+                if (boBus.License.Length < 7 )
+                    throw new LicenseFormatException(int.Parse(boBus.License),"");
+                if (boBus.StartOfWork.Year > 2017 && boBus.License.Length == 7 || boBus.StartOfWork.Year <= 2017 && boBus.License.Length == 8)//if there is no match with the license number and date
+                    throw new SumOfDigitException(int.Parse(boBus.License), "");
+                if (boBus.StartOfWork > boBus.DateOfTreatment)
+                    throw new TimeException("the date of treatment canot be less than start of work");
+                dl.AddBus(BusBoDoAdapter(boBus));
+            }
+            catch (DO.DuplicateBusException ex)
+            {
+                throw new DuplicateBusException(ex.License, "", ex);
+            }
+           
 
         }
         public void UpdateBus(BO.Bus bus)
         {
-
+            try
+            {
+                dl.UpdateBus(BusBoDoAdapter(bus));
+            }
+            catch(DO.BusNotFoundException ex)
+            {
+                throw new BusNotFoundException(ex.License.ToString(), "", ex);
+            }
         }
-        public void UpdateBus(int license, Action<BO.Bus> update)
+        public void UpdateBus(int license, Action<BO.Bus> update)////אולי למחוק
         {
 
         }
-        public void DeleteBus(int license)
+        public void DeleteBus(BO.Bus boBus)
         {
             try
             {
-                dl.DeleteBus(license);
+                while (boBus.License[0] == '0')
+                    boBus.License = boBus.License.Remove(0, 1);
+                dl.DeleteBus(int.Parse(boBus.License));
             }
             catch (DO.BusLineNotFoundException ex)
             {
-
-                throw new BO.BusNotFoundException(license);
+                throw new BO.BusNotFoundException(boBus.License,"",ex);
             }
         }
         #endregion
@@ -525,7 +555,47 @@ namespace BL
         {
             try
             {
-
+                var lineStationsToDelete = dl.GetAllLineStationsBy(s => s.stationCode == code).ToList();
+               
+                //update the new distance and time between the next and prev station
+                for (int i=0;i< lineStationsToDelete.Count();i++)
+                {
+                    var item = lineStationsToDelete[i];//in order to shrink the code
+                    // in order to know if it is the last station,we need to get all the
+                    // linestations that belong to it
+                    var allLinestations = dl.GetAllLineStationsBy(s => s.LineId == item.LineId).OrderBy(s => s.LineStationIndex).ToList();
+                    if (item.LineStationIndex!=allLinestations.Count()-1&&item.LineStationIndex!=0  )
+                    {
+                        try
+                        {
+                            DO.AdjacentStations prev = dl.GetAdjacentStations(item.stationCode, allLinestations[item.LineStationIndex - 1].stationCode);
+                            DO.AdjacentStations next = dl.GetAdjacentStations(item.stationCode, allLinestations[item.LineStationIndex + 1].stationCode);
+                            DO.AdjacentStations newAdjacentStations = new DO.AdjacentStations
+                            {
+                                Station1 = allLinestations[item.LineStationIndex - 1].stationCode,
+                                Station2 = allLinestations[item.LineStationIndex + 1].stationCode,
+                                Distance = prev.Distance + next.Distance,
+                                Time = prev.Time + next.Time,
+                                IsDeleted = false
+                            };
+                            dl.AddAdjacentStations(newAdjacentStations);
+                        }
+                        catch(DuplicateAdjacentStationsException ex) { }
+                    }
+                    //if (item.PrevStation != null)
+                    //{
+                    //    DO.LineStation prevLineStation = dl.GetLineStation(item.LineId, (int)item.PrevStation);
+                    //    prevLineStation.NextStation = item.NextStation;
+                    //    dl.UpdateLineStation(prevLineStation);
+                    //}
+                    //if (item.NextStation != null)
+                    //{
+                    //    DO.LineStation nextLineStation = dl.GetLineStation(item.LineId, (int)item.NextStation);
+                    //    nextLineStation.PrevStation = item.PrevStation;
+                    //    dl.UpdateLineStation(nextLineStation);
+                    //}
+                }
+               
                 //update the lines that their first station is deleted
                 var linesWhereFirstStationDeleted = dl.GetAllLinesBy(l => l.FirstStation == code).ToList();
                 for (int i=0; i< linesWhereFirstStationDeleted.Count(); i++)
@@ -570,39 +640,7 @@ namespace BL
                         }
                     }
                 }
-                //delete all linesation than belong to the station to remove
-                IEnumerable<DO.LineStation> stationsToDelete = dl.GetAllLineStationsBy(s => s.stationCode == code);
-                foreach (var item in stationsToDelete)
-                {
-                    dl.DeleteLineStation(item.LineId, item.stationCode);
-                }
-                //update the new distance and timebetween the next and prev station
-                foreach (var item in stationsToDelete)
-                {
-                    if (item.NextStation != null && item.PrevStation != null)
-                    {
-                        DO.AdjacentStations prev = dl.GetAdjacentStations(item.stationCode, (int)item.PrevStation);
-                        DO.AdjacentStations next = dl.GetAdjacentStations(item.stationCode, (int)item.NextStation);
-                        DO.AdjacentStations newAdjacentStations = new DO.AdjacentStations
-                        {
-                            Distance = prev.Distance + next.Distance,
-                            Time = prev.Time + next.Time
-                        };
-                        dl.AddAdjacentStations(newAdjacentStations);
-                    }
-                    if (item.PrevStation != null)
-                    {
-                        DO.LineStation prevLineStation = dl.GetLineStation(item.LineId, (int)item.PrevStation);
-                        prevLineStation.NextStation = item.NextStation;
-                        dl.UpdateLineStation(prevLineStation);
-                    }
-                    if (item.NextStation != null)
-                    {
-                        DO.LineStation nextLineStation = dl.GetLineStation(item.LineId, (int)item.NextStation);
-                        nextLineStation.PrevStation = item.PrevStation;
-                        dl.UpdateLineStation(nextLineStation);
-                    }
-                }
+               
                 //remove all AdjacentStations that contain the station to remove
                 IEnumerable<DO.AdjacentStations> aStationToDelete = dl.GetAllAdjacentStationsBy(s => s.Station1 == code || s.Station2 == code);
                 foreach (var item in aStationToDelete)
@@ -611,7 +649,11 @@ namespace BL
                 }
                 //delete the request station from dl
                 dl.DeleteStation(code);
-
+                //delete all linesation than belong to the station to remove
+                foreach (var item in lineStationsToDelete)
+                {
+                    dl.DeleteLineStation(item.LineId, item.stationCode);
+                }
             }
             catch (DO.BusLineNotFoundException ex)
             {

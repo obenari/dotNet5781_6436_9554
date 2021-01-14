@@ -1,0 +1,101 @@
+﻿<Window x:Class="UI.BusWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+         Title="BusWindow" Width="1300" Height="680" >
+    <!--Height="500" Width="680"-->
+    <Window.Resources>
+        <!--<local:StatusConverter x:Key="StatusConverter"/>-->
+
+        <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="170"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=License}" 
+                            FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                <!--Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=OneTime}"-->
+
+                <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="תדלוק" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnRefuel_Click" />
+                <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="שלח לטיפול" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE" Click="btnTreatment_Click"/>
+                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="שלח לנסיעה"  FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2"/>
+                <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Collapsed" />
+                <TextBlock x:Name="timer" Visibility="Collapsed" Grid.Column="4" Width="100"
+                       FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="lvBus"  Margin="10"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="670"
+          ItemsSource="{Binding}" ItemTemplate="{StaticResource myDataTemplate}" MouseDoubleClick="lvBus_MouseDoubleClick_1"
+                  >
+            <ListView.Background>
+                <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
+            </ListView.Background>
+            <!--<ListView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
+                    <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
+                </LinearGradientBrush>
+            </ListView.Background>-->
+
+            <!--<ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+
+                </GridView>
+            </ListView.View>-->
+
+        </ListView>
+        <Button x:Name="btnAddBus" Content="הוסף אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Click="btnAddBus_Click" Height="64" Margin="1107,134,41.333,360">
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnRemove" Content="מחק אוטובוס" HorizontalAlignment="Center" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="145" Height="64" Margin="1107,240,41.333,254" Click="btnRemove_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="253" Margin="0,0,0,-2.333" Grid.Row="1">
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,555,0.333,-2.333" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+    </Grid>
+</Window>

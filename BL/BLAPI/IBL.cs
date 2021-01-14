@@ -27,7 +27,7 @@ namespace BLAPI
         void AddBus(BO.Bus bus);
         void UpdateBus(BO.Bus bus);
         void UpdateBus(int license, Action<BO.Bus> update); //method that knows to updt specific fields in bus
-        void DeleteBus(int license);
+        void DeleteBus(BO.Bus bus);
         #endregion
 
         //#region BusInTravel

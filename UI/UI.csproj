@@ -56,20 +56,39 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adapter.cs" />
+    <Compile Include="AddBusWindow.xaml.cs">
+      <DependentUpon>AddBusWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddLineWindow.xaml.cs">
       <DependentUpon>AddLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusWindow.xaml.cs">
+      <DependentUpon>BusWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LineWindow.xaml.cs">
       <DependentUpon>LineWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\InformationForStation.cs" />
+    <Compile Include="ShowBusWindow.xaml.cs">
+      <DependentUpon>ShowBusWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StateConverter.cs" />
     <Compile Include="StationWindow.xaml.cs">
       <DependentUpon>StationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusConverter.cs" />
     <Compile Include="UpdateLineWindow.xaml.cs">
       <DependentUpon>UpdateLineWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddBusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManangmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="bus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="egged_logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

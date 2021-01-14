@@ -65,7 +65,7 @@ namespace DLAPI
         void AddLineStation(LineStation lineStation);
         void UpdateLineStation(LineStation lineStation);
         void UpdateLineStation(int line, int numSation, Action<LineStation> update); //method that knows to updt specific fields in LineStation
-        void DeleteLineStation(int line, int numSation);
+        void DeleteLineStation(int lineId, int numSation);
         LineStation GetLineStationsBy(Predicate<LineStation> predicate);
         #endregion
 

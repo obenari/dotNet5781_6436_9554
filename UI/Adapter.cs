@@ -46,6 +46,37 @@ namespace UI
             poLineStation.Time = boLineStation.Time;
             return poLineStation;
         }
+        public static PO.Bus POBOAdapter(BO.Bus boBus)//************************
+        {
+            PO.Bus poBus = new PO.Bus();
+            poBus.TotalKms = boBus.TotalKms;
+            poBus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
+            poBus.Status = boBus.Status;
+            poBus.DateOfTreatment = boBus.DateOfTreatment;
+            poBus.Fuel = boBus.Fuel;
+            poBus.License = boBus.License;
+            poBus.StartOfWork = boBus.StartOfWork;
+
+            return poBus;
+        }
+        public static BO.Bus BOPOAdapter(PO.Bus poBus)//************************
+        {
+            BO.Bus boBus = new BO.Bus();
+            boBus.TotalKms = poBus.TotalKms;
+            boBus.TotalKmsFromLastTreatment = poBus.TotalKmsFromLastTreatment;
+            boBus.Status = poBus.Status;
+            boBus.DateOfTreatment = poBus.DateOfTreatment;
+            boBus.Fuel = poBus.Fuel;
+            //remove "-" from the lincense
+            int index = poBus.License.IndexOf("-");
+            string str= poBus.License.Remove(index,1);
+            index =str.IndexOf("-");
+            str = str.Remove(index,1);
+            boBus.License = str;
+            boBus.StartOfWork = poBus.StartOfWork;
+
+            return boBus;
+        }
         public static BO.LineStation BOPOAdapter(PO.LineStation poLineStation)//************************
         {
             BO.LineStation boLineStation = new BO.LineStation();

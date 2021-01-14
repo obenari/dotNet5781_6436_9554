@@ -10,11 +10,11 @@ namespace BO
     #region bus
     public class BusNotFoundException : Exception
     {
-        public int License;
-        public BusNotFoundException(int license) : base() => License = license;
-        public BusNotFoundException(int license, string message) :
+        public string License;
+        public BusNotFoundException(string license) : base() => License = license;
+        public BusNotFoundException(string license, string message) :
             base(message) => License = license;
-        public BusNotFoundException(int license, string message, Exception innerException) :
+        public BusNotFoundException(string license, string message, Exception innerException) :
             base(message, innerException) => License = license;
         public override string ToString() => base.ToString() + $", The bus: {License} is not exist";
     }
@@ -27,6 +27,31 @@ namespace BO
         public DuplicateBusException(int license, string message, Exception innerException) :
             base(message, innerException) => License = license;
         public override string ToString() => base.ToString() + $", The bus: {License} is already exist";
+    }
+    public class LicenseFormatException : Exception
+    {
+        public int License;
+        public LicenseFormatException(int license) : base() => License = license;
+        public LicenseFormatException(int license, string message) :
+            base(message) => License = license;
+        public LicenseFormatException(int license, string message, Exception innerException) :
+            base(message, innerException) => License = license;
+    }
+    public class SumOfDigitException : Exception
+    {
+        public int License;
+        public SumOfDigitException(int license) : base() => License = license;
+        public SumOfDigitException(int license, string message) :
+            base(message) => License = license;
+        public SumOfDigitException(int license, string message, Exception innerException) :
+            base(message, innerException) => License = license;
+    }
+    public class   TimeException : Exception
+    {
+
+        public TimeException() : base() { }
+        public TimeException(string message) : base(message) { }
+        public TimeException(string message, Exception innerException) :base(message, innerException)    { }
     }
     #endregion
     #region line

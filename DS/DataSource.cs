@@ -18,7 +18,6 @@ namespace DS
 
 
 
-
         static DataSource()
         {
             InitAllList();
@@ -449,8 +448,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=1,
-                    PrevStation=null,
-                    NextStation=2,
+                    //PrevStation=null,
+                    //NextStation=2,
                     LineStationIndex=0,
                     IsDeleted=false
                 },
@@ -458,8 +457,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=2,
-                    PrevStation=1,
-                    NextStation=3,
+                 //   PrevStation=1,
+                    //NextStation=3,
                     LineStationIndex=1,
                     IsDeleted=false
                 },
@@ -467,8 +466,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=3,
-                    PrevStation=2,
-                    NextStation=4,
+                   // PrevStation=2,
+                   // NextStation=4,
                     LineStationIndex=2,
                     IsDeleted=false
                 },
@@ -476,8 +475,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=4,
-                    PrevStation=3,
-                    NextStation=5,
+                    //PrevStation=3,
+                   // NextStation=5,
                     LineStationIndex=3,
                     IsDeleted=false
                 },
@@ -485,8 +484,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=5,
-                    PrevStation=4,
-                    NextStation=6,
+                    //PrevStation=4,
+                   // NextStation=6,
                     LineStationIndex=4,
                     IsDeleted=false
                 },
@@ -494,8 +493,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=6,
-                    PrevStation=5,
-                    NextStation=7,
+                   // PrevStation=5,
+                   // NextStation=7,
                     LineStationIndex=5,
                     IsDeleted=false
                 },
@@ -503,8 +502,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=7,
-                    PrevStation=6,
-                    NextStation=8,
+                    //PrevStation=6,
+                 //   NextStation=8,
                     LineStationIndex=6,
                     IsDeleted=false
                 },
@@ -512,8 +511,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=8,
-                    PrevStation=7,
-                    NextStation=9,
+                   // PrevStation=7,
+                   // NextStation=9,
                     LineStationIndex=7,
                     IsDeleted=false
                 },
@@ -521,8 +520,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=9,
-                    PrevStation=8,
-                    NextStation=10,
+                  //  PrevStation=8,
+                   // NextStation=10,
                     LineStationIndex=8,
                     IsDeleted=false
                 },
@@ -530,8 +529,8 @@ new Station
                 {
                     LineId=1,
                     stationCode=10,
-                    PrevStation=9,
-                    NextStation=null,
+                  //  PrevStation=9,
+                   // NextStation=null,
                     LineStationIndex=9,
                     IsDeleted=false
                 },
@@ -541,8 +540,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 10,
-                PrevStation = null,
-                NextStation = 9,
+              //  PrevStation = null,
+               // NextStation = 9,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -550,8 +549,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 9,
-                PrevStation = 10,
-                NextStation = 8,
+              //  PrevStation = 10,
+                //NextStation = 8,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -559,8 +558,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 8,
-                PrevStation = 9,
-                NextStation = 7,
+              //  PrevStation = 9,
+               // NextStation = 7,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -568,8 +567,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 7,
-                PrevStation = 8,
-                NextStation = 6,
+               // PrevStation = 8,
+               // NextStation = 6,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -577,8 +576,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 6,
-                PrevStation = 7,
-                NextStation = 5,
+               // PrevStation = 7,
+                //NextStation = 5,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -586,8 +585,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 5,
-                PrevStation = 6,
-                NextStation = 4,
+                //PrevStation = 6,
+               // NextStation = 4,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -595,8 +594,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 4,
-                PrevStation = 5,
-                NextStation = 3,
+               // PrevStation = 5,
+               // NextStation = 3,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -604,8 +603,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 3,
-                PrevStation = 4,
-                NextStation = 2,
+               // PrevStation = 4,
+               // NextStation = 2,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -613,8 +612,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 2,
-                PrevStation = 3,
-                NextStation = 1,
+                //PrevStation = 3,
+               // NextStation = 1,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -623,8 +622,8 @@ new Station
             {
                 LineId = 2,
                 stationCode = 1,
-                PrevStation = 2,
-                NextStation = null,
+              //  PrevStation = 2,
+               // NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -634,8 +633,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 11,
-                PrevStation = null,
-                NextStation = 12,
+               // PrevStation = null,
+              //  NextStation = 12,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -643,8 +642,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 12,
-                PrevStation = 11,
-                NextStation = 13,
+              //  PrevStation = 11,
+               // NextStation = 13,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -652,8 +651,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 13,
-                PrevStation = 12,
-                NextStation = 14,
+              //  PrevStation = 12,
+                //NextStation = 14,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -661,8 +660,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 14,
-                PrevStation = 13,
-                NextStation = 15,
+               // PrevStation = 13,
+                //NextStation = 15,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -670,8 +669,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 15,
-                PrevStation = 14,
-                NextStation = 16,
+                //PrevStation = 14,
+               // NextStation = 16,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -679,8 +678,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 16,
-                PrevStation = 15,
-                NextStation = 17,
+              //  PrevStation = 15,
+              //  NextStation = 17,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -688,8 +687,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 17,
-                PrevStation = 16,
-                NextStation = 18,
+                //PrevStation = 16,
+               // NextStation = 18,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -697,8 +696,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 18,
-                PrevStation = 17,
-                NextStation = 19,
+               // PrevStation = 17,
+              //  NextStation = 19,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -706,8 +705,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 19,
-                PrevStation = 18,
-                NextStation = 20,
+            //    PrevStation = 18,
+             //   NextStation = 20,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -716,8 +715,8 @@ new Station
             {
                 LineId = 3,
                 stationCode = 20,
-                PrevStation = 19,
-                NextStation = null,
+             //   PrevStation = 19,
+            //    NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -727,8 +726,8 @@ new Station
                 {
                     LineId = 4,
                     stationCode = 20,
-                    PrevStation = null,
-                    NextStation = 19,
+                  //  PrevStation = null,
+                  //  NextStation = 19,
                     LineStationIndex = 0,
                     IsDeleted = false
                 },
@@ -736,8 +735,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 19,
-                PrevStation = 20,
-                NextStation = 18,
+                //PrevStation = 20,
+               // NextStation = 18,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -745,8 +744,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 18,
-                PrevStation = 19,
-                NextStation = 17,
+             ///   PrevStation = 19,
+              //  NextStation = 17,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -754,8 +753,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 17,
-                PrevStation = 18,
-                NextStation = 16,
+               // PrevStation = 18,
+               // NextStation = 16,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -763,8 +762,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 16,
-                PrevStation = 17,
-                NextStation = 15,
+              //  PrevStation = 17,
+              //  NextStation = 15,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -772,8 +771,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 15,
-                PrevStation = 16,
-                NextStation = 14,
+               // PrevStation = 16,
+                //NextStation = 14,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -781,8 +780,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 14,
-                PrevStation = 15,
-                NextStation = 13,
+             //   PrevStation = 15,
+              //  NextStation = 13,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -790,8 +789,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 13,
-                PrevStation = 14,
-                NextStation = 12,
+               // PrevStation = 14,
+               // NextStation = 12,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -799,8 +798,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 12,
-                PrevStation = 13,
-                NextStation = 11,
+             //   PrevStation = 13,
+             //   NextStation = 11,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -809,8 +808,8 @@ new Station
             {
                 LineId = 4,
                 stationCode = 11,
-                PrevStation = 12,
-                NextStation = null,
+              //  PrevStation = 12,
+              //  NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -820,8 +819,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 21,
-                PrevStation = null,
-                NextStation = 22,
+               // PrevStation = null,
+              //  NextStation = 22,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -829,8 +828,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 22,
-                PrevStation = 21,
-                NextStation = 23,
+              //  PrevStation = 21,
+               // NextStation = 23,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -838,8 +837,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 23,
-                PrevStation = 22,
-                NextStation = 24,
+             //   PrevStation = 22,
+            //    NextStation = 24,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -847,8 +846,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 24,
-                PrevStation = 23,
-                NextStation = 25,
+               // PrevStation = 23,
+               // NextStation = 25,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -856,8 +855,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 25,
-                PrevStation = 24,
-                NextStation = 26,
+              //  PrevStation = 24,
+             //   NextStation = 26,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -865,8 +864,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 26,
-                PrevStation = 25,
-                NextStation = 27,
+              //  PrevStation = 25,
+               // NextStation = 27,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -874,8 +873,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 27,
-                PrevStation = 26,
-                NextStation = 25,
+              //  PrevStation = 26,
+                //NextStation = 25,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -883,8 +882,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 28,
-                PrevStation = 27,
-                NextStation = 29,
+               // PrevStation = 27,
+               // NextStation = 29,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -892,8 +891,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 29,
-                PrevStation = 28,
-                NextStation = 30,
+               // PrevStation = 28,
+              //  NextStation = 30,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -902,8 +901,8 @@ new Station
             {
                 LineId = 5,
                 stationCode = 30,
-                PrevStation = 29,
-                NextStation = null,
+             //   PrevStation = 29,
+              //  NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -914,8 +913,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 30,
-                PrevStation = null,
-                NextStation = 29,
+             //   PrevStation = null,
+              //  NextStation = 29,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -923,8 +922,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 29,
-                PrevStation = 30,
-                NextStation = 28,
+               // PrevStation = 30,
+               // NextStation = 28,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -932,8 +931,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 28,
-                PrevStation = 29,
-                NextStation = 27,
+               // PrevStation = 29,
+               // NextStation = 27,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -941,8 +940,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 27,
-                PrevStation = 28,
-                NextStation = 26,
+               // PrevStation = 28,
+               // NextStation = 26,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -950,8 +949,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 26,
-                PrevStation = 27,
-                NextStation = 25,
+              //  PrevStation = 27,
+             //   NextStation = 25,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -959,8 +958,8 @@ new Station
             {
                 LineId =6,
                 stationCode = 25,
-                PrevStation = 26,
-                NextStation = 24,
+                //PrevStation = 26,
+               // NextStation = 24,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -968,8 +967,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 24,
-                PrevStation = 25,
-                NextStation = 23,
+               // PrevStation = 25,
+               // NextStation = 23,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -977,8 +976,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 23,
-                PrevStation = 24,
-                NextStation = 22,
+              //  PrevStation = 24,
+               // NextStation = 22,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -986,8 +985,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 22,
-                PrevStation = 23,
-                NextStation = 21,
+               // PrevStation = 23,
+               // NextStation = 21,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -996,8 +995,8 @@ new Station
             {
                 LineId = 6,
                 stationCode = 21,
-                PrevStation = 22,
-                NextStation = null,
+              //  PrevStation = 22,
+               // NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -1007,8 +1006,8 @@ new Station
             {
                 LineId =7,
                 stationCode = 31,
-                PrevStation = null,
-                NextStation = 32,
+              //  PrevStation = null,
+              //  NextStation = 32,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -1016,8 +1015,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 32,
-                PrevStation = 31,
-                NextStation = 33,
+              //  PrevStation = 31,
+              //  NextStation = 33,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -1025,8 +1024,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 33,
-                PrevStation = 32,
-                NextStation = 34,
+               // PrevStation = 32,
+               // NextStation = 34,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -1034,8 +1033,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 34,
-                PrevStation = 33,
-                NextStation = 35,
+              //  PrevStation = 33,
+               // NextStation = 35,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -1043,8 +1042,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 35,
-                PrevStation = 34,
-                NextStation = 36,
+              //  PrevStation = 34,
+              //  NextStation = 36,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -1052,8 +1051,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 36,
-                PrevStation = 35,
-                NextStation = 37,
+              //  PrevStation = 35,
+              //  NextStation = 37,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -1061,8 +1060,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 37,
-                PrevStation = 36,
-                NextStation = 35,
+                //PrevStation = 36,
+              //  NextStation = 35,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -1070,8 +1069,8 @@ new Station
             {
                 LineId = 7,
                 stationCode = 38,
-                PrevStation = 37,
-                NextStation = 39,
+               // PrevStation = 37,
+                //NextStation = 39,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -1079,8 +1078,8 @@ new Station
             {
                 LineId =7,
                 stationCode = 39,
-                PrevStation = 38,
-                NextStation = 40,
+               // PrevStation = 38,
+               // NextStation = 40,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -1089,8 +1088,8 @@ new Station
             {
                 LineId =7,
                 stationCode = 40,
-                PrevStation = 39,
-                NextStation = null,
+                //PrevStation = 39,
+               // NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -1100,8 +1099,8 @@ new Station
             {
                 LineId = 8,
                 stationCode =40,
-                PrevStation = null,
-                NextStation = 39,
+              //  PrevStation = null,
+              //  NextStation = 39,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -1109,8 +1108,8 @@ new Station
             {
                 LineId = 8,
                 stationCode =39,
-                PrevStation = 40,
-                NextStation = 38,
+              //  PrevStation = 40,
+              //  NextStation = 38,
                 LineStationIndex = 1,
                 IsDeleted = false
 
@@ -1119,8 +1118,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 38,
-                PrevStation = 39,
-                NextStation = 37,
+               // PrevStation = 39,
+             //   NextStation = 37,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -1128,8 +1127,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 37,
-                PrevStation = 38,
-                NextStation = 36,
+              //  PrevStation = 38,
+             //   NextStation = 36,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -1137,8 +1136,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 36,
-                PrevStation = 37,
-                NextStation = 35,
+              //  PrevStation = 37,
+              //  NextStation = 35,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -1146,8 +1145,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 35,
-                PrevStation = 36,
-                NextStation = 34,
+              //  PrevStation = 36,
+               // NextStation = 34,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -1155,8 +1154,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 34,
-                PrevStation = 35,
-                NextStation = 33,
+              //  PrevStation = 35,
+             //   NextStation = 33,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -1164,8 +1163,8 @@ new Station
             {
                 LineId =8,
                 stationCode = 33,
-                PrevStation =34,
-                NextStation = 32,
+              //  PrevStation =34,
+               // NextStation = 32,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -1173,8 +1172,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 32,
-                PrevStation = 33,
-                NextStation = 31,
+             //   PrevStation = 33,
+              //  NextStation = 31,
                 LineStationIndex = 8,
                 IsDeleted = false
             },
@@ -1182,8 +1181,8 @@ new Station
             {
                 LineId = 8,
                 stationCode = 31,
-                PrevStation = 32,
-                NextStation = null,
+            //    PrevStation = 32,
+              //  NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -1193,8 +1192,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 41,
-                PrevStation = null,
-                NextStation = 42,
+               // PrevStation = null,
+              //  NextStation = 42,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -1202,8 +1201,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 42,
-                PrevStation = 41,
-                NextStation = 43,
+               // PrevStation = 41,
+              //  NextStation = 43,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -1211,8 +1210,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 43,
-                PrevStation = 42,
-                NextStation = 44,
+               // PrevStation = 42,
+             //   NextStation = 44,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -1220,8 +1219,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 44,
-                PrevStation = 43,
-                NextStation = 45,
+                //PrevStation = 43,
+             //   NextStation = 45,
                 LineStationIndex = 3,
                 IsDeleted = false
             },
@@ -1229,8 +1228,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 45,
-                PrevStation = 44,
-                NextStation = 46,
+              //  PrevStation = 44,
+              //  NextStation = 46,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -1238,8 +1237,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 46,
-                PrevStation = 45,
-                NextStation = 47,
+               // PrevStation = 45,
+               // NextStation = 47,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -1247,8 +1246,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 47,
-                PrevStation = 46,
-                NextStation = 45,
+                //PrevStation = 46,
+               // NextStation = 45,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -1256,8 +1255,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 48,
-                PrevStation = 47,
-                NextStation = 49,
+                //PrevStation = 47,
+               // NextStation = 49,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -1265,8 +1264,8 @@ new Station
             {
                 LineId = 9,
                 stationCode = 49,
-                PrevStation = 48,
-                NextStation = 50,
+               // PrevStation = 48,
+              //  NextStation = 50,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -1275,8 +1274,8 @@ new Station
             {
                 LineId =9,
                 stationCode = 50,
-                PrevStation = 49,
-                NextStation = null,
+               // PrevStation = 49,
+               // NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },
@@ -1286,8 +1285,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 50,
-                PrevStation = null,
-                NextStation = 49,
+               // PrevStation = null,
+              //  NextStation = 49,
                 LineStationIndex = 0,
                 IsDeleted = false
             },
@@ -1295,8 +1294,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 49,
-                PrevStation = 50,
-                NextStation = 48,
+              //  PrevStation = 50,
+                //NextStation = 48,
                 LineStationIndex = 1,
                 IsDeleted = false
             },
@@ -1304,8 +1303,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 48,
-                PrevStation = 49,
-                NextStation = 47,
+              //  PrevStation = 49,
+              //  NextStation = 47,
                 LineStationIndex = 2,
                 IsDeleted = false
             },
@@ -1313,8 +1312,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 47,
-                PrevStation = 48,
-                NextStation = 46,
+              //  PrevStation = 48,
+              //  NextStation = 46,
                 LineStationIndex =3,
                 IsDeleted = false
             },
@@ -1322,8 +1321,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 46,
-                PrevStation = 47,
-                NextStation = 45,
+              //  PrevStation = 47,
+             //   NextStation = 45,
                 LineStationIndex = 4,
                 IsDeleted = false
             },
@@ -1331,8 +1330,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 45,
-                PrevStation = 46,
-                NextStation = 44,
+               // PrevStation = 46,
+               // NextStation = 44,
                 LineStationIndex = 5,
                 IsDeleted = false
             },
@@ -1340,8 +1339,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 44,
-                PrevStation = 45,
-                NextStation = 43,
+              //  PrevStation = 45,
+             //   NextStation = 43,
                 LineStationIndex = 6,
                 IsDeleted = false
             },
@@ -1349,8 +1348,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 43,
-                PrevStation = 44,
-                NextStation = 42,
+             //   PrevStation = 44,
+               // NextStation = 42,
                 LineStationIndex = 7,
                 IsDeleted = false
             },
@@ -1358,8 +1357,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 42,
-                PrevStation = 43,
-                NextStation = 41,
+             //   PrevStation = 43,
+             //   NextStation = 41,
                 LineStationIndex = 8,
                 IsDeleted = false
 
@@ -1368,8 +1367,8 @@ new Station
             {
                 LineId = 10,
                 stationCode = 41,
-                PrevStation = 42,
-                NextStation = null,
+             //   PrevStation = 42,
+            //    NextStation = null,
                 LineStationIndex = 9,
                 IsDeleted = false
             },

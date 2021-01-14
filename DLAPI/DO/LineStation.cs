@@ -27,12 +27,12 @@ namespace DO
         /// the number of the prev station
         /// if it's the first station, this field will be null 
         /// </summary>
-        public int? PrevStation { get; set; }
+     //   public int? PrevStation { get; set; }
         /// <summary>
         /// the number of the next station
         /// if it's the last station, this field will be null 
         /// </summary>
-        public int? NextStation { get; set; }
+      //  public int? NextStation { get; set; }
         /// <summary>
         /// this field return false when the argument is not deleted
         /// </summary>

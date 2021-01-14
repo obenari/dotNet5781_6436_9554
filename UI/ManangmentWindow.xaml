@@ -14,7 +14,7 @@
                 </Style>
            </Button.Resources>
         </Button>
-        <Button x:Name="btnBus" Content="אוטובוסים" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" >
+        <Button x:Name="btnBus" Content="אוטובוסים" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162" Background="#FFDDDDDD" Click="btnBus_Click" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>

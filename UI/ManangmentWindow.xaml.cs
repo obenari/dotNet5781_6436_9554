@@ -38,5 +38,11 @@ namespace UI
             LineWindow lineWindow = new LineWindow(MyBL);
             lineWindow.ShowDialog();
         }
+
+        private void btnBus_Click(object sender, RoutedEventArgs e)
+        {
+            BusWindow busWindow = new BusWindow(MyBL);
+            busWindow.ShowDialog();
+        }
     }
 }

@@ -50,7 +50,10 @@ namespace DL
             if (oldBus != null)//check if the oldBus alredy exist or deleted
             {
                 if (oldBus.IsDeleted == true)//if the bus is deleted, update the bus
-                    oldBus.IsDeleted = false;
+                {
+                    DataSource.ListBusses.Remove(oldBus);
+                    DataSource.ListBusses.Add(bus.Clone());
+                }
                 else//if the bus is exist and not deleted,will thrown an Exception
                     throw new BusNotFoundException(bus.License);
 
@@ -248,11 +251,11 @@ namespace DL
             else
                 throw new LineStationNotFoundException(numSation, line);
         }
-        public void DeleteLineStation(int line, int numSation)
+        public void DeleteLineStation(int lineId, int numSation)
         {
 
             DO.LineStation oldLineStation = DataSource.ListLineStations
-                .Find(item => item.stationCode == numSation && item.LineId == line
+                .Find(item => item.stationCode == numSation && item.LineId == lineId
                          && item.IsDeleted == false);
 
             if (oldLineStation != null)//if the lineStation is exist
@@ -261,7 +264,7 @@ namespace DL
                 // DataSource.ListLineStations.Remove(oldLineStation);
             }
             else
-                throw new LineStationNotFoundException(numSation, line);
+                throw new LineStationNotFoundException(numSation, lineId);
         }
         #endregion
         #region Station
@@ -374,14 +377,10 @@ namespace DL
         public AdjacentStations GetAdjacentStations(int code1, int code2)
         {
             DO.AdjacentStations adjacentStations = DataSource.ListTwoAdjacentStations
-                 .Find(item => item.Station1 == code1 && item.Station2 == code2
-                 && item.IsDeleted == false);
-            if (adjacentStations == null)//now check the last order
+                 .Find(item => item.Station1 == code1 && item.Station2 == code2 ||
+                                      item.Station2 == code1 && item.Station1 == code2);
+            if (adjacentStations == null|| adjacentStations.IsDeleted==true)
             {
-                adjacentStations = DataSource.ListTwoAdjacentStations
-                 .Find(item => item.Station1 == code2 && item.Station2 == code1
-                 && item.IsDeleted == false);
-                if (adjacentStations == null)
                     throw new AdjacentStationsNotFoundException(code1, code2);
             }
             return adjacentStations.Clone();

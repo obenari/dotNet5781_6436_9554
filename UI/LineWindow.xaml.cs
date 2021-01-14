@@ -105,6 +105,9 @@ namespace UI
             PO.BusLine lineToUpdate  = lineDataGrid.SelectedItem as BusLine;
             UpdateLineWindow lineWindow = new UpdateLineWindow(bl, lineToUpdate);
             lineWindow.ShowDialog();
+            //update the line in the collection
+            LinesCollection.Remove(lineToUpdate);
+            LinesCollection.Add(Adapter.POBOAdapter(bl.GetLine(lineToUpdate.Id)));
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {

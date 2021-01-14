@@ -11,20 +11,25 @@ namespace PO
     {
         // Using a DependencyProperty as the backing store for TotalKmsFromLastTreatment.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TotalKmsFromLastTreatmentProperty =
-            DependencyProperty.Register("TotalKmsFromLastTreatment", typeof(int), typeof(Bus), new PropertyMetadata(0));
+            DependencyProperty.Register("TotalKmsFromLastTreatment", typeof(int), typeof(Bus));
         // Using a DependencyProperty as the backing store for License.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LicenseProperty =
-            DependencyProperty.Register("License", typeof(string), typeof(Bus), new PropertyMetadata(BO.Status.Ready));
+            DependencyProperty.Register("License", typeof(string), typeof(Bus));
         // Using a DependencyProperty as the backing store for StartOfWork.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfWorkProperty =
-            DependencyProperty.Register("StartOfWork", typeof(DateTime), typeof(Bus)/*, new PropertyMetadata(new )*/);
+            DependencyProperty.Register("StartOfWork", typeof(DateTime), typeof(Bus));
         // Using a DependencyProperty as the backing store for DateOfTreatment.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DateOfTreatmentProperty =
-            DependencyProperty.Register("DateOfTreatment", typeof(DateTime), typeof(Bus)/*, new PropertyMetadata(0)*/);
+            DependencyProperty.Register("DateOfTreatment", typeof(DateTime), typeof(Bus));
         // Using a DependencyProperty as the backing store for TotalKms.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TotalKmsProperty =
-            DependencyProperty.Register("TotalKms", typeof(int), typeof(Bus), new PropertyMetadata(0));
-
+            DependencyProperty.Register("TotalKms", typeof(int), typeof(Bus));
+        // Using a DependencyProperty as the backing store for Fuel.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FuelProperty =
+            DependencyProperty.Register("Fuel", typeof(int), typeof(Bus));
+        // Using a DependencyProperty as the backing store for Status.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StatusProperty =
+            DependencyProperty.Register("Status", typeof(BO.Status), typeof(Bus));
         /// <summary>
         /// The license number of the bus
         /// this field is a string in order to enable save a license nuber with zero prefix
@@ -32,7 +37,19 @@ namespace PO
         public string License
         {
             get { return (string)GetValue(LicenseProperty); }
-            set { SetValue(LicenseProperty, value); }
+            set {//convert the number to the required format
+                string str = value;
+                if (str.Length == 8)
+                { str = str.Insert(3, "-");
+                  str = str.Insert(6, "-");
+                }
+                else
+                {
+                    str = str.Insert(2, "-");
+                    str = str.Insert(6, "-");
+                }
+                value = str;
+                SetValue(LicenseProperty, value); }
         }
         /// <summary>
         /// the date  start of working
@@ -66,9 +83,6 @@ namespace PO
             get { return (int)GetValue(FuelProperty); }
             set { SetValue(FuelProperty, value); }
         }
-        // Using a DependencyProperty as the backing store for Fuel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty FuelProperty =
-            DependencyProperty.Register("Fuel", typeof(int), typeof(Bus), new PropertyMetadata(0));
         /// <summary>
         /// enum that contain the status of the bus (redy, intreatment etc..)
         /// </summary>
@@ -77,13 +91,9 @@ namespace PO
             get { return (BO.Status)GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
-        // Using a DependencyProperty as the backing store for Status.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty StatusProperty =
-            DependencyProperty.Register("Status", typeof(BO.Status), typeof(Bus), new PropertyMetadata(0));
         /// <summary>
         /// the total kilometers from the last treartment
         /// </summary>
-
         public int TotalKmsFromLastTreatment
         {
             get { return (int)GetValue(TotalKmsFromLastTreatmentProperty); }

@@ -39,7 +39,7 @@ namespace UI
             
           //  LinesCollection = lines;
             StationCollection = new ObservableCollection<PO.Station>(
-                bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
+            bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
             stationDataGrid.DataContext = StationCollection;
             LineToUpdate = line;
             lvLine.DataContext = LineToUpdate.Stations;

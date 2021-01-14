@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="UpdateLineWindow" Height="760" Width="1300">
     <Window.Resources>
+
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
