@@ -7,7 +7,7 @@
         mc:Ignorable="d"
          Title="AddBusWindow" Height="350" Width="300"  Foreground="#FFFAFAFA" Opacity="1.5" FontFamily="Franklin Gothic Heavy">
     <Grid Opacity="0.8">
-        <Grid.Background>
+        <Grid.Background> 
             <ImageBrush ImageSource="add.jpeg" Opacity="0.35"/>
         </Grid.Background>
 
