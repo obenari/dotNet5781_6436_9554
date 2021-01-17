@@ -188,4 +188,24 @@ namespace DO
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
     #endregion
+    #region lineTrip
+    public class LineTripNotFoundException : Exception
+    {
+        public int Id;
+        public LineTripNotFoundException(int id) : base() => Id = id;
+        public LineTripNotFoundException(int id, string message) :
+            base(message) => Id = id;
+        public LineTripNotFoundException(int id, string message, Exception innerException) :
+            base(message, innerException) => Id = id;
+    }
+    public class DuplicateLineTripException : Exception
+    {
+        public int Id;
+        public DuplicateLineTripException(int id) : base() => Id = id;
+        public DuplicateLineTripException(int id, string message) :
+            base(message) => Id = id;
+        public DuplicateLineTripException(int id, string message, Exception innerException) :
+            base(message, innerException) => Id = id;
+    }
+    #endregion
 }

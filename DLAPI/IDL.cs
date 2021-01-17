@@ -69,15 +69,13 @@ namespace DLAPI
         LineStation GetLineStationsBy(Predicate<LineStation> predicate);
         #endregion
 
-        //#region LineTrip
-        //IEnumerable<LineTrip> GetAllLinesTrip();
-        //IEnumerable<LineTrip> GetAllLinesTripBy(Predicate<LineTrip> predicate);
-        //LineTrip GetLineTrip(int id, TimeSpan start);
-        //void AddLineTrip(LineTrip lineTrip);
-        //void UpdateLineTrip(LineTrip lineTrip);
-        //void UpdateLineTrip(int id,TimeSpan start, Action<LineTrip> update); //method that knows to updt specific fields in LineTrip
-        //void DeleteLineTrip(int id, TimeSpan start);
-        //#endregion
+        #region LineTrip
+        IEnumerable<LineTrip> GetAllLinesTrip();
+        IEnumerable<LineTrip> GetAllLinesTripBy(Predicate<LineTrip> predicate);
+        LineTrip GetLineTrip(int id);
+        int AddLineTrip(LineTrip lineTrip);
+        void DeleteLineTrip(int id);
+        #endregion
 
         #region Station
         IEnumerable<Station> GetAllStations();

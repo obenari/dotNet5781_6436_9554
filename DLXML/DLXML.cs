@@ -7,7 +7,7 @@ using DLAPI;
 using System.Xml.Linq;
 namespace DL
 {
-   sealed class DLXML: IDL
+    sealed class DLXML : IDL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
@@ -20,12 +20,11 @@ namespace DL
         #endregion
         #region  XML Files Name
 
-        string bussesPath = @"BussesXml.xml"; 
+        string bussesPath = @"BussesXml.xml";
         string stationsPath = @"StationsXml.xml";
         string adjacentStationsPath = @"AdjacentStationsXml.xml";
-        string linesPath = @"LinesXml.xml"; 
+        string linesPath = @"LinesXml.xml";
         string lineStationsPath = @"LineStationsXml.xml";
-        string usersPath = @"UsersXml.xml";
         string lineTripPath = @"LineTripXml.xml";
 
 
@@ -77,9 +76,9 @@ namespace DL
                 listBusses.Add(bus);
                 XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
             }
-            }
+        }
 
-            public void UpdateBus(DO.Bus bus)
+        public void UpdateBus(DO.Bus bus)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
             DO.Bus oldBus = listBusses.Find(b => b.License == bus.License && b.IsDeleted == false);
@@ -150,7 +149,15 @@ namespace DL
         public int AddLine(DO.Line line)//******************לטפל במספר רץ
         {
             List<DO.Line> listLines = XMLTools.LoadListFromXMLSerializer<DO.Line>(linesPath);
-            line.Id = DO.Config.LineID;
+            //get the runner number from the config file, and bring it back plus 1
+            XElement runnerNumber = XMLTools.LoadListFromXMLElement("config");
+            int id = int.Parse(runnerNumber.Element("LineId").Value);
+            runnerNumber.Element("LineTripId").Remove();
+            XElement runnerNumberPlus1 = new XElement("LineId", ++id);
+            runnerNumber.Add(runnerNumberPlus1);
+            runnerNumber.Save("config");
+
+            line.Id = id;
             listLines.Add(line);
             XMLTools.SaveListToXMLSerializer(listLines, linesPath);
             return line.Id;
@@ -248,8 +255,8 @@ namespace DL
                 XMLTools.SaveListToXMLSerializer(listLineStations, lineStationsPath);
             }
 
-            }
-            public void UpdateLineStation(DO.LineStation lineStation)
+        }
+        public void UpdateLineStation(DO.LineStation lineStation)
         {
             List<DO.LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
             DO.LineStation oldLineStation = listLineStations
@@ -354,7 +361,7 @@ namespace DL
         }
         public int AddStation(DO.Station station)//***************לטפל במספר רץ
         {
-            
+
             XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
             XElement oldStation = (from stn in stationsRootElem.Elements()
                                    where stn.Element("Name").Value == station.Name
@@ -362,149 +369,253 @@ namespace DL
                                          && double.Parse(stn.Element("Latitude").Value) == station.Latitude
                                    select stn
                                     ).FirstOrDefault();
-            if(oldStation!=null&&bool.Parse(oldStation.Element("IsDeleted").Value)==false)
+            if (oldStation != null && bool.Parse(oldStation.Element("IsDeleted").Value) == false)
                 throw new DO.DuplicateStationException(station.Name);
-            if(oldStation != null&& bool.Parse(oldStation.Element("IsDeleted").Value) == true)
+            if (oldStation != null && bool.Parse(oldStation.Element("IsDeleted").Value) == true)
             {//if the station is exist but deleted,"we'll bring it back to life"
-                XElement newStation =new XElement("station",
+                XElement newStation = new XElement("station",
                                      new XElement("Code", oldStation.Element("Code").Value),
                                      new XElement("Name", oldStation.Element("Name").Value),
                                      new XElement("Longitude", oldStation.Element("Longitude").Value),
                                      new XElement("Latitude", oldStation.Element("Latitude").Value),
                                      new XElement("IsDeleted", oldStation.Element("IsDeleted").Value));
-                 oldStation.Remove();
+                oldStation.Remove();
                 stationsRootElem.Add(newStation);
                 stationsRootElem.Save(stationsPath);
                 return int.Parse(newStation.Element("Code").Value);
             }
             //if we came here, the station is not exist, and now add it
+
+            //get the runner number from the config file, and bring it back plus 1
+            XElement runnerNumber = XMLTools.LoadListFromXMLElement("config");
+            int id = int.Parse(runnerNumber.Element("stationCode").Value);
+            runnerNumber.Element("stationCode").Remove();
+            XElement runnerNumberPlus1 = new XElement("stationCode", ++id);
+            runnerNumber.Add(runnerNumberPlus1);
+            runnerNumber.Save("config");
+
             XElement newStn = new XElement("station",
-                                 new XElement("Code", 1),
+                                 new XElement("Code", id),
                                  new XElement("Name", station.Name),
                                  new XElement("Longitude", station.Longitude),
                                  new XElement("Latitude", station.Latitude),
                                  new XElement("IsDeleted", false));
             stationsRootElem.Add(newStn);
             stationsRootElem.Save(stationsPath);
-            return int.Parse(newStn.Element("Code").Value);
+            return id;
         }
         public void UpdateStation(DO.Station station)
         {
-            DO.Station oldStation = DataSource.ListStations.Find(s => s.Code == station.Code && s.IsDeleted == false);
+            XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            XElement oldStation = (from stn in stationsRootElem.Elements()
+                                   where int.Parse(stn.Element("Code").Value) == station.Code
+                                            && bool.Parse(stn.Element("IsDeleted").Value) == false
+                                   select stn).FirstOrDefault();
+            if (oldStation == null)//if the station is exist
+                throw new DO.StationNotFoundException(station.Code);
+            XElement newStation = new XElement("station",
+                                  new XElement("Code", station.Code),
+                                  new XElement("Name", station.Name),
+                                  new XElement("Longitude", station.Longitude),
+                                  new XElement("Latitude", station.Latitude),
+                                  new XElement("IsDeleted", false));
+            oldStation.Remove();
+            stationsRootElem.Add(newStation);
+            stationsRootElem.Save(stationsPath);
 
-            if (oldStation != null)//if the station is exist
-            {
-                DataSource.ListStations.Remove(oldStation);
-                DataSource.ListStations.Add(station.Clone());
-            }
-            else
-                throw new StationNotFoundException(station.Code);
         }
         public void UpdateStation(int code, Action<DO.Station> update)
         {
-            DO.Station oldStation = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
 
-            if (oldStation != null)//if the station is exist
+            XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            XElement oldStation = (from stn in stationsRootElem.Elements()
+                                   where int.Parse(stn.Element("Code").Value) == code
+                                            && bool.Parse(stn.Element("IsDeleted").Value) == false
+                                   select stn).FirstOrDefault();
+            if (oldStation == null)//if the station is exist
+                throw new DO.StationNotFoundException(code);
+            DO.Station newStn = new DO.Station()
             {
-                update(oldStation);
-            }
-            else
-                throw new StationNotFoundException(code);
+                Code = code,
+                Name = oldStation.Element("Name").Value,
+                Longitude = double.Parse(oldStation.Element("Longitude").Value),
+                Latitude = double.Parse(oldStation.Element("Latitude").Value),
+                IsDeleted = bool.Parse(oldStation.Element("IsDeleted").Value),
+            };
+            update(newStn);
+            XElement newStationXml = new XElement("station",
+                                  new XElement("Code", code),
+                                  new XElement("Name", newStn.Name),
+                                  new XElement("Longitude", newStn.Longitude),
+                                  new XElement("Latitude", newStn.Latitude),
+                                  new XElement("IsDeleted", false));
+            oldStation.Remove();
+            stationsRootElem.Add(newStationXml);
+            stationsRootElem.Save(stationsPath);
         }
         public void DeleteStation(int code)
         {
-            DO.Station Station = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
-
-            if (Station != null)//if the station is exist
-            {
-                Station.IsDeleted = true;
-                //  DataSource.ListStations.Remove(Station);
-            }
-            else
-                throw new StationNotFoundException(code);
+            XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            XElement oldStation = (from stn in stationsRootElem.Elements()
+                                   where int.Parse(stn.Element("Code").Value) == code
+                                            && bool.Parse(stn.Element("IsDeleted").Value) == false
+                                   select stn).FirstOrDefault();
+            if (oldStation == null)//if the station is exist
+                throw new DO.StationNotFoundException(code);
+            oldStation.Remove();
+            stationsRootElem.Save(stationsPath);
         }
         #endregion
         #region AdjacentStations
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            return from AdjacentStations in listTwoAdjacentStations
-                   where AdjacentStations.IsDeleted == false
-                   select AdjacentStations;
+
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            return from stn in adjacentStationsRootElem.Elements()
+                   where bool.Parse(stn.Element("IsDeleted").Value) == false
+                   select new DO.AdjacentStations()
+                   {
+                       Station1 = int.Parse(stn.Element("Station1").Value),
+                       Station2 = int.Parse(stn.Element("Station2").Value),
+                       Distance = double.Parse(stn.Element("Distance").Value),
+                       Time = new TimeSpan(int.Parse(stn.Element("Time").Element("Hours").Value),
+                                           int.Parse(stn.Element("Time").Element("Minutes").Value),
+                                           int.Parse(stn.Element("Time").Element("Seconds").Value)),
+                       IsDeleted = bool.Parse(stn.Element("IsDeleted").Value),
+                   };
+
         }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            return from AdjacentStations in listTwoAdjacentStations
-                   where predicate(AdjacentStations) && AdjacentStations.IsDeleted == false
-                   select AdjacentStations;
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            return from stn in adjacentStationsRootElem.Elements()
+                   let ads = new DO.AdjacentStations
+                   {
+                       Station1 = int.Parse(stn.Element("Station1").Value),
+                       Station2 = int.Parse(stn.Element("Station2").Value),
+                       Distance = double.Parse(stn.Element("Distance").Value),
+                       Time = new TimeSpan(int.Parse(stn.Element("Time").Element("Hours").Value),
+                                           int.Parse(stn.Element("Time").Element("Minutes").Value),
+                                           int.Parse(stn.Element("Time").Element("Seconds").Value)),
+                       IsDeleted = bool.Parse(stn.Element("IsDeleted").Value),
+                   }
+                   where ads.IsDeleted == false && predicate(ads)
+                   select ads;
         }
         public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations adjacentStations = listTwoAdjacentStations
-                 .Find(item => item.Station1 == code1 && item.Station2 == code2 ||
-                                      item.Station2 == code1 && item.Station1 == code2);
-            if (adjacentStations == null || adjacentStations.IsDeleted == true)
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            DO.AdjacentStations ads = (from stn in adjacentStationsRootElem.Elements()
+                                       where bool.Parse(stn.Element("Station1").Value) == false
+                                       && int.Parse(stn.Element("Station1").Value) == code1
+                                       && int.Parse(stn.Element("Station2").Value) == code2
+                                       || bool.Parse(stn.Element("Station1").Value) == false
+                                       && int.Parse(stn.Element("Station1").Value) == code2
+                                       && int.Parse(stn.Element("Station2").Value) == code1
+                                       select new DO.AdjacentStations
+                                       {
+                                           Station1 = int.Parse(stn.Element("Station1").Value),
+                                           Station2 = int.Parse(stn.Element("Station2").Value),
+                                           Distance = double.Parse(stn.Element("Distance").Value),
+                                           Time = new TimeSpan(int.Parse(stn.Element("Time").Element("Hours").Value),
+                                                               int.Parse(stn.Element("Time").Element("Minutes").Value),
+                                                               int.Parse(stn.Element("Time").Element("Seconds").Value)),
+                                           IsDeleted = bool.Parse(stn.Element("IsDeleted").Value),
+                                       }).FirstOrDefault();
+            if (ads == null)
             {
                 throw new DO.AdjacentStationsNotFoundException(code1, code2);
             }
-            return adjacentStations;
+            return ads;
         }
         public void AddAdjacentStations(DO.AdjacentStations addAdjacentStation)
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations oldAdjacent = listTwoAdjacentStations.
-                Find(item => item.Station1 == addAdjacentStation.Station1
-                && item.Station2 == addAdjacentStation.Station2);
-            if (oldAdjacent != null)//check if the old station alredy exist or deleted
-            {
-                if (oldAdjacent.IsDeleted == true)//if the old oldAddAdjacentStations is deleted, update the line
-                    oldAdjacent.IsDeleted = false;
-                else//if the old station is exist and not deleted,will thrown an Exception
-                    throw new DO.AdjacentStationsNotFoundException(addAdjacentStation.Station1, addAdjacentStation.Station2);
+            if (AdjacentStationsIsExist(addAdjacentStation.Station1, addAdjacentStation.Station2))//check if the addAdjacentStation is already exist
+                throw new DO.DuplicateAdjacentStationsException(addAdjacentStation.Station1, addAdjacentStation.Station2);
 
-            }
-            else
-            {
-                listTwoAdjacentStations.Add(addAdjacentStation);
-                XMLTools.SaveListToXMLSerializer(listTwoAdjacentStations, adjacentStationsPath);
-            }
-            }
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            TimeSpan tm = addAdjacentStation.Time;
+            XElement adsXml = new XElement("AdjacentStations",
+                new XElement("Station1", addAdjacentStation.Station1),
+                new XElement("Station2", addAdjacentStation.Station2),
+                new XElement("Distance", addAdjacentStation.Distance),
+                new XElement("IsDeleted", addAdjacentStation.IsDeleted),
+                new XElement("Time", new XElement("Hours", tm.Hours), new XElement("Minutes", tm.Minutes), new XElement("Seconds", tm.Seconds))
+                );
+            adjacentStationsRootElem.Add(addAdjacentStation);
+            adjacentStationsRootElem.Save(adjacentStationsPath);
+        }
 
 
-            public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
+
+        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations oldAdjacentStations = listTwoAdjacentStations.Find(item => item.Station1 == adjacentStations.Station1
-            && item.Station2 == adjacentStations.Station2 || item.Station2 == adjacentStations.Station1
-            && item.Station1 == adjacentStations.Station2);
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
 
-            if (oldAdjacentStations != null && oldAdjacentStations.IsDeleted == false)//if the oldAdjacentStations is exist
-            {
-                listTwoAdjacentStations.Remove(oldAdjacentStations);
-                listTwoAdjacentStations.Add(oldAdjacentStations);
-                XMLTools.SaveListToXMLSerializer(listTwoAdjacentStations, adjacentStationsPath);
-            }
-            else
+            XElement oldAds = (from stn in adjacentStationsRootElem.Elements()
+                               where bool.Parse(stn.Element("IsDeleted").Value) == false
+                               && int.Parse(stn.Element("Station1").Value) == adjacentStations.Station1
+                               && int.Parse(stn.Element("Station2").Value) == adjacentStations.Station2
+                               || bool.Parse(stn.Element("IsDeleted").Value) == false
+                               && int.Parse(stn.Element("Station1").Value) == adjacentStations.Station2
+                               && int.Parse(stn.Element("Station2").Value) == adjacentStations.Station1
+                               select stn).FirstOrDefault();
+            if (oldAds == null)
                 throw new DO.AdjacentStationsNotFoundException(adjacentStations.Station1, adjacentStations.Station2);
+            TimeSpan tm = adjacentStations.Time;
+            XElement newAdsXml = new XElement("AdjacentStations",
+                 new XElement("Station1", adjacentStations.Station1),
+                 new XElement("Station2", adjacentStations.Station2),
+                 new XElement("Distance", adjacentStations.Distance),
+                 new XElement("IsDeleted", adjacentStations.IsDeleted),
+                 new XElement("Time", new XElement("Hours", tm.Hours), new XElement("Minutes", tm.Minutes), new XElement("Seconds", tm.Seconds))
+                 );
+            oldAds.Remove();
+            adjacentStationsRootElem.Add(newAdsXml);
+            adjacentStationsRootElem.Save(adjacentStationsPath);
         }
-        public void UpdateAdjacentStations(int code, int code2, Action<DO.AdjacentStations> update)
+        public void UpdateAdjacentStations(int code1, int code2, Action<DO.AdjacentStations> update)
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations oldAdjacentStations = listTwoAdjacentStations.
-                Find(item => item.Station1 == code && item.Station2 == code2
-                || item.Station2 == code && item.Station1 == code2);
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
 
-            if (oldAdjacentStations != null && oldAdjacentStations.IsDeleted == false)//if the oldAdjacentStations is exist
+            XElement oldAds = (from stn in adjacentStationsRootElem.Elements()
+                               where bool.Parse(stn.Element("IsDeleted").Value) == false
+                               && int.Parse(stn.Element("Station1").Value) == code1
+                               && int.Parse(stn.Element("Station2").Value) == code2
+                               || bool.Parse(stn.Element("IsDeleted").Value) == false
+                               && int.Parse(stn.Element("Station1").Value) == code2
+                               && int.Parse(stn.Element("Station2").Value) == code1
+                               select stn).FirstOrDefault();
+            if (oldAds == null)
+                throw new DO.AdjacentStationsNotFoundException(code1, code2);
+            DO.AdjacentStations adsToUpdate = new DO.AdjacentStations
             {
-                update(oldAdjacentStations);
-                XMLTools.SaveListToXMLSerializer(listTwoAdjacentStations, adjacentStationsPath);
-            }
-            else
-                throw new DO.AdjacentStationsNotFoundException(code, code2);
+                Station1 = int.Parse(oldAds.Element("Station1").Value),
+                Station2 = int.Parse(oldAds.Element("Station2").Value),
+                Distance = double.Parse(oldAds.Element("Distance").Value),
+                Time = new TimeSpan(int.Parse(oldAds.Element("Time").Element("Hours").Value),
+                                    int.Parse(oldAds.Element("Time").Element("Minutes").Value),
+                                    int.Parse(oldAds.Element("Time").Element("Seconds").Value)),
+                IsDeleted = bool.Parse(oldAds.Element("IsDeleted").Value),
+            };
+            update(adsToUpdate);
+            TimeSpan tm = adsToUpdate.Time;
+            XElement newAdsXml = new XElement("AdjacentStations",
+                 new XElement("Station1", adsToUpdate.Station1),
+                 new XElement("Station2", adsToUpdate.Station2),
+                 new XElement("Distance", adsToUpdate.Distance),
+                 new XElement("IsDeleted", adsToUpdate.IsDeleted),
+                 new XElement("Time", new XElement("Hours", tm.Hours), new XElement("Minutes", tm.Minutes), new XElement("Seconds", tm.Seconds))
+                 );
+            oldAds.Remove();
+            adjacentStationsRootElem.Add(newAdsXml);
+            adjacentStationsRootElem.Save(adjacentStationsPath);
         }
-        public void DeleteAdjacentStations(int code, int code2)
+
+        public void DeleteAdjacentStations(int code, int code2)//*****************************
         {
             List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
             DO.AdjacentStations AdjacentStations = listTwoAdjacentStations.Find(item => item.Station1 == code && item.Station2 == code2
@@ -520,6 +631,26 @@ namespace DL
         }
         public bool AdjacentStationsIsExist(int code, int code2)
         {
+            //XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+
+            //DO.AdjacentStations oldAds = (from stn in adjacentStationsRootElem.Elements()
+            //                           where bool.Parse(stn.Element("Station1").Value) == false
+            //                           && int.Parse(stn.Element("Station1").Value) == addAdjacentStation.Station1
+            //                           && int.Parse(stn.Element("Station2").Value) == addAdjacentStation.Station2
+            //                           || bool.Parse(stn.Element("Station1").Value) == false
+            //                           && int.Parse(stn.Element("Station1").Value) == addAdjacentStation.Station2
+            //                           && int.Parse(stn.Element("Station2").Value) == addAdjacentStation.Station1
+            //                              select new DO.AdjacentStations
+            //                           {
+            //                               Station1 = int.Parse(stn.Element("Station1").Value),
+            //                               Station2 = int.Parse(stn.Element("Station2").Value),
+            //                               Distance = double.Parse(stn.Element("Distance").Value),
+            //                               Time = new TimeSpan(int.Parse(stn.Element("Time").Element("Hour").Value),
+            //                                                   int.Parse(stn.Element("Time").Element("Minute").Value),
+            //                                                   int.Parse(stn.Element("Time").Element("Second").Value)),
+            //                               IsDeleted = bool.Parse(stn.Element("IsDeleted").Value),
+            //                           }).FirstOrDefault();
             List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
             DO.AdjacentStations ads = listTwoAdjacentStations.Find(ad => ad.Station1 == code && ad.Station2 == code2 || ad.Station2 == code && ad.Station1 == code2);
             if (ads == null || ads.IsDeleted == true)
@@ -528,5 +659,102 @@ namespace DL
         }
 
         #endregion
+        #region LineTrip
+        public IEnumerable<DO.LineTrip> GetAllLinesTrip()
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            return from lineTrip in lineTripRootElem.Elements()
+                   where bool.Parse(lineTrip.Element("IsDeleted").Value) == false
+                   select new DO.LineTrip()
+                   {
+                       Id = int.Parse(lineTrip.Element("Id").Value),
+                       LineId = int.Parse(lineTrip.Element("LineId").Value),
+                       IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                   };
+        }
+        public IEnumerable<DO.LineTrip> GetAllLinesTripBy(Predicate<DO.LineTrip> predicate)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            return from lineTrip in lineTripRootElem.Elements()
+                   let lt = new DO.LineTrip
+                   {
+                       Id = int.Parse(lineTrip.Element("Id").Value),
+                       LineId = int.Parse(lineTrip.Element("LineId").Value),
+                       IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                   }
+                   where lt.IsDeleted == false && predicate(lt)
+                   select lt;
+        }
+        public DO.LineTrip GetLineTrip(int id)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+
+            DO.LineTrip lt= (from lineTrip in lineTripRootElem.Elements()
+                   where bool.Parse(lineTrip.Element("IsDeleted").Value) == false
+                   select new DO.LineTrip()
+                   {
+                       Id = int.Parse(lineTrip.Element("Id").Value),
+                       LineId = int.Parse(lineTrip.Element("LineId").Value),
+                       IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
+                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                   }).FirstOrDefault();
+            if (lt == null)
+                throw new DO.LineTripNotFoundException(id);
+            return lt;
+        }
+        public int AddLineTrip(DO.LineTrip lineTrip)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            TimeSpan tm = lineTrip.StartAt;
+            XElement oldLineTrip = (from lt in lineTripRootElem.Elements()
+                                       where int.Parse(lt.Element("StartAt").Element("Hours").Value)==tm.Hours
+                                            && int.Parse(lt.Element("StartAt").Element("Minutes").Value) == tm.Minutes
+                                            && int.Parse(lt.Element("StartAt").Element("Seconds").Value) == tm.Seconds
+                                            && int.Parse(lt.Element("LineId").Value) == lineTrip.LineId
+                                            select lt).FirstOrDefault();
+            if (oldLineTrip != null && bool.Parse(oldLineTrip.Element("IsDeleted").Value) == false)
+                throw new DO.DuplicateLineTripException(lineTrip.Id);
+            //get the runner number from the config file, and bring it back plus 1
+            XElement runnerNumber = XMLTools.LoadListFromXMLElement("config");
+            int id = int.Parse(runnerNumber.Element("lineTripId").Value);
+            runnerNumber.Element("lineTripId").Remove();
+            XElement runnerNumberPlus1 = new XElement("lineTripId", ++id);
+            runnerNumber.Add(runnerNumberPlus1);
+            runnerNumber.Save("config");
+
+            XElement newLineTripXml = new XElement("LineTrip",
+                    new XElement("Id", id),
+                    new XElement("LineId", lineTrip.LineId),
+                    new XElement("IsDeleted", lineTrip.IsDeleted),
+                    new XElement("StartAt", new XElement("Hours", tm.Hours), new XElement("Minutes", tm.Minutes), new XElement("Seconds", tm.Seconds))
+                    );
+            lineTripRootElem.Add(newLineTripXml);
+            lineTripRootElem.Save(lineTripPath);
+            return id;
+        }
+       
+        public void DeleteLineTrip(int id)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            XElement lt = (from lineTrip in lineTripRootElem.Elements()
+                           where int.Parse(lineTrip.Element("Id").Value) == id
+                           select lineTrip).FirstOrDefault();
+            if (lt == null || bool.Parse(lt.Element("IsDeleted").Value) == false)
+             throw new DO.LineTripNotFoundException(id);
+            lt.Element("IsDeleted").SetValue(true);
+            lineTripRootElem.Save(lineTripPath);
+        }
+        #endregion
     }
 }
+// לסדר את המספר רץ עם SetValue 

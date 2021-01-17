@@ -453,5 +453,31 @@ namespace DL
         }
 
         #endregion
+        #region lineTrip //not implement in level 1
+        public IEnumerable<LineTrip> GetAllLinesTrip()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<LineTrip> GetAllLinesTripBy(Predicate<LineTrip> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LineTrip GetLineTrip(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddLineTrip(LineTrip lineTrip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLineTrip(int id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

@@ -24,15 +24,18 @@ namespace DO
         /// </summary>
         public TimeSpan StartAt { get; set; }
         /// <summary>
-        /// the time of finish working
+        /// this field return false when the argument is not deleted
         /// </summary>
-        public TimeSpan FinishAt { get; set; }
-        /// <summary>
-        ///How many times  the bus start travel at a certain time
-        /// </summary>
-        public TimeSpan Frequency { get; set; }
+        public bool IsDeleted { get; set; }
 
-
+        ///// <summary>
+        ///// the time of finish working
+        ///// </summary>
+        //public TimeSpan FinishAt { get; set; }
+        ///// <summary>
+        /////How many times  the bus start travel at a certain time
+        ///// </summary>
+        //public TimeSpan Frequency { get; set; }
 
     }
 }

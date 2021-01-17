@@ -5,5 +5,8 @@
     <data namespace="DL" class="DLObject" >DLObject</data>
     <xml namespace="DL" class="DLXML">DLXml</xml>
   </dl-packages>
+  <lineID>10</lineID>
+  <stationCode> 50</stationCode>
+  <lineTripId>0</lineTripId>
 </config> 
 
