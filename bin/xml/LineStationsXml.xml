@@ -124,61 +124,7 @@
     <LineId>3</LineId>
     <stationCode>11</stationCode>
     <LineStationIndex>0</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>12</stationCode>
-    <LineStationIndex>1</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>13</stationCode>
-    <LineStationIndex>2</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>14</stationCode>
-    <LineStationIndex>3</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>15</stationCode>
-    <LineStationIndex>4</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>16</stationCode>
-    <LineStationIndex>5</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>17</stationCode>
-    <LineStationIndex>6</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>18</stationCode>
-    <LineStationIndex>7</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>19</stationCode>
-    <LineStationIndex>8</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>3</LineId>
-    <stationCode>20</stationCode>
-    <LineStationIndex>9</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </LineStation>
   <LineStation>
     <LineId>4</LineId>
@@ -238,7 +184,7 @@
     <LineId>4</LineId>
     <stationCode>11</stationCode>
     <LineStationIndex>9</LineStationIndex>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </LineStation>
   <LineStation>
     <LineId>5</LineId>
@@ -598,6 +544,61 @@
     <LineId>10</LineId>
     <stationCode>41</stationCode>
     <LineStationIndex>9</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>12</stationCode>
+    <LineStationIndex>0</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>13</stationCode>
+    <LineStationIndex>1</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>14</stationCode>
+    <LineStationIndex>2</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>15</stationCode>
+    <LineStationIndex>3</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>16</stationCode>
+    <LineStationIndex>4</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>17</stationCode>
+    <LineStationIndex>5</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>18</stationCode>
+    <LineStationIndex>6</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>19</stationCode>
+    <LineStationIndex>7</LineStationIndex>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>3</LineId>
+    <stationCode>20</stationCode>
+    <LineStationIndex>8</LineStationIndex>
     <IsDeleted>false</IsDeleted>
   </LineStation>
 </ArrayOfLineStation>

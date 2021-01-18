@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Code>1</Code>
@@ -75,7 +75,7 @@
     <Longitude>34.757316</Longitude>
     <Latitude>31.255103</Latitude>
     <Name>כפר האירוסים/דרך אילן רמון</Name>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </Station>
   <Station>
     <Code>12</Code>
