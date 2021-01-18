@@ -50,8 +50,8 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="15,20,150,95" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick" 
-                  CanUserAddRows="False" IsReadOnly="True" Height="560" Background="#FFFAF7E6">
+                  Margin="15,0,150,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" MouseDoubleClick="stationDataGrid_MouseDoubleClick" 
+                  CanUserAddRows="False" IsReadOnly="True" Height="500" Background="#FFFAF7E6">
             <DataGrid.Resources>
 
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 

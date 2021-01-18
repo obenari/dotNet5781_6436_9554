@@ -10,7 +10,7 @@
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
-  <Bus>
+  <Bus> 
     <License>2</License>
     <StartOfWork>1995-04-14T00:00:00</StartOfWork>
     <DateOfTreatment>2003-03-02T00:00:00</DateOfTreatment>

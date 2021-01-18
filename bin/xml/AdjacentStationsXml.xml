@@ -1,542 +1,346 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <ArrayOfAdjacentStations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AdjacentStations>
     <Station1>1</Station1>
     <Station2>2</Station2>
     <Distance>5.22425523033912</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>6</Minutes>
-      <Seconds>13</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>2</Station1>
     <Station2>3</Station2>
     <Distance>4.40636878055019</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>5</Minutes>
-      <Seconds>14</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>3</Station1>
     <Station2>4</Station2>
     <Distance>12.41296929238</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>14</Minutes>
-      <Seconds>46</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>4</Station1>
     <Station2>5</Station2>
     <Distance>8.77650356464839</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>10</Minutes>
-      <Seconds>26</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>5</Station1>
     <Station2>6</Station2>
     <Distance>8.51812323208466</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>10</Minutes>
-      <Seconds>8</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>6</Station1>
     <Station2>7</Station2>
     <Distance>0.53166925309886</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>37</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>7</Station1>
     <Station2>8</Station2>
     <Distance>7.62721207061098</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>9</Minutes>
-      <Seconds>4</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>8</Station1>
     <Station2>9</Station2>
     <Distance>2.32155224801146</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>2</Minutes>
-      <Seconds>45</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>9</Station1>
     <Station2>10</Station2>
     <Distance>12.5559045738122</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>14</Minutes>
-      <Seconds>56</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>10</Station1>
     <Station2>11</Station2>
     <Distance>10.2542754328282</Distance>
-    <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>2</Hours>
-      <Minutes>2</Minutes>
-      <Seconds>4</Seconds>
-    </Time>
+    <Time />
+    <IsDeleted>true</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>11</Station1>
     <Station2>12</Station2>
     <Distance>49.0022196456259</Distance>
-    <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>5</Minutes>
-      <Seconds>50</Seconds>
-    </Time>
+    <Time />
+    <IsDeleted>true</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>12</Station1>
     <Station2>13</Station2>
     <Distance>4.62317567745198</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>5</Minutes>
-      <Seconds>30</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>13</Station1>
     <Station2>14</Station2>
     <Distance>4.04224100806827</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>4</Minutes>
-      <Seconds>48</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>14</Station1>
     <Station2>15</Station2>
     <Distance>6.5758038686599</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>7</Minutes>
-      <Seconds>49</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>15</Station1>
     <Station2>16</Station2>
     <Distance>6.58804852609923</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>7</Minutes>
-      <Seconds>50</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>16</Station1>
     <Station2>17</Station2>
     <Distance>6.00098021584888</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>7</Minutes>
-      <Seconds>8</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>17</Station1>
     <Station2>18</Station2>
     <Distance>0.43261534386625</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>30</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>18</Station1>
     <Station2>19</Station2>
     <Distance>1.47240290998135</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>1</Minutes>
-      <Seconds>45</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>19</Station1>
     <Station2>20</Station2>
     <Distance>112.438335355433</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>2</Hours>
-      <Minutes>13</Minutes>
-      <Seconds>51</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>20</Station1>
     <Station2>21</Station2>
     <Distance>79.2751093643125</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>1</Hours>
-      <Minutes>34</Minutes>
-      <Seconds>22</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>21</Station1>
     <Station2>22</Station2>
     <Distance>13.9811567418722</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>16</Minutes>
-      <Seconds>38</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>22</Station1>
     <Station2>23</Station2>
     <Distance>14.3213615400786</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>17</Minutes>
-      <Seconds>2</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>23</Station1>
     <Station2>24</Station2>
     <Distance>16.9617559649122</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>20</Minutes>
-      <Seconds>11</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>24</Station1>
     <Station2>25</Station2>
     <Distance>2.8347631144041</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>3</Minutes>
-      <Seconds>22</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>25</Station1>
     <Station2>26</Station2>
     <Distance>589.569291808265</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>11</Hours>
-      <Minutes>41</Minutes>
-      <Seconds>52</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>26</Station1>
     <Station2>27</Station2>
     <Distance>8.21361459036976</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>9</Minutes>
-      <Seconds>46</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>27</Station1>
     <Station2>28</Station2>
     <Distance>4.89253243184386</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>5</Minutes>
-      <Seconds>49</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>28</Station1>
     <Station2>29</Station2>
     <Distance>2.91586862522787</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>3</Minutes>
-      <Seconds>28</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>29</Station1>
     <Station2>30</Station2>
     <Distance>1.88860819327896</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>2</Minutes>
-      <Seconds>14</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>30</Station1>
     <Station2>31</Station2>
     <Distance>101.509376217118</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>2</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>50</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>31</Station1>
     <Station2>32</Station2>
     <Distance>13.2128195760903</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>15</Minutes>
-      <Seconds>43</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>32</Station1>
     <Station2>33</Station2>
     <Distance>4.28071492018868</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>5</Minutes>
-      <Seconds>5</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>33</Station1>
     <Station2>34</Station2>
     <Distance>5.72178809530072</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>6</Minutes>
-      <Seconds>48</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>34</Station1>
     <Station2>35</Station2>
     <Distance>8.73632433582928</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>10</Minutes>
-      <Seconds>24</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>35</Station1>
     <Station2>36</Station2>
     <Distance>0.347346490134101</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>24</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>36</Station1>
     <Station2>37</Station2>
     <Distance>2.26517177885899</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>2</Minutes>
-      <Seconds>41</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>37</Station1>
     <Station2>38</Station2>
     <Distance>0.849664968569505</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>1</Minutes>
-      <Seconds>0</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>38</Station1>
     <Station2>39</Station2>
     <Distance>10.7579963416712</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>12</Minutes>
-      <Seconds>48</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>39</Station1>
     <Station2>40</Station2>
     <Distance>8.10195968592306</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>9</Minutes>
-      <Seconds>38</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>40</Station1>
     <Station2>41</Station2>
     <Distance>482.170984197982</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>9</Hours>
-      <Minutes>34</Minutes>
-      <Seconds>0</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>41</Station1>
     <Station2>42</Station2>
     <Distance>511.861306542711</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>10</Hours>
-      <Minutes>9</Minutes>
-      <Seconds>21</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>42</Station1>
     <Station2>43</Station2>
     <Distance>1.85587884819223</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>2</Minutes>
-      <Seconds>12</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>43</Station1>
     <Station2>44</Station2>
     <Distance>6.77721508104246</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>8</Minutes>
-      <Seconds>4</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>44</Station1>
     <Station2>45</Station2>
     <Distance>7.96592957099255</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>9</Minutes>
-      <Seconds>28</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>45</Station1>
     <Station2>46</Station2>
     <Distance>0.337707367940885</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>24</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>46</Station1>
     <Station2>47</Station2>
     <Distance>0.503183031328715</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>35</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>47</Station1>
     <Station2>48</Station2>
     <Distance>0.670887559572589</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>0</Minutes>
-      <Seconds>47</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>48</Station1>
     <Station2>49</Station2>
     <Distance>1.0831504396778</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>1</Minutes>
-      <Seconds>17</Seconds>
-    </Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>49</Station1>
     <Station2>50</Station2>
     <Distance>1.03055993018019</Distance>
+    <Time />
     <IsDeleted>false</IsDeleted>
-    <Time>
-      <Hours>0</Hours>
-      <Minutes>1</Minutes>
-      <Seconds>13</Seconds>
-    </Time>
   </AdjacentStations>
 </ArrayOfAdjacentStations>

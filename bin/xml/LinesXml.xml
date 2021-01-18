@@ -1,38 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
-    <Id>1</Id>
-    <LineNumber>1</LineNumber>
-    <Area>Jerusalem</Area>
-    <FirstStation>1</FirstStation>
-    <LastStation>10</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>2</Id>
-    <LineNumber>1</LineNumber>
-    <Area>Jerusalem</Area>
-    <FirstStation>10</FirstStation>
-    <LastStation>1</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>3</Id>
-    <LineNumber>2</LineNumber>
-    <Area>BeerSheva</Area>
-    <FirstStation>11</FirstStation>
-    <LastStation>20</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>4</Id>
-    <LineNumber>2</LineNumber>
-    <Area>BeerSheva</Area>
-    <FirstStation>20</FirstStation>
-    <LastStation>11</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
     <Id>5</Id>
     <LineNumber>3</LineNumber>
     <Area>TelAviv</Area>
@@ -78,6 +46,38 @@
     <Area>Natania</Area>
     <FirstStation>50</FirstStation>
     <LastStation>41</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>1</Id>
+    <LineNumber>1</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>1</FirstStation>
+    <LastStation>10</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>2</Id>
+    <LineNumber>1</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>10</FirstStation>
+    <LastStation>1</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>3</Id>
+    <LineNumber>2</LineNumber>
+    <Area>BeerSheva</Area>
+    <FirstStation>12</FirstStation>
+    <LastStation>20</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>4</Id>
+    <LineNumber>2</LineNumber>
+    <Area>BeerSheva</Area>
+    <FirstStation>20</FirstStation>
+    <LastStation>12</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
 </ArrayOfLine>

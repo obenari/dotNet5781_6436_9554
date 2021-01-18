@@ -512,10 +512,10 @@ namespace DL
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
 
             DO.AdjacentStations ads = (from stn in adjacentStationsRootElem.Elements()
-                                       where bool.Parse(stn.Element("Station1").Value) == false
+                                       where bool.Parse(stn.Element("IsDeleted").Value) == false
                                        && int.Parse(stn.Element("Station1").Value) == code1
                                        && int.Parse(stn.Element("Station2").Value) == code2
-                                       || bool.Parse(stn.Element("Station1").Value) == false
+                                       || bool.Parse(stn.Element("IsDeleted").Value) == false
                                        && int.Parse(stn.Element("Station1").Value) == code2
                                        && int.Parse(stn.Element("Station2").Value) == code1
                                        select new DO.AdjacentStations
