@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Station>
+    <Code>1</Code>
+    <Longitude>35.207412</Longitude>
+    <Latitude>31.793096</Latitude>
+    <Name>תכלת מרדכי/ארגמן</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>2</Code>
+    <Longitude>35.181133</Longitude>
+    <Latitude>31.771179</Latitude>
+    <Name>עין כרם/שדרות הרצל</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>3</Code>
+    <Longitude>35.208696</Longitude>
+    <Latitude>31.759032</Latitude>
+    <Name>בן זכאי/דוסתאי</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>4</Code>
+    <Longitude>35.238355</Longitude>
+    <Latitude>31.828986</Latitude>
+    <Name>חיל האויר</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>5</Code>
+    <Longitude>35.20423</Longitude>
+    <Latitude>31.785134</Latitude>
+    <Name>בנייני האומה/הנשיא השישי</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>6</Code>
+    <Longitude>35.240145</Longitude>
+    <Latitude>31.826025</Latitude>
+    <Name>סיירת דוכיפת</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>7</Code>
+    <Longitude>35.237567</Longitude>
+    <Latitude>31.823713</Latitude>
+    <Name>פסגת זאב מרכז</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>8</Code>
+    <Longitude>35.224207</Longitude>
+    <Latitude>31.779457</Latitude>
+    <Name>העירייה</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>9</Code>
+    <Longitude>35.226314</Longitude>
+    <Latitude>31.793248</Latitude>
+    <Name>שמעון הצדיק</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>10</Code>
+    <Longitude>35.230657</Longitude>
+    <Latitude>31.718125</Latitude>
+    <Name>עמנואל זיסמן</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>11</Code>
+    <Longitude>34.757316</Longitude>
+    <Latitude>31.255103</Latitude>
+    <Name>כפר האירוסים/דרך אילן רמון</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>12</Code>
+    <Longitude>34.787595</Longitude>
+    <Latitude>31.26895</Latitude>
+    <Name>סנהדרין/בעלי התוספות</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>13</Code>
+    <Longitude>34.798546</Longitude>
+    <Latitude>31.242886</Latitude>
+    <Name>באר שבע מרכז</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>14</Code>
+    <Longitude>34.811764</Longitude>
+    <Latitude>31.264302</Latitude>
+    <Name>פארק הייטק/התבונה</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>15</Code>
+    <Longitude>34.769026</Longitude>
+    <Latitude>31.249575</Latitude>
+    <Name>שדרות יגאל ידין/עין גדי</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>16</Code>
+    <Longitude>34.814271</Longitude>
+    <Latitude>31.257409</Latitude>
+    <Name>יהושע הצורף</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>17</Code>
+    <Longitude>34.799634</Longitude>
+    <Latitude>31.22371</Latitude>
+    <Name>ישפרו פלאנט/יצחק סלמה</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>18</Code>
+    <Longitude>34.801528</Longitude>
+    <Latitude>31.221687</Latitude>
+    <Name>אליעזר וצילה מרגולין/גוזלן</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>19</Code>
+    <Longitude>34.809186</Longitude>
+    <Latitude>31.215779</Latitude>
+    <Name>הברזל/הזורע</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>20</Code>
+    <Longitude>35.226909</Longitude>
+    <Latitude>31.78745</Latitude>
+    <Name>שבטי ישראל</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>21</Code>
+    <Longitude>34.76056</Longitude>
+    <Latitude>32.049799</Latitude>
+    <Name>דרך בן צבי/יהודה הימית</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>22</Code>
+    <Longitude>34.808383</Longitude>
+    <Latitude>32.123097</Latitude>
+    <Name>בית הלוחם/שמואל ברקאי</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>23</Code>
+    <Longitude>34.755758</Longitude>
+    <Latitude>32.049804</Latitude>
+    <Name>יהודה הימית/אברהם לוינסון</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>24</Code>
+    <Longitude>34.835016</Longitude>
+    <Latitude>32.126058</Latitude>
+    <Name>סשה ארגוב/מקס זליגמן</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>25</Code>
+    <Longitude>34.815203</Longitude>
+    <Latitude>32.123449</Latitude>
+    <Name>אהרון בקר/מרדכי מאיר</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>26</Code>
+    <Longitude>32.052456</Longitude>
+    <Latitude>34.799862</Latitude>
+    <Name>דרך משה דיין/ההגנה </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>27</Code>
+    <Longitude>32.112327</Longitude>
+    <Latitude>34.797919</Latitude>
+    <Name>קניון רמת אביב/ברודצקי  </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>28</Code>
+    <Longitude>32.078598</Longitude>
+    <Latitude>34.788342</Latitude>
+    <Name>בית המשפט/ויצמן </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>29</Code>
+    <Longitude>32.059086</Longitude>
+    <Latitude>34.795294</Latitude>
+    <Name>לה גוורדיה/לוחמי גליפולי </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>30</Code>
+    <Longitude>32.072666</Longitude>
+    <Latitude>34.79339</Latitude>
+    <Name> ת. רכבת השלום</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>31</Code>
+    <Longitude>32.767129</Longitude>
+    <Latitude>35.006342</Latitude>
+    <Name>שבדיה ג  </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>32</Code>
+    <Longitude>32.815284</Longitude>
+    <Latitude>35.074972</Latitude>
+    <Name>אורט ביאליק/שדרות ההסתדרות </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>33</Code>
+    <Longitude>32.842017</Longitude>
+    <Latitude>35.08835</Latitude>
+    <Name>קריון דרום/ד.עכו חיפה </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>34</Code>
+    <Longitude>32.803195</Longitude>
+    <Latitude>35.075485</Latitude>
+    <Name>דרך חיפה/זבולון </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>35</Code>
+    <Longitude>32.778556</Longitude>
+    <Latitude>35.027195</Latitude>
+    <Name> טכניון/הנדסה כימית</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>36</Code>
+    <Longitude>32.776017</Longitude>
+    <Latitude>35.027276</Latitude>
+    <Name>טכניון/בית ספר להנדסאים </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>37</Code>
+    <Longitude>32.779589</Longitude>
+    <Latitude>35.014026</Latitude>
+    <Name>מלל/יערי </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>38</Code>
+    <Longitude>32.77423</Longitude>
+    <Latitude>35.011449</Latitude>
+    <Name>דרך בירם/יגאל אלון </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>39</Code>
+    <Longitude>32.810104</Longitude>
+    <Latitude>35.06881</Latitude>
+    <Name> הסתדרות/צומת קרית אתא</Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>40</Code>
+    <Longitude>32.795426</Longitude>
+    <Latitude>35.021788</Latitude>
+    <Name>בר יהודה/גשר גדוד 21 </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>41</Code>
+    <Longitude>35.017746</Longitude>
+    <Latitude>32.798692</Latitude>
+    <Name>בר יהודה/גשר פז </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>42</Code>
+    <Longitude>32.261417</Longitude>
+    <Latitude>34.838116</Latitude>
+    <Name>מכון וינגייט </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>43</Code>
+    <Longitude>32.271389</Longitude>
+    <Latitude>34.84564</Latitude>
+    <Name>מנחם סבידור/אנצו סירני </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>44</Code>
+    <Longitude>32.299994</Longitude>
+    <Latitude>34.878765</Latitude>
+    <Name>דרך הפארק/הרב נריה </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>45</Code>
+    <Longitude>32.270586</Longitude>
+    <Latitude>34.837598</Latitude>
+    <Name>החוף הירוק </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>46</Code>
+    <Longitude>32.272632</Longitude>
+    <Latitude>34.838726</Latitude>
+    <Name>רמת פולג </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>47</Code>
+    <Longitude>32.274543</Longitude>
+    <Latitude>34.8413</Latitude>
+    <Name>אהוד מנור/מנחם בגין </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>48</Code>
+    <Longitude>32.27572</Longitude>
+    <Latitude>34.845201</Latitude>
+    <Name>שזר/אמנון ותמר </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>49</Code>
+    <Longitude>32.27659</Longitude>
+    <Latitude>34.85165</Latitude>
+    <Name> גולדה מאיר/משעול קיפניס </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>50</Code>
+    <Longitude>32.272698</Longitude>
+    <Latitude>34.856933</Latitude>
+    <Name>צומת אביר/כביש 553 </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+</ArrayOfStation>
