@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DL;
 namespace DS
 {
     public static class DataSource
@@ -14,13 +14,14 @@ namespace DS
         public static List<Line> ListLines;
         public static List<LineStation> ListLineStations;
         public static List<AdjacentStations> ListTwoAdjacentStations;
-
-
-
+      static  string lineStationsPath = @"LineStationsXml.xml";
 
         static DataSource()
         {
             InitAllList();
+            // DLXML dl = new DLXML();
+            XMLTools.SaveListToXMLSerializer(ListLines, lineStationsPath);
+
         }
         static void InitAllList()
         {

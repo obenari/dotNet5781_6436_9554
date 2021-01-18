@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 using DLAPI;
 namespace DL
 {
-    class XMLTools
+   public class XMLTools////////////////////////////////
     {
         static string dir = @"xml\";
         static XMLTools()

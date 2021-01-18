@@ -52,7 +52,7 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Grid.Background>
+        <Grid.Background >
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
                 <GradientStop Color="#FFBCFCEC" Offset="0.942"/>

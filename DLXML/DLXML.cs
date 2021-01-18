@@ -7,7 +7,7 @@ using DLAPI;
 using System.Xml.Linq;
 namespace DL
 {
-    sealed class DLXML : IDL
+ public   sealed class DLXML : IDL///////////////////////לא לשכוח לשנות לinternal
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
@@ -16,10 +16,10 @@ namespace DL
         // Explicit static constructor to ensure instance initialization
         // is done just before first usage
         static DLXML() { }
-        DLXML() { } // default => private
+        public DLXML() { } // default => private///////////////////////////////////////////////////
         #endregion
-        #region  XML Files Name
 
+        #region  XML Files Name
         string bussesPath = @"BussesXml.xml";
         string stationsPath = @"StationsXml.xml";
         string adjacentStationsPath = @"AdjacentStationsXml.xml";
@@ -373,7 +373,7 @@ namespace DL
                 throw new DO.DuplicateStationException(station.Name);
             if (oldStation != null && bool.Parse(oldStation.Element("IsDeleted").Value) == true)
             {//if the station is exist but deleted,"we'll bring it back to life"
-                XElement newStation = new XElement("station",
+                XElement newStation = new XElement("Station",
                                      new XElement("Code", oldStation.Element("Code").Value),
                                      new XElement("Name", oldStation.Element("Name").Value),
                                      new XElement("Longitude", oldStation.Element("Longitude").Value),
@@ -394,7 +394,7 @@ namespace DL
             runnerNumber.Add(runnerNumberPlus1);
             runnerNumber.Save("config");
 
-            XElement newStn = new XElement("station",
+            XElement newStn = new XElement("Station",
                                  new XElement("Code", id),
                                  new XElement("Name", station.Name),
                                  new XElement("Longitude", station.Longitude),
@@ -413,7 +413,7 @@ namespace DL
                                    select stn).FirstOrDefault();
             if (oldStation == null)//if the station is exist
                 throw new DO.StationNotFoundException(station.Code);
-            XElement newStation = new XElement("station",
+            XElement newStation = new XElement("Station",
                                   new XElement("Code", station.Code),
                                   new XElement("Name", station.Name),
                                   new XElement("Longitude", station.Longitude),
@@ -443,7 +443,7 @@ namespace DL
                 IsDeleted = bool.Parse(oldStation.Element("IsDeleted").Value),
             };
             update(newStn);
-            XElement newStationXml = new XElement("station",
+            XElement newStationXml = new XElement("Station",
                                   new XElement("Code", code),
                                   new XElement("Name", newStn.Name),
                                   new XElement("Longitude", newStn.Longitude),
@@ -460,9 +460,9 @@ namespace DL
                                    where int.Parse(stn.Element("Code").Value) == code
                                             && bool.Parse(stn.Element("IsDeleted").Value) == false
                                    select stn).FirstOrDefault();
-            if (oldStation == null)//if the station is exist
+            if (oldStation == null)//if the station is not exist
                 throw new DO.StationNotFoundException(code);
-            oldStation.Remove();
+            oldStation.Element("IsDeleted").SetValue(true);
             stationsRootElem.Save(stationsPath);
         }
         #endregion
@@ -693,13 +693,14 @@ namespace DL
                    where lt.IsDeleted == false && predicate(lt)
                    select lt;
         }
-        public DO.LineTrip GetLineTrip(int id)
+        public DO.LineTrip GetLineTrip(int id)////////////////////
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
 
             DO.LineTrip lt= (from lineTrip in lineTripRootElem.Elements()
                    where bool.Parse(lineTrip.Element("IsDeleted").Value) == false
-                   select new DO.LineTrip()
+                         && int.Parse(lineTrip.Element("Id").Value)==id
+                             select new DO.LineTrip()
                    {
                        Id = int.Parse(lineTrip.Element("Id").Value),
                        LineId = int.Parse(lineTrip.Element("LineId").Value),

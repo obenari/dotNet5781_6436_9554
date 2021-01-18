@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{638482D7-5CCE-4963-8B5B-7384E199CEC7}"
 	ProjectSection(SolutionItems) = preProject
 		bin\config.xml = bin\config.xml
+		bin\xml\LineStationsXml.xml = bin\xml\LineStationsXml.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObject.csproj", "{A0F29E1E-772E-4DD1-B1C9-428A5AB1F873}"
