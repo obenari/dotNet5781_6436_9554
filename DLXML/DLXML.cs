@@ -97,7 +97,7 @@ namespace DL
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
             DO.Bus oldBus = listBusses.Find(b => b.License == license && b.IsDeleted == false);
-
+             
             if (oldBus != null)//if the bus is exist
             {
                 update(oldBus);
