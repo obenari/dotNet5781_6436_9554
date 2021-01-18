@@ -316,7 +316,6 @@ namespace BL
         #region Bus
         public IEnumerable<BO.Bus> GetAllBusses()
         {
-
             return from bus in dl.GetAllBusses()
                    select BusDoBoAdapter(bus);
         }
