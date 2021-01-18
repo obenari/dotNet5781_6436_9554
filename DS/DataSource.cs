@@ -14,14 +14,10 @@ namespace DS
         public static List<Line> ListLines;
         public static List<LineStation> ListLineStations;
         public static List<AdjacentStations> ListTwoAdjacentStations;
-      static  string lineStationsPath = @"LineStationsXml.xml";
 
         static DataSource()
         {
             InitAllList();
-            // DLXML dl = new DLXML();
-            XMLTools.SaveListToXMLSerializer(ListLines, lineStationsPath);
-
         }
         static void InitAllList()
         {
@@ -2097,3 +2093,83 @@ new Station
     }
 
 };
+/*<Line>
+    <Id>1</Id>
+    <LineNumber>1</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>1</FirstStation>
+    <LastStation>10</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>2</Id>
+    <LineNumber>1</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>10</FirstStation>
+    <LastStation>1</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>3</Id>
+    <LineNumber>2</LineNumber>
+    <Area>BeerSheva</Area>
+    <FirstStation>11</FirstStation>
+    <LastStation>20</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>4</Id>
+    <LineNumber>2</LineNumber>
+    <Area>BeerSheva</Area>
+    <FirstStation>20</FirstStation>
+    <LastStation>11</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>5</Id>
+    <LineNumber>3</LineNumber>
+    <Area>TelAviv</Area>
+    <FirstStation>21</FirstStation>
+    <LastStation>30</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>6</Id>
+    <LineNumber>3</LineNumber>
+    <Area>TelAviv</Area>
+    <FirstStation>30</FirstStation>
+    <LastStation>21</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>7</Id>
+    <LineNumber>4</LineNumber>
+    <Area>Haifa</Area>
+    <FirstStation>31</FirstStation>
+    <LastStation>40</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>8</Id>
+    <LineNumber>4</LineNumber>
+    <Area>Haifa</Area>
+    <FirstStation>40</FirstStation>
+    <LastStation>31</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>9</Id>
+    <LineNumber>5</LineNumber>
+    <Area>Natania</Area>
+    <FirstStation>41</FirstStation>
+    <LastStation>50</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>10</Id>
+    <LineNumber>5</LineNumber>
+    <Area>Natania</Area>
+    <FirstStation>50</FirstStation>
+    <LastStation>41</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>*/

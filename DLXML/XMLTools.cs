@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 using DLAPI;
 namespace DL
 {
-   public class XMLTools////////////////////////////////
+   class XMLTools
     {
         static string dir = @"xml\";
         static XMLTools()
@@ -34,6 +34,7 @@ namespace DL
         {
             try
             {
+
                 if (File.Exists(dir + filePath))
                 {
                     return XElement.Load(dir + filePath);
