@@ -1,4 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLineTrip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  
+  <LineTrip>
+    <Id>1</Id>
+    <LineId>1</LineId>
+    <StartAt>
+      <Hours>12</Hours>
+      <Minutes>0</Minutes>
+      <Seconds>47</Seconds>
+    </StartAt>
+    <IsDeleted>false</IsDeleted>
+  </LineTrip>
+  <LineTrip>
+    <Id>1</Id>
+    <LineId>1</LineId>
+    <IsDeleted>false</IsDeleted>
+    <StartAt>
+      <Hours>12</Hours>
+      <Minutes>12</Minutes>
+      <Seconds>12</Seconds>
+    </StartAt>
+  </LineTrip>
+  <LineTrip>
+    <Id>2</Id>
+    <LineId>1</LineId>
+    <IsDeleted>false</IsDeleted>
+    <StartAt>
+      <Hours>12</Hours>
+      <Minutes>12</Minutes>
+      <Seconds>50</Seconds>
+    </StartAt>
+  </LineTrip>
+  <LineTrip>
+    <Id>3</Id>
+    <LineId>1</LineId>
+    <IsDeleted>false</IsDeleted>
+    <StartAt>
+      <Hours>1</Hours>
+      <Minutes>0</Minutes>
+      <Seconds>0</Seconds>
+    </StartAt>
+  </LineTrip>
+  <LineTrip>
+    <Id>4</Id>
+    <LineId>1</LineId>
+    <IsDeleted>false</IsDeleted>
+    <StartAt>
+      <Hours>1</Hours>
+      <Minutes>2</Minutes>
+      <Seconds>12</Seconds>
+    </StartAt>
+  </LineTrip>
 </ArrayOfLineTrip>

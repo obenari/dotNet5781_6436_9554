@@ -34,10 +34,10 @@ namespace UI
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
             areaComboBox.SelectedIndex = (int)BO.Areas.Jerusalem;
             cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
-            cbArea.SelectedIndex = (int)BO.Areas.Jerusalem;
+            cbArea.SelectedIndex = 0;// (int)BO.Areas.Jerusalem;
             LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
-
+            
         }
 
         private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

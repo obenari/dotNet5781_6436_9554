@@ -252,6 +252,25 @@ namespace BO
         public override string ToString() => base.ToString() + $", The information about the two station: {StationId1},{StationId2} is already exist";
     }
     #endregion
-
+    #region lineTrip
+    public class LineTripNotFoundException : Exception
+    {
+        public int Id;
+        public LineTripNotFoundException(int id) : base() => Id = id;
+        public LineTripNotFoundException(int id, string message) :
+            base(message) => Id = id;
+        public LineTripNotFoundException(int id, string message, Exception innerException) :
+            base(message, innerException) => Id = id;
+    }
+    public class DuplicateLineTripException : Exception
+    {
+        public int Id;
+        public DuplicateLineTripException(int id) : base() => Id = id;
+        public DuplicateLineTripException(int id, string message) :
+            base(message) => Id = id;
+        public DuplicateLineTripException(int id, string message, Exception innerException) :
+            base(message, innerException) => Id = id;
+    }
+    #endregion
 
 }

@@ -23,14 +23,7 @@ namespace BO
         /// the time of start working
         /// </summary>
         public TimeSpan StartAt { get; set; }
-        /// <summary>
-        /// the time of finish working
-        /// </summary>
-        public TimeSpan FinishAt { get; set; }
-        /// <summary>
-        ///How many times  the bus start travel at a certain time
-        /// </summary>
-        public TimeSpan Frequency { get; set; }
+       
 
     }
 }

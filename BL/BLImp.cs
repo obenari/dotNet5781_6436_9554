@@ -8,9 +8,19 @@ using BO;
 using DLAPI;
 namespace BL
 {
-    internal class BLImp : IBL
+    internal sealed class BLImp : IBL
     {
         IDL dl = DLFactory.GetDL();
+
+        #region singelton
+        static readonly BLImp instance = new BLImp();
+        // The public Instance property to use 
+        public static BLImp Instance { get { return instance; } }
+        // Explicit static constructor to ensure instance initialization
+        // is done just before first usage
+        static BLImp() { }
+        BLImp() { } // default => private
+        #endregion
         #region Line
         BO.Line LineDoBoAdapter(DO.Line lineDO)
         {
@@ -77,8 +87,8 @@ namespace BL
             {
                 Area = (DO.Areas)(line.Area),
                 LineNumber = line.LineNumber,
-           //     FirstStation = lineStations[0].stationCode,
-              //  LastStation = lineStations[lineStations.Count() - 1].stationCode,
+                //     FirstStation = lineStations[0].stationCode,
+                //  LastStation = lineStations[lineStations.Count() - 1].stationCode,
                 IsDeleted = false
             };
             line.Id = dl.AddLine(lineToadd);
@@ -86,8 +96,8 @@ namespace BL
             DO.LineStation firstLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-              //  PrevStation = null,
-               // NextStation = lineStations[1].stationCode,
+                //  PrevStation = null,
+                // NextStation = lineStations[1].stationCode,
                 stationCode = lineStations[0].stationCode,
                 LineId = line.Id,
                 LineStationIndex = 0
@@ -97,8 +107,8 @@ namespace BL
             DO.LineStation lastLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-              //  PrevStation = lineStations[lineStations.Count() - 2].stationCode,
-              //  NextStation = null,
+                //  PrevStation = lineStations[lineStations.Count() - 2].stationCode,
+                //  NextStation = null,
                 stationCode = lineStations[lineStations.Count() - 1].stationCode,
                 LineId = line.Id,
                 LineStationIndex = lineStations.Count() - 1
@@ -108,8 +118,8 @@ namespace BL
             {
                 DO.LineStation newLineStation = new DO.LineStation
                 {
-                //    PrevStation = lineStations[i - 1].stationCode,
-                  //  NextStation = lineStations[i + 1].stationCode,
+                    //    PrevStation = lineStations[i - 1].stationCode,
+                    //  NextStation = lineStations[i + 1].stationCode,
                     stationCode = lineStations[i].stationCode,
                     LineId = line.Id,
                     LineStationIndex = i,
@@ -138,8 +148,8 @@ namespace BL
             }
             return line.Id;
         }
-          
-        
+
+
 
         public void DeleteLine(int id, int line)//*************לא צריך את מספר הקו
         {
@@ -160,7 +170,7 @@ namespace BL
             catch (DO.LineStationNotFoundException ex)
             {
 
-                throw new BO.LineStationNotFoundException(line, id,"",ex);
+                throw new BO.LineStationNotFoundException(line, id, "", ex);
             }
 
         }
@@ -207,7 +217,7 @@ namespace BL
                 throw new NotEnoughInformationException(stationWithoutInformation);
             }
             //the last or first station maybe changed, so update the line in DO
-            dl.UpdateLine(lineToUpdate.Id, lineU =>  
+            dl.UpdateLine(lineToUpdate.Id, lineU =>
             {
                 lineU.LastStation = lineStations[lineStations.Count() - 1].stationCode;
                 lineU.FirstStation = lineStations[0].stationCode;
@@ -217,7 +227,7 @@ namespace BL
             for (int i = 0; i < allNewLineStations.Count(); i++)
             {
                 DO.LineStation ls = allOldLineStations.Find(s => s.stationCode == allNewLineStations[i].stationCode);
-                if (ls!=null)//if the line station is exist,only update the index
+                if (ls != null)//if the line station is exist,only update the index
                 {
                     dl.UpdateLineStation(lineToUpdate.Id, allNewLineStations[i].stationCode, s => s.LineStationIndex = i);
                     allOldLineStations.Remove(ls);
@@ -229,7 +239,7 @@ namespace BL
                         LineId = lineToUpdate.Id,
                         LineStationIndex = i,
                         stationCode = allNewLineStations[i].stationCode,
-                        IsDeleted=false
+                        IsDeleted = false
                     };
                     dl.AddLineStation(newLS);
                 }
@@ -388,9 +398,9 @@ namespace BL
         {
             try
             {
-             
-                if (boBus.License.Length < 7 )
-                    throw new LicenseFormatException(int.Parse(boBus.License),"");
+
+                if (boBus.License.Length < 7)
+                    throw new LicenseFormatException(int.Parse(boBus.License), "");
                 if (boBus.StartOfWork.Year > 2017 && boBus.License.Length == 7 || boBus.StartOfWork.Year <= 2017 && boBus.License.Length == 8)//if there is no match with the license number and date
                     throw new SumOfDigitException(int.Parse(boBus.License), "");
                 if (boBus.StartOfWork > boBus.DateOfTreatment)
@@ -401,7 +411,7 @@ namespace BL
             {
                 throw new DuplicateBusException(ex.License, "", ex);
             }
-           
+
 
         }
         public void UpdateBus(BO.Bus bus)
@@ -410,7 +420,7 @@ namespace BL
             {
                 dl.UpdateBus(BusBoDoAdapter(bus));
             }
-            catch(DO.BusNotFoundException ex)
+            catch (DO.BusNotFoundException ex)
             {
                 throw new BusNotFoundException(ex.License.ToString(), "", ex);
             }
@@ -429,7 +439,7 @@ namespace BL
             }
             catch (DO.BusLineNotFoundException ex)
             {
-                throw new BO.BusNotFoundException(boBus.License,"",ex);
+                throw new BO.BusNotFoundException(boBus.License, "", ex);
             }
         }
         #endregion
@@ -458,7 +468,7 @@ namespace BL
                     information.NextStation = "זוהי תחנה אחרונה";
                 else
                 {
-                    DO.LineStation nextStation = dl.GetLineStationsBy(s => s.LineStationIndex == doLineStation.LineStationIndex + 1&&s.LineId==lineId);
+                    DO.LineStation nextStation = dl.GetLineStationsBy(s => s.LineStationIndex == doLineStation.LineStationIndex + 1 && s.LineId == lineId);
                     //get the physical station to get the name 
                     DO.Station next = dl.GetStation(nextStation.stationCode);
                     if (next == null)
@@ -469,7 +479,7 @@ namespace BL
             }
             catch (DO.StationNotFoundException ex)
             {
-                throw new BO.StationNotFoundException(ex.StationId,doLineStation.stationCode.ToString()+lineId.ToString());
+                throw new BO.StationNotFoundException(ex.StationId, doLineStation.stationCode.ToString() + lineId.ToString());
             }
         }
         #endregion 
@@ -539,7 +549,7 @@ namespace BL
             }
             catch (DO.DuplicateStationException ex)
             {
-                throw new DuplicateStationException(ex.StationName, "", ex);
+                throw new BO.DuplicateStationException(ex.StationName, "", ex);
             }
         }
         public void UpdateStation(Station station)
@@ -555,15 +565,15 @@ namespace BL
             try
             {
                 var lineStationsToDelete = dl.GetAllLineStationsBy(s => s.stationCode == code).ToList();
-               
+
                 //update the new distance and time between the next and prev station
-                for (int i=0;i< lineStationsToDelete.Count();i++)
+                for (int i = 0; i < lineStationsToDelete.Count(); i++)
                 {
                     var item = lineStationsToDelete[i];//in order to shrink the code
                     // in order to know if it is the last station,we need to get all the
                     // linestations that belong to it
                     var allLinestations = dl.GetAllLineStationsBy(s => s.LineId == item.LineId).OrderBy(s => s.LineStationIndex).ToList();
-                    if (item.LineStationIndex!=allLinestations.Count()-1&&item.LineStationIndex!=0  )
+                    if (item.LineStationIndex != allLinestations.Count() - 1 && item.LineStationIndex != 0)
                     {
                         try
                         {
@@ -579,7 +589,7 @@ namespace BL
                             };
                             dl.AddAdjacentStations(newAdjacentStations);
                         }
-                        catch(DuplicateAdjacentStationsException ex) { }
+                        catch (DuplicateAdjacentStationsException ex) { }
                     }
                     //if (item.PrevStation != null)
                     //{
@@ -594,10 +604,10 @@ namespace BL
                     //    dl.UpdateLineStation(nextLineStation);
                     //}
                 }
-               
+
                 //update the lines that their first station is deleted
                 var linesWhereFirstStationDeleted = dl.GetAllLinesBy(l => l.FirstStation == code).ToList();
-                for (int i=0; i< linesWhereFirstStationDeleted.Count(); i++)
+                for (int i = 0; i < linesWhereFirstStationDeleted.Count(); i++)
                 {
                     DO.LineStation second = dl.
                         GetLineStationsBy(s => s.LineStationIndex == 1 && s.LineId == linesWhereFirstStationDeleted[i].Id);
@@ -609,9 +619,9 @@ namespace BL
                 var linesWhereLastStationDeleted = dl.GetAllLinesBy(l => l.LastStation == code).ToList();
                 for (int i = 0; i < linesWhereLastStationDeleted.Count(); i++)
                 {
-                    DO.LineStation lineStationToRemove= dl.GetLineStation(linesWhereLastStationDeleted[i].Id, code);
+                    DO.LineStation lineStationToRemove = dl.GetLineStation(linesWhereLastStationDeleted[i].Id, code);
                     DO.LineStation oneBeforeTheLast = dl.GetLineStationsBy(
-                        s => s.LineStationIndex ==lineStationToRemove.LineStationIndex-1 
+                        s => s.LineStationIndex == lineStationToRemove.LineStationIndex - 1
                         && s.LineId == linesWhereLastStationDeleted[i].Id);
                     linesWhereLastStationDeleted[i].LastStation = oneBeforeTheLast.stationCode;
                     dl.UpdateLine(linesWhereLastStationDeleted[i]);
@@ -622,9 +632,9 @@ namespace BL
                 //station to remove, and than update the index
                 var lineGroup = from lineStation in dl.GetAllLineStations()
                                 orderby lineStation.LineStationIndex
-                                group lineStation by lineStation.LineId ;
-                                
-                                
+                                group lineStation by lineStation.LineId;
+
+
                 foreach (var item in lineGroup)
                 {
                     //get the lineStation to remove from the group( if it is exist)
@@ -639,12 +649,12 @@ namespace BL
                         }
                     }
                 }
-               
+
                 //remove all AdjacentStations that contain the station to remove
                 IEnumerable<DO.AdjacentStations> aStationToDelete = dl.GetAllAdjacentStationsBy(s => s.Station1 == code || s.Station2 == code);
                 foreach (var item in aStationToDelete)
                 {
-                    dl.DeleteAdjacentStations(item.Station1,item.Station2);         
+                    dl.DeleteAdjacentStations(item.Station1, item.Station2);
                 }
                 //delete the request station from dl
                 dl.DeleteStation(code);
@@ -658,6 +668,81 @@ namespace BL
             {
                 throw new BO.StationNotFoundException(code);
             }
+        }
+        #endregion
+        #region LineTrip
+        public IEnumerable<BO.LineTrip> GetAllLinesTrip()
+        {
+            return from lineTrip in dl.GetAllLinesTrip()
+                   select LineTripDoBoAdapter(lineTrip);
+        }
+
+        public IEnumerable<BO.LineTrip> GetAllLinesTripBy(Predicate<BO.LineTrip> predicate)
+        {
+            return from lineTrip in dl.GetAllLinesTrip()
+                   let lt = LineTripDoBoAdapter(lineTrip)
+                   where predicate(lt)
+                   select lt;
+
+        }
+        public BO.LineTrip GetLineTrip(int id)
+        {
+            BO.LineTrip boLineTrip = (from lineTrip in dl.GetAllLinesTrip()
+                                     where lineTrip.Id == id
+                   select LineTripDoBoAdapter(lineTrip)).FirstOrDefault();
+            if (boLineTrip == null)
+                throw new BO.LineTripNotFoundException(id);
+            return boLineTrip;
+        }
+        public void AddLineTrip(BO.LineTrip boLineTrip)
+        {
+            DO.LineTrip lineTripToAdd = LineTripBoDoAdapter(boLineTrip);
+            try
+            {
+                boLineTrip.Id = dl.AddLineTrip(lineTripToAdd);
+            }
+            catch(DO.DuplicateLineTripException ex)
+            {
+                throw new BO.DuplicateLineTripException(ex.Id);
+            }
+        }
+        public void AddLineTrip(int lineId, TimeSpan start, TimeSpan finish,TimeSpan frequency)
+        {
+            while(start<=finish)
+            {
+                AddLineTrip(new BO.LineTrip { LineId = lineId, StartAt = start });
+                //if the lineTrip is already exist, the prev function will throw an exception
+                start += frequency;
+            }
+        }
+        public void DeleteLineTrip(int id)
+        {
+            try
+            {
+                dl.DeleteLineTrip(id);
+            }
+            catch( DO.LineTripNotFoundException ex)
+            {
+                throw new BO.LineTripNotFoundException(ex.Id);
+            }
+        }
+        private BO.LineTrip LineTripDoBoAdapter(DO.LineTrip doLineTrip)
+        { 
+            return new BO.LineTrip
+            {
+                Id = doLineTrip.Id,
+                LineId = doLineTrip.LineId,
+                StartAt = doLineTrip.StartAt
+            };
+        }
+        private DO.LineTrip LineTripBoDoAdapter(BO.LineTrip boLineTrip)
+        {
+            return new DO.LineTrip
+            {
+                Id = boLineTrip.Id,
+                LineId = boLineTrip.LineId,
+                StartAt = boLineTrip.StartAt
+            };
         }
         #endregion
     }

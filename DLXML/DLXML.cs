@@ -624,47 +624,33 @@ namespace DL
 
         }
 
-        public void DeleteAdjacentStations(int code, int code2)//*****************************
+        public void DeleteAdjacentStations(int code1, int code2)//*****************************
         {
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations AdjacentStations = listTwoAdjacentStations.Find(item => item.Station1 == code && item.Station2 == code2
-            && item.IsDeleted == false);
-            if (AdjacentStations != null)//if the AdjacentStations is exist
-            {
-                AdjacentStations.IsDeleted = true;
-                XMLTools.SaveListToXMLSerializer(listTwoAdjacentStations, adjacentStationsPath);
-            }
-            else
-                throw new DO.AdjacentStationsNotFoundException(code, code2);
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
+            XElement ads = (from stn in adjacentStationsRootElem.Elements()
+                            where bool.Parse(stn.Element("IsDeleted").Value) == false
+                                       && int.Parse(stn.Element("Station1").Value) == code1
+                                        && int.Parse(stn.Element("Station2").Value) == code2
+                                       || bool.Parse(stn.Element("IsDeleted").Value) == false
+                                        && int.Parse(stn.Element("Station1").Value) == code2
+                                       && int.Parse(stn.Element("Station2").Value) == code1
+                            select stn).FirstOrDefault();
+            if(ads==null)
+               throw new DO.AdjacentStationsNotFoundException(code1, code2);
+            ads.Element("IsDeleted").SetValue(true);
+            XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationsPath);
 
         }
-        public bool AdjacentStationsIsExist(int code, int code2)
+        public bool AdjacentStationsIsExist(int code1, int code2)
         {
-            //XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
-
-
-            //DO.AdjacentStations oldAds = (from stn in adjacentStationsRootElem.Elements()
-            //                           where bool.Parse(stn.Element("Station1").Value) == false
-            //                           && int.Parse(stn.Element("Station1").Value) == addAdjacentStation.Station1
-            //                           && int.Parse(stn.Element("Station2").Value) == addAdjacentStation.Station2
-            //                           || bool.Parse(stn.Element("Station1").Value) == false
-            //                           && int.Parse(stn.Element("Station1").Value) == addAdjacentStation.Station2
-            //                           && int.Parse(stn.Element("Station2").Value) == addAdjacentStation.Station1
-            //                              select new DO.AdjacentStations
-            //                           {
-            //                               Station1 = int.Parse(stn.Element("Station1").Value),
-            //                               Station2 = int.Parse(stn.Element("Station2").Value),
-            //                               Distance = double.Parse(stn.Element("Distance").Value),
-            //                               Time = new TimeSpan(int.Parse(stn.Element("Time").Element("Hour").Value),
-            //                                                   int.Parse(stn.Element("Time").Element("Minute").Value),
-            //                                                   int.Parse(stn.Element("Time").Element("Second").Value)),
-            //                               IsDeleted = bool.Parse(stn.Element("IsDeleted").Value),
-            //                           }).FirstOrDefault();
-            List<DO.AdjacentStations> listTwoAdjacentStations = XMLTools.LoadListFromXMLSerializer<DO.AdjacentStations>(adjacentStationsPath);
-            DO.AdjacentStations ads = listTwoAdjacentStations.Find(ad => ad.Station1 == code && ad.Station2 == code2 || ad.Station2 == code && ad.Station1 == code2);
-            if (ads == null || ads.IsDeleted == true)
-                return false;
-            return true;
+            XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
+            return adjacentStationsRootElem.Elements().Any(stn =>
+                                      bool.Parse(stn.Element("IsDeleted").Value) == false
+                                      && int.Parse(stn.Element("Station1").Value) == code1
+                                    && int.Parse(stn.Element("Station2").Value) == code2
+                                      || bool.Parse(stn.Element("IsDeleted").Value) == false
+                                       && int.Parse(stn.Element("Station1").Value) == code2
+                                      && int.Parse(stn.Element("Station2").Value) == code1);
         }
 
         #endregion
@@ -680,9 +666,9 @@ namespace DL
                        Id = int.Parse(lineTrip.Element("Id").Value),
                        LineId = int.Parse(lineTrip.Element("LineId").Value),
                        IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
-                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("StartAt").Element("Hours").Value),
+                                              int.Parse(lineTrip.Element("StartAt").Element("Minutes").Value),
+                                              int.Parse(lineTrip.Element("StartAt").Element("Seconds").Value)),
                    };
         }
         public IEnumerable<DO.LineTrip> GetAllLinesTripBy(Predicate<DO.LineTrip> predicate)
@@ -695,14 +681,14 @@ namespace DL
                        Id = int.Parse(lineTrip.Element("Id").Value),
                        LineId = int.Parse(lineTrip.Element("LineId").Value),
                        IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
-                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("StartAt").Element("Hours").Value),
+                                              int.Parse(lineTrip.Element("StartAt").Element("Minutes").Value),
+                                              int.Parse(lineTrip.Element("StartAt").Element("Seconds").Value)),
                    }
                    where lt.IsDeleted == false && predicate(lt)
                    select lt;
         }
-        public DO.LineTrip GetLineTrip(int id)////////////////////
+        public DO.LineTrip GetLineTrip(int id)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
 
@@ -714,9 +700,9 @@ namespace DL
                        Id = int.Parse(lineTrip.Element("Id").Value),
                        LineId = int.Parse(lineTrip.Element("LineId").Value),
                        IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
-                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("Time").Element("Hours").Value),
+                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("StartAt").Element("Hours").Value),
                                               int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Seconds").Value)),
+                                              int.Parse(lineTrip.Element("StartAt").Element("Seconds").Value)),
                    }).FirstOrDefault();
             if (lt == null)
                 throw new DO.LineTripNotFoundException(id);

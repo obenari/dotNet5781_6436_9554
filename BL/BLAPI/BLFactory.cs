@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BL;
  namespace BLAPI
 {
     /// <summary>
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
     {
         public static IBL GetBL()
         {
-            return new BL.BLImp();
+           return  BL.BLImp.Instance;
         }
     }
 }

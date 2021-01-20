@@ -24,16 +24,36 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
-            // MessageBox.Show(bl.GetLine(2).FirstStationName);
-           // string hi = "הי";
-            //string name = "שרה";
-          //  MessageBox.Show(string.Format("{0} לך,{1}", hi,name));
+         
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnStation_Click(object sender, RoutedEventArgs e)
         {
-            ManangmentWindow manangmentWindow = new ManangmentWindow(bl);
-            manangmentWindow.ShowDialog();
+            StationWindow stnWindow = new StationWindow(bl);
+            stnWindow.ShowDialog();
         }
+
+        private void btnLine_Click(object sender, RoutedEventArgs e)
+        {
+            LineWindow lineWindow = new LineWindow(bl);
+            lineWindow.ShowDialog();
+        }
+
+        private void btnBus_Click(object sender, RoutedEventArgs e)
+        {
+            BusWindow busWindow = new BusWindow(bl);
+            busWindow.ShowDialog();
+        }
+
+        private void btnLineTrip_Click(object sender, RoutedEventArgs e)
+        {
+            LineTripWindow lineTripWindow = new LineTripWindow(bl);
+            lineTripWindow.ShowDialog();
+        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ManangmentWindow manangmentWindow = new ManangmentWindow(bl);
+        //    manangmentWindow.ShowDialog();
+        //}
     }
 }
