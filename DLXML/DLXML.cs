@@ -54,8 +54,11 @@ namespace DL
                 throw new DO.BusNotFoundException(License);
             return bus;
         }
-
-        public void AddBus(DO.Bus bus)//*******************************
+        /// <summary>
+        /// add new bus to the system
+        /// </summary>
+        /// <param name="bus"></param>
+        public void AddBus(DO.Bus bus)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
             DO.Bus oldBus = listBusses.Find(item => item.License == bus.License);
@@ -77,7 +80,10 @@ namespace DL
                 XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
             }
         }
-        
+        /// <summary>
+        /// the method is get update bus, and replace it with the old bus.
+        /// </summary>
+        /// <param name="bus"></param>
         public void UpdateBus(DO.Bus bus)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
@@ -98,7 +104,11 @@ namespace DL
             else
                 throw new DO.BusNotFoundException(bus.License);
         }
-
+        /// <summary>
+        ///  the method is get predicate,and  license, and update  the old bus.
+        /// </summary>
+        /// <param name="license"></param>
+        /// <param name="update"></param>
         public void UpdateBus(int license, Action<DO.Bus> update)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
@@ -113,7 +123,10 @@ namespace DL
             else
                 throw new DO.BusNotFoundException(license);
         }
-
+        /// <summary>
+        /// the method get license number, and marks the bus as deleted
+        /// </summary>
+        /// <param name="license"></param>
         public void DeleteBus(int license)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
@@ -152,6 +165,11 @@ namespace DL
                 throw new DO.BusLineNotFoundException(id);
             return line;
         }
+        /// <summary>
+        ///  add new line to the system
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public int AddLine(DO.Line line)
         {
             List<DO.Line> listLines = XMLTools.LoadListFromXMLSerializer<DO.Line>(linesPath);
@@ -167,6 +185,10 @@ namespace DL
             return line.Id;
 
         }
+        /// <summary>
+        /// the method is get update line, and replace it with the old line.
+        /// </summary>
+        /// <param name="line"></param>
         public void UpdateLine(DO.Line line)
         {
             List<DO.Line> listLines = XMLTools.LoadListFromXMLSerializer<DO.Line>(linesPath);
@@ -181,6 +203,11 @@ namespace DL
             else
                 throw new DO.BusLineNotFoundException(line.Id);
         }
+        /// <summary>
+        ///  the method is get predicate,and  line id, and update  the old line.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="update"></param>
         public void UpdateLine(int id, Action<DO.Line> update)
         {
             List<DO.Line> listLines = XMLTools.LoadListFromXMLSerializer<DO.Line>(linesPath);
@@ -194,6 +221,10 @@ namespace DL
             else
                 throw new DO.BusLineNotFoundException(id);
         }
+        /// <summary>
+        /// the method get id number, and marks the line as deleted
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteLine(int id)
         {
             List<DO.Line> listLines = XMLTools.LoadListFromXMLSerializer<DO.Line>(linesPath);
@@ -240,6 +271,10 @@ namespace DL
                 throw new DO.LineStationNotFoundException(numSation, line);
             return lineStation;
         }
+        /// <summary>
+        ///  add new lineStation to the system
+        /// </summary>
+        /// <param name="lineStation"></param>
         public void AddLineStation(DO.LineStation lineStation)
         {
             List<DO.LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
@@ -260,6 +295,10 @@ namespace DL
             }
 
         }
+        /// <summary>
+        /// the method is get update lineStation, and replace it with the old lineStation.
+        /// </summary>
+        /// <param name="lineStation"></param>
         public void UpdateLineStation(DO.LineStation lineStation)
         {
             List<DO.LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
@@ -277,6 +316,12 @@ namespace DL
             else
                 throw new DO.LineStationNotFoundException(lineStation.stationCode, lineStation.LineId);
         }
+        /// <summary>
+        /// the method is get predicate,and  line id and numStation, and update  the old lineStation.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="numSation"></param>
+        /// <param name="update"></param>
         public void UpdateLineStation(int line, int numSation, Action<DO.LineStation> update)
         {
             List<DO.LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
@@ -292,6 +337,11 @@ namespace DL
             else
                 throw new DO.LineStationNotFoundException(numSation, line);
         }
+        /// <summary>
+        /// the method get id number, and marks the line as deleted
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="numSation"></param>
         public void DeleteLineStation(int lineId, int numSation)
         {
             List<DO.LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
@@ -363,6 +413,11 @@ namespace DL
                 throw new DO.StationNotFoundException(code);
             return station;
         }
+        /// <summary>
+        ///   add new Station to the system
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
         public int AddStation(DO.Station station)
         {
 
@@ -409,6 +464,10 @@ namespace DL
             XMLTools.SaveListToXMLElement(stationsRootElem, stationsPath);
             return id;
         }
+        /// <summary>
+        /// the method is get update Station, and replace it with the old Station.
+        /// </summary>
+        /// <param name="station"></param>
         public void UpdateStation(DO.Station station)
         {
             XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
@@ -430,6 +489,11 @@ namespace DL
             XMLTools.SaveListToXMLElement(stationsRootElem, stationsPath);
 
         }
+        /// <summary>
+        /// the method is get predicate,and  station id and numStation, and update  the old Station.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="update"></param>
         public void UpdateStation(int code, Action<DO.Station> update)
         {
 
@@ -460,6 +524,10 @@ namespace DL
             //   stationsRootElem.Save(stationsPath);
             XMLTools.SaveListToXMLElement(stationsRootElem, stationsPath);
         }
+        /// <summary>
+        /// the method get id number, and marks the station as deleted
+        /// </summary>
+        /// <param name="code"></param>
         public void DeleteStation(int code)
         {
             XElement stationsRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
@@ -540,6 +608,10 @@ namespace DL
             }
             return ads;
         }
+        /// <summary>
+        ///  add new Adjacent Station to the system
+        /// </summary>
+        /// <param name="addAdjacentStation"></param>
         public void AddAdjacentStations(DO.AdjacentStations addAdjacentStation)//////////////////
         {
             if (AdjacentStationsIsExist(addAdjacentStation.Station1, addAdjacentStation.Station2))//check if the addAdjacentStation is already exist
@@ -561,7 +633,10 @@ namespace DL
         }
 
 
-
+        /// <summary>
+        /// the method is get update adjacen Station, and replace it with the old Station.
+        /// </summary>
+        /// <param name="adjacentStations"></param>
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -590,6 +665,12 @@ namespace DL
             XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationsPath);
 
         }
+        /// <summary>
+        ///  the method is get predicate,and Adjacent station id and numStation, and update  the old Station.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
+        /// <param name="update"></param>
         public void UpdateAdjacentStations(int code1, int code2, Action<DO.AdjacentStations> update)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -629,8 +710,12 @@ namespace DL
             XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationsPath);
 
         }
-
-        public void DeleteAdjacentStations(int code1, int code2)//*****************************
+        /// <summary>
+        ///  the method get two id numbers, and marks the Adjacent station as deleted
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
+        public void DeleteAdjacentStations(int code1, int code2)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
             XElement ads = (from stn in adjacentStationsRootElem.Elements()
@@ -647,6 +732,12 @@ namespace DL
             XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationsPath);
 
         }
+        /// <summary>
+        /// the method check if the  AdjacentStations Is Exist
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
+        /// <returns></returns>
         public bool AdjacentStationsIsExist(int code1, int code2)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -714,6 +805,11 @@ namespace DL
                 throw new DO.LineTripNotFoundException(id);
             return lt;
         }
+        /// <summary>
+        /// add new Adjacent Station to the system
+        /// </summary>
+        /// <param name="lineTrip"></param>
+        /// <returns></returns>
         public int AddLineTrip(DO.LineTrip lineTrip)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
@@ -743,7 +839,10 @@ namespace DL
             XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
             return id;
         }
-
+        /// <summary>
+        ///  the method get two id numbers, and marks the Adjacent station as deleted
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteLineTrip(int id)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
@@ -756,6 +855,11 @@ namespace DL
             //  lineTripRootElem.Save(lineTripPath);
             XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
         }
+        /// <summary>
+        /// the method check if the  lineTrip Is Exist
+        /// </summary>
+        /// <param name="lineTrip"></param>
+        /// <returns></returns>
         public bool IsExistLinetrip(DO.LineTrip lineTrip)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);

@@ -306,6 +306,7 @@ namespace DL
         }
         #endregion
         #region Station
+       
         public IEnumerable<DO.Station> GetAllStations()
         {
             return from station in DataSource.ListStations
@@ -313,12 +314,14 @@ namespace DL
                    select station.Clone();
 
         }
+      
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
         {
             return from station in DataSource.ListStations
                    where predicate(station) && station.IsDeleted == false
                    select station.Clone();
         }
+       
         public Station GetStation(int id)
         {
             DO.Station station = DataSource.ListStations.Find(item => item.Code == id && item.IsDeleted == false);
@@ -326,6 +329,11 @@ namespace DL
                 throw new StationNotFoundException(id);
             return station.Clone();
         }
+        /// <summary>
+        ///   add new Station to the system
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
         public int AddStation(DO.Station station)
         {
             
@@ -345,6 +353,10 @@ namespace DL
                 return station.Code;
             
         }
+        /// <summary>
+        /// the method is get update Station, and replace it with the old Station.
+        /// </summary>
+        /// <param name="station"></param>
         public void UpdateStation(DO.Station station)
         {
             DO.Station oldStation = DataSource.ListStations.Find(s => s.Code == station.Code && s.IsDeleted == false);
@@ -357,6 +369,11 @@ namespace DL
             else
                 throw new StationNotFoundException(station.Code);
         }
+        /// <summary>
+        /// the method is get predicate,and  station id and numStation, and update  the old Station.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="update"></param>
         public void UpdateStation(int code, Action<DO.Station> update)
         {
             DO.Station oldStation = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
@@ -368,6 +385,10 @@ namespace DL
             else
                 throw new StationNotFoundException(code);
         }
+        /// <summary>
+        /// the method get id number, and marks the station as deleted
+        /// </summary>
+        /// <param name="code"></param>
         public void DeleteStation(int code)
         {
             DO.Station Station = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
@@ -407,6 +428,10 @@ namespace DL
             }
             return adjacentStations.Clone();
         }
+        /// <summary>
+        ///  add new Adjacent Station to the system
+        /// </summary>
+        /// <param name="addAdjacentStation"></param>
         public void AddAdjacentStations(AdjacentStations addAdjacentStation)
         {
             DO.AdjacentStations oldAdjacent = DataSource.ListTwoAdjacentStations.
@@ -424,8 +449,10 @@ namespace DL
                 DataSource.ListTwoAdjacentStations.Add(addAdjacentStation.Clone());
 
         }
-
-
+        /// <summary>
+        /// the method is get update adjacen Station, and replace it with the old Station.
+        /// </summary>
+        /// <param name="adjacentStations"></param>
         public void UpdateAdjacentStations(AdjacentStations adjacentStations)
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == adjacentStations.Station1
@@ -440,6 +467,12 @@ namespace DL
             else
                 throw new AdjacentStationsNotFoundException(adjacentStations.Station1, adjacentStations.Station2);
         }
+        /// <summary>
+        ///  the method is get predicate,and Adjacent station id and numStation, and update  the old Station.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
+        /// <param name="update"></param>
         public void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update)
         {
             DO.AdjacentStations oldAdjacentStations = DataSource.ListTwoAdjacentStations.
@@ -453,6 +486,11 @@ namespace DL
             else
                 throw new AdjacentStationsNotFoundException(code, code2);
         }
+        /// <summary>
+        ///  the method get two id numbers, and marks the Adjacent station as deleted
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
         public void DeleteAdjacentStations(int code, int code2)
         {
             DO.AdjacentStations AdjacentStations = DataSource.ListTwoAdjacentStations.Find(item => item.Station1 == code && item.Station2 == code2
@@ -466,7 +504,13 @@ namespace DL
                 throw new AdjacentStationsNotFoundException(code, code2);
 
         }
-      public  bool AdjacentStationsIsExist(int code, int code2)
+        /// <summary>
+        /// the method check if the  AdjacentStations Is Exist
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="code2"></param>
+        /// <returns></returns>
+        public bool AdjacentStationsIsExist(int code, int code2)
         {
             DO.AdjacentStations ads = DataSource.ListTwoAdjacentStations.Find(ad => ad.Station1 == code && ad.Station2 == code2 || ad.Station2 == code && ad.Station1 == code2);
             if (ads == null || ads.IsDeleted == true)
