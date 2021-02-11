@@ -23,6 +23,9 @@ namespace UI
     /// </summary>
     public partial class LineWindow : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         IBL bl;
         ObservableCollection<PO.BusLine> LinesCollection;
         ObservableCollection<PO.Station> StationCollection;
@@ -39,7 +42,11 @@ namespace UI
             lineDataGrid.DataContext = LinesCollection;
             
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
@@ -48,14 +55,22 @@ namespace UI
             lineDataGrid.DataContext = LinesCollection;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lineDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             PO.BusLine busLine = lineDataGrid.SelectedItem as PO.BusLine;
             this.stationGrid.DataContext = busLine;
             lvStation.DataContext = busLine.Stations;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             if (lineDataGrid.SelectedItem == null)
@@ -95,6 +110,11 @@ namespace UI
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (lineDataGrid.SelectedItem == null)
@@ -109,6 +129,11 @@ namespace UI
             LinesCollection.Remove(lineToUpdate);
             LinesCollection.Add(Adapter.POBOAdapter(bl.GetLine(lineToUpdate.Id)));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddLineWindow addLineWindow = new AddLineWindow(bl);
@@ -117,23 +142,13 @@ namespace UI
             LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
                 ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
-
-         //   LinesCollection=new ObservableCollection<BusLine>( bl.GetAllLinesByArea(areaComboBox.SelectedItem );
-
-            //showGrid.Visibility = Visibility.Collapsed;
-            //addGrid.Visibility = Visibility.Visible;
-            //StationCollection = new ObservableCollection<PO.Station>(
-            //    bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
-            //stationDataGrid.DataContext = StationCollection;
-            //LineToAdd = new PO.BusLine
-            //{
-            //    Stations = new ObservableCollection<PO.LineStation>()
-            //};
-            //lvLine.DataContext = LineToAdd.Stations;
-            //cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
-
         }
+        /// <summary>
+        /// this metod is allow The method allows only numbers to be entered
 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textOnlyNumber(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;

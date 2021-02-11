@@ -7,16 +7,22 @@ using System.Threading.Tasks;
 
 namespace UI
 {
+    /// <summary>
+    /// This class gets BO object and return a PO object 
+    /// </summary>
     static class Adapter
     {
-     //   IBL bl = BLFactory.GetBL();
 
+        /// <summary>
+        /// the metod get a BO.Station and return a PO.Station and the opposite dirction
+        /// </summary>
+        /// <param name="boStation"></param>
+        /// <returns></returns>
         public static  PO.Station POBOAdapter(BO.Station boStation)
         {
             PO.Station poStation = new PO.Station();
             poStation.Code = boStation.Code;
             poStation.Name = boStation.Name;
-           // List<BO.InformationForStation> info = boStation.ListLines.ToList();
             if (boStation.ListLines== null)
                 poStation.ListLines = null;
             else
@@ -25,8 +31,14 @@ namespace UI
             }
             return poStation;
         }
-        public static PO.BusLine POBOAdapter(BO.Line boLine)//************************
+        /// <summary>
+        /// the metod get a BO.BusLine and return a PO.BusLine
+        /// </summary>
+        /// <param name="boLine"></param>
+        /// <returns></returns>
+        public static PO.BusLine POBOAdapter(BO.Line boLine)
         {
+            
             PO.BusLine poLine = new PO.BusLine();
             poLine.LineNumber = boLine.LineNumber;
             poLine.Area = boLine.Area;
@@ -36,17 +48,26 @@ namespace UI
             poLine.Stations = new ObservableCollection<PO.LineStation>(boLine.Stations.ToList().ConvertAll(lstn => Adapter.POBOAdapter(lstn)));
             return poLine;
         }
-        public static PO.LineStation POBOAdapter(BO.LineStation boLineStation)//************************
+        /// <summary>
+        /// the metod get a BO.LineStation and return a PO.LineStation
+        /// </summary>
+        /// <param name="boLineStation"></param>
+        /// <returns></returns>
+        public static PO.LineStation POBOAdapter(BO.LineStation boLineStation)
         {
             PO.LineStation poLineStation = new PO.LineStation();
             poLineStation.StationName = boLineStation.stationName;
-         //   poLineStation.LineStationIndex = boLineStation.LineStationIndex;
             poLineStation.Distance = boLineStation.Distance;
             poLineStation.StationCode = boLineStation.stationCode;
             poLineStation.Time = boLineStation.Time;
             return poLineStation;
         }
-        public static PO.Bus POBOAdapter(BO.Bus boBus)//************************
+        /// <summary>
+        /// the metod get a BO.Bus and return a PO.Bus
+        /// </summary>
+        /// <param name="boBus"></param>
+        /// <returns></returns>
+        public static PO.Bus POBOAdapter(BO.Bus boBus)
         {
             PO.Bus poBus = new PO.Bus();
             poBus.TotalKms = boBus.TotalKms;
@@ -59,7 +80,12 @@ namespace UI
 
             return poBus;
         }
-        public static BO.Bus BOPOAdapter(PO.Bus poBus)//************************
+        /// <summary>
+        /// the metod get a PO.Bus and return a BO.Bus
+        /// </summary>
+        /// <param name="poBus"></param>
+        /// <returns></returns>
+        public static BO.Bus BOPOAdapter(PO.Bus poBus)
         {
             BO.Bus boBus = new BO.Bus();
             boBus.TotalKms = poBus.TotalKms;
@@ -77,17 +103,26 @@ namespace UI
 
             return boBus;
         }
-        public static BO.LineStation BOPOAdapter(PO.LineStation poLineStation)//************************
+        /// <summary>
+        /// the metod get a BO.LineStation and return a PO.LineStation
+        /// </summary>
+        /// <param name="poLineStation"></param>
+        /// <returns></returns>
+        public static BO.LineStation BOPOAdapter(PO.LineStation poLineStation)
         {
             BO.LineStation boLineStation = new BO.LineStation();
             boLineStation.stationName = poLineStation.StationName;
-            //   poLineStation.LineStationIndex = boLineStation.LineStationIndex;
             boLineStation.Distance = poLineStation.Distance;
             boLineStation.stationCode = poLineStation.StationCode;
             boLineStation.Time = poLineStation.Time;
             return boLineStation;
         }
-        public static BO.Line BOPOAdapter(PO.BusLine poLine)//************************
+        /// <summary>
+        /// the metod get a BO.Line and return a PO.Line
+        /// </summary>
+        /// <param name="poLine"></param>
+        /// <returns></returns>
+        public static BO.Line BOPOAdapter(PO.BusLine poLine)
         {
             BO.Line boLine = new BO.Line();
             boLine.LineNumber = poLine.LineNumber;
