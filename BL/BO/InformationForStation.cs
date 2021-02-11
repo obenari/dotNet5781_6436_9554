@@ -14,9 +14,6 @@ namespace BO
         public int LineNumber { get; set; }
         public string FirstStation { get; set; }
         public string LastStation { get; set; }
-        /// <summary>
-        /// the name of the next station of the  specific station, in the current line
-        /// </summary>
         public string NextStation { get; set; }
 
     }

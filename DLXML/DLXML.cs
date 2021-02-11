@@ -26,7 +26,6 @@ namespace DL
         string lineTripPath = @"LineTripXml.xml";//XElement
         string stationsPath = @"StationsXml.xml";//XElement
         string adjacentStationsPath = @"AdjacentStationsXml.xml";//XElement
-
         #endregion
         #region bus
         public IEnumerable<DO.Bus> GetAllBusses()

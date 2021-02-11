@@ -9,16 +9,6 @@ namespace BLAPI
 
     public interface IBL
     {
-        #region AdjacentStations
-        //IEnumerable<BO.AdjacentStations> GetAllAdjacentStations();
-        //IEnumerable<BO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
-        //AdjacentStations GetAdjacentStations(int code1, int code2);
-        //void AddAdjacentStations(BO.AdjacentStations station);
-        //void UpdateAdjacentStations(BO.AdjacentStations station);
-        //void UpdateAdjacentStations(int code, int code2, Action<BO.AdjacentStations> update); //method that knows to updt specific fields in AdjacentStations
-        //void DeleteAdjacentStations(int code, int code2);
-        #endregion
-
 
         #region Bus
         IEnumerable<BO.Bus> GetAllBusses();
@@ -26,23 +16,11 @@ namespace BLAPI
         BO.Bus GetBus(int License);
         void AddBus(BO.Bus bus);
         void UpdateBus(BO.Bus bus);
-        void UpdateBus(int license, Action<BO.Bus> update); //method that knows to updt specific fields in bus
         void DeleteBus(BO.Bus bus);
         void RefuelBus(BO.Bus bus);
         bool IsReadyToDriving(BO.Bus bus,int km);
         void TreatmentBus(BO.Bus bus);
-       // void TreatmentBus(BO.Bus bus)
         #endregion
-
-        //#region BusInTravel
-        ////IEnumerable<Bus> GetAllBusses();
-        //IEnumerable<BusInTravel> GetAllBussesIntravelBy(Predicate<BusInTravel> predicate);
-        //BusInTravel GetBusInTravel(int id, int licensenum, int line);
-        //void AddBusIntravel(BusInTravel busInTravel);
-        //void UpdateBusInTtavel(BusInTravel busInTravel);
-        //void UpdateBusIntravel(int id, int licensenum, int line, Action<BusInTravel> update); //method that knows to updt specific fields in busInTravel
-        //void DeleteBusInTravel(int id, int licensenum, int line);
-        //#endregion
 
         #region Line
         IEnumerable<BO.Line> GetAllLines();
@@ -53,16 +31,6 @@ namespace BLAPI
       //  void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
         void DeleteLine(int id);
         #endregion
-
-        //#region LineStation
-        //IEnumerable<BO.LineStation> GetAllLineStations();
-        //IEnumerable<BO.LineStation> GetAllLineStationsBy(Predicate<BO.LineStation> predicate);
-        //BO.LineStation GetLineStation(int line, int numSation);
-        //void AddLineStation(BO.LineStation lineStation);
-        //void UpdateLineStation(BO.LineStation lineStation);
-        //void UpdateLineStation(int line, int numSation, Action<BO.LineStation> update); //method that knows to updt specific fields in LineStation
-        //void DeleteLineStation(int line, int numSation);
-        //#endregion
 
         #region LineTrip
         IEnumerable<BO.LineTrip> GetAllLinesTrip();
@@ -78,32 +46,15 @@ namespace BLAPI
         IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate);
         BO.Station GetStation(int code);
         int AddStation(BO.Station station);
-        void UpdateStation(BO.Station station);
-        void UpdateStation(int code, Action<BO.Station> update); //method that knows to updt specific fields in Station
+      
         void DeleteStation(int code);
         #endregion
+
         #region LineTiming
         IEnumerable<BO.LineTiming> GetLinesTiming(int code, TimeSpan start);
         #endregion
-        //#region Trip
-        //IEnumerable<Trip> GetAllTrips();
-        //IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate);
-        //Trip GetTrip(int id);
-        //void AddTrip(Trip trip);
-        //void UpdateTrip(Trip trip);
-        //void UpdateTrip(int id, Action<Trip> update); //method that knows to updt specific fields in Trip
-        //void DeleteTrip(int id);
-        //#endregion
+      
 
-        //#region User
-        //IEnumerable<User> GetAllUsers();
-        //IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
-        //User GetUser(int id);
-        //void AddUser(User user);
-        //void UpdateUser(User user);
-        //void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in User
-        //void DeleteUser(int id);
-        //#endregion
-
+       
     }
 }

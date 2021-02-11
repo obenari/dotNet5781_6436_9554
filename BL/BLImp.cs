@@ -22,43 +22,11 @@ namespace BL
         BLImp() { } // default => private
         #endregion
         #region Line
-        BO.Line LineDoBoAdapter(DO.Line lineDO)
-        {
-            BO.Line lineBO = new BO.Line();
-            lineBO.LineNumber = lineDO.LineNumber;
-            lineBO.Id = lineDO.Id;
-            lineBO.Area = (BO.Areas)(int)lineDO.Area;
-            //get the first and the last stations of lineDO in order to get their name' to put in lineBo
-            DO.Station station1 = dl.GetStation(lineDO.FirstStation);
-            DO.Station station2 = dl.GetStation(lineDO.LastStation);
-            lineBO.FirstStationName = station1.Name;
-            lineBO.LastStationName = station2.Name;
-
-            //collect all the lineStation that belong to lineBo
-            lineBO.Stations = from stn in dl.GetAllLineStationsBy(item => item.LineId == lineDO.Id)
-                              orderby stn.LineStationIndex
-                              select LineStationDoBoAdapter(stn);//convert from DO.lineStation to BO.lineStation
-            //lineBO.Stations.ElementAt(0).Distance = 0;
-            //lineBO.Stations.ElementAt(0).Time = new TimeSpan(0);
-
-            //lineBO.Stations = lineBO.Stations.ToList();
-
-            //foreach (var item in lineBO.Stations)
-            //{
-
-            //}
-
-            ////collect all the adjacentStations that belong to lineBo
-            //lineBO.adjacentStations = from stn in dl.GetAllAdjacentStations()
-            //                          let stations= lineBO.Stations.ToList()//save all the LineStations that belong to LineBo in list
-            //                          //Now check if LineStations list contain the two stations in the adjacentStations
-            //                          where stations.Any(x => x.stationCode == stn.Station1)
-            //                                 && stations.Any(x => x.stationCode == stn.Station2)
-            //                          select adjacentStationsDoBoAdapter(stn);
-            return lineBO;
-        }
-
-
+        /// <summary>
+        ///  add new line to the system
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public int AddLine(Line line)
         {
             //check if there is information about distance and time between all the stations
@@ -148,9 +116,10 @@ namespace BL
             }
             return line.Id;
         }
-
-
-
+        /// <summary>
+        ///the method get line id and delete the line
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteLine(int id)
         {
             try
@@ -202,6 +171,10 @@ namespace BL
             DO.Line line = dl.GetLine(id);
             return LineDoBoAdapter(line);
         }
+        /// <summary>
+        /// the method is get update line, and replace it with the old line.
+        /// </summary>
+        /// <param name="lineToUpdate"></param>
         public void UpdateLine(Line lineToUpdate)//it is disable to update the line id, line number and area
         {
             //check if there is information about distance and time between all the stations
@@ -278,23 +251,50 @@ namespace BL
                 }
             }
         }
-
-        //public void UpdateLine(int id, Action<Line> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
-        #endregion
-        #region AdjacentStations///אולי למחוק
-        private BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations stnA)
+        /// <summary>
+        ///  the metod get a DO.line and return a BO.line and the opposite dirction
+        /// </summary>
+        /// <param name="lineDO"></param>
+        /// <returns></returns>
+        BO.Line LineDoBoAdapter(DO.Line lineDO)
         {
-            BO.AdjacentStations adjacentStations = new AdjacentStations();
-            adjacentStations.Distance = stnA.Distance;
-            adjacentStations.Time = stnA.Time;
-            adjacentStations.Station1 = stnA.Station1;
-            adjacentStations.Station2 = stnA.Station2;
-            return adjacentStations;
+            BO.Line lineBO = new BO.Line();
+            lineBO.LineNumber = lineDO.LineNumber;
+            lineBO.Id = lineDO.Id;
+            lineBO.Area = (BO.Areas)(int)lineDO.Area;
+            //get the first and the last stations of lineDO in order to get their name' to put in lineBo
+            DO.Station station1 = dl.GetStation(lineDO.FirstStation);
+            DO.Station station2 = dl.GetStation(lineDO.LastStation);
+            lineBO.FirstStationName = station1.Name;
+            lineBO.LastStationName = station2.Name;
+
+            //collect all the lineStation that belong to lineBo
+            lineBO.Stations = from stn in dl.GetAllLineStationsBy(item => item.LineId == lineDO.Id)
+                              orderby stn.LineStationIndex
+                              select LineStationDoBoAdapter(stn);//convert from DO.lineStation to BO.lineStation
+            //lineBO.Stations.ElementAt(0).Distance = 0;
+            //lineBO.Stations.ElementAt(0).Time = new TimeSpan(0);
+
+            //lineBO.Stations = lineBO.Stations.ToList();
+
+            //foreach (var item in lineBO.Stations)
+            //{
+
+            //}
+
+            ////collect all the adjacentStations that belong to lineBo
+            //lineBO.adjacentStations = from stn in dl.GetAllAdjacentStations()
+            //                          let stations= lineBO.Stations.ToList()//save all the LineStations that belong to LineBo in list
+            //                          //Now check if LineStations list contain the two stations in the adjacentStations
+            //                          where stations.Any(x => x.stationCode == stn.Station1)
+            //                                 && stations.Any(x => x.stationCode == stn.Station2)
+            //                          select adjacentStationsDoBoAdapter(stn);
+            return lineBO;
         }
+
+       
         #endregion
+
         #region LineStation
         private BO.LineStation LineStationDoBoAdapter(DO.LineStation doLineStation)
         {
@@ -339,55 +339,8 @@ namespace BL
                    select BusDoBoAdapter(bus);
         }
 
-        private BO.Bus BusDoBoAdapter(DO.Bus doBus)
-        {
-            BO.Bus boBus = new Bus();
-            string licenseStr = doBus.License.ToString();
-            if (licenseStr.Length <= 7)
-            {
-                string help = "";
-                if (doBus.StartOfWork.Year >= 2018)//the license number need 8 digit
-                {
-                    for (int i = 0; i < 8 - licenseStr.Length; i++)
-                    {
-                        help += "0";
-                    }
-                }
-                else//the license number need 7 digit
-                {
-                    for (int i = 0; i < 7 - licenseStr.Length; i++)
-                    {
-                        help += "0";
-                    }
-                }
-                licenseStr = licenseStr.Insert(0, help);
-
-            }
-            boBus.License = licenseStr;
-            boBus.DateOfTreatment = doBus.DateOfTreatment;
-            boBus.StartOfWork = doBus.StartOfWork;
-            boBus.Status = (BO.Status)(int)doBus.Status;
-            boBus.Fuel = doBus.Fuel;
-            boBus.TotalKms = doBus.TotalKms;
-            boBus.TotalKmsFromLastTreatment = doBus.TotalKmsFromLastTreatment;
-            return boBus;
-
-        }
-        private DO.Bus BusBoDoAdapter(BO.Bus boBus)
-        {
-            DO.Bus doBus = new DO.Bus();
-            //while (boBus.License[0] == '0')
-            //    boBus.License = boBus.License.Remove(0, 1);
-            doBus.License = int.Parse(boBus.License);
-            doBus.DateOfTreatment = boBus.DateOfTreatment;
-            doBus.StartOfWork = boBus.StartOfWork;
-            doBus.Status = (DO.Status)(int)boBus.Status;
-            doBus.Fuel = boBus.Fuel;
-            doBus.TotalKms = boBus.TotalKms;
-            doBus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
-            return doBus;
-
-        }
+       
+       
 
         public IEnumerable<BO.Bus> GetAllBussesBy(Predicate<BO.Bus> predicate)
         {
@@ -403,6 +356,10 @@ namespace BL
             DO.Bus bus = dl.GetBus(License);
             return BusDoBoAdapter(bus);
         }
+        /// <summary>
+        ///the method get a new bus, and and check if the data is okey, and add it  to dl
+        /// </summary>
+        /// <param name="boBus"></param>
         public void AddBus(BO.Bus boBus)
         {
             try
@@ -421,8 +378,11 @@ namespace BL
                 throw new DuplicateBusException(ex.License, "", ex);
             }
 
-
         }
+        /// <summary>
+        ///  the method is get update bus, and update it in dl
+        /// </summary>
+        /// <param name="bus"></param>
         public void UpdateBus(BO.Bus bus)
         {
             try
@@ -434,10 +394,10 @@ namespace BL
                 throw new BusNotFoundException(ex.License.ToString(), "", ex);
             }
         }
-        public void UpdateBus(int license, Action<BO.Bus> update)////אולי למחוק
-        {
-
-        }
+       /// <summary>
+       /// the method get bus, and delete it from dl
+       /// </summary>
+       /// <param name="boBus"></param>
         public void DeleteBus(BO.Bus boBus)
         {
             try
@@ -475,7 +435,55 @@ namespace BL
             UpdateBus(bus);
             return true;
         }
+        private DO.Bus BusBoDoAdapter(BO.Bus boBus)
+        {
+            DO.Bus doBus = new DO.Bus();
+            //while (boBus.License[0] == '0')
+            //    boBus.License = boBus.License.Remove(0, 1);
+            doBus.License = int.Parse(boBus.License);
+            doBus.DateOfTreatment = boBus.DateOfTreatment;
+            doBus.StartOfWork = boBus.StartOfWork;
+            doBus.Status = (DO.Status)(int)boBus.Status;
+            doBus.Fuel = boBus.Fuel;
+            doBus.TotalKms = boBus.TotalKms;
+            doBus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
+            return doBus;
 
+        }
+        private BO.Bus BusDoBoAdapter(DO.Bus doBus)
+        {
+            BO.Bus boBus = new Bus();
+            string licenseStr = doBus.License.ToString();
+            if (licenseStr.Length <= 7)
+            {
+                string help = "";
+                if (doBus.StartOfWork.Year >= 2018)//the license number need 8 digit
+                {
+                    for (int i = 0; i < 8 - licenseStr.Length; i++)
+                    {
+                        help += "0";
+                    }
+                }
+                else//the license number need 7 digit
+                {
+                    for (int i = 0; i < 7 - licenseStr.Length; i++)
+                    {
+                        help += "0";
+                    }
+                }
+                licenseStr = licenseStr.Insert(0, help);
+
+            }
+            boBus.License = licenseStr;
+            boBus.DateOfTreatment = doBus.DateOfTreatment;
+            boBus.StartOfWork = doBus.StartOfWork;
+            boBus.Status = (BO.Status)(int)doBus.Status;
+            boBus.Fuel = doBus.Fuel;
+            boBus.TotalKms = doBus.TotalKms;
+            boBus.TotalKmsFromLastTreatment = doBus.TotalKmsFromLastTreatment;
+            return boBus;
+
+        }
         #endregion
         #region InformationForStation
         /// <summary>
@@ -524,38 +532,6 @@ namespace BL
                    select StationDoBoAdapter(station);
         }
 
-        private BO.Station StationDoBoAdapter(DO.Station doStation)
-        {
-            BO.Station boStation = new Station();
-            boStation.Code = doStation.Code;
-            boStation.Latitude = doStation.Latitude;
-            boStation.Longitude = doStation.Longitude;
-            boStation.Name = doStation.Name;
-            //sorted all lineSattion by lineId
-            var lineGroup = from lineStation in dl.GetAllLineStations()
-                            group lineStation by lineStation.LineId;
-            //now check all  group (line), if doStation is belong to the group (line), call to makeInformationForStation 
-            boStation.ListLines = from line in lineGroup
-                                  let lineStation = line.FirstOrDefault(s => s.stationCode == doStation.Code)
-                                  where lineStation != null
-                                  select makeInformationForStation(line.Key, lineStation);
-
-            //boStation.ListLines = (from line in dl.GetAllLines()
-            //                       from lineStation in dl.GetAllLineStations()
-            //                       where lineStation.LineId == line.Id && lineStation.stationCode == boStation.Code
-            //                       select makeInformationForStation(line,doStation));
-            return boStation;
-        }
-        private DO.Station StationBoDoAdapter(BO.Station boStation)
-        {
-            DO.Station doStation = new DO.Station();
-            doStation.Code = boStation.Code;
-            doStation.Latitude = boStation.Latitude;
-            doStation.Longitude = boStation.Longitude;
-            doStation.Name = boStation.Name;
-            return doStation;
-        }
-
         public IEnumerable<BO.Station> GetAllStationsBy(Predicate<Station> predicate)
         {
             return from station in dl.GetAllStations()
@@ -586,14 +562,10 @@ namespace BL
                 throw new BO.DuplicateStationException(ex.StationName, "", ex);
             }
         }
-        public void UpdateStation(Station station)
-        {
-
-        }
-        public void UpdateStation(int code, Action<BO.Station> update)
-        {
-
-        }
+       /// <summary>
+       /// the method get the station code, and delete the station from dl
+       /// </summary>
+       /// <param name="code"></param>
         public void DeleteStation(int code)
         {
             try
@@ -625,19 +597,8 @@ namespace BL
                         }
                         catch (DuplicateAdjacentStationsException ex) { }
                     }
-                    //if (item.PrevStation != null)
-                    //{
-                    //    DO.LineStation prevLineStation = dl.GetLineStation(item.LineId, (int)item.PrevStation);
-                    //    prevLineStation.NextStation = item.NextStation;
-                    //    dl.UpdateLineStation(prevLineStation);
-                    //}
-                    //if (item.NextStation != null)
-                    //{
-                    //    DO.LineStation nextLineStation = dl.GetLineStation(item.LineId, (int)item.NextStation);
-                    //    nextLineStation.PrevStation = item.PrevStation;
-                    //    dl.UpdateLineStation(nextLineStation);
-                    //}
-                }
+
+                }//end to update the distance and time between the next and prev station
 
                 //update the lines that their first station is deleted
                 var linesWhereFirstStationDeleted = dl.GetAllLinesBy(l => l.FirstStation == code).ToList();
@@ -667,8 +628,6 @@ namespace BL
                 var lineGroup = from lineStation in dl.GetAllLineStations()
                                 orderby lineStation.LineStationIndex
                                 group lineStation by lineStation.LineId;
-
-
                 foreach (var item in lineGroup)
                 {
                     //get the lineStation to remove from the group( if it is exist)
@@ -703,6 +662,45 @@ namespace BL
                 throw new BO.StationNotFoundException(code);
             }
         }
+        /// <summary>
+        ///  the metod get a DO.Station and return a BO.Station and the opposite dirction
+        /// </summary>
+        /// <param name="doStation"></param>
+        /// <returns></returns>
+        private BO.Station StationDoBoAdapter(DO.Station doStation)
+        {
+            BO.Station boStation = new Station();
+            boStation.Code = doStation.Code;
+            boStation.Latitude = doStation.Latitude;
+            boStation.Longitude = doStation.Longitude;
+            boStation.Name = doStation.Name;
+            //sorted all lineSattion by lineId
+            var lineGroup = from lineStation in dl.GetAllLineStations()
+                            group lineStation by lineStation.LineId;
+            //now check all  group (line), if doStation is belong to the group (line), call to makeInformationForStation 
+            boStation.ListLines = from line in lineGroup
+                                  let lineStation = line.FirstOrDefault(s => s.stationCode == doStation.Code)
+                                  where lineStation != null
+                                  select makeInformationForStation(line.Key, lineStation);
+
+           
+            return boStation;
+        }
+        /// <summary>
+        ///  the metod get a BO.Station and return a DO.Station and the opposite dirction
+        /// </summary>
+        /// <param name="boStation"></param>
+        /// <returns></returns>
+        private DO.Station StationBoDoAdapter(BO.Station boStation)
+        {
+            DO.Station doStation = new DO.Station();
+            doStation.Code = boStation.Code;
+            doStation.Latitude = boStation.Latitude;
+            doStation.Longitude = boStation.Longitude;
+            doStation.Name = boStation.Name;
+            return doStation;
+        }
+
         #endregion
         #region LineTrip
         public IEnumerable<BO.LineTrip> GetAllLinesTrip()
@@ -728,6 +726,10 @@ namespace BL
                 throw new BO.LineTripNotFoundException(id);
             return boLineTrip;
         }
+        /// <summary>
+        /// the method get a single linetrip, and add it to dl
+        /// </summary>
+        /// <param name="boLineTrip"></param>
         public void AddLineTrip(BO.LineTrip boLineTrip)
         {
             DO.LineTrip lineTripToAdd = LineTripBoDoAdapter(boLineTrip);
@@ -735,11 +737,18 @@ namespace BL
             {
                 boLineTrip.Id = dl.AddLineTrip(lineTripToAdd);
             }
-            catch(DO.DuplicateLineTripException ex)
+            catch(DO.DuplicateLineTripException ex)//if the lineTrip is already exist
             {
                 throw new BO.DuplicateLineTripException(ex.Id);
             }
         }
+        /// <summary>
+        /// The method receives a range of time and frequency and produces all the lineTrip in the range
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="start"></param>
+        /// <param name="finish"></param>
+        /// <param name="frequency"></param>
         public void AddLineTrip(int lineId, TimeSpan start, TimeSpan finish,TimeSpan frequency)
         {
             List<DO.LineTrip> linesTrip = new List<DO.LineTrip>();
