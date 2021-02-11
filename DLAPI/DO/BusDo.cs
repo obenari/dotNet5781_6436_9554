@@ -41,10 +41,7 @@ namespace DO
         /// </summary>
         public int TotalKmsFromLastTreatment { get; set; }
         
-        public override string ToString()
-        {
-            return this.ToString();
-        }
+       
         /// <summary>
         /// this field return false when the argument is not deleted
         /// </summary>

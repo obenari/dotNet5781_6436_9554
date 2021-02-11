@@ -87,8 +87,8 @@ namespace BL
             {
                 Area = (DO.Areas)(line.Area),
                 LineNumber = line.LineNumber,
-                //     FirstStation = lineStations[0].stationCode,
-                //  LastStation = lineStations[lineStations.Count() - 1].stationCode,
+                FirstStation = lineStations[0].stationCode,
+                LastStation = lineStations[lineStations.Count() - 1].stationCode,
                 IsDeleted = false
             };
             line.Id = dl.AddLine(lineToadd);
@@ -151,7 +151,7 @@ namespace BL
 
 
 
-        public void DeleteLine(int id, int line)//*************לא צריך את מספר הקו
+        public void DeleteLine(int id)
         {
             try
             {
@@ -161,16 +161,25 @@ namespace BL
                 {
                     dl.DeleteLineStation(id, lineStations[i].stationCode);
                 }
+                var linesTrip = dl.GetAllLinesTripBy(x => x.LineId == id);
+                for (int i = 0; i < linesTrip.Count(); i++)
+                {
+                    dl.DeleteLineTrip(id);
+                }
             }
             catch (DO.BusLineNotFoundException ex)
             {
 
-                throw new BO.BusLineNotFoundException(line, id, ex);
+                throw new BO.BusLineNotFoundException( id, ex);
             }
             catch (DO.LineStationNotFoundException ex)
             {
 
-                throw new BO.LineStationNotFoundException(line, id, "", ex);
+                throw new BO.LineStationNotFoundException( ex.LineId, id);
+            }
+            catch(DO.LineTripNotFoundException ex)
+            {
+                throw new BO.LineTripNotFoundException(ex.Id,"",ex);
             }
 
         }
@@ -367,8 +376,8 @@ namespace BL
         private DO.Bus BusBoDoAdapter(BO.Bus boBus)
         {
             DO.Bus doBus = new DO.Bus();
-            while (boBus.License[0] == '0')
-                boBus.License = boBus.License.Remove(0, 1);
+            //while (boBus.License[0] == '0')
+            //    boBus.License = boBus.License.Remove(0, 1);
             doBus.License = int.Parse(boBus.License);
             doBus.DateOfTreatment = boBus.DateOfTreatment;
             doBus.StartOfWork = boBus.StartOfWork;
@@ -442,6 +451,31 @@ namespace BL
                 throw new BO.BusNotFoundException(boBus.License, "", ex);
             }
         }
+        public void RefuelBus(BO.Bus bus)
+        {
+            bus.Fuel = 1200;
+            UpdateBus(bus);
+        }
+        public void TreatmentBus(BO.Bus bus)
+        {
+            bus.Fuel = 1200;
+            bus.DateOfTreatment = DateTime.Now;
+            bus.TotalKmsFromLastTreatment = 0;
+            UpdateBus(bus);
+        }
+      public  bool IsReadyToDriving(BO.Bus bus, int km)
+        {
+            if (bus.TotalKmsFromLastTreatment + km > 20000 || bus.Fuel - km < 0)
+                return false;
+            DateTime yearAgo = DateTime.Today.AddYears(-1);
+            if (bus.DateOfTreatment < yearAgo)
+                return false;
+            bus.TotalKmsFromLastTreatment = bus.TotalKmsFromLastTreatment + km;
+            bus.Fuel = bus.Fuel - km;
+            UpdateBus(bus);
+            return true;
+        }
+
         #endregion
         #region InformationForStation
         /// <summary>
@@ -708,11 +742,23 @@ namespace BL
         }
         public void AddLineTrip(int lineId, TimeSpan start, TimeSpan finish,TimeSpan frequency)
         {
+            List<DO.LineTrip> linesTrip = new List<DO.LineTrip>();
             while(start<=finish)
             {
-                AddLineTrip(new BO.LineTrip { LineId = lineId, StartAt = start });
-                //if the lineTrip is already exist, the prev function will throw an exception
+                DO.LineTrip lineTrip = new DO.LineTrip
+                {
+                    LineId = lineId,
+                    StartAt = start
+                };
+                if(dl.IsExistLinetrip(lineTrip))
+                    throw new BO.DuplicateLineTripException(lineId);
+                linesTrip.Add(lineTrip);
+             
                 start += frequency;
+            }
+            for (int i = 0; i < linesTrip.Count; i++)
+            {
+                dl.AddLineTrip(linesTrip[i]);
             }
         }
         public void DeleteLineTrip(int id)
@@ -744,6 +790,62 @@ namespace BL
                 StartAt = boLineTrip.StartAt
             };
         }
+        #endregion
+        #region LineTiming
+        /// <summary>
+        /// this func return IEnumerable of all lineTimings off the required station
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="start">this time</param>
+        /// <returns></returns>
+        public IEnumerable<BO.LineTiming> GetLinesTiming(int code, TimeSpan start)
+        {
+            
+            var lineStationsGrouping = from lineStation in dl.GetAllLineStations()
+                                       orderby lineStation.LineStationIndex
+                                       group lineStation by lineStation.LineId;
+           
+            return from lsGroup in lineStationsGrouping
+                    where lsGroup.Any(x => x.stationCode == code)
+                    let line = GetLine(lsGroup.Key)     // MakeLineTiming(GetLine(lsGroup.Key),code,start)    //(lsGroup.ToList(), lsGroup.Key, code,start)
+                    let time = calculateTravelTime(line, code)//calculate the travel time from first station to the request station
+                    from trip in dl.GetAllLinesTripBy(x => x.LineId == line.Id && x.StartAt <= start).OrderBy(x => x.StartAt)
+                    let timeNow = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second)
+                    where trip.StartAt + time > timeNow
+                    select new LineTiming
+                    {
+                        LineCode = line.LineNumber,
+                        LastStation = line.LastStationName,
+                        TripStart = trip.StartAt,
+                        ExpectedTimeTillArrive = trip.StartAt + time - timeNow
+                    };
+
+
+        }
+        /// <summary>
+        /// calculate the travel time from first station to the request station
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private TimeSpan calculateTravelTime(BO.Line line,int code)
+        {
+            TimeSpan time = new TimeSpan();
+            foreach (var item in line.Stations)
+            {
+                time += item.Time;
+                if (item.stationCode == code)
+                    break;
+            }
+            return time;
+        }
+        //private BO.LineTiming MakeLineTiming(BO.Line line, int stationCode, TimeSpan start)
+        //{
+        //    var lineTrips = dl.GetAllLinesTripBy(x => x.LineId == line.Id&&x.StartAt<=start).OrderBy(x=>x.StartAt);
+
+        //    BO.LineTiming lineTiming = new LineTiming();
+
+        //}
         #endregion
     }
 }

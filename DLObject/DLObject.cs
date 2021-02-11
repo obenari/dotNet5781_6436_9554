@@ -43,8 +43,11 @@ namespace DL
                 throw new BusNotFoundException(License);
             return bus.Clone();
         }
-
-        public void AddBus(Bus bus)//*******************************
+        /// <summary>
+        /// add new bus to the system
+        /// </summary>
+        /// <param name="bus"></param>
+        public void AddBus(Bus bus)
         {
             DO.Bus oldBus = DataSource.ListBusses.Find(item => item.License == bus.License);
             if (oldBus != null)//check if the oldBus alredy exist or deleted
@@ -61,7 +64,10 @@ namespace DL
             else
                 DataSource.ListBusses.Add(bus.Clone());
         }
-
+        /// <summary>
+        ///the method is get update bus, and replace it with the old bus.
+        /// </summary>
+        /// <param name="bus"></param>
         public void UpdateBus(Bus bus)
         {
             DO.Bus oldBus = DataSource.ListBusses.Find(b => b.License == bus.License && b.IsDeleted == false);
@@ -74,7 +80,11 @@ namespace DL
             else
                 throw new BusNotFoundException(bus.License);
         }
-
+        /// <summary>
+        /// the method is get predicate,and  license, and update  the old bus.
+        /// </summary>
+        /// <param name="license"></param>
+        /// <param name="update"></param>
         public void UpdateBus(int license, Action<Bus> update)
         {
             DO.Bus oldBus = DataSource.ListBusses.Find(b => b.License == license && b.IsDeleted == false);
@@ -86,7 +96,10 @@ namespace DL
             else
                 throw new BusNotFoundException(license);
         }
-
+        /// <summary>
+        /// the method get license number, and marks the bus as deleted
+        /// </summary>
+        /// <param name="license"></param>
         public void DeleteBus(int license)
         {
             DO.Bus oldBus = DataSource.ListBusses.Find(b => b.License == license && b.IsDeleted == false);
@@ -121,23 +134,23 @@ namespace DL
                 throw new BusLineNotFoundException(id);
             return line.Clone();
         }
-        public int AddLine(DO.Line line)//******************
+        /// <summary>
+        ///  add new line to the system
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public int AddLine(DO.Line line)
         {
-            //DO.Line oldLine = DataSource.ListLines.Find(item => item.Id == line.Id);
-            //if (oldLine != null)//check if the oldLine alredy exist or deleted
-            //{
-            //    if (oldLine.IsDeleted == true)//if the line is deleted, update the line
-            //        oldLine.IsDeleted = false;
-            //    else//if the line is exist and not deleted,will thrown an Exception
-            //        throw new BusLineNotFoundException(line.Id);
-
-            //}
-            //else
-            line.Id = DO.Config.LineID;
+           
+            line.Id = DO.Config.LineID;//get the runner number to the line id
                 DataSource.ListLines.Add(line.Clone());
            return line.Id ;
 
         }
+        /// <summary>
+        /// the method is get update line, and replace it with the old line.
+        /// </summary>
+        /// <param name="line"></param>
         public void UpdateLine(DO.Line line)
         {
             DO.Line oldLine = DataSource.ListLines.Find(l => l.Id == line.Id && l.IsDeleted == false);
@@ -150,6 +163,11 @@ namespace DL
             else
                 throw new BusLineNotFoundException(line.Id);
         }
+        /// <summary>
+        ///  the method is get predicate,and  line id, and update  the old line.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="update"></param>
         public void UpdateLine(int id, Action<DO.Line> update)
         {
             DO.Line oldLine = DataSource.ListLines.Find(l => l.Id == id && l.IsDeleted == false);
@@ -161,6 +179,10 @@ namespace DL
             else
                 throw new BusLineNotFoundException(id);
         }
+        /// <summary>
+        /// the method get id number, and marks the line as deleted
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteLine(int id)
         {
             DO.Line oldLine = DataSource.ListLines.Find(l => l.Id == id && l.IsDeleted == false);
@@ -168,7 +190,6 @@ namespace DL
             if (oldLine != null)//if the bus is exist
             {
                 oldLine.IsDeleted = true;
-                // DataSource.ListLines.Remove(oldLine);
             }
             else
                 throw new BusLineNotFoundException(id);
@@ -200,10 +221,14 @@ namespace DL
         {
             DO.LineStation lineStation = DataSource.ListLineStations
                 .Find(item => item.LineId == line && item.stationCode == numSation && item.IsDeleted == false);
-            if (lineStation == null)
+            if (lineStation == null)//if the station is not exist
                 throw new LineStationNotFoundException(numSation, line);
             return lineStation.Clone();
         }
+        /// <summary>
+        ///  add new lineStation to the system
+        /// </summary>
+        /// <param name="lineStation"></param>
         public void AddLineStation(LineStation lineStation)
         {
             DO.LineStation oldLineStation = DataSource.ListLineStations.
@@ -215,13 +240,16 @@ namespace DL
                     oldLineStation.IsDeleted = false;
                 else//if the lineStation is exist and not deleted,will thrown an Exception
                     throw new DuplicateLineStationException(lineStation.stationCode, lineStation.LineId);
-
             }
             else
                 DataSource.ListLineStations.Add(lineStation.Clone());
 
 
         }
+        /// <summary>
+        /// the method is get update lineStation, and replace it with the old lineStation.
+        /// </summary>
+        /// <param name="lineStation"></param>
         public void UpdateLineStation(LineStation lineStation)
         {
             DO.LineStation oldLineStation = DataSource.ListLineStations
@@ -237,6 +265,12 @@ namespace DL
             else
                 throw new LineStationNotFoundException(lineStation.stationCode, lineStation.LineId);
         }
+        /// <summary>
+        /// the method is get predicate,and  line id and numStation, and update  the old lineStation.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="numSation"></param>
+        /// <param name="update"></param>
         public void UpdateLineStation(int line, int numSation, Action<LineStation> update)
         {
 
@@ -251,6 +285,11 @@ namespace DL
             else
                 throw new LineStationNotFoundException(numSation, line);
         }
+        /// <summary>
+        /// the method get id number, and marks the line as deleted
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="numSation"></param>
         public void DeleteLineStation(int lineId, int numSation)
         {
 
@@ -261,7 +300,6 @@ namespace DL
             if (oldLineStation != null)//if the lineStation is exist
             {
                 oldLineStation.IsDeleted = true;
-                // DataSource.ListLineStations.Remove(oldLineStation);
             }
             else
                 throw new LineStationNotFoundException(numSation, lineId);
@@ -290,22 +328,7 @@ namespace DL
         }
         public int AddStation(DO.Station station)
         {
-            //DO.Station oldLine = DataSource.ListStations.Find(item => item.Code == station.Code);
-            //if (oldLine != null)//check if the old station alredy exist or deleted
-            //{
-            //    if (oldLine.IsDeleted == true)//if the old station is deleted, update the line
-            //    {
-            //        oldLine.IsDeleted = false;
-            //        UpdateStation(oldLine);
-            //        return oldLine.Code;
-            //    }
-            //    else//if the old station is exist and not deleted,will thrown an Exception
-            //        throw new StationNotFoundException(station.Code);
-
-            //}
-            //else
-            //{
-            //check duplicate cases
+            
             Station temp = DataSource.ListStations.Find(s => s.Name == station.Name && s.Latitude == station.Latitude && s.Longitude == station.Longitude);
             if (temp!=null)
             {
@@ -317,11 +340,10 @@ namespace DL
                 throw new DuplicateStationException(station.Name);
             }
 
-            station.Code = DO.Config.StationCode;
+            station.Code = DO.Config.StationCode;//get the runner number to station id
                 DataSource.ListStations.Add(station.Clone());
                 return station.Code;
-            //}
-
+            
         }
         public void UpdateStation(DO.Station station)
         {
@@ -365,7 +387,7 @@ namespace DL
             return from AdjacentStations in DataSource.ListTwoAdjacentStations
                    where AdjacentStations.IsDeleted == false
                    select AdjacentStations.Clone();
-            ////
+          
             
         }
         public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)
@@ -475,6 +497,10 @@ namespace DL
         }
 
         public void DeleteLineTrip(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public bool IsExistLinetrip(DO.LineTrip lineTrip)
         {
             throw new NotImplementedException();
         }

@@ -25,7 +25,7 @@
 
                 <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="תדלוק" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnRefuel_Click" />
                 <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="שלח לטיפול" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE" Click="btnTreatment_Click"/>
-                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="שלח לנסיעה"  FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2"/>
+                <Button x:Name="btnDrive" Margin="3" Grid.Column="3" Content="שלח לנסיעה"  FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnDrive_Click"/>
                 <ProgressBar x:Name="pbar" Margin="3" Width="200" Grid.Column="4" FontFamily="Sitka Display" Visibility="Collapsed" />
                 <TextBlock x:Name="timer" Visibility="Collapsed" Grid.Column="4" Width="100"
                        FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
@@ -33,14 +33,14 @@
         </DataTemplate>
 
     </Window.Resources>
-    <Grid >
-        <Grid.Background>
+    <Grid  Background="{StaticResource MyBackground}">
+        <!--<Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
                 <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
                 <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
             </LinearGradientBrush>
-        </Grid.Background>
+        </Grid.Background>-->
 
 
         <Grid.RowDefinitions>
@@ -116,9 +116,9 @@
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
         </Button>-->
-        <Grid x:Name="busDetailsGrid"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="250" Width="360" Margin="0,0,195,0">
+        <Grid x:Name="busDetailsGrid"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="250" Width="360" Margin="0,0,195,20">
 
-            <Grid x:Name="grid1" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="250" Width="360" Background="#FFD5EFD9">
+            <Grid x:Name="grid1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0" Height="250" Width="360" Background="#FFD5EFD9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -148,6 +148,11 @@
                 <TextBox x:Name="startOfActivityTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfWork, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
             </Grid>
         </Grid>
-        <Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,120,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
+        <Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,100,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
+        <Grid x:Name="drivingGrid" Visibility="Visible"  HorizontalAlignment="Center" Margin="400,0,0,10" Height="110" Grid.Column="1" VerticalAlignment="Bottom" Width="220">
+            <TextBox x:Name="tbDriving" Width="220" Height="80" VerticalAlignment="Bottom" PreviewKeyDown="textOnlyNumber" />
+            <Label Content="הכנס את מרחק הנסיעה בקילומטרים" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnDriving" Content="שלח לנסיעה" Height="20" VerticalAlignment="Bottom" />
+        </Grid>
     </Grid>
 </Window>

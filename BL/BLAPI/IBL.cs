@@ -28,6 +28,10 @@ namespace BLAPI
         void UpdateBus(BO.Bus bus);
         void UpdateBus(int license, Action<BO.Bus> update); //method that knows to updt specific fields in bus
         void DeleteBus(BO.Bus bus);
+        void RefuelBus(BO.Bus bus);
+        bool IsReadyToDriving(BO.Bus bus,int km);
+        void TreatmentBus(BO.Bus bus);
+       // void TreatmentBus(BO.Bus bus)
         #endregion
 
         //#region BusInTravel
@@ -47,7 +51,7 @@ namespace BLAPI
         int AddLine(BO.Line line);
         void UpdateLine(BO.Line line);
       //  void UpdateLine(int id, Action<BO.Line> update); //method that knows to updt specific fields in Line
-        void DeleteLine(int id,int line);
+        void DeleteLine(int id);
         #endregion
 
         //#region LineStation
@@ -78,7 +82,9 @@ namespace BLAPI
         void UpdateStation(int code, Action<BO.Station> update); //method that knows to updt specific fields in Station
         void DeleteStation(int code);
         #endregion
-
+        #region LineTiming
+        IEnumerable<BO.LineTiming> GetLinesTiming(int code, TimeSpan start);
+        #endregion
         //#region Trip
         //IEnumerable<Trip> GetAllTrips();
         //IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate);
@@ -98,5 +104,6 @@ namespace BLAPI
         //void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in User
         //void DeleteUser(int id);
         //#endregion
+
     }
 }

@@ -169,5 +169,30 @@ namespace UI
             }
           
         }
+
+        private void btnSimulation_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PO.Station station = stationDataGrid.SelectedItem as PO.Station;
+                if (station == null)
+                {
+                    MessageBox.Show("לא נבחרה תחנה");
+                    return;
+                }
+
+                SimulationWindow simulationWindow = new SimulationWindow(bl,station);
+                simulationWindow.ShowDialog();
+            }
+            catch (Exception ex)//in order the program will not fail due to exception that the engeneering not thougt about it
+            {
+                MessageBox.Show("משהו השתבש נסה שנית");
+            }
+            }
+
+        private void btnBackToMain_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

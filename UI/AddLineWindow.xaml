@@ -16,14 +16,14 @@
         </Style>
 
     </Window.Resources>
-    <Grid>
-          <Grid.Background>
+    <Grid  Background="{StaticResource MyBackground}">
+          <!--<Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
                 <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
                 <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
             </LinearGradientBrush>
-        </Grid.Background>
+        </Grid.Background>-->
          <Grid x:Name="addGrid" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

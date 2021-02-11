@@ -45,7 +45,6 @@
     <Compile Include="DLFactory.cs" />
     <Compile Include="DO\AdjacentStations.cs" />
     <Compile Include="DO\BusDo.cs" />
-    <Compile Include="DO\BusInTravel.cs" />
     <Compile Include="DO\Config.cs" />
     <Compile Include="DO\Enums.cs" />
     <Compile Include="DO\Exceptions.cs" />
@@ -53,8 +52,6 @@
     <Compile Include="DO\LineStation.cs" />
     <Compile Include="DO\LineTrip.cs" />
     <Compile Include="DO\StationDo.cs" />
-    <Compile Include="DO\Trip.cs" />
-    <Compile Include="DO\User.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

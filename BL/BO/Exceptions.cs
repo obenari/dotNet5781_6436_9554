@@ -57,24 +57,19 @@ namespace BO
     #region line
     public class BusLineNotFoundException : Exception
     {
-        public int Line;
         public int Id;
-        public BusLineNotFoundException(int line, int id) : base()
+        public BusLineNotFoundException( int id) : base()
         {
-            Line = line;
             Id = id;
         }
-        public BusLineNotFoundException(int line, int id, string message) : base(message)
+        public BusLineNotFoundException( int id, string message) : base(message)
         {
-            Line = line;
             Id = id;
         }
-        public BusLineNotFoundException(int line, int id, Exception innerException,string message="" ) : base(message, innerException)
+        public BusLineNotFoundException(int id, Exception innerException,string message="" ) : base(message, innerException)
         {
-            Line = line;
             Id = id;
         }
-        public override string ToString() => base.ToString() + $", The bus: {Line} is not exist";
     }
     public class DuplicateBusLineException : Exception
     {

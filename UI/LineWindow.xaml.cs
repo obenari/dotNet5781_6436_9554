@@ -111,8 +111,15 @@ namespace UI
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddLineWindow addLineWindow = new AddLineWindow(bl, LinesCollection);
+            AddLineWindow addLineWindow = new AddLineWindow(bl);
             addLineWindow.ShowDialog();
+            BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
+            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
+                ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
+            lineDataGrid.DataContext = LinesCollection;
+
+         //   LinesCollection=new ObservableCollection<BusLine>( bl.GetAllLinesByArea(areaComboBox.SelectedItem );
+
             //showGrid.Visibility = Visibility.Collapsed;
             //addGrid.Visibility = Visibility.Visible;
             //StationCollection = new ObservableCollection<PO.Station>(

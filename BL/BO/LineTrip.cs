@@ -27,3 +27,13 @@ namespace BO
 
     }
 }
+/*<Button.Style  TargetType="Button">
+                                        <Style>
+                                            <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                          </Style.Triggers>
+                                            </Style>
+                                    </Button.Style>
+*/

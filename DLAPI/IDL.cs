@@ -24,7 +24,7 @@ namespace DLAPI
         void UpdateAdjacentStations(AdjacentStations station);
         void UpdateAdjacentStations(int code, int code2, Action<AdjacentStations> update); //method that knows to updt specific fields in AdjacentStations
        void DeleteAdjacentStations(int code, int code2);
-        bool AdjacentStationsIsExist(int code, int code2);
+        bool AdjacentStationsIsExist(int code, int code2);//method that checks if an  AdjacentStations is exist
         #endregion
 
 
@@ -38,15 +38,6 @@ namespace DLAPI
         void DeleteBus(int license);
         #endregion
 
-        //#region BusInTravel
-        ////IEnumerable<Bus> GetAllBusses();
-        //IEnumerable<BusInTravel> GetAllBussesIntravelBy(Predicate<BusInTravel> predicate);
-        //BusInTravel GetBusInTravel(int id, int licensenum, int line);
-        //void AddBusIntravel(BusInTravel busInTravel);
-        //void UpdateBusInTtavel(BusInTravel busInTravel);
-        //void UpdateBusIntravel(int id, int licensenum, int line, Action<BusInTravel> update); //method that knows to updt specific fields in busInTravel
-        //void DeleteBusInTravel(int id, int licensenum, int line);
-        //#endregion
 
         #region Line
         IEnumerable<Line> GetAllLines();
@@ -75,6 +66,7 @@ namespace DLAPI
         LineTrip GetLineTrip(int id);
         int AddLineTrip(LineTrip lineTrip);
         void DeleteLineTrip(int id);
+        bool IsExistLinetrip(DO.LineTrip lineTrip);//method that checks if a lineTrip is exist
         #endregion
 
         #region Station
@@ -87,25 +79,6 @@ namespace DLAPI
         void DeleteStation(int code);
         #endregion
 
-        //#region Trip
-        //IEnumerable<Trip> GetAllTrips();
-        //IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate);
-        //Trip GetTrip(int id);
-        //void AddTrip(Trip trip);
-        //void UpdateTrip(Trip trip);
-        //void UpdateTrip(int id,Action<Trip> update); //method that knows to updt specific fields in Trip
-        //void DeleteTrip(int id);
-        //#endregion
-
-        //#region User
-        //IEnumerable<User> GetAllUsers();
-        //IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
-        //User GetUser(int id);
-        //void AddUser(User user);
-        //void UpdateUser(User user);
-        //void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in User
-        //void DeleteUser(int id);
-        //#endregion
-
+       
     }
 }

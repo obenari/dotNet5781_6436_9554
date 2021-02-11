@@ -60,10 +60,32 @@
 
         </Grid>
         <Grid x:Name="addMultiGrid" Visibility="Collapsed" HorizontalAlignment="Center" Height="300"  VerticalAlignment="Center" Width="300">
-            
+            <TextBlock Text=":מספר הקו" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="14" Width="70" Height="20"/>
+            <TextBlock Text="{Binding Path=Id}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" Width="70" Height="20"/>
+            <Label Content=":הכנס שעת התחלה" HorizontalAlignment="Center" VerticalAlignment="Top" Margin=" 0,50"/>
+            <TextBox x:Name="tbHourStart" HorizontalAlignment="Left" BorderThickness="0" Margin="100,0,0,100" Height="23" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbMinuteStart" HorizontalAlignment="Center" BorderThickness="0" Height="23" Margin="0,0,0,100" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbSecondStart" HorizontalAlignment="Right" BorderThickness="0" Height="23" Margin="0,0,100,100" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox HorizontalAlignment="Left" BorderThickness="0" Margin="125,0,0,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
+            <TextBox HorizontalAlignment="Right" BorderThickness="0" Margin="0,0,125,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
+            <Label Content=":הכנס שעת סיום" HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,0"/>
+            <TextBox x:Name="tbHourFinish" HorizontalAlignment="Left" BorderThickness="0" Margin="100,155,0,100" Height="23" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbMinuteFinish" HorizontalAlignment="Center" BorderThickness="0" Height="23" Margin="0,155,0,100" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbSecondFinish" HorizontalAlignment="Right" BorderThickness="0" Height="23" Margin="0,155,100,100" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox HorizontalAlignment="Left" BorderThickness="0" Margin="125,155,0,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
+            <TextBox HorizontalAlignment="Right" BorderThickness="0" Margin="0,155,125,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
+            <Label Content=":תדירות" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,80" />
+            <TextBox x:Name="tbHourFrequency" HorizontalAlignment="Left" BorderThickness="0" Margin="100,155,0,50" Height="23" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Bottom" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbMinuteFrequency" HorizontalAlignment="Center" BorderThickness="0" Height="23" Margin="0,155,0,50" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Bottom" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox x:Name="tbSecondFrequency" HorizontalAlignment="Right" BorderThickness="0" Height="23" Margin="0,155,100,50" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Bottom" Width="25" PreviewKeyDown="textOnlyNumber"/>
+            <TextBox HorizontalAlignment="Left" BorderThickness="0" Margin="125,155,0,50" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Bottom" Width="10"/>
+            <TextBox HorizontalAlignment="Right" BorderThickness="0" Margin="0,155,125,50" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Bottom" Width="10"/>
+            <Button x:Name="btnAddMulti" Content="הוסף" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75" Click="btnAddMulti_Click"/>
+
         </Grid>
-        <Button x:Name="btnNulti" Content="הוספת יציאות קו מרובות" HorizontalAlignment="Center" Margin="0,100,148,0" VerticalAlignment="Top" Width="150" Height="30"/>
-        <Button x:Name="btnSingle" Content="הוספת יציאת קו בודדת" HorizontalAlignment="Center" Margin="148,100,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
+        <Button x:Name="btnMulti" Content="הוספת יציאות קו מרובות" HorizontalAlignment="Center" Margin="0,100,148,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnMulti_Click"/>
+        <Button x:Name="btnSingle" IsEnabled="False" Content="הוספת יציאת קו בודדת" HorizontalAlignment="Center" Margin="148,100,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnSingle_Click"/>
+        <Button x:Name="btnRemove" Content="מחק יציאת קו" Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="btnRemove_Click"/>
 
     </Grid>
 </Window>

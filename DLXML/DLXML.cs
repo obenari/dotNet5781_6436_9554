@@ -7,7 +7,7 @@ using DLAPI;
 using System.Xml.Linq;
 namespace DL
 {
- sealed class DLXML : IDL
+    sealed class DLXML : IDL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
@@ -16,7 +16,7 @@ namespace DL
         // Explicit static constructor to ensure instance initialization
         // is done just before first usage
         static DLXML() { }
-          DLXML() { } // default => private
+        DLXML() { } // default => private
         #endregion
 
         #region  XML Files Name
@@ -77,7 +77,7 @@ namespace DL
                 XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
             }
         }
-
+        
         public void UpdateBus(DO.Bus bus)
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
@@ -85,8 +85,14 @@ namespace DL
 
             if (oldBus != null)//if the bus is exist
             {
-                listBusses.Remove(oldBus);
-                listBusses.Add(bus);
+                oldBus.Fuel = bus.Fuel;
+                oldBus.DateOfTreatment = bus.DateOfTreatment;
+                oldBus.TotalKmsFromLastTreatment = bus.TotalKmsFromLastTreatment;
+                oldBus.TotalKms = bus.TotalKms;
+
+
+                // listBusses.Remove(oldBus);
+                // listBusses.Add(bus);
                 XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
             }
             else
@@ -97,7 +103,7 @@ namespace DL
         {
             List<DO.Bus> listBusses = XMLTools.LoadListFromXMLSerializer<DO.Bus>(bussesPath);
             DO.Bus oldBus = listBusses.Find(b => b.License == license && b.IsDeleted == false);
-             
+
             if (oldBus != null)//if the bus is exist
             {
                 update(oldBus);
@@ -379,7 +385,7 @@ namespace DL
                                      new XElement("IsDeleted", oldStation.Element("IsDeleted").Value));
                 oldStation.Remove();
                 stationsRootElem.Add(newStation);
-               // stationsRootElem.Save(stationsPath);
+                // stationsRootElem.Save(stationsPath);
                 XMLTools.SaveListToXMLElement(stationsRootElem, stationsPath);
 
                 return int.Parse(newStation.Element("Code").Value);
@@ -635,8 +641,8 @@ namespace DL
                                         && int.Parse(stn.Element("Station1").Value) == code2
                                        && int.Parse(stn.Element("Station2").Value) == code1
                             select stn).FirstOrDefault();
-            if(ads==null)
-               throw new DO.AdjacentStationsNotFoundException(code1, code2);
+            if (ads == null)
+                throw new DO.AdjacentStationsNotFoundException(code1, code2);
             ads.Element("IsDeleted").SetValue(true);
             XMLTools.SaveListToXMLElement(adjacentStationsRootElem, adjacentStationsPath);
 
@@ -692,18 +698,18 @@ namespace DL
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
 
-            DO.LineTrip lt= (from lineTrip in lineTripRootElem.Elements()
-                   where bool.Parse(lineTrip.Element("IsDeleted").Value) == false
-                         && int.Parse(lineTrip.Element("Id").Value)==id
-                             select new DO.LineTrip()
-                   {
-                       Id = int.Parse(lineTrip.Element("Id").Value),
-                       LineId = int.Parse(lineTrip.Element("LineId").Value),
-                       IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
-                       StartAt = new TimeSpan(int.Parse(lineTrip.Element("StartAt").Element("Hours").Value),
-                                              int.Parse(lineTrip.Element("Time").Element("Minutes").Value),
-                                              int.Parse(lineTrip.Element("StartAt").Element("Seconds").Value)),
-                   }).FirstOrDefault();
+            DO.LineTrip lt = (from lineTrip in lineTripRootElem.Elements()
+                              where bool.Parse(lineTrip.Element("IsDeleted").Value) == false
+                                    && int.Parse(lineTrip.Element("Id").Value) == id
+                              select new DO.LineTrip()
+                              {
+                                  Id = int.Parse(lineTrip.Element("Id").Value),
+                                  LineId = int.Parse(lineTrip.Element("LineId").Value),
+                                  IsDeleted = bool.Parse(lineTrip.Element("IsDeleted").Value),
+                                  StartAt = new TimeSpan(int.Parse(lineTrip.Element("StartAt").Element("Hours").Value),
+                                               int.Parse(lineTrip.Element("StartAt").Element("Minutes").Value),
+                                               int.Parse(lineTrip.Element("StartAt").Element("Seconds").Value)),
+                              }).FirstOrDefault();
             if (lt == null)
                 throw new DO.LineTripNotFoundException(id);
             return lt;
@@ -729,7 +735,7 @@ namespace DL
             XElement newLineTripXml = new XElement("LineTrip",
                     new XElement("Id", id),
                     new XElement("LineId", lineTrip.LineId),
-                    new XElement("IsDeleted", lineTrip.IsDeleted),
+                    new XElement("IsDeleted", false),
                     new XElement("StartAt", new XElement("Hours", tm.Hours), new XElement("Minutes", tm.Minutes), new XElement("Seconds", tm.Seconds))
                     );
             lineTripRootElem.Add(newLineTripXml);
@@ -737,7 +743,7 @@ namespace DL
             XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
             return id;
         }
-       
+
         public void DeleteLineTrip(int id)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
@@ -745,11 +751,23 @@ namespace DL
                            where int.Parse(lineTrip.Element("Id").Value) == id
                            select lineTrip).FirstOrDefault();
             if (lt == null || bool.Parse(lt.Element("IsDeleted").Value) == false)
-             throw new DO.LineTripNotFoundException(id);
+                throw new DO.LineTripNotFoundException(id);
             lt.Element("IsDeleted").SetValue(true);
             //  lineTripRootElem.Save(lineTripPath);
             XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
         }
+        public bool IsExistLinetrip(DO.LineTrip lineTrip)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
+
+            return lineTripRootElem.Elements().Any(lt =>
+                 bool.Parse(lt.Element("IsDeleted").Value) == false
+                 && int.Parse(lt.Element("LineId").Value) == lineTrip.LineId
+                 && int.Parse(lt.Element("StartAt").Element("Hours").Value) == lineTrip.StartAt.Hours
+                 && int.Parse(lt.Element("StartAt").Element("Minutes").Value) == lineTrip.StartAt.Minutes
+                 && int.Parse(lt.Element("StartAt").Element("Seconds").Value) == lineTrip.StartAt.Seconds);
+        }
+
         #endregion
     }
 }

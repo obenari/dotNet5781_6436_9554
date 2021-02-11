@@ -80,4 +80,20 @@
     <LastStation>12</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
+  <Line>
+    <Id>12</Id>
+    <LineNumber>12</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>7</FirstStation>
+    <LastStation>5</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>13</Id>
+    <LineNumber>13</LineNumber>
+    <Area>Haifa</Area>
+    <FirstStation>14</FirstStation>
+    <LastStation>16</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
 </ArrayOfLine>
