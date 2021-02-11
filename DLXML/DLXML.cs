@@ -20,13 +20,12 @@ namespace DL
         #endregion
 
         #region  XML Files Name
-        string bussesPath = @"BussesXml.xml";
-        string stationsPath = @"StationsXml.xml";
-        string adjacentStationsPath = @"AdjacentStationsXml.xml";
-        string linesPath = @"LinesXml.xml";
-        string lineStationsPath = @"LineStationsXml.xml";
-        string lineTripPath = @"LineTripXml.xml";
-
+        string bussesPath = @"BussesXml.xml";//XMLSerializer
+        string linesPath = @"LinesXml.xml";//XMLSerializer
+        string lineStationsPath = @"LineStationsXml.xml";//XMLSerializer
+        string lineTripPath = @"LineTripXml.xml";//XElement
+        string stationsPath = @"StationsXml.xml";//XElement
+        string adjacentStationsPath = @"AdjacentStationsXml.xml";//XElement
 
         #endregion
         #region bus
