@@ -89,14 +89,14 @@ namespace DL
 
             if (oldBus != null)//if the bus is exist
             {
-                oldBus.Fuel = bus.Fuel;
-                oldBus.DateOfTreatment = bus.DateOfTreatment;
-                oldBus.TotalKmsFromLastTreatment = bus.TotalKmsFromLastTreatment;
-                oldBus.TotalKms = bus.TotalKms;
+                //oldBus.Fuel = bus.Fuel;
+                //oldBus.DateOfTreatment = bus.DateOfTreatment;
+                //oldBus.TotalKmsFromLastTreatment = bus.TotalKmsFromLastTreatment;
+                //oldBus.TotalKms = bus.TotalKms;
 
 
-                // listBusses.Remove(oldBus);
-                // listBusses.Add(bus);
+                listBusses.Remove(oldBus);
+                listBusses.Add(bus);
                 XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
             }
             else

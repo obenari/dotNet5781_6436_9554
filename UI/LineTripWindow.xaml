@@ -86,6 +86,7 @@
         <Button x:Name="btnMulti" Content="הוספת יציאות קו מרובות" HorizontalAlignment="Center" Margin="0,100,148,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnMulti_Click"/>
         <Button x:Name="btnSingle" IsEnabled="False" Content="הוספת יציאת קו בודדת" HorizontalAlignment="Center" Margin="148,100,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnSingle_Click"/>
         <Button x:Name="btnRemove" Content="מחק יציאת קו" Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="btnRemove_Click"/>
+        <Button x:Name="btnBack" Content="חזור אחורה" Grid.Column="2" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
 
     </Grid>
 </Window>

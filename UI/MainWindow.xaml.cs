@@ -26,25 +26,41 @@ namespace UI
             InitializeComponent();
          
         }
-
+/// <summary>
+/// this method open the station window
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
         private void btnStation_Click(object sender, RoutedEventArgs e)
         {
             StationWindow stnWindow = new StationWindow(bl);
             stnWindow.ShowDialog();
         }
-
+        /// <summary>
+        /// this method open the lines window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLine_Click(object sender, RoutedEventArgs e)
         {
             LineWindow lineWindow = new LineWindow(bl);
             lineWindow.ShowDialog();
         }
-
+        /// <summary>
+        /// this method open the busses window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBus_Click(object sender, RoutedEventArgs e)
         {
             BusWindow busWindow = new BusWindow(bl);
             busWindow.ShowDialog();
         }
-
+        /// <summary>
+        /// this method open the linesTrip window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLineTrip_Click(object sender, RoutedEventArgs e)
         {
             LineTripWindow lineTripWindow = new LineTripWindow(bl);

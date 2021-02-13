@@ -14,7 +14,7 @@ namespace UI
     {
 
         /// <summary>
-        /// the metod get a BO.Station and return a PO.Station and the opposite dirction
+        /// the method get a BO.Station and return a PO.Station and the opposite dirction
         /// </summary>
         /// <param name="boStation"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace UI
             return poStation;
         }
         /// <summary>
-        /// the metod get a BO.BusLine and return a PO.BusLine
+        /// the method get a BO.BusLine and return a PO.BusLine
         /// </summary>
         /// <param name="boLine"></param>
         /// <returns></returns>
@@ -49,7 +49,7 @@ namespace UI
             return poLine;
         }
         /// <summary>
-        /// the metod get a BO.LineStation and return a PO.LineStation
+        /// the method get a BO.LineStation and return a PO.LineStation
         /// </summary>
         /// <param name="boLineStation"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace UI
             return poLineStation;
         }
         /// <summary>
-        /// the metod get a BO.Bus and return a PO.Bus
+        /// the method get a BO.Bus and return a PO.Bus
         /// </summary>
         /// <param name="boBus"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace UI
             return poBus;
         }
         /// <summary>
-        /// the metod get a PO.Bus and return a BO.Bus
+        /// the method get a PO.Bus and return a BO.Bus
         /// </summary>
         /// <param name="poBus"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace UI
             return boBus;
         }
         /// <summary>
-        /// the metod get a BO.LineStation and return a PO.LineStation
+        /// the method get a BO.LineStation and return a PO.LineStation
         /// </summary>
         /// <param name="poLineStation"></param>
         /// <returns></returns>
@@ -118,7 +118,7 @@ namespace UI
             return boLineStation;
         }
         /// <summary>
-        /// the metod get a BO.Line and return a PO.Line
+        /// the method get a BO.Line and return a PO.Line
         /// </summary>
         /// <param name="poLine"></param>
         /// <returns></returns>

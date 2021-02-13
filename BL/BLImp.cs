@@ -339,9 +339,6 @@ namespace BL
                    select BusDoBoAdapter(bus);
         }
 
-       
-       
-
         public IEnumerable<BO.Bus> GetAllBussesBy(Predicate<BO.Bus> predicate)
         {
 
@@ -411,11 +408,19 @@ namespace BL
                 throw new BO.BusNotFoundException(boBus.License, "", ex);
             }
         }
+        /// <summary>
+        /// this method update that tank's bus is full
+        /// </summary>
+        /// <param name="bus"></param>
         public void RefuelBus(BO.Bus bus)
         {
             bus.Fuel = 1200;
             UpdateBus(bus);
         }
+        /// <summary>
+        /// this method update the bus data (date of treatment...)
+        /// </summary>
+        /// <param name="bus"></param>
         public void TreatmentBus(BO.Bus bus)
         {
             bus.Fuel = 1200;
@@ -423,18 +428,32 @@ namespace BL
             bus.TotalKmsFromLastTreatment = 0;
             UpdateBus(bus);
         }
+        /// <summary>
+        /// this method get a bus and kilometers, and check if the bus could drive this driving
+        /// </summary>
+        /// <param name="bus"></param>
+        /// <param name="km"></param>
+        /// <returns></returns>
       public  bool IsReadyToDriving(BO.Bus bus, int km)
         {
             if (bus.TotalKmsFromLastTreatment + km > 20000 || bus.Fuel - km < 0)
                 return false;
             DateTime yearAgo = DateTime.Today.AddYears(-1);
-            if (bus.DateOfTreatment < yearAgo)
+            if (bus.DateOfTreatment < yearAgo|| bus.TotalKmsFromLastTreatment==20000)
+            {
+                bus.Status = BO.Status.Dangerous;
                 return false;
+            }
             bus.TotalKmsFromLastTreatment = bus.TotalKmsFromLastTreatment + km;
             bus.Fuel = bus.Fuel - km;
             UpdateBus(bus);
             return true;
         }
+        /// <summary>
+        /// this method get BO.Bus  and return a DO.Bus
+        /// </summary>
+        /// <param name="boBus"></param>
+        /// <returns></returns>
         private DO.Bus BusBoDoAdapter(BO.Bus boBus)
         {
             DO.Bus doBus = new DO.Bus();
@@ -450,6 +469,11 @@ namespace BL
             return doBus;
 
         }
+        /// <summary>
+        /// this method get DO.Bus  and return a BO.Bus
+        /// </summary>
+        /// <param name="doBus"></param>
+        /// <returns></returns>
         private BO.Bus BusDoBoAdapter(DO.Bus doBus)
         {
             BO.Bus boBus = new Bus();
@@ -477,7 +501,11 @@ namespace BL
             boBus.License = licenseStr;
             boBus.DateOfTreatment = doBus.DateOfTreatment;
             boBus.StartOfWork = doBus.StartOfWork;
-            boBus.Status = (BO.Status)(int)doBus.Status;
+            if (doBus.Fuel == 0 || DateTime.Now.AddYears(-1) > doBus.DateOfTreatment||doBus.TotalKmsFromLastTreatment>=20000)
+                boBus.Status = BO.Status.Dangerous;
+            else
+                boBus.Status = BO.Status.Ready;
+           // boBus.Status = (BO.Status)(int)doBus.Status;
             boBus.Fuel = doBus.Fuel;
             boBus.TotalKms = doBus.TotalKms;
             boBus.TotalKmsFromLastTreatment = doBus.TotalKmsFromLastTreatment;
@@ -544,6 +572,11 @@ namespace BL
             DO.Station station = dl.GetStation(code);
             return StationDoBoAdapter(station);
         }
+        /// <summary>
+        /// this method get a new station, check the data and add it to dl
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
         public int AddStation(BO.Station station)
         {
             if (station.Longitude < DO.Config.MIN_LON || station.Longitude > DO.Config.MAX_LON)

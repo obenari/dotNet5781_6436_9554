@@ -9,7 +9,7 @@
 
     <Window.Resources>
         <!--<local:StatusConverter x:Key="StatusConverter"/>-->
-
+        <local:StatusConverter x:Key="StutusConverter"/>
         <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="170"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=License}" 
-                            FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook"/>
+                            FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook" Foreground="{Binding Path=Status, Converter={StaticResource StutusConverter} }"/>
                 <!--Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=OneTime}"-->
 
                 <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="תדלוק" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnRefuel_Click" />
@@ -78,9 +78,9 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnRemove" Content="מחק אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,0,25,40" Click="btnRemove_Click">
+        <Button x:Name="btnRemove" BorderThickness="10" Content="מחק אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,0,25,40" Click="btnRemove_Click" Foreground="#FF7CB09D" BorderBrush="#FF8EC4B1">
             <Button.Background>
-                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
+                <SolidColorBrush Color="#FFFFFDEE" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -148,11 +148,12 @@
                 <TextBox x:Name="startOfActivityTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfWork, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
             </Grid>
         </Grid>
-        <Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,100,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
+        <Button x:Name="btnBack" Content="חזור אחורה" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
+        <!--<Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,100,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
         <Grid x:Name="drivingGrid" Visibility="Visible"  HorizontalAlignment="Center" Margin="400,0,0,10" Height="110" Grid.Column="1" VerticalAlignment="Bottom" Width="220">
             <TextBox x:Name="tbDriving" Width="220" Height="80" VerticalAlignment="Bottom" PreviewKeyDown="textOnlyNumber" />
             <Label Content="הכנס את מרחק הנסיעה בקילומטרים" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
             <Button x:Name="btnDriving" Content="שלח לנסיעה" Height="20" VerticalAlignment="Bottom" />
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>

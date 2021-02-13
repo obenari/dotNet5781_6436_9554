@@ -46,7 +46,24 @@ namespace UI
             Worker.ProgressChanged += simulation_ProgressChanged;
             Worker.RunWorkerAsync();
         }
-
+        /// <summary>
+        /// this method sleep and call to progresssChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void simulation_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (IsTimeRun == true)
+            {
+                Worker.ReportProgress(1);
+                Thread.Sleep(1000);
+            }
+        }
+        /// <summary>
+        /// this method update  the watch and the lines that coming soon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void simulation_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // TimeSpan help = new TimeSpan(stopwatch.ElapsedTicks);
@@ -56,15 +73,11 @@ namespace UI
             lvLineTiming.ItemsSource = bl.GetLinesTiming(CurrentStation.Code, Watch);
         }
 
-        private void simulation_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while(IsTimeRun==true)
-            {
-                Worker.ReportProgress(1);
-                Thread.Sleep(1000);
-            }
-        }
-
+        /// <summary>
+        /// this method closed the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             IsTimeRun = false;

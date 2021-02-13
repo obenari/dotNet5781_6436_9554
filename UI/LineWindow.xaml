@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <DataGrid x:Name="lineDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False"  HorizontalAlignment="Right" 
-                  Margin="0,98,35.6,187.4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick"
+                  Margin="0,98,35.6,187.4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="585" MouseDoubleClick="lineDataGrid_MouseDoubleClick" 
                   CanUserAddRows="False" IsReadOnly="True" Opacity="0.8">
                 <DataGrid.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
@@ -138,7 +138,7 @@
             </Label>
 
         </Grid>
-        <Grid x:Name="addGrid" Visibility="Collapsed">
+      <!--  <Grid x:Name="addGrid" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -264,6 +264,7 @@
             <Label Content="תחנות הקו שנבחרו" HorizontalAlignment="Left" Margin="285,100,0,0" VerticalAlignment="Top"/>
 
         </Grid>
+        -->
         <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="271" Height="92"  RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>

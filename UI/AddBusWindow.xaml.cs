@@ -36,7 +36,11 @@ namespace UI
            dpStart.DisplayDateEnd = DateTime.Now;
            dpLast.DisplayDateEnd = DateTime.Now;
         }
-
+        /// <summary>
+        /// this method add the new bus to the system
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -83,7 +87,11 @@ namespace UI
                 MessageBox.Show("משהו השתבש נסה שנית");
             }
         }
-
+        /// <summary>
+        /// this method alow to type only digits
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
             private void textOnlyNumber(object sender, KeyEventArgs e)
             {
                 TextBox text = sender as TextBox;

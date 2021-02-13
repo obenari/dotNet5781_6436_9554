@@ -28,7 +28,6 @@ namespace UI
     public partial class UpdateLineWindow : Window
     {
         PO.BusLine LineToUpdate;
-        //ObservableCollection<PO.BusLine> LinesCollection;
         ObservableCollection<PO.Station> StationCollection;
 
         IBL bl;
@@ -36,8 +35,6 @@ namespace UI
         {
             InitializeComponent();
             bl = myBl;
-            
-          //  LinesCollection = lines;
             StationCollection = new ObservableCollection<PO.Station>(
             bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
             stationDataGrid.DataContext = StationCollection;
@@ -46,6 +43,11 @@ namespace UI
             this.DataContext = LineToUpdate;
 
         }
+        /// <summary>
+        /// this method alows to type only digits
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textOnlyNumber(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -78,6 +80,11 @@ namespace UI
 
 
         }
+        /// <summary>
+        /// this method add the selected station, in the request index to the line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddStation_Click(object sender, RoutedEventArgs e)
         {
             if (stationDataGrid.SelectedItem == null)
@@ -102,11 +109,21 @@ namespace UI
                 //therefor we insert the new lineStation in the index minus 1
             }
         }
+        /// <summary>
+        /// this method remove the request station from the line
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemoveStation_Click(object sender, RoutedEventArgs e)
         {
             PO.LineStation lineStationToRemove = (sender as Button).DataContext as PO.LineStation;
             LineToUpdate.Stations.Remove(lineStationToRemove);
         }
+        /// <summary>
+        ///this method put the user's time  into the lineStation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateTime_Click(object sender, RoutedEventArgs e)
         {
 
@@ -125,13 +142,22 @@ namespace UI
             (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
         }
+        /// <summary>
+        /// this method make the grid with textbox and button of update the time visible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTime_Click(object sender, RoutedEventArgs e)
         {
             // get the button of update and meke it collapsed
             ((sender as Button).Parent as Grid).Children[0].Visibility = Visibility.Collapsed;
             ((sender as Button).Parent as Grid).Children[1].Visibility = Visibility.Visible;
-
         }
+        /// <summary>
+        /// this method put the usere's distance in the lineStation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateDistance_Click(object sender, RoutedEventArgs e)
         {
 
@@ -150,6 +176,11 @@ namespace UI
             (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
         }
+        /// <summary>
+        ///  this method update the line in bl, and closed this window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (LineToUpdate.Stations.Count < 2)
@@ -185,6 +216,15 @@ namespace UI
                 MessageBox.Show("משהו השתבש נסה שנית");
             }
 
+        }
+        /// <summary>
+        /// this method closed the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

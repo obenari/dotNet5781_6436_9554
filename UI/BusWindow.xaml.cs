@@ -78,13 +78,23 @@ namespace UI
         //    MessageBox.Show("האוטובוס נשלח לטיפול");
         //}
 
-        private void lvBus_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+    
+    /// <summary>
+    /// when the user click double click,this method will show the details of the choosen bus
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void lvBus_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
             var item = lvBus.SelectedItem;
             Bus bus = item as Bus;
             busDetailsGrid.DataContext = bus;
         }
-
+        /// <summary>
+        /// this method delete the request bus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             if (lvBus.SelectedItem == null)
@@ -125,13 +135,20 @@ namespace UI
             Bus bus = btn.DataContext as Bus;
             num = dr.tbKm.Text;
             int km = int.Parse(num);
-            if ( bl.IsReadyToDriving(Adapter.BOPOAdapter( bus),km)==false)
+            BO.Bus boBus = Adapter.BOPOAdapter(bus);
+            if ( bl.IsReadyToDriving(boBus,km)==false)//if the bus could do the driving, the values of boBus is exchanged in the func in bl
             {
                 MessageBox.Show("אין אפשרות לצאת לנסיעה");
+                bus.Status = boBus.Status;
                 return;
             }
+            //if the bus  could do the driving, update its values
+            bus.TotalKms = boBus.TotalKms;
+            bus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
+            bus.Fuel = boBus.Fuel;
             bus.Status = BO.Status.Driving;
-            btn.IsEnabled = false;
+            //now update the buttons in the bus row to be disenable
+          //  btn.IsEnabled = false;
             var parent = btn.Parent as Grid;
             ProgressBar progressBar = parent.Children[4] as ProgressBar;
             progressBar.Visibility = Visibility.Visible;
@@ -139,7 +156,7 @@ namespace UI
             Button btn2 = parent.Children[2] as Button;
             Button btn3 = parent.Children[3] as Button;
             TextBlock tb = parent.Children[0] as TextBlock;
-            tb.Foreground = Brushes.Brown;
+          //  tb.Foreground = Brushes.Brown;
             btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
             BackgroundWorker drivingWorker = new BackgroundWorker();
             drivingWorker.DoWork += driving_DoWork;
@@ -149,11 +166,15 @@ namespace UI
             drivingWorker.WorkerSupportsCancellation = true;
             int speed = r.Next(20, 50);
             double drivingTime = (double)km / speed;
-            List<object> lst = new List<object> { drivingTime, btn, btn1, btn2, btn3, progressBar, bus, tb };
+            List<object> lst = new List<object> { drivingTime, btn, btn1, btn2, btn3, progressBar, bus };
             drivingWorker.RunWorkerAsync(lst);
         }
-
-        public void driving_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)//****************
+        /// <summary>
+        /// this method make the row of the bus in driving to be regular
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void driving_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             List<object> lst = e.Result as List<object>;
             Button b = lst[1] as Button;
@@ -169,21 +190,32 @@ namespace UI
             Bus bus = lst[6] as Bus;
             bus.Status = BO.Status.Ready;
 
-            TextBlock tb = lst[7] as TextBlock;
-            if (bus.Status == BO.Status.Ready)
-                tb.Foreground = Brushes.Green;
-            else
-                tb.Foreground = Brushes.Red;
+           // TextBlock tb = lst[7] as TextBlock;
+             //   tb.Foreground = Brushes.Green;
+          
+            //string help = bus.License.Remove(bus.License.IndexOf('-'), 1);
+            //help=help.Remove(help.IndexOf('-'), 1);
+            //int license = int.Parse(help);
+            //bus =Adapter.POBOAdapter(bl.GetBus(license));
 
         }
 
-
+        /// <summary>
+        /// this metthod update the progressbar of the bus in driving
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void driving_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int percentage = e.ProgressPercentage;
             ProgressBar progressBar = e.UserState as ProgressBar;
             progressBar.Value = percentage;
         }
+        /// <summary>
+        /// this method sleep and call to progressChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void driving_DoWork(object sender, DoWorkEventArgs e)
         {
             List<object> lst = e.Argument as List<object>;
@@ -212,7 +244,7 @@ namespace UI
                 Bus bus = btn.DataContext as Bus;
                 BackgroundWorker refuelWorker = new BackgroundWorker();
                 bus.Status = BO.Status.Refueling;
-                btn.IsEnabled = false;
+              //  btn.IsEnabled = false;
                 var parent = btn.Parent as Grid;
                 TextBlock tbTimer = parent.Children[5] as TextBlock;
                 tbTimer.Visibility = Visibility.Visible;
@@ -223,7 +255,7 @@ namespace UI
                 TextBlock tbLicense = parent.Children[0] as TextBlock;
                 btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
                                                                          //changed the color acording status
-                tbLicense.Foreground = Brushes.Blue;
+               // tbLicense.Foreground = Brushes.Blue;
                 refuelWorker.DoWork += timer_DoWork;
                 refuelWorker.ProgressChanged += timer_ProgressChanged;
                 refuelWorker.RunWorkerCompleted += timer_RunWorkerCompleted;
@@ -231,7 +263,9 @@ namespace UI
                 refuelWorker.WorkerSupportsCancellation = true;
                 List<object> lst = new List<object> { btn, btn1, btn2, btn3, bus, tbLicense, tbTimer, 12 };//12 seconds is the time that refuel take in simulation watch
                 refuelWorker.RunWorkerAsync(lst);
-                bl.RefuelBus(Adapter.BOPOAdapter(bus));
+                BO.Bus boBus = Adapter.BOPOAdapter(bus);
+                bl.RefuelBus(boBus);
+                bus.Fuel = boBus.Fuel;
             }
             catch (Exception ex)//in order the program will not fail due to exception that the engeneering not thougt about it
             {
@@ -252,7 +286,11 @@ namespace UI
             }
             e.Result = lst;
         }
-
+        /// <summary>
+        /// this method update the time left until the bus will comeback from treatment or refuel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int percentage = e.ProgressPercentage;
@@ -268,6 +306,11 @@ namespace UI
             }
             timer.Text = str;
         }
+        /// <summary>
+        /// this method make the row of the bus to be regular
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             List<object> lst = e.Result as List<object>;
@@ -284,13 +327,12 @@ namespace UI
             Bus bus = lst[4] as Bus;
             //update the status of the bus
             bus.Status = BO.Status.Ready;
-            bus.Status = BO.Status.Ready;
-            bl.UpdateBus(Adapter.BOPOAdapter( bus));
-            TextBlock tbLicense = lst[5] as TextBlock;
-            if (bus.Status == BO.Status.Ready)////////////////////////////////////
-                tbLicense.Foreground = Brushes.Green;
-            else
-                tbLicense.Foreground = Brushes.Red;
+           // bl.UpdateBus(Adapter.BOPOAdapter( bus));
+            //TextBlock tbLicense = lst[5] as TextBlock;
+            //if (bus.Status == BO.Status.Ready)////////////////////////////////////
+            //    tbLicense.Foreground = Brushes.Green;
+            //else
+            //    tbLicense.Foreground = Brushes.Red;
         }
         /// <summary>
         ///this func create a thread and send the bus to treatment
@@ -315,7 +357,7 @@ namespace UI
             btn1.IsEnabled = btn2.IsEnabled = btn3.IsEnabled = false;//when the bus is during a driving, all the bottons is disenabled
             TextBlock tbLicense = parent.Children[0] as TextBlock;
             //changed the text color acording the status
-            tbLicense.Foreground = Brushes.Purple;
+          //  tbLicense.Foreground = Brushes.Purple;
             treatmentWorker.DoWork += timer_DoWork;
             treatmentWorker.ProgressChanged += timer_ProgressChanged;
             treatmentWorker.RunWorkerCompleted += timer_RunWorkerCompleted;
@@ -326,9 +368,19 @@ namespace UI
             // BO.Bus boBus = Adapter.BOPOAdapter(bus);
             // bl.TreatmentBus(boBus);
             //   bus = Adapter.POBOAdapter( bl.GetBus(int.Parse(boBus.License)));
-            bl.TreatmentBus(Adapter.BOPOAdapter(bus));
-        }
+            BO.Bus boBus = Adapter.BOPOAdapter(bus);
+            bl.TreatmentBus(boBus);
+            //now update the poBus acording boBus
+            bus.Fuel = boBus.Fuel;
+            bus.DateOfTreatment = boBus.DateOfTreatment;
+            bus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
 
+        }
+        /// <summary>
+        /// this method alow to type only digits
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textOnlyNumber(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -358,6 +410,15 @@ namespace UI
             //forbid letters and signs (#,$, %, ...)
             e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
             return;
+        }
+        /// <summary>
+        /// this method close the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         //private void doubleClick_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,9 @@ namespace DO
     /// <summary>
     /// A class that defines a physical bus/
     /// </summary>
+    /// 
+  //  [DebuggerDisplay(string.Format("{0}  {1} {2}",License,Fuel,StartOfWork))]
+    [DebuggerDisplay("{License},{Fuel},{StartOfWork}")]
     public class Bus
     {
 

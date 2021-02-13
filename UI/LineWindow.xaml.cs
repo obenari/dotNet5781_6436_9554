@@ -29,21 +29,21 @@ namespace UI
         IBL bl;
         ObservableCollection<PO.BusLine> LinesCollection;
         ObservableCollection<PO.Station> StationCollection;
-        PO.BusLine LineToAdd;
+       // PO.BusLine LineToAdd;
         public LineWindow(IBL MyBL)
         {
             InitializeComponent();
             bl = MyBL;
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
             areaComboBox.SelectedIndex = (int)BO.Areas.Jerusalem;
-            cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
-            cbArea.SelectedIndex = 0;// (int)BO.Areas.Jerusalem;
+            //cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
+           // cbArea.SelectedIndex = 0;// (int)BO.Areas.Jerusalem;
             LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(BO.Areas.Jerusalem).ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
             
         }
         /// <summary>
-        /// 
+        /// when the user select a new area, this func show the lines of the request area 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,10 +53,12 @@ namespace UI
             LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
                 ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
+            if(LinesCollection!=null||LinesCollection.Count>0)
+               lvStation.ItemsSource = LinesCollection[0].Stations;
 
         }
         /// <summary>
-        /// 
+        /// this func shows the data about the line that the user DoubleClick
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -67,7 +69,7 @@ namespace UI
             lvStation.DataContext = busLine.Stations;
         }
         /// <summary>
-        /// 
+        /// this func delete the request line
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -98,11 +100,8 @@ namespace UI
                         {
                             this.stationGrid.DataContext = null;
                             this.lvStation.DataContext = null;
-
                         }
                     }
-
-
                 }
                 catch//in order the program will not fail due to exception that the engeneering not thougt about it
                 {
@@ -111,7 +110,7 @@ namespace UI
             }
         }
         /// <summary>
-        /// 
+        /// this func open UpdateLineWindow, to update the request line
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,11 +125,16 @@ namespace UI
             UpdateLineWindow lineWindow = new UpdateLineWindow(bl, lineToUpdate);
             lineWindow.ShowDialog();
             //update the line in the collection
-            LinesCollection.Remove(lineToUpdate);
-            LinesCollection.Add(Adapter.POBOAdapter(bl.GetLine(lineToUpdate.Id)));
+
+            //LinesCollection.Remove(lineToUpdate);
+            //LinesCollection.Add(Adapter.POBOAdapter(bl.GetLine(lineToUpdate.Id)));
+            BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
+            LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
+                ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
+            lineDataGrid.DataContext = LinesCollection;
         }
         /// <summary>
-        /// 
+        /// this func open an addLineWindow to add a new line
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -138,14 +142,14 @@ namespace UI
         {
             AddLineWindow addLineWindow = new AddLineWindow(bl);
             addLineWindow.ShowDialog();
+            //update  this window, to show the rellevant data
             BO.Areas area = (BO.Areas)areaComboBox.SelectedItem;
             LinesCollection = new ObservableCollection<PO.BusLine>(bl.GetAllLinesByArea(area).
                 ToList().ConvertAll(line => Adapter.POBOAdapter(line)));
             lineDataGrid.DataContext = LinesCollection;
         }
         /// <summary>
-        /// this metod is allow The method allows only numbers to be entered
-
+        ///  The method allows only numbers to be entered
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -184,119 +188,119 @@ namespace UI
 
 
 
-        private void btnAddStation_Click(object sender, RoutedEventArgs e)
-        {
-            if (stationDataGrid.SelectedItem == null)
-            {
-                MessageBox.Show("לא נבחרה תחנה");
-                return;
-            }
-            if (int.Parse(tbIndex.Text) - 1 > LineToAdd.Stations.Count())
-            {
-                MessageBox.Show("לא ניתן לבחור אינדקס החורג ממספר התחנות בקו");
-                return;
-            }
-            else
-            {
-                PO.Station stationToAdd = stationDataGrid.SelectedItem as PO.Station;
-                PO.LineStation newLineStation = new PO.LineStation
-                {
-                    StationCode = stationToAdd.Code,
-                    StationName = stationToAdd.Name,
-                };
-                LineToAdd.Stations.Insert(int.Parse(tbIndex.Text) - 1, newLineStation);//the user start to insert index from 1, 
-                //therefor we insert the new lineStation in the index minus 1
-            }
-        }
+        //private void btnAddStation_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (stationDataGrid.SelectedItem == null)
+        //    {
+        //        MessageBox.Show("לא נבחרה תחנה");
+        //        return;
+        //    }
+        //    if (int.Parse(tbIndex.Text) - 1 > LineToAdd.Stations.Count())
+        //    {
+        //        MessageBox.Show("לא ניתן לבחור אינדקס החורג ממספר התחנות בקו");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        PO.Station stationToAdd = stationDataGrid.SelectedItem as PO.Station;
+        //        PO.LineStation newLineStation = new PO.LineStation
+        //        {
+        //            StationCode = stationToAdd.Code,
+        //            StationName = stationToAdd.Name,
+        //        };
+        //        LineToAdd.Stations.Insert(int.Parse(tbIndex.Text) - 1, newLineStation);//the user start to insert index from 1, 
+        //        //therefor we insert the new lineStation in the index minus 1
+        //    }
+        //}
 
-        private void btnRemoveStation_Click(object sender, RoutedEventArgs e)
-        {
-            PO.LineStation lineStationToRemove = (sender as Button).DataContext as PO.LineStation;
-            LineToAdd.Stations.Remove(lineStationToRemove);
-        }
+        //private void btnRemoveStation_Click(object sender, RoutedEventArgs e)
+        //{
+        //    PO.LineStation lineStationToRemove = (sender as Button).DataContext as PO.LineStation;
+        //    LineToAdd.Stations.Remove(lineStationToRemove);
+        //}
 
-        private void btnUpdateTime_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnUpdateTime_Click(object sender, RoutedEventArgs e)
+        //{
 
-            TimeSpan newTime;
-            string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
-            bool succes = TimeSpan.TryParse(help, out newTime);
-            if (succes == false)
-            {
-                MessageBox.Show("הפורמט שהוכנס אינו תקין");
-                return;
-            }
-            PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
-            lineStation.Time = newTime;
-            ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
-            //get the button of update and meke it visible
-            (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
+        //    TimeSpan newTime;
+        //    string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
+        //    bool succes = TimeSpan.TryParse(help, out newTime);
+        //    if (succes == false)
+        //    {
+        //        MessageBox.Show("הפורמט שהוכנס אינו תקין");
+        //        return;
+        //    }
+        //    PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
+        //    lineStation.Time = newTime;
+        //    ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
+        //    //get the button of update and meke it visible
+        //    (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
-        }
+        //}
 
-        private void btnTime_Click(object sender, RoutedEventArgs e)
-        {
-            // get the button of update and meke it collapsed
-            ((sender as Button).Parent as Grid).Children[0].Visibility = Visibility.Collapsed;
-            ((sender as Button).Parent as Grid).Children[1].Visibility = Visibility.Visible;
+        //private void btnTime_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // get the button of update and meke it collapsed
+        //    ((sender as Button).Parent as Grid).Children[0].Visibility = Visibility.Collapsed;
+        //    ((sender as Button).Parent as Grid).Children[1].Visibility = Visibility.Visible;
 
-        }
+        //}
 
-        private void btnUpdateDistance_Click(object sender, RoutedEventArgs e)
-        {
+        //private void btnUpdateDistance_Click(object sender, RoutedEventArgs e)
+        //{
 
-            double newDistance;
-            string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
-            bool succes = double.TryParse(help, out newDistance);
-            if (succes == false)
-            {
-                MessageBox.Show("הפורמט שהוכנס אינו תקין");
-                return;
-            }
-            PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
-            lineStation.Distance = newDistance;
-            ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
-            //get the button of update and meke it visible
-            (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
+        //    double newDistance;
+        //    string help = (((sender as Button).Parent as Grid).Children[0] as TextBox).Text;
+        //    bool succes = double.TryParse(help, out newDistance);
+        //    if (succes == false)
+        //    {
+        //        MessageBox.Show("הפורמט שהוכנס אינו תקין");
+        //        return;
+        //    }
+        //    PO.LineStation lineStation = (sender as Button).DataContext as PO.LineStation;
+        //    lineStation.Distance = newDistance;
+        //    ((sender as Button).Parent as Grid).Visibility = Visibility.Collapsed;//get the grid of update and meke it collapsed
+        //    //get the button of update and meke it visible
+        //    (((sender as Button).Parent as Grid).Parent as Grid).Children[0].Visibility = Visibility.Visible;
 
-        }
+        //}
 
-        private void btnAddLineToBl_Click(object sender, RoutedEventArgs e)
-        {
-            if (LineToAdd.Stations.Count < 2)
-            {
-                MessageBox.Show("קו אוטובוס צריך להכיל לפחות שתי תחנות");
-                return;
-            }
-            LineToAdd.Area = (BO.Areas)(cbArea.SelectedItem);
-            if (tbLineNumber.Text == "")
-            {
-                MessageBox.Show("נא להכניס מספר קו");
-                return;
-            }
+        //private void btnAddLineToBl_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (LineToAdd.Stations.Count < 2)
+        //    {
+        //        MessageBox.Show("קו אוטובוס צריך להכיל לפחות שתי תחנות");
+        //        return;
+        //    }
+        //    LineToAdd.Area = (BO.Areas)(cbArea.SelectedItem);
+        //    if (tbLineNumber.Text == "")
+        //    {
+        //        MessageBox.Show("נא להכניס מספר קו");
+        //        return;
+        //    }
 
-            LineToAdd.LineNumber = int.Parse(tbLineNumber.Text);
-            LineToAdd.LastStation = LineToAdd.Stations[LineToAdd.Stations.Count() - 1].StationName;
-            LineToAdd.FirstStation = LineToAdd.Stations[0].StationName;
-            BO.Line boLineToAdd = Adapter.BOPOAdapter(LineToAdd);
-            try
-            {
-                bl.AddLine(boLineToAdd);
-                this.Close();
-            }
-            catch (BO.NotEnoughInformationException ex)//if there is no information about distance and time between all the lineSation,
-            { //bl will thrown an exception
-                string str = ":נא לעדכן את המרחק והזמן בין התחנות";
-                str += "\n";
-                str += ex.Message;
-                MessageBox.Show(str);
-            }
-            catch
-            {
-                MessageBox.Show("משהו השתבש נסה שנית");
-            }
+        //    LineToAdd.LineNumber = int.Parse(tbLineNumber.Text);
+        //    LineToAdd.LastStation = LineToAdd.Stations[LineToAdd.Stations.Count() - 1].StationName;
+        //    LineToAdd.FirstStation = LineToAdd.Stations[0].StationName;
+        //    BO.Line boLineToAdd = Adapter.BOPOAdapter(LineToAdd);
+        //    try
+        //    {
+        //        bl.AddLine(boLineToAdd);
+        //        this.Close();
+        //    }
+        //    catch (BO.NotEnoughInformationException ex)//if there is no information about distance and time between all the lineSation,
+        //    { //bl will thrown an exception
+        //        string str = ":נא לעדכן את המרחק והזמן בין התחנות";
+        //        str += "\n";
+        //        str += ex.Message;
+        //        MessageBox.Show(str);
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("משהו השתבש נסה שנית");
+        //    }
 
-        }
+        //}
 
 
     }
