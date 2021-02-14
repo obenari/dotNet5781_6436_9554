@@ -344,7 +344,7 @@ namespace BL
             }
             catch (DO.DuplicateBusException ex)
             {
-                throw new DuplicateBusException(ex.License, "", ex);
+                throw new BO.DuplicateBusException(ex.License, "", ex);
             }
 
         }
@@ -598,7 +598,7 @@ namespace BL
                             };
                             dl.AddAdjacentStations(newAdjacentStations);
                         }
-                        catch (DuplicateAdjacentStationsException ex) { }
+                        catch (DO.DuplicateAdjacentStationsException ex) { }
                     }
 
                 }//end to update the distance and time between the next and prev station

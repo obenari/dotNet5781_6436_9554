@@ -96,7 +96,7 @@
     <Longitude>34.811764</Longitude>
     <Latitude>31.264302</Latitude>
     <Name>פארק הייטק/התבונה</Name>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </Station>
   <Station>
     <Code>15</Code>
@@ -278,7 +278,7 @@
     <Longitude>32.795426</Longitude>
     <Latitude>35.021788</Latitude>
     <Name>בר יהודה/גשר גדוד 21 </Name>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </Station>
   <Station>
     <Code>41</Code>
@@ -348,6 +348,13 @@
     <Longitude>32.272698</Longitude>
     <Latitude>34.856933</Latitude>
     <Name>צומת אביר/כביש 553 </Name>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>51</Code>
+    <Name>1</Name>
+    <Longitude>34.8</Longitude>
+    <Latitude>31</Latitude>
     <IsDeleted>false</IsDeleted>
   </Station>
 </ArrayOfStation>

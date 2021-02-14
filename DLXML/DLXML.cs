@@ -69,7 +69,7 @@ namespace DL
                     XMLTools.SaveListToXMLSerializer(listBusses, bussesPath);
                 }
                 else//if the bus is exist and not deleted,will thrown an Exception
-                    throw new DO.BusNotFoundException(bus.License);
+                    throw new DO.DuplicateBusException(bus.License);
 
             }
             else
@@ -843,11 +843,11 @@ namespace DL
         /// <param name="id"></param>
         public void DeleteLineTrip(int id)
         {
-            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(stationsPath);
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
             XElement lt = (from lineTrip in lineTripRootElem.Elements()
                            where int.Parse(lineTrip.Element("Id").Value) == id
                            select lineTrip).FirstOrDefault();
-            if (lt == null || bool.Parse(lt.Element("IsDeleted").Value) == false)
+            if (lt == null || bool.Parse(lt.Element("IsDeleted").Value) == true)
                 throw new DO.LineTripNotFoundException(id);
             lt.Element("IsDeleted").SetValue(true);
             //  lineTripRootElem.Save(lineTripPath);

@@ -63,7 +63,7 @@ namespace UI
         {
             PO.BusLine busLine = lineDataGrid.SelectedItem as PO.BusLine;
             this.stationGrid.DataContext = busLine;
-            lvStation.DataContext = busLine.Stations;
+            lvStation.ItemsSource = busLine.Stations;
         }
         /// <summary>
         /// this func delete the request line
@@ -84,7 +84,7 @@ namespace UI
                 try
                 {
                     PO.BusLine lineToRemove = lineDataGrid.SelectedItem as BusLine;
-                    bl.DeleteStation(lineToRemove.Id);
+                    bl.DeleteLine(lineToRemove.Id);
                     LinesCollection.Remove(lineToRemove);
                     if (stationGrid.DataContext == lineToRemove)
                     {

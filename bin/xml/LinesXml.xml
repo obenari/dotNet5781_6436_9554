@@ -17,22 +17,6 @@
     <IsDeleted>false</IsDeleted>
   </Line>
   <Line>
-    <Id>7</Id>
-    <LineNumber>4</LineNumber>
-    <Area>Haifa</Area>
-    <FirstStation>31</FirstStation>
-    <LastStation>40</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>8</Id>
-    <LineNumber>4</LineNumber>
-    <Area>Haifa</Area>
-    <FirstStation>40</FirstStation>
-    <LastStation>31</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
     <Id>9</Id>
     <LineNumber>5</LineNumber>
     <Area>Natania</Area>
@@ -85,15 +69,39 @@
     <LineNumber>12</LineNumber>
     <Area>Jerusalem</Area>
     <FirstStation>7</FirstStation>
-    <LastStation>5</LastStation>
+    <LastStation>9</LastStation>
     <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>14</Id>
+    <LineNumber>4</LineNumber>
+    <Area>Jerusalem</Area>
+    <FirstStation>6</FirstStation>
+    <LastStation>1</LastStation>
+    <IsDeleted>true</IsDeleted>
   </Line>
   <Line>
     <Id>13</Id>
     <LineNumber>13</LineNumber>
     <Area>Haifa</Area>
-    <FirstStation>14</FirstStation>
+    <FirstStation>15</FirstStation>
     <LastStation>16</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>8</Id>
+    <LineNumber>4</LineNumber>
+    <Area>Haifa</Area>
+    <FirstStation>39</FirstStation>
+    <LastStation>31</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <Id>7</Id>
+    <LineNumber>4</LineNumber>
+    <Area>Haifa</Area>
+    <FirstStation>31</FirstStation>
+    <LastStation>39</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
 </ArrayOfLine>
