@@ -1381,7 +1381,6 @@ new Station
          DateOfTreatment =new DateTime(1990,1,18),
          TotalKms =  16976 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1392,7 +1391,6 @@ new Station
          DateOfTreatment =new DateTime(2003,3,2),
          TotalKms =  5122 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1403,7 +1401,6 @@ new Station
          DateOfTreatment =new DateTime(2012,9,11),
          TotalKms =  9922 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1414,7 +1411,6 @@ new Station
          DateOfTreatment =new DateTime(1991,5,9),
          TotalKms =  8105 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1425,7 +1421,6 @@ new Station
          DateOfTreatment =new DateTime(1988,4,15),
          TotalKms =  15566 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1436,7 +1431,6 @@ new Station
          DateOfTreatment =new DateTime(1981,2,24),
          TotalKms =  4559 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1447,7 +1441,6 @@ new Station
          DateOfTreatment =new DateTime(2005,2,15),
          TotalKms =  12897 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1458,7 +1451,6 @@ new Station
          DateOfTreatment =new DateTime(1992,8,13),
          TotalKms =  3966 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1469,7 +1461,6 @@ new Station
          DateOfTreatment =new DateTime(2005,4,12),
          TotalKms =  14867 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1480,7 +1471,6 @@ new Station
          DateOfTreatment =new DateTime(2019,7,13),
          TotalKms =  12012 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1491,7 +1481,6 @@ new Station
          DateOfTreatment =new DateTime(2003,7,8),
          TotalKms =  8633 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1502,7 +1491,6 @@ new Station
          DateOfTreatment =new DateTime(1990,10,21),
          TotalKms =  18417 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1513,7 +1501,6 @@ new Station
          DateOfTreatment =new DateTime(2003,1,16),
          TotalKms =  15536 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1524,7 +1511,6 @@ new Station
          DateOfTreatment =new DateTime(2013,6,14),
          TotalKms =  9232 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1535,7 +1521,6 @@ new Station
          DateOfTreatment =new DateTime(2004,1,2),
          TotalKms =  18335 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1546,7 +1531,6 @@ new Station
          DateOfTreatment =new DateTime(1986,3,21),
          TotalKms =  88 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1557,7 +1541,6 @@ new Station
          DateOfTreatment =new DateTime(2001,9,23),
          TotalKms =  8811 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1568,7 +1551,6 @@ new Station
          DateOfTreatment =new DateTime(1997,11,23),
          TotalKms =  11263 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1579,7 +1561,6 @@ new Station
          DateOfTreatment =new DateTime(1982,10,27),
          TotalKms =  9178 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -1590,7 +1571,6 @@ new Station
          DateOfTreatment =new DateTime(2008,9,1),
          TotalKms =  2761 ,
           Fuel = 1200,
-          Status =Status.Ready ,
           TotalKmsFromLastTreatment =0,
            IsDeleted = false
         },
@@ -2093,83 +2073,3 @@ new Station
     }
 
 };
-/*<Line>
-    <Id>1</Id>
-    <LineNumber>1</LineNumber>
-    <Area>Jerusalem</Area>
-    <FirstStation>1</FirstStation>
-    <LastStation>10</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>2</Id>
-    <LineNumber>1</LineNumber>
-    <Area>Jerusalem</Area>
-    <FirstStation>10</FirstStation>
-    <LastStation>1</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>3</Id>
-    <LineNumber>2</LineNumber>
-    <Area>BeerSheva</Area>
-    <FirstStation>11</FirstStation>
-    <LastStation>20</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>4</Id>
-    <LineNumber>2</LineNumber>
-    <Area>BeerSheva</Area>
-    <FirstStation>20</FirstStation>
-    <LastStation>11</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>5</Id>
-    <LineNumber>3</LineNumber>
-    <Area>TelAviv</Area>
-    <FirstStation>21</FirstStation>
-    <LastStation>30</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>6</Id>
-    <LineNumber>3</LineNumber>
-    <Area>TelAviv</Area>
-    <FirstStation>30</FirstStation>
-    <LastStation>21</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>7</Id>
-    <LineNumber>4</LineNumber>
-    <Area>Haifa</Area>
-    <FirstStation>31</FirstStation>
-    <LastStation>40</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>8</Id>
-    <LineNumber>4</LineNumber>
-    <Area>Haifa</Area>
-    <FirstStation>40</FirstStation>
-    <LastStation>31</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>9</Id>
-    <LineNumber>5</LineNumber>
-    <Area>Natania</Area>
-    <FirstStation>41</FirstStation>
-    <LastStation>50</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
-    <Id>10</Id>
-    <LineNumber>5</LineNumber>
-    <Area>Natania</Area>
-    <FirstStation>50</FirstStation>
-    <LastStation>41</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>*/

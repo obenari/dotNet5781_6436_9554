@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"  
          Title="MainWindow" Width="1300" Height="680" WindowState="Maximized" FontFamily="Franklin Gothic Heavy">
-    <!--Width="1300" Height="680" d:DesignWidth="835" d:DesignHeight="562.667"-->
     <Grid x:Name="MainGrid"  Background="{StaticResource MyBackground}">
-        <!--<Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
-            </LinearGradientBrush>
-        </Grid.Background>-->
-        <Button x:Name="btnStation" Content="ניהול תחנות" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Click="btnStation_Click" Margin="273,203,279.8,167.8" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnStation" Grid.Column="0" Grid.Row="0" BorderThickness="0" Content="ניהול תחנות" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="276" Height="162" Click="btnStation_Click"  FontFamily="Franklin Gothic Heavy" FontSize="18" >
             <Button.Background>
-                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+                <SolidColorBrush Color="#FF45A188" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="Border">
@@ -25,10 +25,17 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnBus" Content="ניהול אוטובוסים&#xD;&#xA;" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="276" Height="162"  Click="btnBus_Click" Margin="0,201,1.8,169.8"
-                MaxWidth="276" MinWidth="276" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+        <Button x:Name="btnBus" Grid.Row="1" BorderThickness="0" Content="ניהול אוטובוסים&#xD;&#xA;" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="276" Height="162"  Click="btnBus_Click" 
+                MaxWidth="276" MinWidth="276" FontFamily="Franklin Gothic Heavy" FontSize="18" Background="#FF8FC6B1" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="btnLine" BorderThickness="0" Content=" ניהול קווי אוטובוס" HorizontalAlignment="Center" VerticalAlignment="Center" Width="276" Height="162" Click="btnLine_Click" Grid.Column="1" FontFamily="Franklin Gothic Heavy" FontSize="18" >
             <Button.Background>
-                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+                <SolidColorBrush Color="#FF45A188" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -36,19 +43,9 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnLine" Content=" ניהול קווי אוטובוס" HorizontalAlignment="Left" VerticalAlignment="Center" Width="276" Height="162" Click="btnLine_Click" Margin="-5,203,0,167.8" FontFamily="Franklin Gothic Heavy" FontSize="18" >
+        <Button x:Name="btnLineTrip" BorderThickness="0" Content="לוז קווי אוטובוס" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="276" Height="162"  FontFamily="Franklin Gothic Heavy" FontSize="18" Click="btnLineTrip_Click" Grid.Column="1" Grid.Row="1" >
             <Button.Background>
-                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
-            </Button.Background>
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="btnLineTrip" Content="לוז קווי אוטובוס" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="276" Height="162"  FontFamily="Franklin Gothic Heavy" FontSize="18" Click="btnLineTrip_Click" >
-            <Button.Background>
-                <SolidColorBrush Color="#FFC4D5FF" Opacity="0.6"/>
+                <SolidColorBrush Color="#FF45A188" Opacity="0.6"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="Border">
@@ -56,12 +53,12 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="271" Height="100">
+        <Label  HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom" Width="271" Height="100">
             <Label.Background>
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="271" Height="100"  RenderTransformOrigin="0.5,0.5">
+        <Label  HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom"  Width="271" Height="100"  RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -100,7 +97,8 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        --><!--<Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,549,-708.667,-227.333" RenderTransformOrigin="0.5,0.5">
+        -->
+<!--<Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="262" Margin="0,549,-708.667,-227.333" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -112,7 +110,8 @@
             <Label.Background>
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
-        </Label>--><!--
+        </Label>-->
+<!--
         <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Width="185" Margin="0,349,-5.4,-1" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>

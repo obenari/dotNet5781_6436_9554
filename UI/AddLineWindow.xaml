@@ -17,13 +17,7 @@
 
     </Window.Resources>
     <Grid  Background="{StaticResource MyBackground}">
-          <!--<Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
-            </LinearGradientBrush>
-        </Grid.Background>-->
+         
          <Grid x:Name="addGrid" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -175,7 +169,14 @@
                     <ImageBrush ImageSource="bus.jpg"/>
                 </Label.Background>
             </Label>
-            <Button x:Name="btnBack" Content="חזור אחורה" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
+            <Button x:Name="btnBack" Content="חזור אחורה" Grid.Column="1" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click" Background="#FFBDE1D4">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+             
 
         </Grid>
     </Grid>

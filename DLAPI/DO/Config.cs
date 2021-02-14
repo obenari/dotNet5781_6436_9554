@@ -15,15 +15,17 @@ namespace DO
         public static int StationCode => ++stationCode;
         
         //for consts
-        public static int MAX_LICENSE_NUM = 8;
+        public const int MAX_LICENSE_NUM = 8;
         /// <summary>
         /// the limit of Israel country
         /// </summary>
-        public static double MIN_LAT = 31;
-        public static double MAX_LAT = 33.3;
-        public static double MIN_LON = 34.3;
-        public static double MAX_LON = 35.5;
-
-
+        public  const double MIN_LAT = 31;
+        public const double MAX_LAT = 33.3;
+        public const double MIN_LON = 34.3;
+        public const double MAX_LON = 35.5;
+        /// <summary>
+        /// the size of full tank
+        /// </summary>
+        public const int FullTank = 1200;
     }
 }

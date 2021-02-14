@@ -1,62 +1,11 @@
 <?xml version="1.0"?>
 <ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Bus>
-    <License>2</License>
-    <StartOfWork>1995-04-14T00:00:00</StartOfWork>
-    <DateOfTreatment>2021-02-11T17:24:54.8942619+02:00</DateOfTreatment>
-    <TotalKms>5122</TotalKms>
-    <Fuel>1080</Fuel>
-    <Status>Treatment</Status>
-    <TotalKmsFromLastTreatment>120</TotalKmsFromLastTreatment>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
     <License>12</License>
     <StartOfWork>1991-09-18T00:00:00</StartOfWork>
     <DateOfTreatment>1990-10-21T00:00:00</DateOfTreatment>
     <TotalKms>18417</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Ready</Status>
-    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <License>6</License>
-    <StartOfWork>1982-03-07T00:00:00</StartOfWork>
-    <DateOfTreatment>1981-02-24T00:00:00</DateOfTreatment>
-    <TotalKms>4559</TotalKms>
-    <Fuel>1200</Fuel>
-    <Status>Ready</Status>
-    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <License>7</License>
-    <StartOfWork>1997-10-14T00:00:00</StartOfWork>
-    <DateOfTreatment>2021-01-21T21:37:20.3316839+02:00</DateOfTreatment>
-    <TotalKms>12897</TotalKms>
-    <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
-    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <License>8</License>
-    <StartOfWork>2008-09-10T00:00:00</StartOfWork>
-    <DateOfTreatment>2021-01-21T21:37:55.4077028+02:00</DateOfTreatment>
-    <TotalKms>3966</TotalKms>
-    <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
-    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <License>9</License>
-    <StartOfWork>1991-12-27T00:00:00</StartOfWork>
-    <DateOfTreatment>2021-01-21T21:38:48.8146083+02:00</DateOfTreatment>
-    <TotalKms>14867</TotalKms>
-    <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -66,7 +15,6 @@
     <DateOfTreatment>2021-01-21T21:22:30.6014743+02:00</DateOfTreatment>
     <TotalKms>16976</TotalKms>
     <Fuel>1100</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>140</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -76,7 +24,6 @@
     <DateOfTreatment>2021-01-21T22:01:46.0051873+02:00</DateOfTreatment>
     <TotalKms>15536</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -86,7 +33,6 @@
     <DateOfTreatment>2013-06-14T00:00:00</DateOfTreatment>
     <TotalKms>9232</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -96,7 +42,6 @@
     <DateOfTreatment>2021-01-21T00:00:00</DateOfTreatment>
     <TotalKms>12</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>3</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -106,7 +51,6 @@
     <DateOfTreatment>2021-02-11T18:12:21.4801783+02:00</DateOfTreatment>
     <TotalKms>88</TotalKms>
     <Fuel>1100</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>100</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -116,7 +60,6 @@
     <DateOfTreatment>2021-02-11T17:46:26.2630273+02:00</DateOfTreatment>
     <TotalKms>18335</TotalKms>
     <Fuel>980</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>580</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -126,7 +69,6 @@
     <DateOfTreatment>2021-02-11T18:38:54.1619924+02:00</DateOfTreatment>
     <TotalKms>8811</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -136,7 +78,6 @@
     <DateOfTreatment>2021-02-11T18:38:57.454037+02:00</DateOfTreatment>
     <TotalKms>11263</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -146,7 +87,6 @@
     <DateOfTreatment>2021-02-11T18:38:59.7398528+02:00</DateOfTreatment>
     <TotalKms>9178</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -156,7 +96,6 @@
     <DateOfTreatment>2021-02-11T18:39:01.1676571+02:00</DateOfTreatment>
     <TotalKms>2761</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -166,7 +105,6 @@
     <DateOfTreatment>2021-02-11T18:39:04.9564523+02:00</DateOfTreatment>
     <TotalKms>9922</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -176,7 +114,6 @@
     <DateOfTreatment>2021-02-11T18:39:05.6250258+02:00</DateOfTreatment>
     <TotalKms>8105</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -186,7 +123,6 @@
     <DateOfTreatment>2021-02-11T18:39:09.7534027+02:00</DateOfTreatment>
     <TotalKms>8633</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -196,7 +132,6 @@
     <DateOfTreatment>2021-02-11T18:39:10.2666332+02:00</DateOfTreatment>
     <TotalKms>12012</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -206,7 +141,6 @@
     <DateOfTreatment>2021-02-11T18:50:39.619877+02:00</DateOfTreatment>
     <TotalKms>15566</TotalKms>
     <Fuel>1200</Fuel>
-    <Status>Treatment</Status>
     <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
@@ -216,8 +150,52 @@
     <DateOfTreatment>2021-01-18T00:00:00</DateOfTreatment>
     <TotalKms>0</TotalKms>
     <Fuel>1100</Fuel>
-    <Status>Ready</Status>
     <TotalKmsFromLastTreatment>100</TotalKmsFromLastTreatment>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <License>2</License>
+    <StartOfWork>1995-04-14T00:00:00</StartOfWork>
+    <DateOfTreatment>2021-02-11T17:24:54.8942619+02:00</DateOfTreatment>
+    <TotalKms>5122</TotalKms>
+    <Fuel>1200</Fuel>
+    <TotalKmsFromLastTreatment>120</TotalKmsFromLastTreatment>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <License>6</License>
+    <StartOfWork>1982-03-07T00:00:00</StartOfWork>
+    <DateOfTreatment>2021-02-14T12:15:37.1665732+02:00</DateOfTreatment>
+    <TotalKms>4559</TotalKms>
+    <Fuel>1200</Fuel>
+    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <License>7</License>
+    <StartOfWork>1997-10-14T00:00:00</StartOfWork>
+    <DateOfTreatment>2021-01-21T21:37:20.3316839+02:00</DateOfTreatment>
+    <TotalKms>12897</TotalKms>
+    <Fuel>1177</Fuel>
+    <TotalKmsFromLastTreatment>23</TotalKmsFromLastTreatment>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <License>8</License>
+    <StartOfWork>2008-09-10T00:00:00</StartOfWork>
+    <DateOfTreatment>2021-01-21T21:37:55.4077028+02:00</DateOfTreatment>
+    <TotalKms>3966</TotalKms>
+    <Fuel>1200</Fuel>
+    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <License>9</License>
+    <StartOfWork>1991-12-27T00:00:00</StartOfWork>
+    <DateOfTreatment>2021-01-21T21:38:48.8146083+02:00</DateOfTreatment>
+    <TotalKms>14867</TotalKms>
+    <Fuel>1200</Fuel>
+    <TotalKmsFromLastTreatment>0</TotalKmsFromLastTreatment>
     <IsDeleted>false</IsDeleted>
   </Bus>
 </ArrayOfBus>

@@ -28,7 +28,6 @@ namespace UI
         PO.Station CurrentStation;
         BackgroundWorker Worker;
         TimeSpan Watch = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-        Stopwatch stopwatch = new Stopwatch();
         bool IsTimeRun = true;
         public SimulationWindow(IBL myBl, PO.Station station)
         {
@@ -38,7 +37,6 @@ namespace UI
             txtName.Text = CurrentStation.Name;
             txtCode.Text = CurrentStation.Code.ToString();
             tbWatch.Text = Watch.ToString();
-            stopwatch.Start();
             Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.WorkerSupportsCancellation = true;
@@ -66,9 +64,9 @@ namespace UI
         /// <param name="e"></param>
         private void simulation_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            // TimeSpan help = new TimeSpan(stopwatch.ElapsedTicks);
-            // Watch= Watch.Add(help);//new TimeSpan(Watch.Hours+stopwatch.hou);
+          
             Watch = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            //take only 8 first letters from the watch 
             tbWatch.Text = Watch.ToString().Substring(0,8);
             lvLineTiming.ItemsSource = bl.GetLinesTiming(CurrentStation.Code, Watch);
         }
@@ -80,7 +78,7 @@ namespace UI
         /// <param name="e"></param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            IsTimeRun = false;
+            IsTimeRun = false;//in order to stop the thread
             this.Close();
         }
     }

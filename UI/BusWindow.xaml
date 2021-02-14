@@ -8,7 +8,6 @@
          Title="BusWindow" WindowState="Maximized"  Height="680" Width="1300" FontFamily="Franklin Gothic Heavy" >
 
     <Window.Resources>
-        <!--<local:StatusConverter x:Key="StatusConverter"/>-->
         <local:StatusConverter x:Key="StutusConverter"/>
         <DataTemplate x:Key="myDataTemplate" DataType="local:Bus">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -21,7 +20,6 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbLicense" Grid.Column="0" Text="{Binding Path=License}" 
                             FontWeight="Bold" FontSize="14" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Schoolbook" Foreground="{Binding Path=Status, Converter={StaticResource StutusConverter} }"/>
-                <!--Foreground="{Binding Path=MyState , Converter={StaticResource StateConverter}, Mode=OneTime}"-->
 
                 <Button x:Name="btnRefuel" Margin="3" Grid.Column="1" Content="תדלוק" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FF5DC6B2" Click="btnRefuel_Click" />
                 <Button x:Name="btnTreatment" Margin="3" Grid.Column="2" Content="שלח לטיפול" FontFamily="Sitka Display" FontWeight="Bold" FontSize="14" Background="#FFFFE7BE" Click="btnTreatment_Click"/>
@@ -34,14 +32,7 @@
 
     </Window.Resources>
     <Grid  Background="{StaticResource MyBackground}">
-        <!--<Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
-                <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
-            </LinearGradientBrush>
-        </Grid.Background>-->
-
+       
 
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
@@ -52,23 +43,12 @@
             <ListView.Background>
                 <ImageBrush ImageSource="egged_logo.jpg" Opacity="0.25"/>
             </ListView.Background>
-            <!--<ListView.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFFFDEE" Offset="0.385"/>
-                    <GradientStop Color="#FFBCFCEC" Offset="0.942"/>
-                    <GradientStop Color="#FFBCFCEC" Offset="0.799"/>
-                </LinearGradientBrush>
-            </ListView.Background>-->
+            
 
-            <!--<ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-
-                </GridView>
-            </ListView.View>-->
+          
 
         </ListView>
-        <Button x:Name="btnAddBus" Content="הוסף אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Top" Width="130" Click="btnAddBus_Click" Height="64" Margin="0,120,25,0">
+        <Button x:Name="btnAddBus" Content="הוסף אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Top" Width="130" Click="btnAddBus_Click" Height="64" Margin="0,120,25,0" BorderBrush="#FF90C4B1">
             <Button.Background>
                 <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
             </Button.Background>
@@ -78,9 +58,9 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnRemove" BorderThickness="10" Content="מחק אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,0,25,40" Click="btnRemove_Click" Foreground="#FF7CB09D" BorderBrush="#FF8EC4B1">
+        <Button x:Name="btnRemove" BorderThickness="0" Content="מחק אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,0,25,40" Click="btnRemove_Click" Foreground="#FF121212" BorderBrush="#FF8EC4B1">
             <Button.Background>
-                <SolidColorBrush Color="#FFFFFDEE" Opacity="0.6"/>
+                <SolidColorBrush Color="#FF90C4B1"/>
             </Button.Background>
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -93,7 +73,7 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <Label  HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="100"  Width="271"  RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="100"  Width="271"  RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -106,16 +86,7 @@
                 <ImageBrush ImageSource="bus.jpg"/>
             </Label.Background>
         </Label>
-        <!--<Button x:Name="btnUpdate" Content="עדכן אוטובוס" HorizontalAlignment="Right" FontSize="14" Grid.Row="0" VerticalAlignment="Center" Width="130" Height="64" Margin="0,170,25,0" Click="btnUpdate_Click" >
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <SolidColorBrush Color="#FF469F88" Opacity="0.6"/>
-            </Button.Background>
-        </Button>-->
+       
         <Grid x:Name="busDetailsGrid"  VerticalAlignment="Center" HorizontalAlignment="Right"  Height="250" Width="360" Margin="0,0,195,20">
 
             <Grid x:Name="grid1" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0" Height="250" Width="360" Background="#FFD5EFD9">
@@ -148,12 +119,13 @@
                 <TextBox x:Name="startOfActivityTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding StartOfWork, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="150" FontSize="14" IsEnabled="False"/>
             </Grid>
         </Grid>
-        <Button x:Name="btnBack" Content="חזור אחורה" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
-        <!--<Label Content="לחץ לחיצה כפולה על אוטובוס כדי להציג את פרטיו " HorizontalAlignment="Right" Margin="0,100,205,0" VerticalAlignment="Top" Width="329" FontSize="14" />
-        <Grid x:Name="drivingGrid" Visibility="Visible"  HorizontalAlignment="Center" Margin="400,0,0,10" Height="110" Grid.Column="1" VerticalAlignment="Bottom" Width="220">
-            <TextBox x:Name="tbDriving" Width="220" Height="80" VerticalAlignment="Bottom" PreviewKeyDown="textOnlyNumber" />
-            <Label Content="הכנס את מרחק הנסיעה בקילומטרים" Height="30" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-            <Button x:Name="btnDriving" Content="שלח לנסיעה" Height="20" VerticalAlignment="Bottom" />
-        </Grid>-->
+        <Button x:Name="btnBack" Content="חזור אחורה" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"  Background="#FFBDE1D4">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+     
     </Grid>
 </Window>

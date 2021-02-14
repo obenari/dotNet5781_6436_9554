@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-       Title="DrivingWindow" Height="280" Width="300" >
+       Title="DrivingWindow" Height="280" Width="300" Closing="Window_Closing"   >
+   
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="drivingBus.jpg" Opacity="0.45"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Enter the travel distance:" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="DarkGreen"/>
-        <TextBox x:Name="tbKm" HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap"   VerticalAlignment="Center" Width="140" PreviewKeyDown="textOnlyNumber" KeyUp="TextBox_KeyUp"/>
+        <TextBox x:Name="tbKm" Text="0" HorizontalAlignment="Center"  Grid.Row="1" TextWrapping="Wrap"   VerticalAlignment="Center" Width="140" PreviewKeyDown="textOnlyNumber" KeyUp="TextBox_KeyUp"/>
         <Label x:Name="labelContinue" Content="press enter to continue" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Bottom" Visibility="Hidden"/>
 
     </Grid>
+    
 </Window>

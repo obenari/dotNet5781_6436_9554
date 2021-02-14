@@ -66,10 +66,6 @@ namespace UI
             LineTripWindow lineTripWindow = new LineTripWindow(bl);
             lineTripWindow.ShowDialog();
         }
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ManangmentWindow manangmentWindow = new ManangmentWindow(bl);
-        //    manangmentWindow.ShowDialog();
-        //}
+      
     }
 }

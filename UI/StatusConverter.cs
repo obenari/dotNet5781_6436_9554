@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace UI
 {
+    /// <summary>
+    /// convert from bus Status to color
+    /// </summary>
     public class StatusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -33,7 +36,14 @@ namespace UI
             }
             return str;
         }
-
+        /// <summary>
+        /// this convert side is needless beacause the color dont infuence the status of the bus
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();//we dont use this convert back

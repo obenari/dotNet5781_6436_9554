@@ -76,8 +76,9 @@ namespace UI
             {
                 try
                 {
-
-                    this.Close();
+                    if(!string.IsNullOrEmpty(tbKm.Text))
+                      this.Close();
+                        
                 }
                 catch
                 {
@@ -86,5 +87,13 @@ namespace UI
             }
 
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+         //   e.Cancel = true;
+        }
+
+        
     }
 }

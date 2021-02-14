@@ -56,7 +56,13 @@
             <TextBox x:Name="tbSecond" HorizontalAlignment="Right" BorderThickness="0" Height="23" Margin="0,0,100,100" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Center" Width="25" PreviewKeyDown="textOnlyNumber"/>
             <TextBox HorizontalAlignment="Left" BorderThickness="0" Margin="125,0,0,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
             <TextBox HorizontalAlignment="Right" BorderThickness="0" Margin="0,0,125,100" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Center" Width="10"/>
-            <Button x:Name="btnAddSingle" Content="הוסף" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75" Click="btnAddSingle_Click"/>
+            <Button x:Name="btnAddSingle" Content="הוסף" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75" Click="btnAddSingle_Click" Background="#FFBDE1D4" >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </Grid>
         <Grid x:Name="addMultiGrid" Visibility="Collapsed" HorizontalAlignment="Center" Height="300"  VerticalAlignment="Center" Width="300">
@@ -80,13 +86,48 @@
             <TextBox x:Name="tbSecondFrequency" HorizontalAlignment="Right" BorderThickness="0" Height="23" Margin="0,155,100,50" TextWrapping="Wrap" Text="12" MaxLength="2" VerticalAlignment="Bottom" Width="25" PreviewKeyDown="textOnlyNumber"/>
             <TextBox HorizontalAlignment="Left" BorderThickness="0" Margin="125,155,0,50" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Bottom" Width="10"/>
             <TextBox HorizontalAlignment="Right" BorderThickness="0" Margin="0,155,125,50" Height="23" TextWrapping="Wrap" IsReadOnly="True" Text=":" MaxLength="2" VerticalAlignment="Bottom" Width="10"/>
-            <Button x:Name="btnAddMulti" Content="הוסף" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75" Click="btnAddMulti_Click"/>
+            <Button x:Name="btnAddMulti" Content="הוסף" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75" Click="btnAddMulti_Click" Background="#FFBDE1D4" >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </Grid>
-        <Button x:Name="btnMulti" Content="הוספת יציאות קו מרובות" HorizontalAlignment="Center" Margin="0,100,148,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnMulti_Click"/>
-        <Button x:Name="btnSingle" IsEnabled="False" Content="הוספת יציאת קו בודדת" HorizontalAlignment="Center" Margin="148,100,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnSingle_Click"/>
-        <Button x:Name="btnRemove" Content="מחק יציאת קו" Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="btnRemove_Click"/>
-        <Button x:Name="btnBack" Content="חזור אחורה" Grid.Column="2" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
-
+        <Button x:Name="btnMulti" Content="הוספת יציאות קו מרובות" HorizontalAlignment="Center" Margin="0,100,148,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnMulti_Click" Background="#FFBDE1D4"/>
+        <Button x:Name="btnSingle" IsEnabled="False" Content="הוספת יציאת קו בודדת" HorizontalAlignment="Center" Margin="148,100,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="btnSingle_Click" Background="#FFBDE1D4"/>
+        <Button x:Name="btnRemove" Content="מחק יציאת קו" Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="btnRemove_Click" Background="#FFBDE1D4" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="btnBack" Content="חזור אחורה" Grid.Column="2" HorizontalAlignment="Right" Margin="0,15,15,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"  Background="#FFBDE1D4">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Label  HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="100"  Width="271"  RenderTransformOrigin="0.5,0.5" Grid.Column="2">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
+        <Label  HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Width="271"  Grid.Row="1">
+            <Label.Background>
+                <ImageBrush ImageSource="bus.jpg"/>
+            </Label.Background>
+        </Label>
     </Grid>
 </Window>

@@ -33,8 +33,6 @@ namespace UI
             LineTripCollection = new ObservableCollection<BO.LineTrip>(bl.GetAllLinesTripBy(l => l.LineId == LinesCollection[0].Id));
             cbLine.ItemsSource = LinesCollection;
             CurrentBusLine = LinesCollection[0];
-            //cbLine.SelectedIndex = 0;
-         //   cbLine.SelectedItem= LinesCollection[0];
             cbArea.SelectedIndex = 0;
             lvLineTrip.DataContext = LineTripCollection;
             this.DataContext = CurrentBusLine;
@@ -151,7 +149,7 @@ namespace UI
                 int hourFinish =int.Parse(tbHourFinish.Text), minuteFinish = int.Parse(tbMinuteFinish.Text), secondFinish = int.Parse(tbSecondFinish.Text);
                 int hourFrequency = int.Parse(tbHourFrequency.Text), minuteFrequency = int.Parse(tbMinuteFrequency.Text), secondFrequency = int.Parse(tbSecondFrequency.Text);
                 //check if the time is okey
-                if (hourStart > 23 || hourFinish > 23 || hourFrequency > 23
+                if ( hourStart > 23 || hourFinish > 23 || hourFrequency > 23
                      || minuteStart > 59 || minuteFinish > 59 || minuteFrequency > 59
                      || secondStart > 59 || secondFinish > 59 || secondFrequency > 59)
                 {
@@ -161,10 +159,6 @@ namespace UI
                 TimeSpan timeStart = new TimeSpan(hourStart, minuteStart, secondStart);
                 TimeSpan timeFinish = new TimeSpan(hourFinish, minuteFinish, secondFinish);
                 TimeSpan timeFrequency = new TimeSpan(hourFrequency, minuteFrequency, secondFrequency);
-
-                //TimeSpan timeStart = new TimeSpan(int.Parse(tbHourStart.Text), int.Parse(tbMinuteStart.Text), int.Parse(tbSecondStart.Text));
-                // TimeSpan timeFinish = new TimeSpan(int.Parse(tbHourFinish.Text), int.Parse(tbMinuteFinish.Text), int.Parse(tbSecondFinish.Text));
-                // TimeSpan timeFrequency = new TimeSpan(int.Parse(tbHourFrequency.Text), int.Parse(tbMinuteFrequency.Text), int.Parse(tbSecondFrequency.Text));
                 bl.AddLineTrip(CurrentBusLine.Id ,timeStart,timeFinish,timeFrequency);
                 LineTripCollection = new ObservableCollection<BO.LineTrip>(bl.GetAllLinesTripBy(l => l.LineId == CurrentBusLine.Id));
                 lvLineTrip.ItemsSource = LineTripCollection;
@@ -180,7 +174,7 @@ namespace UI
             }
         }
         /// <summary>
-        /// this method swap to the addMulty lineTrip grid
+        /// this method swap   the visibility between the btnMulti  and btnSingle  and open the addMulty lineTrip grid
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -192,7 +186,7 @@ namespace UI
             addMultiGrid.Visibility = Visibility.Visible;
         }
         /// <summary>
-        /// this  method swap to the addSingle lineTrip grid
+        /// this  method  swap the visibility between the btnSingle and btnMulti  and open addSingle lineTrip grid
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -64,8 +64,6 @@ namespace BL
             DO.LineStation firstLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-                //  PrevStation = null,
-                // NextStation = lineStations[1].stationCode,
                 stationCode = lineStations[0].stationCode,
                 LineId = line.Id,
                 LineStationIndex = 0
@@ -75,8 +73,6 @@ namespace BL
             DO.LineStation lastLineStation = new DO.LineStation
             {//the first station
                 IsDeleted = false,
-                //  PrevStation = lineStations[lineStations.Count() - 2].stationCode,
-                //  NextStation = null,
                 stationCode = lineStations[lineStations.Count() - 1].stationCode,
                 LineId = line.Id,
                 LineStationIndex = lineStations.Count() - 1
@@ -86,8 +82,6 @@ namespace BL
             {
                 DO.LineStation newLineStation = new DO.LineStation
                 {
-                    //    PrevStation = lineStations[i - 1].stationCode,
-                    //  NextStation = lineStations[i + 1].stationCode,
                     stationCode = lineStations[i].stationCode,
                     LineId = line.Id,
                     LineStationIndex = i,
@@ -272,23 +266,6 @@ namespace BL
             lineBO.Stations = from stn in dl.GetAllLineStationsBy(item => item.LineId == lineDO.Id)
                               orderby stn.LineStationIndex
                               select LineStationDoBoAdapter(stn);//convert from DO.lineStation to BO.lineStation
-            //lineBO.Stations.ElementAt(0).Distance = 0;
-            //lineBO.Stations.ElementAt(0).Time = new TimeSpan(0);
-
-            //lineBO.Stations = lineBO.Stations.ToList();
-
-            //foreach (var item in lineBO.Stations)
-            //{
-
-            //}
-
-            ////collect all the adjacentStations that belong to lineBo
-            //lineBO.adjacentStations = from stn in dl.GetAllAdjacentStations()
-            //                          let stations= lineBO.Stations.ToList()//save all the LineStations that belong to LineBo in list
-            //                          //Now check if LineStations list contain the two stations in the adjacentStations
-            //                          where stations.Any(x => x.stationCode == stn.Station1)
-            //                                 && stations.Any(x => x.stationCode == stn.Station2)
-            //                          select adjacentStationsDoBoAdapter(stn);
             return lineBO;
         }
 
@@ -296,25 +273,20 @@ namespace BL
         #endregion
 
         #region LineStation
+        //lineStation dont need the field getAll, because layer UI get the linestation as obeject in busLine
+
+        /// <summary>
+        /// this method get DO.lineStation and return a BO.LineStation
+        /// </summary>
+        /// <param name="doLineStation"></param>
+        /// <returns></returns>
         private BO.LineStation LineStationDoBoAdapter(DO.LineStation doLineStation)
         {
             BO.LineStation boLineStation = new LineStation();
             boLineStation.stationCode = doLineStation.stationCode;
-            //lineStation.PrevStation = lineStn.PrevStation;
-            //lineStation.NextStation = lineStn.NextStation;
             DO.Station temp = dl.GetStation(doLineStation.stationCode);
             boLineStation.stationName = temp.Name;
             boLineStation.LineStationIndex = doLineStation.LineStationIndex;
-            //if (lineStation.PrevStation == null)//it is the first station
-            //{
-            //    lineStation.Time = new TimeSpan(0);
-            //    lineStation.Distance = 0;
-            //}
-            //else {
-            //    DO.AdjacentStations ads = dl.GetAdjacentStations(lineStn.stationCode, (int)(lineStn.PrevStation));
-            //    lineStation.Distance = ads.Distance;
-            //    lineStation.Time = ads.Time;
-            //}
             if (boLineStation.LineStationIndex == 0)//it is the first station
             {
                 boLineStation.Time = new TimeSpan(0);
@@ -423,7 +395,7 @@ namespace BL
         /// <param name="bus"></param>
         public void TreatmentBus(BO.Bus bus)
         {
-            bus.Fuel = 1200;
+            bus.Fuel = DO.Config.FullTank;
             bus.DateOfTreatment = DateTime.Now;
             bus.TotalKmsFromLastTreatment = 0;
             UpdateBus(bus);
@@ -462,7 +434,6 @@ namespace BL
             doBus.License = int.Parse(boBus.License);
             doBus.DateOfTreatment = boBus.DateOfTreatment;
             doBus.StartOfWork = boBus.StartOfWork;
-            doBus.Status = (DO.Status)(int)boBus.Status;
             doBus.Fuel = boBus.Fuel;
             doBus.TotalKms = boBus.TotalKms;
             doBus.TotalKmsFromLastTreatment = boBus.TotalKmsFromLastTreatment;
@@ -505,7 +476,6 @@ namespace BL
                 boBus.Status = BO.Status.Dangerous;
             else
                 boBus.Status = BO.Status.Ready;
-           // boBus.Status = (BO.Status)(int)doBus.Status;
             boBus.Fuel = doBus.Fuel;
             boBus.TotalKms = doBus.TotalKms;
             boBus.TotalKmsFromLastTreatment = doBus.TotalKmsFromLastTreatment;
@@ -803,6 +773,10 @@ namespace BL
                 dl.AddLineTrip(linesTrip[i]);
             }
         }
+        /// <summary>
+        /// this method delete the request lineTrip
+        /// </summary>
+        /// <param name="id"></param>
         public void DeleteLineTrip(int id)
         {
             try
@@ -814,6 +788,11 @@ namespace BL
                 throw new BO.LineTripNotFoundException(ex.Id);
             }
         }
+        /// <summary>
+        /// this method get DO.linetrop and return  BO.lineTrip
+        /// </summary>
+        /// <param name="doLineTrip"></param>
+        /// <returns></returns>
         private BO.LineTrip LineTripDoBoAdapter(DO.LineTrip doLineTrip)
         { 
             return new BO.LineTrip
@@ -823,6 +802,11 @@ namespace BL
                 StartAt = doLineTrip.StartAt
             };
         }
+        /// <summary>
+        /// this method get BO.linetrop and return  DO.lineTrip
+        /// </summary>
+        /// <param name="boLineTrip"></param>
+        /// <returns></returns>
         private DO.LineTrip LineTripBoDoAdapter(BO.LineTrip boLineTrip)
         {
             return new DO.LineTrip
@@ -843,17 +827,18 @@ namespace BL
         public IEnumerable<BO.LineTiming> GetLinesTiming(int code, TimeSpan start)
         {
             
+            //group all lineSation by their lineId
             var lineStationsGrouping = from lineStation in dl.GetAllLineStations()
                                        orderby lineStation.LineStationIndex
                                        group lineStation by lineStation.LineId;
            
             return from lsGroup in lineStationsGrouping
-                    where lsGroup.Any(x => x.stationCode == code)
-                    let line = GetLine(lsGroup.Key)     // MakeLineTiming(GetLine(lsGroup.Key),code,start)    //(lsGroup.ToList(), lsGroup.Key, code,start)
+                    where lsGroup.Any(x => x.stationCode == code)//check if the request station is in the group
+                    let line = GetLine(lsGroup.Key)    
                     let time = calculateTravelTime(line, code)//calculate the travel time from first station to the request station
-                    from trip in dl.GetAllLinesTripBy(x => x.LineId == line.Id && x.StartAt <= start).OrderBy(x => x.StartAt)
-                    let timeNow = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second)
-                    where trip.StartAt + time > timeNow
+                    from trip in dl.GetAllLinesTripBy(x => x.LineId == line.Id && x.StartAt <= start).OrderBy(x => x.StartAt)//get all the lineTrip of the specific line that already start their driving
+                    let timeNow = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second)//in order to get the accurate time as possible
+                    where trip.StartAt + time > timeNow//in order to select only lineTrip who have not yet arrived
                     select new LineTiming
                     {
                         LineCode = line.LineNumber,
@@ -881,13 +866,7 @@ namespace BL
             }
             return time;
         }
-        //private BO.LineTiming MakeLineTiming(BO.Line line, int stationCode, TimeSpan start)
-        //{
-        //    var lineTrips = dl.GetAllLinesTripBy(x => x.LineId == line.Id&&x.StartAt<=start).OrderBy(x=>x.StartAt);
-
-        //    BO.LineTiming lineTiming = new LineTiming();
-
-        //}
+        
         #endregion
     }
 }

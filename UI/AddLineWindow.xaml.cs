@@ -24,7 +24,6 @@ namespace UI
     public partial class AddLineWindow : Window
     {
         PO.BusLine LineToAdd = new BusLine { Stations = new ObservableCollection<PO.LineStation>()};
-       // ObservableCollection<PO.BusLine> LinesCollection;
         ObservableCollection<PO.Station> StationCollection;
 
         IBL bl;
@@ -34,8 +33,7 @@ namespace UI
             bl = myBl;
             cbArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
             cbArea.SelectedIndex = (int)BO.Areas.Jerusalem;
-           // LinesCollection = lines;
-          //  addGrid.Visibility = Visibility.Visible;
+         
             StationCollection = new ObservableCollection<PO.Station>(
                 bl.GetAllStations().ToList().ConvertAll(s => Adapter.POBOAdapter(s)));
             stationDataGrid.DataContext = StationCollection;
@@ -197,7 +195,6 @@ namespace UI
             try
             {
                 LineToAdd.Id = bl.AddLine(boLineToAdd);///////////////////
-               //LinesCollection.Add(LineToAdd);/////////////לא להוסיף לשם, עדיף דרך החלון הקודם
                 this.Close();
             }
             catch (BO.NotEnoughInformationException ex)//if there is no information about distance and time between all the lineSation,

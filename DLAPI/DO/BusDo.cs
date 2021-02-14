@@ -11,7 +11,6 @@ namespace DO
     /// A class that defines a physical bus/
     /// </summary>
     /// 
-  //  [DebuggerDisplay(string.Format("{0}  {1} {2}",License,Fuel,StartOfWork))]
     [DebuggerDisplay("{License},{Fuel},{StartOfWork}")]
     public class Bus
     {
@@ -36,16 +35,12 @@ namespace DO
         /// How many kilometers left the bus could drive before refuel
         /// </summary>
         public int Fuel { get; set; }
-        /// <summary>
-        /// enum that contain the status of the bus (redy, intreatment etc..)
-        /// </summary>
-        public Status Status { get; set; }
+     
         /// <summary>
         /// the total kilometers from the last treartment
         /// </summary>
         public int TotalKmsFromLastTreatment { get; set; }
         
-       
         /// <summary>
         /// this field return false when the argument is not deleted
         /// </summary>
